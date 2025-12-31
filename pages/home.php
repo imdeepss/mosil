@@ -7,10 +7,19 @@ $blogs = getBlogs(3);
 ?>
 <!-- Hero Section -->
 <section class="relative h-[720px] w-full overflow-hidden">
-    <img src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.gif" alt="Hero Image"
-        class="block h-full w-full object-cover object-center md:block hidden" fetchpriority="high">
-    <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.gif" alt="Hero Image"
-        class="block h-full w-full object-cover object-center block md:hidden" fetchpriority="high">
+    <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center md:block hidden"
+        poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" fetchpriority="high">
+        <source src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.mp4" type="video/mp4">
+        <img src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" alt="Hero Image"
+            class="h-full w-full object-cover object-center">
+    </video>
+
+    <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center block md:hidden"
+        poster="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png" fetchpriority="high">
+        <source src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.mp4" type="video/mp4">
+        <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png" alt="Hero Image"
+            class="h-full w-full object-cover object-center">
+    </video>
 </section>
 
 
