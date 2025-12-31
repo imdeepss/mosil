@@ -1,0 +1,10 @@
+# Environment / server-specific files
+.htaccess
+php.ini
+
+# Dependency folders
+/vendor/
+/node_modules/
+
+# Image assets (ignore all images in this folder)
+assets/images/
