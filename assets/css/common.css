@@ -124,3 +124,56 @@ details[open] summary~* {
         linear-gradient(to right, #30442C, #F4C300) border-box;
 
 }
+
+/* Hover Effect for Stats Section */
+/* When hovering the container, dim all children */
+.text-cursor-hover-effect:hover>div {
+    opacity: 0.3;
+    filter: blur(0.5px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When hovering a specific child, bring it back to full opacity and scale slightly */
+.text-cursor-hover-effect:hover>div:hover {
+    opacity: 1;
+    filter: blur(0);
+    z-index: 10;
+}
+
+@keyframes revealColorCircle {
+    0% {
+        background-size: 0% 0%, 100% 100%;
+    }
+
+    100% {
+        background-size: 250% 250%, 100% 100%;
+    }
+}
+
+/* When hovering a specific child, apply rounded circular reveal from top */
+.text-cursor-hover-effect:hover>div:hover h3 {
+    /* Layer 1: Radial expanding circle (Primary Color) */
+    /* Layer 2: Solid White base */
+    background-image:
+        radial-gradient(circle at top, var(--color-primary) 50%, transparent 51%),
+        linear-gradient(to bottom, #FFFFFF, #FFFFFF);
+
+    background-size: 0% 0%, 100% 100%;
+    background-position: top center, top center;
+    background-repeat: no-repeat;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    width: fit-content;
+    animation: revealColorCircle 0.8s ease-out forwards;
+}
+
+/* Optional: Transition for the children */
+.text-cursor-hover-effect>div {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}/* Continuous Scroll for Logo/Brand Swiper */
+.logoSwiper .swiper-wrapper {
+    transition-timing-function: linear !important;
+}

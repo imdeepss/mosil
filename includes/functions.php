@@ -368,4 +368,53 @@ function searchProducts($searchQuery)
 
     return db_query_all($sql, $params);
 }
+/**
+ * Clean and format text from database for display.
+ * Removes HTML tags, converts entities, cleans junk characters/whitespace,
+ * and ensures sentence casing.
+ *
+ * @param string $text
+ * @param int|null $limit Optional character limit (soft break at word)
+ * @return string
+ */
+function cleanText($text, $limit = null)
+{
+    if (empty($text)) {
+        return '';
+    }
+
+    // 1. Decode HTML entities (e.g. &amp; -> &, &nbsp; -> ' ')
+    $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // 2. Strip HTML tags
+    $text = strip_tags($text);
+
+    // 3. Replace non-breaking spaces and other invisible characters with a regular space
+    $text = str_replace(["\xC2\xA0", "&nbsp;"], ' ', $text);
+
+    // 4. Remove control characters (0-31) to strip "junk"
+    $text = preg_replace('/[\x00-\x1F\x7F]/u', '', $text);
+
+    // 5. Replace multiple whitespace sequences (newlines, tabs, spaces) with a single space
+    $text = preg_replace('/\s+/', ' ', $text);
+
+    // 6. Trim leading/trailing whitespace
+    $text = trim($text);
+
+    // 7. Ensure first letter is uppercase
+    $text = ucfirst($text);
+
+    // 8. Handle truncation if limit is provided
+    if ($limit && mb_strlen($text) > $limit) {
+        $text = mb_substr($text, 0, $limit);
+        // Trim to last space to avoid cutting words
+        $lastSpace = mb_strrpos($text, ' ');
+        if ($lastSpace !== false) {
+            $text = mb_substr($text, 0, $lastSpace);
+        }
+        $text .= '...';
+    }
+
+    return $text;
+}
 ?>

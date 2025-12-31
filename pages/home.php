@@ -26,7 +26,7 @@ $blogs = getBlogs(3);
 <!-- Lubricant solutions for every industry -->
 <section class="bg-white overflow-hidden">
     <div class="container relative md:py-20 py-12">
-        <div class="py-3.5 reveal-up">
+        <div class="py-3.5">
             <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
                 Industries we serve
             </span>
@@ -36,7 +36,7 @@ $blogs = getBlogs(3);
                     Lubricant solutions for every industry
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/"
-                    class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
+                    class="font-normal md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
                     See All
                 </a>
             </div>
@@ -141,7 +141,7 @@ $blogs = getBlogs(3);
             <span class="text-[var(--color-b200)] font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
                 Our Product range
             </span>
-            <div class="border-b border-primary pb-1 flex items-center justify-between">
+            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Products engineered for performance</h2>
@@ -214,28 +214,28 @@ $blogs = getBlogs(3);
             </div>
         </div>
 
-        <div class="md:mt-8 mt-6 flex flex-col lg:flex-row items-stretch">
-            <div class="w-full lg:w-2/3 swiper edgeSwiper relative overflow-hidden">
+        <div class="md:mt-8 mt-6 flex flex-col lg:flex-row">
+            <div class="w-full lg:w-[820px] swiper edgeSwiper relative overflow-hidden">
                 <div class="swiper-wrapper relative">
                     <?php
                     foreach ($caseStudies as $study) { ?>
                         <div
-                            class="swiper-slide animate-slide-left w-full relative md:min-h-[450px] min-h-[360px] group overflow-hidden">
+                            class="swiper-slide animate-slide-left w-full relative md:h-[506px] h-[360px] group overflow-hidden">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
                                 alt="Case Study Image"
-                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
                                 loading="lazy">
 
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end text-white pb-22">
+                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end text-white pb-22">
                                 <div class="md:p-8 p-4">
                                     <h3
                                         class="md:text-[20px] text-[16px] font-normal leading-[140%] tracking-[0.01em] md:mb-3.5 mb-2">
                                         <?php echo $study['title']; ?>
                                     </h3>
                                     <p
-                                        class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] md:mb-3.5 mb-2 text-white/90">
-                                        <?php echo $study['description']; ?>
+                                        class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] md:mb-3.5 mb-2 text-white/90 line-clamp-3">
+                                        <?php echo cleanText($study['solution']); ?>
                                     </p>
                                 </div>
                             </div>
@@ -254,17 +254,18 @@ $blogs = getBlogs(3);
             </div>
 
             <div
-                class="animate-slide-right w-full lg:w-1/3 bg-main-green text-white md:px-7 px-5 md:py-10 py-4 relative overflow-hidden">
+                class="animate-slide-right w-full lg:w-[460px] bg-main-green text-white md:px-7 px-5 md:py-10 py-4 relative overflow-hidden">
                 <img src="<?php echo SITE_URL; ?>/assets/images/ui/mosil-adv-bg.png"
                     class="absolute inset-0 w-full h-full object-cover pointer-events-none" alt="Background pattern"
                     loading="lazy" />
 
                 <div class="relative z-10">
-                    <h2 class="font-light text-lg md:text-[40px] leading-[120%] capitalize mb-2 md:mb-10">MOSIL's
-                        Advantages
+                    <h2
+                        class="font-light text-lg md:text-[40px] leading-[120%] capitalize mb-2 md:mb-5 whitespace-nowrap">
+                        MOSIL's Advantages
                     </h2>
 
-                    <div class="grid grid-cols-2 gap-2 md:gap-6">
+                    <div class="grid grid-cols-2 gap-2 md:gap-6 text-cursor-hover-effect">
                         <?php
                         $stats = [
                             ['num' => 50, 'label' => 'Years of expertise in the industry'],
@@ -276,10 +277,11 @@ $blogs = getBlogs(3);
                         ];
                         foreach ($stats as $stat) { ?>
                             <div>
-                                <span class="text-4xl font-semibold text-primary">
+                                <h3
+                                    class="text-4xl md:text-[54px] font-normal text-[54px] leading-[120%] tracking-[0.01em] text-primary mb-2">
                                     <span class="counter" data-target="<?php echo $stat['num']; ?>">0</span>+
-                                </span>
-                                <p class="text-b20 font-light md:text-[14px] text-[12px] leading-[150%] mt-2 md:pr-0 pr-5">
+                                </h3>
+                                <p class="text-b20 font-light md:text-[14px] text-[12px] leading-[150%] md:pr-0 pr-5">
                                     <?php echo $stat['label']; ?>
                                 </p>
                             </div>
@@ -423,8 +425,7 @@ $lubricationItems = [
                 </h2>
             </div>
         </div>
-        <p
-            class="md:pr-28 pr-0 font-normal text-lg leading-[140%] tracking-normal text-[var(--color-b200)] hidden md:block">
+        <p class="md:pr-28 pr-0 font-normal text-lg leading-[140%] tracking-normal text-[#575757] hidden md:block">
             Quadra
             Thinking is
             MOSIL’s way of solving
@@ -450,7 +451,7 @@ $lubricationItems = [
                             class="font-normal md:text-2xl text-lg leading-[135%] tracking-[0.015em] capitalize text-main-green mb-1 transition-colors duration-300 group-hover:text-black">
                             <?php echo $item['title']; ?>
                         </h6>
-                        <p class="font-normal text-xm md:text-xs leading-[150%] tracking-[0.015em] text-main-green/80">
+                        <p class="font-normal text-xm md:text-xs leading-[150%] tracking-[0.015em] text-[#1A3B1B]">
                             <?php echo $item['desc']; ?>
                         </p>
                     </div>
@@ -531,8 +532,12 @@ $lubricationItems = [
                         <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode(
                                $blog["slug"]
                            ) ?>"
-                            class="font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize text-[var(--color-main-green)] border-b-2 border-[var(--color-primary)] pb-2 inline-block w-fit">Read
-                            <?php echo $blog['category_name']; ?></a>
+                            class="group relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
+                            Read
+                            <?php echo $blog['category_name']; ?>
+                            <span
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left "></span>
+                        </a>
                     </div>
                 <?php } ?>
             </div>
@@ -575,7 +580,7 @@ $lubricationItems = [
             <div class="swiper-wrapper flex items-center">
                 <?php
                 $brands = [];
-                foreach (range('A', 'Z') as $letter) {
+                foreach (range('A', 'L') as $letter) {
                     $brands[] = $letter . '.png';
                 }
                 foreach ($brands as $brand) { ?>

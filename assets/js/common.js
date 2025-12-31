@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     autoplay: {
       delay: 0,
       disableOnInteraction: false,
-      waitForTransition: false,
+      pauseOnMouseEnter: false, // Ensure it doesn't stop on hover if not desired
     },
   });
 

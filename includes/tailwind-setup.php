@@ -49,7 +49,7 @@
 
         /* Font Configuration */
         /* Overriding the default sans font to be Helvetica */
-        --font-sans: "Helvetica", "Arial", sans-serif;
+        --font-sans: "Helvetica";
 
         /* Custom Spacing */
         --spacing-header-height: 60px;
@@ -138,7 +138,7 @@
 
     @layer utilities {
         .container {
-            @apply max-w-[var(--container-width)] mx-auto px-[var(--spacing-md)]; 
+            @apply max-w-[var(--container-width)] mx-auto px-[var(--spacing-md)] lg:px-0; 
         }
 
         
