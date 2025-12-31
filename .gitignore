@@ -1,10 +1,22 @@
 # Environment / server-specific files
 .htaccess
 php.ini
+.env
+.env.local
+.env.*
 
 # Dependency folders
 /vendor/
 /node_modules/
+/dist/
+/build/
 
-# Image assets (ignore all images in this folder)
-assets/images/
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# User Uploads
+/assets/uploads/
+
+
+
