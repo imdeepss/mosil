@@ -18,5 +18,8 @@ Thumbs.db
 # User Uploads
 /assets/uploads/
 
+# config files
+/includes/config.php
+
 
 
