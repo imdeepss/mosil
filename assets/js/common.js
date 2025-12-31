@@ -207,6 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = activeSlide.getAttribute("data-title");
         const tagline = activeSlide.getAttribute("data-tagline");
         const desc = activeSlide.getAttribute("data-desc");
+        const link = activeSlide.getAttribute("data-link"); // Get the link
 
         const contentBox = document.querySelector(
           ".relative.z-10.flex.flex-col.gap-4"
@@ -218,6 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelector(".industry-title").innerText = title;
           document.querySelector(".industry-tagline").innerText = tagline;
           document.querySelector(".industry-desc").innerText = desc;
+          const linkEl = document.querySelector(".industry-link");
+          if (linkEl) linkEl.href = link; // Update the link href
+
           contentBox.style.opacity = "1";
           contentBox.style.transition = "opacity 0.4s ease";
         }, 300);

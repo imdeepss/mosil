@@ -30,7 +30,7 @@ $blogs = getBlogs(3);
             <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
                 Industries we serve
             </span>
-            <div class="border-b border-primary pb-1 flex items-center justify-between gap-13">
+            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between gap-13">
                 <h2
                     class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Lubricant solutions for every industry
@@ -44,32 +44,31 @@ $blogs = getBlogs(3);
 
         <div class="md:mt-8 mt-6 flex flex-col lg:flex-row items-stretch gap-5">
             <div
-                class="hidden lg:flex w-full lg:w-[35%] py-16 px-8 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20">
+                class="hidden lg:flex w-full lg:w-[35%] lg:h-[480px] py-16 px-8 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20">
                 <div class="absolute inset-0 opacity-50 pointer-events-none">
                     <img src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png" class="w-full h-full object-contain"
                         alt="" loading="lazy" />
                 </div>
 
-                <div class="relative z-10 flex flex-col gap-4">
+                <div class="relative z-10 flex flex-col gap-4 ">
                     <?php if (!empty($industries)):
                         $firstIndustry = $industries[0];
                         ?>
                         <div id="industry-content">
-                            <h2
-                                class="text-main-green font-base font-normal text-[28px] leading-[135%] capitalize industry-title">
+                            <h2 class="text-main-green font-normal text-[28px] leading-[135%] capitalize industry-title">
                                 <?php echo $firstIndustry['mcat_name']; ?>
                             </h2>
                             <p
-                                class="text-[#575757] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] industry-tagline">
+                                class="text-[#575757] font-normal text-[14px] leading-[150%] tracking-[0.015em] industry-tagline">
                                 <?php echo $firstIndustry['mcat_desc']; ?>
                             </p>
                         </div>
-                        <p class="text-[#777777] font-base font-normal text-[18px] leading-[140%] industry-desc">
-                            <?php echo $firstIndustry['mcat_desc']; ?>
+                        <p class="text-[#575757] font-normal text-[18px] leading-[140%] industry-desc empty:hidden">
+                            <?php echo $firstIndustry['meta_description']; ?>
                         </p>
 
                         <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $firstIndustry['slug']; ?>"
-                            class="industry-link inline-block bg-main-green text-white px-10 py-3 rounded-full font-base hover:bg-black transition-all w-fit">
+                            class="industry-link inline-block bg-main-green text-white px-10 py-3 rounded-full hover:bg-black transition-all w-fit button-hover border-2 ">
                             View
                         </a>
                     <?php endif; ?>
@@ -95,31 +94,33 @@ $blogs = getBlogs(3);
 
             <div class="w-full lg:w-[65%] relative">
                 <div class="swiper industrySwiper h-full">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper ">
                         <?php foreach ($industries as $industry) { ?>
-                            <div class="swiper-slide h-auto bg-[#F5F5F5]" data-title="<?php echo $industry['mcat_name']; ?>"
+                            <div class="swiper-slide bg-[#F5F5F5] overflow-hidden"
+                                data-title="<?php echo $industry['mcat_name']; ?>"
                                 data-tagline="<?php echo $industry['mcat_desc']; ?>"
-                                data-desc="<?php echo $industry['mcat_desc']; ?>"
-                                data-link="<?php echo SITE_URL; ?>/industry/<?php echo $industry['slug']; ?>">
+                                data-desc="<?php echo $industry['meta_description']; ?>"
+                                data-link="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                    class="w-full h-[240px] md:h-[480px] object-cover"
+                                    class="w-full h-[214px]! md:h-[480px]! object-cover shrink-0 rounded-t-[4px]"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
                                 <div class="lg:hidden p-6 flex flex-col gap-4">
                                     <div>
                                         <h2
-                                            class="text-main-green font-base font-normal text-[28px] leading-[135%] capitalize">
+                                            class="text-main-green font-normal md:text-[28px] md:leading-[135%] text-[18px] leading-[140%] capitalize">
                                             <?php echo $industry['mcat_name']; ?>
                                         </h2>
                                         <p
-                                            class="text-[#575757] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
+                                            class="text-[#575757] font-normal text-[12px] md:text-[14px] leading-[150%] tracking-[0.015em]">
                                             <?php echo $industry['mcat_desc']; ?>
                                         </p>
                                     </div>
-                                    <p class="text-[#777777] font-base font-normal text-[18px] leading-[140%]">
-                                        <?php echo $industry['mcat_desc']; ?>
+                                    <p
+                                        class="text-[#575757] font-normal text-[14px] leading-[150%] md:text-[18px] md:leading-[140%] empty:hidden">
+                                        <?php echo $industry['meta_description']; ?>
                                     </p>
                                     <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>"
-                                        class="inline-block bg-main-green text-white px-10 py-3 rounded-full font-base hover:bg-black transition-all w-fit">
+                                        class="inline-block bg-main-green text-white px-10 py-3 rounded-full hover:bg-black transition-all w-fit mt-auto text-[16px] leading-[150%] tracking-[0.015em]">
                                         View
                                     </a>
                                 </div>
@@ -187,7 +188,7 @@ $blogs = getBlogs(3);
 
                         <div class="p-6">
                             <h6
-                                class="font-base font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary transition-colors duration-500 max-w-[250px]">
+                                class="font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary transition-colors duration-500 max-w-[250px]">
                                 <?php echo $product['mcat_name']; ?>
                             </h6>
                         </div>
@@ -229,11 +230,11 @@ $blogs = getBlogs(3);
                                 class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end text-white pb-22">
                                 <div class="md:p-8 p-4">
                                     <h3
-                                        class="font-base md:text-[20px] text-[16px] font-normal leading-[140%] tracking-[0.01em] md:mb-3.5 mb-2">
+                                        class="md:text-[20px] text-[16px] font-normal leading-[140%] tracking-[0.01em] md:mb-3.5 mb-2">
                                         <?php echo $study['title']; ?>
                                     </h3>
                                     <p
-                                        class="font-base md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] md:mb-3.5 mb-2 text-white/90">
+                                        class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] md:mb-3.5 mb-2 text-white/90">
                                         <?php echo $study['description']; ?>
                                     </p>
                                 </div>
@@ -318,10 +319,10 @@ $blogs = getBlogs(3);
                 <div
                     class="md:px-4.5 px-2.5 md:py-6 py-4 border-l-4 border-transparent transition-all duration-300 group-hover:border-main-green flex-1">
                     <h3
-                        class="font-base font-bold md:text-[18px] text-[16px] leading-[140%] tracking-[0.015em] capitalize text-main-green md:mb-2 mb-1">
+                        class="font-bold md:text-[18px] text-[16px] leading-[140%] tracking-[0.015em] capitalize text-main-green md:mb-2 mb-1">
                         Manufacturing Plant
                     </h3>
-                    <p class="font-base font-normal text-[14px]  leading-[150%] tracking-[0.015em] text-[#575757]">
+                    <p class="font-normal text-[14px]  leading-[150%] tracking-[0.015em] text-[#575757]">
                         At MOSIL, every solution is backed by strong infrastructure designed for consistency and
                         scale.
                         Our three advanced manufacturing units—two in Navi Mumbai and one in Palghar—provide
@@ -342,10 +343,10 @@ $blogs = getBlogs(3);
                     <div
                         class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300 group-hover:border-primary">
                         <h3
-                            class="font-base font-bold md:text-[18px] text-[16px] leading-[140%] tracking-[0.015em] capitalize text-main-green md:mb-2 mb-1">
+                            class="font-bold md:text-[18px] text-[16px] leading-[140%] tracking-[0.015em] capitalize text-main-green md:mb-2 mb-1">
                             Warehouse
                         </h3>
-                        <p class="font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
+                        <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
                             With in-house NABL accredited tribology labs, pilot scale testing facilities, and an
                             expert
                             team of chemists and tribologists.
@@ -363,10 +364,10 @@ $blogs = getBlogs(3);
                     <div
                         class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300 group-hover:border-primary">
                         <h3
-                            class="font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize text-main-green mb-2">
+                            class="font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize text-main-green mb-2">
                             Research & Development & QA Lab
                         </h3>
-                        <p class="font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
+                        <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
                             At MOSIL, R&D is the engine driving every innovation we deliver through intelligence &
                             advanced methods.
                         </p>
@@ -449,8 +450,7 @@ $lubricationItems = [
                             class="font-normal md:text-2xl text-lg leading-[135%] tracking-[0.015em] capitalize text-main-green mb-1 transition-colors duration-300 group-hover:text-black">
                             <?php echo $item['title']; ?>
                         </h6>
-                        <p
-                            class="font-base font-normal text-xm md:text-xs leading-[150%] tracking-[0.015em] text-main-green/80">
+                        <p class="font-normal text-xm md:text-xs leading-[150%] tracking-[0.015em] text-main-green/80">
                             <?php echo $item['desc']; ?>
                         </p>
                     </div>

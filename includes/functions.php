@@ -153,7 +153,7 @@ function getProductsCategory()
  */
 function getCategoryByParent($parentCatId, $limit = null)
 {
-    $sql = "SELECT id, mcat_name, mcat_desc, slug, mcat_image
+    $sql = "SELECT id, mcat_name, mcat_desc, slug, mcat_image,meta_description
             FROM main_category
             WHERE parent_cat = " . intval($parentCatId) . "
               AND status = 'Active'

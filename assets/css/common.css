@@ -1,11 +1,29 @@
 @media (min-width: 1024px) {
     .industrySwiper .swiper-slide {
-        width: 250px;
-        transition: width 0.5s ease;
+        width: 158px;
+        transition: width 0.5s ease, opacity 0.5s ease;
+        opacity: 0.5;
+        overflow: hidden;
+        position: relative;
     }
 
     .industrySwiper .swiper-slide-active {
         width: 426px !important;
+        opacity: 1;
+    }
+
+    /* Fix for low quality images: Keep image at full width and center it */
+    .industrySwiper .swiper-slide img {
+        width: 426px !important;
+        max-width: none !important;
+        height: 100% !important;
+        object-fit: cover;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%) translateZ(0);
+        /* translateZ for GPU acceleration */
+        backface-visibility: hidden;
     }
 }
 
