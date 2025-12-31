@@ -6,11 +6,11 @@ $blogs = getBlogs(3);
 
 ?>
 <!-- Hero Section -->
-<section class="relative h-[720px] w-full overflow-hidden h-[720px] ">
+<section class="relative h-[720px] w-full overflow-hidden">
     <img src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.gif" alt="Hero Image"
-        class="block h-full w-full object-cover object-center md:block hidden">
+        class="block h-full w-full object-cover object-center md:block hidden" fetchpriority="high">
     <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.gif" alt="Hero Image"
-        class="block h-full w-full object-cover object-center block md:hidden">
+        class="block h-full w-full object-cover object-center block md:hidden" fetchpriority="high">
 </section>
 
 

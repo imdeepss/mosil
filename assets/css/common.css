@@ -68,10 +68,11 @@
 }
 
 /* Global Layout Constraint */
-body {
+/* body,
+header {
     max-width: 1440px;
     margin: 0 auto;
-}
+} */
 
 
 /* Custom animation for the content fade-in */

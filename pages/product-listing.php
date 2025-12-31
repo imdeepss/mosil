@@ -42,10 +42,10 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
     <div class="absolute inset-0 z-0 w-full h-full">
         <!-- Dynamic banner image could go here based on category -->
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/product-listing.png" alt="Product Listing Desktop"
-            class="hidden md:block w-full h-full object-cover object-[50%_75%]" loading="lazy">
+            class="hidden md:block w-full h-full object-cover object-[50%_75%]" fetchpriority="high">
 
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-product-listing.png" alt="Product Listing Mobile"
-            class="block md:hidden w-full h-full object-cover object-center" loading="lazy">
+            class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
     </div>
 </section>
 

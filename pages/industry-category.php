@@ -17,10 +17,10 @@ $industries = getCategoryByParent("2");
 
     <div class="absolute inset-0 z-0 w-full h-full">
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/industry-categories.png" alt="Product Finder Desktop"
-            class="hidden md:block w-full h-full object-cover object-[50%_75%]" loading="lazy">
+            class="hidden md:block w-full h-full object-cover object-[50%_75%]" fetchpriority="high">
 
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/industry-categories-mb4.png" alt="Product Finder Mobile"
-            class="block md:hidden w-full h-full object-cover object-center" loading="lazy">
+            class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
     </div>
 </section>
 
