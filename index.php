@@ -29,7 +29,7 @@ $allowed_pages = [
     'beyond-business',
     'glossary',
     'faqs',
-    'careers',
+    'career',
     'contact',
     'privacy-policy',
     'industry-category',

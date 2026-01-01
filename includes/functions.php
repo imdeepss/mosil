@@ -368,6 +368,14 @@ function searchProducts($searchQuery)
 
     return db_query_all($sql, $params);
 }
+
+
+function getCareerPosition()
+{
+    $sql = "SELECT id, position FROM career WHERE status = 'Active'";
+    return db_query_all($sql);
+
+}
 /**
  * Clean and format text from database for display.
  * Removes HTML tags, converts entities, cleans junk characters/whitespace,
