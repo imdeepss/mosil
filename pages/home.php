@@ -1,7 +1,7 @@
 <?php
 $industries = getCategoryByParent("2");
 $products = getCategoryByParent("3", "4");
-$caseStudies = getCaseStudy("4");
+$caseStudies = getCaseStudy("3");
 $blogs = getBlogs(3);
 
 ?>
@@ -219,8 +219,7 @@ $blogs = getBlogs(3);
                 <div class="swiper-wrapper relative">
                     <?php
                     foreach ($caseStudies as $study) { ?>
-                        <div
-                            class="swiper-slide animate-slide-left w-full relative md:h-[506px] h-[360px] group overflow-hidden">
+                        <div class="swiper-slide w-full relative md:min-h-[506px] min-h-[360px] group overflow-hidden">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
                                 alt="Case Study Image"
                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
@@ -244,7 +243,7 @@ $blogs = getBlogs(3);
                 </div>
                 <div class="absolute bottom-0 left-0 w-full z-20 flex flex-col">
                     <div class="swiper-pagination-custom relative md:p-8 p-4 flex">
-                        <div class="swiper-pagination inset-auto! relative! w-auto! flex gap-2"></div>
+                        <div class="swiper-pagination inset-auto! relative! w-auto! flex"></div>
                     </div>
                     <a href="<?php echo SITE_URL; ?>/case-studies"
                         class="text-white font-normal md:text-[18px] text-[16px] uppercase whitespace-nowrap border-t-2 border-white block w-full text-center py-4 cursor-pointer">
@@ -577,7 +576,7 @@ $lubricationItems = [
         </div>
 
         <div class="md:mt-8 mt-6 swiper logoSwiper">
-            <div class="swiper-wrapper flex items-center">
+            <div class="swiper-wrapper flex items-center" style="transition-timing-function: linear !important;">
                 <?php
                 $brands = [];
                 foreach (range('A', 'L') as $letter) {

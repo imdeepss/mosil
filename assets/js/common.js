@@ -246,11 +246,10 @@ document.addEventListener("DOMContentLoaded", () => {
     loop: true,
     speed: 1000,
     allowTouchMove: false,
-
     autoplay: {
       delay: 0,
       disableOnInteraction: false,
-      pauseOnMouseEnter: false, // Ensure it doesn't stop on hover if not desired
+      pauseOnMouseEnter: false,
     },
   });
 
@@ -271,17 +270,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const edgeSwiper = new Swiper(".edgeSwiper", {
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+    speed: 1500, // Smooth transition speed
     slidesPerView: 1,
-    spaceBetween: 0, // No space between slides for full-width images
+    spaceBetween: 0,
     loop: true,
     autoplay: {
-      delay: 4000, // Auto-play every 4 seconds
+      delay: 4000,
       disableOnInteraction: false,
     },
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
-      // Custom render for the dots to style them better
       renderBullet: function (index, className) {
         return (
           '<span class="' +
@@ -290,10 +293,9 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       },
     },
-    // Breakpoints for responsive behavior (e.g., if you want more slides on desktop)
     breakpoints: {
       768: {
-        slidesPerView: 1, // Still one slide for now, but you could change this
+        slidesPerView: 1,
       },
     },
   });
