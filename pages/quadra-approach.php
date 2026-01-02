@@ -68,7 +68,7 @@ $pageTitle = 'Quadra Approach';
         ];
         ?>
 
-        <div class="flex flex-col md:flex-row gap-4 pb-[77px]">
+        <div class="flex flex-col md:flex-row gap-4 md:pb-[77px]">
             <!-- Left Side: Interactive Grid -->
             <div class="w-full md:basis-2/5 grid grid-cols-2 md:gap-6 gap-3">
                 <?php foreach ($quadraSteps as $index => $step):
@@ -96,10 +96,11 @@ $pageTitle = 'Quadra Approach';
             </div>
 
             <!-- Right Side: Content Area -->
-            <div class="w-full md:basis-3/5 bg-[#F5F5F5] md:px-10 px-4 md:py-20 py-10 relative min-h-[400px]">
+            <div
+                class="w-full md:basis-3/5 bg-[#F5F5F5] md:px-10 px-4 md:py-20 py-11 md:pb-20 pb-[110px] relative min-h-[400px]">
                 <div class="flex flex-col md:gap-10 gap-6">
                     <h2
-                        class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                        class="text-main-green md:font-normal font-bold text-[20px] leading-[140%] md:text-[40px] md:leading-[120%] tracking-normal capitalize">
                         Four angles of
                         every lubrication decision.
                     </h2>
@@ -130,59 +131,57 @@ $pageTitle = 'Quadra Approach';
     </div>
 </section>
 <section class="relative">
-    <div class="absolute inset-0 z-0">
-        <!-- <img src="<?php echo SITE_URL; ?>/assets/images/ui/QuadraApproachBg.png" alt="Quadra Approach"
-            class="w-full h-full object-cover"> -->
+    <div class="md:block hidden absolute inset-0 z-0">
+        <img src="<?php echo SITE_URL; ?>/assets/images/ui/cubic-section-bg.png" alt="Quadra Approach"
+            class="w-full h-full object-cover">
     </div>
-    <div class="container py-20 relative z-10">
-        <div class="mb-12 relative z-10">
-            <h2 class="text-[#3B3B3B] font-base font-bold text-[40px] leading-[120%] mb-2">TriboIntel</h2>
-            <p class="text-[#3B3B3B] font-base font-normal text-[28px] leading-[135%] capitalize">MOSIL’s Own Process
-                Developed To Reduce Customer Risk</p>
+    <div class="md:hidden block absolute inset-0 z-0">
+        <img src="<?php echo SITE_URL; ?>/assets/images/ui/cubic-section-bg-mb.png" alt="Quadra Approach" class="">
+    </div>
+    <div class="container md:py-20 py-14 relative z-10">
+        <div class="md:mb-12 mb-3 relative z-10">
+            <h2
+                class="text-[#3B3B3B] font-base font-bold md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] mb-2">
+                TriboIntel</h2>
+            <p
+                class="text-[#3B3B3B] font-base font-normal md:text-[28px] md:leading-[135%] text-[16px] leading-[150%] capitalize">
+                MOSIL’s Own Process Developed To Reduce Customer Risk</p>
         </div>
+        <!-- Desktop view -->
+        <div class="hidden md:flex relative flex-row items-center justify-between gap-10 md:gap-0">
 
-        <div class="relative flex flex-col md:flex-row items-center justify-between gap-10 md:gap-0">
-
-            <!-- Center Cube (Desktop: Absolute Center, Mobile: Static) -->
-            <div
-                class="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
+            <div class="w-[516px] h-[536px] aspect-[129/134] shrink-0 
+            absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ">
                 <img src="<?php echo SITE_URL; ?>/assets/images/ui/cubic.png" alt="Cubic Process"
                     class="h-full w-full object-contain">
             </div>
 
-            <!-- Left Column -->
-            <div class="flex flex-col gap-[200px] w-full md:w-auto order-2 md:order-none">
-                <!-- Item 1: Dynamic Friction Engineering -->
-                <div class="flex flex-row items-start gap-4 relative group">
-                    <!-- Icon -->
+            <div class="flex flex-col gap-[200px] flex">
+
+                <div class="order-1 flex flex-row items-start gap-4 relative group">
                     <div
                         class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 relative z-10">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/chart-pie.svg" alt="Icon">
                     </div>
-                    <!-- Content -->
                     <div class="flex flex-col max-w-[306px]">
                         <h3
                             class="text-[#3B3B3B] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize mb-2">
-                            Dynamic Friction
-                            Engineering</h3>
+                            Dynamic Friction Engineering</h3>
                         <p class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                            MOSIL engineers lubricants to dynamically
-                            control friction under real-world stress through advanced, field-validated formulation
-                            science.</p>
+                            MOSIL engineers lubricants to dynamically control friction under real-world stress through
+                            advanced, field-validated formulation science.
+
+                        </p>
                     </div>
-                    <!-- arrow -->
-                    <div class="absolute left-16 top-[75%] w-full h-full z-[100] pointer-events-none">
+                    <div class="hidden md:block absolute left-16 top-[75%] w-full h-full z-[100] pointer-events-none">
                         <img src="<?php echo SITE_URL; ?>/assets/images/ui/top-left-bar.png" alt="Arrow">
                     </div>
                 </div>
 
-                <!-- Item 3: Intelligence Over Intervals -->
-                <div class="flex flex-row items-start gap-4 md:gap-6 relative group">
-                    <!-- Icon -->
+                <div class="order-3 flex flex-row items-start gap-4 md:gap-6 relative group">
                     <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/flag.svg" alt="Search">
                     </div>
-                    <!-- Content -->
                     <div class="flex flex-col max-w-[306px]">
                         <h3 class="text-[#3B3B3B] font-bold text-[18px] leading-[140%] mb-2">Intelligence Over Intervals
                         </h3>
@@ -190,53 +189,125 @@ $pageTitle = 'Quadra Approach';
                             into adaptive intelligence, creating smarter lubrication strategies that prevent failures
                             proactively.</p>
                     </div>
-                    <div class="absolute left-16 bottom-[65%] w-full h-full z-[100] pointer-events-none">
+                    <div
+                        class="hidden md:block absolute left-16 bottom-[65%] w-full h-full z-[100] pointer-events-none">
                         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bottom-left-bar.png" alt="Arrow">
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column -->
-            <div class="flex flex-col gap-[200px] w-full md:w-auto order-3 md:order-none">
-                <!-- Item 2: Adaptive Application Fit -->
+            <div class="flex flex-col gap-[200px] flex">
+
                 <div
-                    class="flex flex-row-reverse md:flex-row items-start gap-4 md:gap-6 relative group md:text-right text-left">
-                    <!-- Content (Desktop: Left, Mobile: Right due to reverse) -->
-                    <div class="flex flex-col max-w-[306px] md:items-end">
+                    class="order-2 flex flex-row-reverse md:flex-row items-start gap-4 md:gap-6 relative group text-left">
+                    <div class="flex flex-col max-w-[306px]">
                         <h3 class="text-[#3B3B3B] font-bold text-[18px] leading-[140%] mb-2">Adaptive Application Fit
                         </h3>
                         <p class="text-[#575757] text-[14px] leading-[150%]">TriboIntel calibrates lubricants through
                             detailed on-site assessments, ensuring solutions match exact operating conditions and
                             evolving needs.</p>
                     </div>
-
-                    <!-- Icon -->
                     <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/light-bulb.svg" alt="Search">
                     </div>
-
-                    <div class="absolute right-0 top-[75%] w-full h-full z-[100] pointer-events-none">
+                    <div class="hidden md:block absolute right-0 top-[75%] w-full h-full z-[100] pointer-events-none">
                         <img src="<?php echo SITE_URL; ?>/assets/images/ui/top-right-bar.png" alt="Arrow">
                     </div>
-
                 </div>
 
-                <!-- Item 4: Lifecycle Intelligence -->
                 <div
-                    class="flex flex-row-reverse md:flex-row items-start gap-4 md:gap-6 relative group md:text-right text-left">
-                    <!-- Content -->
-                    <div class="flex flex-col max-w-[306px] md:items-end">
+                    class="order-4 flex flex-row-reverse md:flex-row items-start gap-4 md:gap-6 relative group text-left">
+                    <div class="flex flex-col max-w-[306px]">
                         <h3 class="text-[#3B3B3B] font-bold text-[18px] leading-[140%] mb-2">Lifecycle Intelligence</h3>
                         <p class="text-[#575757] text-[14px] leading-[150%]">MOSIL applies lifecycle intelligence using
                             data, prediction, and field feedback to anticipate and prevent equipment failures.</p>
                     </div>
-
-                    <!-- Icon -->
                     <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/puzzle.svg" alt="Search">
                     </div>
-                    <div class="absolute right-0 bottom-[65%] w-full h-full z-[100] pointer-events-none">
+                    <div
+                        class="hidden md:block absolute right-0 bottom-[65%] w-full h-full z-[100] pointer-events-none">
                         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bottom-right-bar.png" alt="Arrow">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile view -->
+        <div class="flex md:hidden relative flex-col items-center justify-between gap-10 md:gap-0">
+
+            <div class="w-full h-full">
+                <img src="<?php echo SITE_URL; ?>/assets/images/ui/cubic.png" alt="Cubic Process"
+                    class="h-full w-full object-contain">
+            </div>
+
+            <div class="flex flex-col gap-20 flex">
+
+                <div class="order-1 flex flex-row items-start gap-4 relative group">
+                    <div
+                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 relative z-10">
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/svg/chart-pie.svg" alt="Icon">
+                    </div>
+                    <div class="flex flex-col max-w-[306px]">
+                        <h3
+                            class="text-[#3B3B3B] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize mb-2">
+                            Dynamic Friction Engineering</h3>
+                        <p class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
+                            MOSIL engineers lubricants to dynamically control friction under real-world stress through
+                            advanced, field-validated formulation science.
+
+                        </p>
+                    </div>
+                    <div class="absolute left-0 top-[67%] w-full h-full z-[100] pointer-events-none">
+                        <img src="<?php echo SITE_URL; ?>/assets/images/ui/Quardra-block-add-left-right.png" alt="Arrow"
+                            class="w-full h-full object-contain">
+                    </div>
+                </div>
+
+                <div class="order-2 flex items-start gap-4 relative group text-left">
+                    <div class="flex flex-col max-w-[306px]">
+                        <h3 class="text-[#3B3B3B] font-bold text-[18px] leading-[140%] mb-2">Adaptive Application Fit
+                        </h3>
+                        <p class="text-[#575757] text-[14px] leading-[150%]">TriboIntel calibrates lubricants through
+                            detailed on-site assessments, ensuring solutions match exact operating conditions and
+                            evolving needs.</p>
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/svg/light-bulb.svg" alt="Search">
+                    </div>
+                    <div class="absolute left-0 top-[67%] w-full h-full z-[100] pointer-events-none">
+                        <img src="<?php echo SITE_URL; ?>/assets/images/ui/Quardra-block-add-right-left.png" alt="Arrow"
+                            class="w-full h-full object-contain">
+                    </div>
+                </div>
+
+                <div class="order-3 flex flex-row items-start gap-4 md:gap-6 relative group">
+                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/svg/flag.svg" alt="Search">
+                    </div>
+                    <div class="flex flex-col max-w-[306px]">
+                        <h3 class="text-[#3B3B3B] font-bold text-[18px] leading-[140%] mb-2">Intelligence Over Intervals
+                        </h3>
+                        <p class="text-[#575757] text-[14px] leading-[150%]">TriboIntel converts field documentation
+                            into adaptive intelligence, creating smarter lubrication strategies that prevent failures
+                            proactively.</p>
+                    </div>
+                    <div class="absolute left-0 top-[67%] w-full h-full z-[100] pointer-events-none">
+                        <img src="<?php echo SITE_URL; ?>/assets/images/ui/Quardra-block-add-left-right.png" alt="Arrow"
+                            class="w-full h-full object-contain">
+                    </div>
+                </div>
+
+
+
+
+                <div class="order-4 flex flex-row items-start gap-4 relative group text-left">
+                    <div class="flex flex-col max-w-[306px]">
+                        <h3 class="text-[#3B3B3B] font-bold text-[18px] leading-[140%] mb-2">Lifecycle Intelligence</h3>
+                        <p class="text-[#575757] text-[14px] leading-[150%]">MOSIL applies lifecycle intelligence using
+                            data, prediction, and field feedback to anticipate and prevent equipment failures.</p>
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/svg/puzzle.svg" alt="Search">
                     </div>
                 </div>
             </div>
