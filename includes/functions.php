@@ -425,4 +425,72 @@ function cleanText($text, $limit = null)
 
     return $text;
 }
+
+/**
+ * Send Email using PHPMailer.
+ *
+ * @param string $toEmail
+ * @param string $toName
+ * @param string $subject
+ * @param string $body      HTML Body
+ * @param array  $attachments Array of file paths (optional)
+ * @return array  ['status' => 'success'|'error', 'message' => string]
+ */
+function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
+{
+    // Ensure PHPMailer classes are loaded
+    if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
+        $baseDir = dirname(__DIR__);
+        require_once $baseDir . '/php_mailer/src/PHPMailer.php';
+        require_once $baseDir . '/php_mailer/src/SMTP.php';
+        require_once $baseDir . '/php_mailer/src/Exception.php';
+    }
+
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+        // SMTP Configuration
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        // Credentials
+        $mail->Username = 'nowtestmehere@gmail.com';
+        $mail->Password = 'ptan mqmv utcu roya';
+        $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+        $mail->CharSet = 'UTF-8';
+
+        // Sender
+        $mail->setFrom('nowtestmehere@gmail.com', 'Mosil');
+
+        // Recipient
+        $mail->addAddress($toEmail, $toName);
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+
+        // Attachments
+        if (!empty($attachments)) {
+            foreach ($attachments as $filePath => $fileName) {
+                // Check if $filePath is array index (0, 1...) or key
+                if (is_int($filePath)) {
+                    // Usage: sendMail(..., [$path1, $path2])
+                    $mail->addAttachment($fileName);
+                } else {
+                    // Usage: sendMail(..., [$path => $name])
+                    $mail->addAttachment($filePath, $fileName);
+                }
+            }
+        }
+
+        $mail->send();
+        return ['status' => 'success', 'message' => 'Email sent successfully.'];
+
+    } catch (\PHPMailer\PHPMailer\Exception $e) {
+        error_log("Mailer Error: " . $mail->ErrorInfo);
+        return ['status' => 'error', 'message' => $mail->ErrorInfo];
+    }
+}
 ?>

@@ -9,13 +9,6 @@ require_once '../includes/config.php';
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
 
-require '../php_mailer/src/PHPMailer.php';
-require '../php_mailer/src/SMTP.php';
-require '../php_mailer/src/Exception.php';
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
     exit;
@@ -28,8 +21,9 @@ $email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
 $mobile = cleanText($_POST['mobile'] ?? '');
 $city = cleanText($_POST['city'] ?? '');
 $pincode = cleanText($_POST['pincode'] ?? '');
-$status = "Active"; // Default status
+$status = "Active";
 
+// Check for required fields
 if (!$name || !$position || !$email || !$mobile || !$city || !$pincode) {
     echo json_encode(['status' => 'error', 'message' => 'Please fill in all required fields.']);
     exit;
@@ -70,9 +64,7 @@ if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
     $newFileName = uniqid('resume_', true) . '.' . $fileExt;
     $destination = $uploadDir . $newFileName;
 
-    // We store the Web Path in DB
-    // Assuming 'uploads' is at root: /uploads/resumes/filename
-    // But keeping consistent with user Code: '/uploads/resumes/'
+    // Web Path for DB
     $webPath = '/uploads/resumes/' . $newFileName;
 
     if (!move_uploaded_file($fileTmp, $destination)) {
@@ -83,102 +75,84 @@ if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
     $resume_path = $webPath;
     $resume_full_path = realpath($destination);
 } else {
-    // If resume is mandatory:
+    // Resume is mandatory
     echo json_encode(['status' => 'error', 'message' => 'Resume upload is required.']);
     exit;
 }
 
 // 3. Insert into Database
-// Using PDO ($db from includes/db.php) via db_execute helper if available or raw PDO
-// The user code used `INSERT INTO career_enquiry ...`
 $sql = "INSERT INTO career_enquiry (name, position, email, mobile, city, pincode, resume, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 $params = [$name, $position, $email, $mobile, $city, $pincode, $resume_path, $status];
 
 if (db_execute($sql, $params)) {
-    // 4. Send Emails via PHPMailer
-    $mail = new PHPMailer(true);
-    try {
-        // SMTP config
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'website.mosil@gmail.com';
-        $mail->Password = 'efnn wrix irnt czpt';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-        $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom('website.mosil@gmail.com', 'Mosil Careers');
-        $mail->isHTML(true);
+    // --- EMAIL 1: User Confirmation ---
+    $userSubject = 'Application Received: ' . $position . ' - Mosil';
+    $userBody = "
+        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Dear $name,</p>
+        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Thank you for applying for the position of <strong>$position</strong>.</p>
+        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>We have received your application and will get back to you if shortlisted.</p>
+        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Best regards,<br>Mosil Pvt. Ltd.</p>
+    ";
 
-        // --- 1. Send confirmation to USER (NO Attachment) ---
-        $mail->clearAllRecipients();
-        $mail->clearAttachments();
+    $userMail = sendMail($email, $name, $userSubject, $userBody);
 
-        $mail->addAddress($email, $name);
-        $mail->Subject = 'Application Received: ' . $position . ' - Mosil';
-        $mail->Body = "
-            <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Dear $name,</p>
-            <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Thank you for applying for the position of <strong>$position</strong>.</p>
-            <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>We have received your application and will get back to you if shortlisted.</p>
-            <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Best regards,<br>Mosil Pvt. Ltd.</p>
-        ";
-        $mail->send();
+    // --- EMAIL 2: Admin Notification ---
+    $adminSubject = 'Resume Received';
+    $adminBody = "
+        <h2 style='font-family: Arial, sans-serif; font-size: 18px; color: #333;'>New Application Details</h2>
+        <table style='border-collapse: collapse; width: 100%; max-width: 600px; font-family: Arial, sans-serif; font-size: 14px;'>
+            <tr style='background-color: #f2f2f2;'>
+                <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Field</th>
+                <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Details</th>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>Name</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($name) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>Email</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($email) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>Phone</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($mobile) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>City</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($city) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>Pincode</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($pincode) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>Position</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($position) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #ddd; padding: 8px;'>Status</td>
+                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($status) . "</td>
+            </tr>
+        </table>
+        <p style='font-family: Arial, sans-serif; font-size: 14px; margin-top: 20px; color: #333;'>Please find the applicant's resume attached.</p>
+    ";
 
-        // --- 2. Send notification to HR (WITH Attachment) ---
-        $mail->clearAllRecipients();
-        $mail->clearAttachments();
+    $attachments = [];
+    if (!empty($resume_full_path) && file_exists($resume_full_path)) {
+        // Pass attachment as [path => name] or just [path]
+        // sendMail supports path => name key-value pair.
+        $attachments[$resume_full_path] = $original_file_name;
+    }
 
-        $mail->addAddress('nowtestmehere@gmail.com', 'Recruitment Team');
+    $adminMail = sendMail('nowtestmehere@gmail.com', 'Recruitment Team', $adminSubject, $adminBody, $attachments);
 
-        $mail->Subject = 'New Career Application: ' . $position;
-        $mail->Body = "
-            <h2 style='font-family: Arial, sans-serif; font-size: 18px; color: #333;'>New Application Details</h2>
-            <table style='border-collapse: collapse; width: 100%; max-width: 600px; font-family: Arial, sans-serif; font-size: 14px;'>
-                <tr style='background-color: #f2f2f2;'>
-                    <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Field</th>
-                    <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Details</th>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>Name</td>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($name) . "</td>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>Email</td>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($email) . "</td>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>Phone</td>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($mobile) . "</td>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>City</td>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($city) . "</td>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>Pincode</td>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($pincode) . "</td>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>Position</td>
-                    <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($position) . "</td>
-                </tr>
-            </table>
-            <p style='font-family: Arial, sans-serif; font-size: 14px; margin-top: 20px; color: #333;'>Please find the applicant's resume attached.</p>
-        ";
-
-        if (!empty($resume_full_path) && file_exists($resume_full_path)) {
-            $mail->addAttachment($resume_full_path, $original_file_name);
-        }
-
-        $mail->send();
-
+    if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['status' => 'success', 'message' => 'Application submitted successfully.']);
-
-    } catch (Exception $e) {
-        error_log("Mailer Error: " . $mail->ErrorInfo);
-        // Even if mail fails, we saved to DB, so we can consider it a qualified success or warn user
-        echo json_encode(['status' => 'success', 'message' => 'Application saved, but email notification system encountered an issue. We have your details.']);
+    } else {
+        // Report error from either mail Attempt
+        $errorMsg = ($userMail['status'] === 'error') ? $userMail['message'] : $adminMail['message'];
+        echo json_encode(['status' => 'success', 'message' => 'Application saved, but email notification system encountered an issue: ' . $errorMsg]);
     }
 
 } else {
