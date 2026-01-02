@@ -58,7 +58,7 @@ $positions = getCareerPosition();
 
                 </div>
             </div>
-            <form id="careerForm" action="your-php-script.php" method="POST" enctype="multipart/form-data"
+            <form id="careerForm" method="POST" enctype="multipart/form-data"
                 class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 md:py-6 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em] pt-4 md:pt-6">
 
                 <input type="text" name="name" placeholder="Name" required
@@ -102,6 +102,9 @@ $positions = getCareerPosition();
                             src="<?php echo SITE_URL ?>/assets/icons/svg/upload.svg" width="24" height="24" />
                     </label>
                 </div>
+
+                <div id="formResponse"
+                    class="md:col-span-2 hidden rounded-md p-4 mb-2 text-center text-sm font-semibold"></div>
 
                 <button type="submit" id="submitBtn"
                     class="md:col-span-2 bg-main-green text-white py-4 rounded-full font-bold text-[18px] hover:bg-black transition-all disabled:bg-gray-400">

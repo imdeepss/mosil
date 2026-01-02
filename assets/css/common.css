@@ -180,16 +180,34 @@ details[open] summary~* {
     transition-timing-function: linear !important;
 }
 
-input:invalid:not(:placeholder-shown),
-textarea:invalid:not(:placeholder-shown),
-select:invalid:not([value=""]) {
-    border-color: #f87171;
+
+/* Normal focus style (clean blue) */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--main-green);
+    /* blue-500 */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background-color: white;
 }
 
+/* ─────────────────────────────────────── */
+/* Show red ONLY when the field is focused AND invalid */
+/* This prevents red on load / untouched required selects */
 input:focus:invalid,
 textarea:focus:invalid,
 select:focus:invalid {
     border-color: #ef4444;
+    /* red-500 */
     box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25);
+    background-color: #fef2f2;
+    /* subtle red tint */
+}
+
+/* Optional: very soft hint after user typed/changed something wrong (but not focused) */
+input:not(:focus):invalid:not(:placeholder-shown),
+textarea:not(:focus):invalid:not(:placeholder-shown) {
+    border-color: #fca5a5;
+    /* much softer red-300 */
     background-color: #fef2f2;
 }
