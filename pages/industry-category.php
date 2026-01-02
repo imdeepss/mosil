@@ -27,7 +27,7 @@ $industries = getCategoryByParent("2");
 
 <section class="py-6 bg-white relative">
     <div class="container">
-        <div
+        <nav
             class="flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize">
             <a href="<?php echo SITE_URL; ?>/" class="text-[#A3A3A3] font-light">Home</a>
             <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -43,7 +43,7 @@ $industries = getCategoryByParent("2");
             <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories"
                 class="text-[#575757] font-bold">Industry
                 categories</a>
-        </div>
+        </nav>
         <div class="py-3.5">
             <div class="border-b-2 border-primary pb-1">
                 <h2
@@ -75,9 +75,9 @@ $industries = getCategoryByParent("2");
                         ?>
                         <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $slug; ?>">
                             <div
-                                class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/80">
+                                class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/80 rounded-[4px]">
                             </div>
-                            <div class="relative w-full h-full overflow-hidden">
+                            <div class="relative w-full h-full overflow-hidden rounded-[4px]">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
                                     alt="<?php echo $industry['mcat_name']; ?>"
                                     class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
@@ -117,7 +117,7 @@ $industries = getCategoryByParent("2");
 
             <div class="mx-auto">
                 <button type="button" id="industry-load-more"
-                    class="border border-[#30442C] text-[#30442C] font-base font-normal text-[14px] md:text-base leading-[150%] tracking-[0.015em] capitalize px-8 py-3 rounded-full inline-block button-hover">
+                    class="border border-[#1A3B1B] text-[#1A3B1B] font-base font-normal text-[14px] md:text-base leading-[150%] tracking-[0.015em] capitalize px-8 py-3 rounded-full inline-block button-hover-vertical cursor-pointer">
                     see more
                 </button>
 

@@ -180,19 +180,12 @@ function parseTableString($str)
             <a href="<?php echo SITE_URL; ?>/product-finder" class="text-[#A3A3A3] font-light">Product Finder</a>
 
             <?php
-
-
-
-
             if ($categorySlug) {
                 $categoryName = ucwords(str_replace('-', ' ', $categorySlug));
-
-
                 echo '<span>' . $chevronRight . '</span>';
-
                 ?>
                 <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $categorySlug; ?>"
-                    class="text-[#575757] font-bold"><?php echo $categoryName; ?></a>
+                    class="text-[#A3A3A3] font-light"><?php echo $categoryName; ?></a>
                 <?php
             }
 
@@ -203,33 +196,35 @@ function parseTableString($str)
             ?>
         </nav>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-10 pt-6 pb-[56px]">
-            <!-- Product Image -->
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-10 pt-6 md:pb-[56px]">
             <div
-                class="bg-[#F5F5F5] border border-[#EBEBEB] flex items-center justify-center h-[315px] md:h-auto md:mb-[66px]">
-                <div class="w-full max-w-[180px] md:max-w-[215px] aspect-[4/3] flex items-center justify-center">
+                class="bg-[#F5F5F5] border border-[#EBEBEB] flex items-center justify-center h-[315px] md:h-auto md:mb-[64px]">
+                <div
+                    class="w-full max-w-[180px] md:max-w-[214.695px] md:h-[176.288px] aspect-[214.70/176.29] flex items-center justify-center overflow-hidden">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image'] ?>"
                         alt="<?= htmlspecialchars($product['name']) ?>"
-                        class="max-w-full max-h-full object-contain mix-blend-multiply transition-transform duration-500 hover:scale-105">
+                        class="w-full h-full object-contain mix-blend-multiply">
                 </div>
             </div>
-            <!-- Product Details -->
-            <div>
+
+            <div class="flex flex-col">
                 <div class="bg-primary p-6">
                     <div class="flex flex-col md:gap-8 gap-5">
                         <h1
-                            class="text-main-green font-base font-bold md:text-[32px] md:leading-[120%] capitalize text-[24px] leading-[135%]">
+                            class="text-main-green font-helvetica font-bold md:text-[32px] md:leading-[120%] capitalize text-[24px] leading-[135%]">
                             <?php echo $product['name'] ?>
                         </h1>
+
                         <div>
-                            <p class="font-base mb-2 font-normal text-[16px] leading-[150%] text-[#575757]">
+                            <p
+                                class="mb-2 font-normal md:text-[18px] md:leading-[140%] text-[16px] leading-[150%] text-[#575757]">
                                 <?= nl2br(htmlspecialchars($product['sub_title'] ?? '')) ?>
                             </p>
 
                             <?php $shortDescList = parseListString($product['short_description'] ?? ''); ?>
                             <?php if (!empty($shortDescList)): ?>
                                 <ul
-                                    class="list-inside list-disc font-base font-normal text-[16px] leading-[150%] text-[#575757] flex flex-col gap-2">
+                                    class="list-inside list-disc font-normal md:text-[18px] md:leading-[140%] text-[16px] leading-[150%] text-[#575757] flex flex-col gap-2">
                                     <?php foreach ($shortDescList as $descItem): ?>
                                         <li><?= nl2br(htmlspecialchars($descItem)) ?></li>
                                     <?php endforeach; ?>
@@ -237,33 +232,33 @@ function parseTableString($str)
                             <?php endif; ?>
                         </div>
 
-                        <!-- Pack Sizes -->
-                        <div class="flex items-center gap-2">
-                            <?php $packingList = array_filter(array_map('trim', explode(',', $product['packing'] ?? '')));
+                        <div class="flex flex-wrap items-center gap-2">
+                            <?php
+                            $packingList = array_filter(array_map('trim', explode(',', $product['packing'] ?? '')));
                             sort($packingList, SORT_NATURAL | SORT_FLAG_CASE);
 
-                            foreach ($packingList as $packing):
-                                $packing = trim($packing); ?>
+                            foreach ($packingList as $packing): ?>
                                 <div
-                                    class="bg-[#F9DC6B] text-[#575757] font-base font-normal text-[16px] leading-[150%] py-1 px-2 rounded-full flex items-center justify-center gap-1">
-                                    <img src="<?php echo $packingImageMap[$packing]; ?>" alt="Container" width="32"
-                                        height="32">
+                                    class="bg-[#F9DC6B] text-[#575757] flex items-center justify-center gap-2 py-1 px-3 rounded-full">
+                                    <img src="<?php echo $packingImageMap[$packing]; ?>" alt="Container"
+                                        class="w-6 h-6 object-contain">
                                     <span
-                                        class="text-[#575757] font-base font-normal text-[16px] leading-[135%] tracking-[0.01em]"><?= $packing ?></span>
+                                        class="text-[#575757] font-normal text-[14px] md:text-[16px] leading-[135%] tracking-[0.01em]">
+                                        <?= $packing ?>
+                                    </span>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="flex items-center gap-2 justify-start pt-4">
                     <button type="button"
-                        class="openEnquiryModal py-3 px-11 bg-main-green text-white text-center font-base font-normal text-lg md:text-[16px] leading-[150%] tracking-[0.015em] rounded-full border border-main-green button-hover transition-colors cursor-pointer">
+                        class="openEnquiryModal py-3 px-10 bg-main-green text-white text-center font-normal text-[16px] leading-[150%] rounded-full border border-main-green hover:bg-black transition-colors cursor-pointer button-hover-vertical">
                         Enquire Now
                     </button>
                     <button type="button"
-                        class="openEnquiryModal py-3 px-11 text-main-green bg-white border border-main-green text-center font-base font-normal text-lg md:text-[16px] leading-[150%] tracking-[0.015em] rounded-full button-hover transition-colors cursor-pointer">
+                        class="openEnquiryModal py-3 px-10 text-main-green bg-white border border-main-green text-center font-normal text-[16px] leading-[150%] rounded-full hover:bg-gray-50 transition-colors cursor-pointer button-hover-vertical">
                         Get TDS
                     </button>
                 </div>
@@ -497,7 +492,7 @@ function parseTableString($str)
                 <div class="border-b-2 border-primary pb-2 flex items-center justify-between gap-4">
 
                     <h2
-                        class="text-main-green font-normal text-lg md:text-[24px] md:leading-[135%] leading-[140%] tracking-[0.015em] flex items-center gap-4">
+                        class="text-main-green font-normal md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] capitalize flex items-center gap-4">
                         Relevant products
                     </h2>
                     <div class="hidden md:flex items-center gap-4 relative z-10">
@@ -539,24 +534,34 @@ function parseTableString($str)
                     <?php foreach ($relatedProducts as $product):
                         $productName = $product['name'];
                         $productSlug = $product['slug']; ?>
-                        <div class="swiper-slide group cursor-pointer py-4">
-                            <a
-                                href="<?php echo SITE_URL; ?>/product-finder/<?php echo $categorySlug ? $categorySlug : 'all'; ?>/<?php echo $productSlug; ?>">
+
+                        <div
+                            class="swiper-slide group cursor-pointer py-4 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-3 will-change-transform relative">
+
+                            <a href="<?php echo SITE_URL; ?>/product-finder/<?php echo $categorySlug ? $categorySlug : 'all'; ?>/<?php echo $productSlug; ?>"
+                                class="block">
+
                                 <div
-                                    class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-4 mb-2 md:border md:border-[#EBEBEB] md:py-5 md:px-22 md:h-[208px] h-[150px] w-full px-[34px] py-[30px]">
+                                    class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-4 mb-2 md:border md:border-[#EBEBEB] md:h-[208px] h-[150px] w-full px-6">
                                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image']; ?>"
-                                        alt="<?php echo $productName; ?>"
-                                        class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110 mix-blend-darken aspect-[4/3]">
+                                        alt="<?php echo htmlspecialchars($productName); ?>"
+                                        class="w-auto h-auto max-w-[90%] max-h-[85%] object-contain transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-105 mix-blend-darken will-change-transform">
                                 </div>
+
                                 <h3
-                                    class="text-[#3B3B3B] font-base font-bold text-[24px] leading-[135%] capitalize md:mb-2 mb-1">
+                                    class="text-[#3B3B3B] font-base font-bold text-[22px] md:text-[24px] leading-[135%] capitalize md:mb-2 mb-1 transition-colors duration-300 group-hover:text-main-green">
                                     <?php echo $productName; ?>
                                 </h3>
+
                                 <p
-                                    class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-4">
+                                    class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-3">
                                     <?php echo $product['short_description']; ?>
                                 </p>
                             </a>
+
+                            <div
+                                class="absolute bottom-0 left-0 h-[3px] w-full bg-primary origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 will-change-transform">
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -599,7 +604,7 @@ function parseTableString($str)
                 <div class="border-b-2 border-primary pb-2 flex items-center justify-between gap-4">
 
                     <h2
-                        class="text-main-green font-normal text-lg md:text-[24px] md:leading-[135%] leading-[140%] tracking-[0.015em] flex items-center gap-4">
+                        class="text-main-green font-normal md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] capitalize  flex items-center gap-4">
                         Case studies
                     </h2>
                     <div class="md:flex hidden items-center gap-4 relative z-10">
@@ -639,43 +644,40 @@ function parseTableString($str)
             <div class="caseStudySwiper swiper w-full mt-8">
                 <div class="swiper-wrapper ">
                     <?php foreach ($blogs as $blog): ?>
-                        <div class="swiper-slide !h-auto">
-                            <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden">
+                        <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! ">
+                            <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
-                                    alt="Hero Image" class="block h-full w-full object-center rounded-[4px]" loading="lazy">
+                                    alt="Hero Image"
+                                    class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                                    loading="lazy">
                                 <div
                                     class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                                     <h2><?php echo $blog['category_name']; ?></h2>
                                 </div>
                             </div>
-                            <div class="my-4">
+                            <div class="my-4 flex flex-col flex-1">
                                 <h2
-                                    class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3">
+                                    class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
                                     <?php echo $blog['title']; ?>
                                 </h2>
                                 <p
-                                    class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[var(--color-b100)] mb-2 line-clamp-3">
+                                    class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
                                     <?php
-                                    $content = $blog['content'];
-
-                                    $content = strip_tags($content);
-
-                                    $content = trim(preg_replace('/\s+/', ' ', $content));
-
+                                    $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
                                     echo substr($content, 0, 500);
                                     ?>
                                 </p>
-                                <p
-                                    class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[var(--color-b70)]">
+                                <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                     <?php echo $blog['category_name']; ?> |
                                     <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                                 </p>
                             </div>
-                            <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode(
-                                   $blog["slug"]
-                               ) ?>"
-                                class="font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize text-[var(--color-main-green)] border-b-2 border-[var(--color-primary)] pb-2 inline-block w-fit">Read
-                                <?php echo $blog['category_name']; ?></a>
+                            <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"]) ?>"
+                                class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
+                                Read <?php echo $blog['category_name']; ?>
+                                <span
+                                    class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 </div>

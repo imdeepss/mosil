@@ -42,9 +42,9 @@ $categories = [
 ];
 ?>
 
-<section class="bg-white">
+<section class="bg-white font-base">
     <div class="container md:pt-18 pt-16 md:pb-20 pb-12 relative">
-        <div
+        <nav
             class="absolute top-6 left-4 flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize">
             <a href="<?php echo SITE_URL; ?>" class="text-[#A3A3A3] font-light">Home</a>
             <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -53,7 +53,7 @@ $categories = [
                 </svg></span>
             <a href="<?php echo SITE_URL; ?>/product-finder" class="text-[#575757] font-bold">Product
                 Finder</a>
-        </div>
+        </nav>
         <div class="py-3.5">
             <div class="border-b-2 border-primary pb-1">
                 <h2
@@ -81,7 +81,7 @@ $categories = [
                     <div
                         class="w-full bg-primary text-mid-green py-2.5 md:py-7 md:px-9 px-2.5 flex justify-between items-center">
                         <h2
-                            class="font-base font-normal md:text-[32px] md:leading-[120%] text-[16px] leading-[150%] tracking-normal capitalize flex flex-col pb-2">
+                            class="font-base font-normal md:text-[32px] md:leading-[120%] text-[16px] leading-[150%] tracking-normal capitalize flex flex-col pb-2 text-main-green">
                             <?php echo $item['title_line1']; ?>
                             <span><?php echo $item['title_line2']; ?></span>
                         </h2>
@@ -112,7 +112,7 @@ $categories = [
                 find
                 what you are looking for?</h2>
             <p
-                class="font-base font-normal md:text-[18px] md:leading-[140%] text-[12px] leading-[150%] tracking-normal mb-6 md:px-0 px-10">
+                class="font-base font-normal md:text-[18px] md:leading-[140%] text-[12px] leading-[150%] tracking-normal mb-6 md:px-0 px-10 text-[#757575]">
                 Our expert team will
                 support
                 you in

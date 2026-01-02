@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loop: true,
     breakpoints: {
       768: {
-        slidesPerView: 3.5,
+        slidesPerView: 3.2,
         spaceBetween: 20,
       },
     },
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loop: true,
     breakpoints: {
       768: {
-        slidesPerView: 3.5,
+        slidesPerView: 3.2,
         spaceBetween: 20,
       },
     },

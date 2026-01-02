@@ -487,56 +487,46 @@ $lubricationItems = [
 
         <div class="md:mt-8 mt-6 swiper newsSwiper">
             <div class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-8">
-                <?php
-                foreach ($blogs as $blog) { ?>
+                <?php foreach ($blogs as $blog) { ?>
 
-                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
-                        <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
+                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+
+                        <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
                                 alt="Hero Image"
-                                class="block h-full w-full object-center rounded-[4px] group-hover:scale-150 transition-transform duration-500"
+                                class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
                                 loading="lazy">
+
                             <div
                                 class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                                 <h2><?php echo $blog['category_name']; ?></h2>
                             </div>
                         </div>
+
                         <div class="my-4 flex flex-col flex-1">
                             <h2
                                 class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
                                 <?php echo $blog['title']; ?>
                             </h2>
                             <p
-                                class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[var(--color-b100)] mb-2 line-clamp-3">
+                                class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
                                 <?php
-                                $content = $blog['content'];
-
-                                // Remove HTML tags
-                                $content = strip_tags($content);
-
-                                // Optional: clean extra spaces
-                                $content = trim(preg_replace('/\s+/', ' ', $content));
-
-                                // Limit characters to a reasonable amount if line-clamp isn't enough, 
-                                // but line-clamp-3 handles the visuals.
+                                $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
                                 echo substr($content, 0, 500);
                                 ?>
                             </p>
-                            <p
-                                class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[var(--color-b70)] mt-auto">
+                            <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                 <?php echo $blog['category_name']; ?> |
                                 <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                             </p>
                         </div>
-                        <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode(
-                               $blog["slug"]
-                           ) ?>"
-                            class="group relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
-                            Read
-                            <?php echo $blog['category_name']; ?>
+                        <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"]) ?>"
+                            class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
+                            Read <?php echo $blog['category_name']; ?>
                             <span
-                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left "></span>
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
+
                     </div>
                 <?php } ?>
             </div>

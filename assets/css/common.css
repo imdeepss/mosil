@@ -1,3 +1,7 @@
+* {
+    font-family: var(--font-sans) !important;
+}
+
 @media (min-width: 1024px) {
     .industrySwiper .swiper-slide {
         width: 158px;
@@ -210,4 +214,27 @@ textarea:not(:focus):invalid:not(:placeholder-shown) {
     border-color: #fca5a5;
     /* much softer red-300 */
     background-color: #fef2f2;
+}
+
+
+.button-hover-horizontal:hover {
+    color: var(--main-green);
+    transition: all 0.3s ease;
+    /* Increase border slightly to make the effect visible */
+    border: 2px solid transparent;
+    /* The white padding-box keeps the inside of the button solid */
+    background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(to right, #30442C 50%, #F4C300 50%) border-box;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.button-hover-vertical:hover {
+    color: var(--main-green);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(to bottom, #F4C300, #1A3B1B) border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
