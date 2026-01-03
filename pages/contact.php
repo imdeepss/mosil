@@ -108,7 +108,7 @@ $pageTitle = 'Contact Us';
                     btn.textContent = 'Sending...';
                     responseDiv.classList.add('hidden');
 
-                    fetch('<?php echo SITE_URL; ?>/ajax/submit-enquiry.php', {
+                    fetch('<?php echo SITE_URL; ?>/ajax/contact.php', {
                         method: 'POST',
                         body: formData
                     })
