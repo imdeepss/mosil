@@ -36,23 +36,22 @@ $pageTitle = 'Contact Us';
                 </div>
             </div>
 
-            <form method="POST" action="">
-                <input type="hidden" name="submit_enquiry" value="1">
-                <input type="hidden" name="subject"
-                    value="<?= htmlspecialchars($product['name'] ?? 'Product Enquiry') ?>">
+            <form id="contactForm" method="POST" action="" class="scroll-mt-20">
+                <div id="contactResponse" class="hidden mb-4 p-4 rounded text-center text-sm font-medium"></div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 mb-4">
                     <input type="text" name="name" required placeholder="Name"
                         class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
                     <input type="email" name="email" required placeholder="Email"
                         class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
-                    <input type="text" name="contact" required placeholder="+91 Phone"
+                    <input type="tel" name="contact" required placeholder="+91 Phone"
                         class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
                     <input type="text" name="company_name" required placeholder="Company Name"
                         class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
 
                     <div class="md:col-span-2">
                         <input type="text" name="subject" required placeholder="Subject"
+                            value="<?= htmlspecialchars($product['name'] ?? '') ?>"
                             class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
                     </div>
 
@@ -63,12 +62,86 @@ $pageTitle = 'Contact Us';
                 </div>
 
                 <div class="text-center">
-                    <button type="submit"
-                        class="px-8 py-3 bg-main-green text-white font-medium rounded-full hover:bg-opacity-90 transition-colors w-full">
+                    <button type="submit" id="submitBtn"
+                        class="px-8 py-3 bg-main-green text-white font-medium rounded-full hover:bg-opacity-90 transition-colors w-full disabled:bg-gray-400 disabled:cursor-not-allowed">
                         Send
                     </button>
                 </div>
             </form>
+
+            <script>
+                document.getElementById('contactForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const form = this;
+                    const btn = document.getElementById('submitBtn');
+                    const responseDiv = document.getElementById('contactResponse');
+
+                    // Basic JS Validation
+                    const name = form.name.value.trim();
+                    const email = form.email.value.trim();
+                    const contact = form.contact.value.trim();
+                    const message = form.message.value.trim();
+
+                    if (!name || !email || !contact || !message) {
+                        showResponse('Please fill in all required fields.', 'error');
+                        return;
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        showResponse('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    const phoneRegex = /^[0-9+\-\s]{10,}$/;
+                    if (!phoneRegex.test(contact)) {
+                        showResponse('Please enter a valid phone number (at least 10 digits).', 'error');
+                        return;
+                    }
+
+                    // Prepare Data
+                    const formData = new FormData(form);
+
+                    // Disable UI
+                    btn.disabled = true;
+                    btn.textContent = 'Sending...';
+                    responseDiv.classList.add('hidden');
+
+                    fetch('<?php echo SITE_URL; ?>/ajax/submit-enquiry.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                showResponse(data.message === 'success' ? 'Thank you! Your message has been sent successfully.' : data.message, 'success');
+                                form.reset();
+                            } else {
+                                showResponse(data.message || 'Something went wrong. Please try again.', 'error');
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            showResponse('An unexpected error occurred. Please try again later.', 'error');
+                        })
+                        .finally(() => {
+                            btn.disabled = false;
+                            btn.textContent = 'Send';
+                        });
+
+                    function showResponse(msg, type) {
+                        responseDiv.textContent = msg;
+                        responseDiv.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+
+                        if (type === 'success') {
+                            responseDiv.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            responseDiv.classList.add('bg-red-100', 'text-red-700');
+                        }
+                    }
+                });
+            </script>
         </div>
 
         <div class="md:w-[526px] md:h-[578px] w-full h-[404px] shrink-0 overflow-hidden">

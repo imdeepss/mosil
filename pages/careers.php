@@ -59,6 +59,7 @@ $positions = getCareerPosition();
                 </div>
             </div>
             <form id="careerForm" method="POST" enctype="multipart/form-data"
+                data-url="<?php echo SITE_URL; ?>/ajax/career.php"
                 class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 md:py-6 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em] pt-4 md:pt-6">
 
                 <input type="text" name="name" placeholder="Name" required

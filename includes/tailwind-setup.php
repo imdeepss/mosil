@@ -1,4 +1,52 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+    /* Helvetica Light (300) */
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('<?php echo SITE_URL; ?>/assets/fonts/helvetica-light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Helvetica Regular (400) */
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Helvetica Italic (400i) */
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-Oblique.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    /* Helvetica Bold (700) */
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Helvetica Bold Italic (700i) */
+    @font-face {
+        font-family: 'Helvetica';
+        src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-BoldOblique.ttf') format('truetype');
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+    }
+</style>
+
 <style type="text/tailwindcss">
     @theme {
         /* Core Color Palette */
@@ -80,47 +128,6 @@
     }
 
     @layer base {
-        /* Helvetica Light (300) */
-        @font-face {
-            font-family: 'Helvetica';
-            src: url('<?php echo SITE_URL; ?>/assets/fonts/helvetica-light.ttf') format('truetype');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-        /* Helvetica Regular (400) */
-        @font-face {
-            font-family: 'Helvetica';
-            src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        /* Helvetica Italic (400i) */
-        @font-face {
-            font-family: 'Helvetica';
-            src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-Oblique.ttf') format('truetype');
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-        }
-        /* Helvetica Bold (700) */
-        @font-face {
-            font-family: 'Helvetica';
-            src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-        /* Helvetica Bold Italic (700i) */
-        @font-face {
-            font-family: 'Helvetica';
-            src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-BoldOblique.ttf') format('truetype');
-            font-weight: 700;
-            font-style: italic;
-            font-display: swap;
-        }
-
         :root {
             /* Legacy CSS variables remain for raw CSS usage */
             --container-width: 1280px;
@@ -141,7 +148,6 @@
             @apply max-w-[var(--container-width)] mx-auto px-[var(--spacing-md)] lg:px-0; 
         }
 
-        
         .animate-card {
             @apply animate-fade-in-up;
         }
