@@ -126,11 +126,29 @@ $industries = getCategoryByParent("2");
     </div>
 </section>
 
-<section class="md:py-6 py-12 bg-white relative">
-    <div class="container">
+<section class="md:py-6 py-12 bg-white relative
+    after:content-[''] 
+    after:absolute 
+    after:inset-0
+    after:z-20 
+    after:pointer-events-none
+
+    /* Mobile Background Image */
+    after:bg-[url('<?php echo SITE_URL; ?>/assets/images/ui/high-performance-mb-bg.svg')] 
+    after:bg-contain 
+    after:bg-center 
+    after:bg-no-repeat 
+    
+    /* Desktop Background Image */
+    md:after:bg-[url('<?php echo SITE_URL; ?>/assets/images/ui/high-performance-bg.svg')] 
+    md:after:bg-center
+    md:after:bg-contain 
+    ">
+
+    <div class="container mx-auto">
         <div class="relative z-10 md:max-w-xl max-w-[310px] pb-18 pt-3 md:pb-[161px] md:pt-[177px]">
             <h2
-                class="text-main-green font-base font-normal md:text-[32px] md:leading-[120%] md:tracking-normal capitalize mb-1 text-[20px] leading-[140%] tracking-[0.01em]">
+                class="text-main-green font-base font-bold md:font-normal md:text-[32px] md:leading-[120%] md:tracking-normal capitalize mb-1 text-[20px] leading-[140%] tracking-[0.01em]">
                 High-performance industrial lubrication
             </h2>
             <p
@@ -139,34 +157,4 @@ $industries = getCategoryByParent("2");
             </p>
         </div>
     </div>
-
 </section>
-
-
-<!-- <section class="py-6 bg-white relative">
-    <div class="container">
-        <div class="flex justify-between items-center md:gap-[60px] gap-4">
-            <div class="relative z-10">
-                <h2
-                    class="text-main-green font-base font-normal md:text-[32px] md:leading-[120%] md:tracking-normal capitalize mb-1 text-[20px] leading-[140%] tracking-[0.01em]">
-                    High-performance industrial lubrication
-                </h2>
-                <p
-                    class="text-[#757575] font-base font-normal md:text-[16px] md:leading-[150%] md:tracking-[0.015em] text-[12px] leading-[150%] tracking-[0.015em]">
-                    Solving complex tribology challenges across global industries.
-                </p>
-            </div>
-            <div class="pt-14 relative z-20">
-                <img src="<?php echo SITE_URL; ?>/assets/images/ui/high-performance-v3.png"
-                    alt="Industrial lubrication illustration" class="max-w-full h-auto" loading="lazy">
-            </div>
-        </div>
-    </div>
-
-    <div class="absolute bottom-[74px] left-0 w-full z-10 pointer-events-none">
-        <div class="flex flex-col gap-7">
-            <div class="h-[20px] w-full bg-[#F4C300]"></div>
-            <div class="h-[20px] w-full bg-[#F4C300]"></div>
-        </div>
-    </div>
-</section> -->

@@ -176,7 +176,11 @@ function getCategoryByParent($parentCatId, $limit = null)
  */
 function getCaseStudy($limit = null)
 {
-    $sql = "SELECT * FROM case_studies WHERE status = 'Active' ORDER BY created_at ASC LIMIT $limit";
+    $sql = "SELECT * FROM case_studies WHERE status = 'Active' ORDER BY created_at ASC";
+
+    if (!empty($limit)) {
+        $sql .= " LIMIT " . intval($limit);
+    }
 
     return db_query_all($sql);
 }
@@ -492,5 +496,19 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
         error_log("Mailer Error: " . $mail->ErrorInfo);
         return ['status' => 'error', 'message' => $mail->ErrorInfo];
     }
+}
+
+/**
+ * Fetch Main Category details by Slug.
+ */
+function getCategoryDetailsBySlug($slug)
+{
+    $formattedSlug = trim($slug);
+    $sql = "SELECT id, mcat_name, mcat_desc, slug, mcat_image, meta_description, parent_cat
+            FROM main_category 
+            WHERE slug = ? 
+            AND status = 'Active'";
+
+    return db_query_one($sql, [$formattedSlug]);
 }
 ?>

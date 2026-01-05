@@ -358,4 +358,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // ); // Trigger when 50% of the section is visible
 
   if (section) observer.observe(section);
+
+  const historySwiper = new Swiper(".our-history-swiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    speed: 800,
+    loop: true,
+    navigation: {
+      nextEl: ".history-next",
+      prevEl: ".history-prev",
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+  });
 });

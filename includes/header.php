@@ -43,9 +43,9 @@
     ?>
 </head>
 
-<body class="">
+<body class="max-w-[1440px] mx-auto">
 
-    <header class="fixed top-0 z-50 h-[60px] w-full left-0 right-0">
+    <header class="fixed top-0 z-50 h-[60px] w-full left-0 right-0 max-w-[1440px] mx-auto">
         <div class="absolute inset-0 w-full h-full bg-[#0e0e0e]/40 backdrop-blur-[18px] -z-10"></div>
         <div class="container flex h-full items-center justify-between">
             <div class="shrink-0">
