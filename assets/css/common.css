@@ -186,9 +186,9 @@ details[open] summary~* {
 
 
 /* Normal focus style (clean blue) */
-input:focus,
-textarea:focus,
-select:focus {
+form input:focus,
+form textarea:focus,
+form select:focus {
     border-color: var(--main-green);
     /* blue-500 */
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
@@ -198,9 +198,9 @@ select:focus {
 /* ─────────────────────────────────────── */
 /* Show red ONLY when the field is focused AND invalid */
 /* This prevents red on load / untouched required selects */
-input:focus:invalid,
-textarea:focus:invalid,
-select:focus:invalid {
+form input:focus:invalid,
+form textarea:focus:invalid,
+form select:focus:invalid {
     border-color: #ef4444;
     /* red-500 */
     box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25);
@@ -209,8 +209,8 @@ select:focus:invalid {
 }
 
 /* Optional: very soft hint after user typed/changed something wrong (but not focused) */
-input:not(:focus):invalid:not(:placeholder-shown),
-textarea:not(:focus):invalid:not(:placeholder-shown) {
+form input:not(:focus):invalid:not(:placeholder-shown),
+form textarea:not(:focus):invalid:not(:placeholder-shown) {
     border-color: #fca5a5;
     /* much softer red-300 */
     background-color: #fef2f2;

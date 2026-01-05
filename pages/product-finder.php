@@ -77,24 +77,25 @@ $categories = [
                             class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-120"
                             loading="lazy">
                     </div>
+                    <a href="<?php echo $item['link']; ?>">
+                        <div
+                            class="w-full bg-primary text-mid-green py-2.5 md:py-7 md:px-9 px-2.5 flex justify-between items-center">
+                            <h2
+                                class="font-base font-normal md:text-[32px] md:leading-[120%] text-[16px] leading-[150%] tracking-normal capitalize flex flex-col pb-2 text-main-green">
+                                <?php echo $item['title_line1']; ?>
+                                <span><?php echo $item['title_line2']; ?></span>
+                            </h2>
 
-                    <div
-                        class="w-full bg-primary text-mid-green py-2.5 md:py-7 md:px-9 px-2.5 flex justify-between items-center">
-                        <h2
-                            class="font-base font-normal md:text-[32px] md:leading-[120%] text-[16px] leading-[150%] tracking-normal capitalize flex flex-col pb-2 text-main-green">
-                            <?php echo $item['title_line1']; ?>
-                            <span><?php echo $item['title_line2']; ?></span>
-                        </h2>
-
-                        <a href="<?php echo $item['link']; ?>"
-                            class="transition-all duration-500 transform group-hover:-rotate-45 shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"
-                                class="w-5 h-5 md:w-10 md:h-10 transition-all duration-500">
-                                <path d="M23.3333 8.3335L35 20.0002M35 20.0002L23.3333 31.6668M35 20.0002L5 20.0002"
-                                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </div>
+                            <button class="transition-all duration-500 transform group-hover:-rotate-45 shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"
+                                    class="w-5 h-5 md:w-10 md:h-10 transition-all duration-500">
+                                    <path d="M23.3333 8.3335L35 20.0002M35 20.0002L23.3333 31.6668M35 20.0002L5 20.0002"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
