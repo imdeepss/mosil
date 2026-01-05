@@ -5,26 +5,36 @@ $pageTitle = 'About Us';
 $mosil_matters = [
     [
         "title" => "Custom-engineered lubricants",
+        "description" => "Custom-engineered lubricants  ensuring peak machine  performance and durability.",
         "image" => "matter-1.jpg"
     ],
     [
         "title" => "Backed by global certifications",
+        "description" => "Globally certified with ISO 9001, 
+14001, 45001 and NSF 
+certifications",
         "image" => "matter-2.jpg"
     ],
     [
         "title" => "Data-driven quadra methodology",
+        "description" => "Data-Driven Quadra approach 
+with TriboIntel documentation,
+ reduces ris",
         "image" => "matter-3.jpg"
     ],
     [
         "title" => "Sustainable formulations",
+        "description" => " Biodegradable and ESG-focused formulations  aligned with OECD protocols",
         "image" => "matter-4.jpg"
     ],
     [
         "title" => "Innovation built on research",
+        "description" => "R&D backed innovation  creates proven, custom  lubricant solutions",
         "image" => "matter-5.jpg"
     ],
     [
         "title" => "Strength built for the extreme",
+        "description" => " Special synthetic lubricants  significantly enhance equipment life  in tough environments",
         "image" => "matter-6.jpg"
     ]
 ];
@@ -120,7 +130,7 @@ $mosil_matters = [
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10">
-<?php
+            <?php
             $history_data = [
                 [
                     "year" => "1971 - 1980",
@@ -234,13 +244,26 @@ $mosil_matters = [
         </div>
         <div class="pt-8 grid grid-cols-2 md:grid-cols-5 gap-5">
             <?php for ($i = 0; $i < 5; $i++) { ?>
-                <div class="bg-[#F9DC6B] p-3 mt-4">
-                    <h6 class="text-[#3B3B3B] font-base font-normal text-[18px] leading-[140%] mb-2">Engineered lubricants
-                        for
-                        high performance</h6>
-                    <p class="text-[#666666] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em]">High
-                        performance greases, oils, aerosols, coatings, corrosion preventives, dry f ilms anti
-                        frictional coatings and specialty cleaners for critical applications in various industries</p>
+                <div
+                    class="group relative bg-y100 h-[204px] p-4 overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-2">
+
+                    <div
+                        class="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
+                    </div>
+
+                    <h6 class="text-[#3B3B3B] font-base font-normal text-[18px] leading-[140%] mb-2 relative z-10">
+                        Engineered lubricants for high performance
+                    </h6>
+
+                    <p
+                        class="text-[#666666] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] relative z-10">
+                        High performance greases, oils, aerosols, coatings, corrosion preventives, dry films,
+                        anti-frictional coatings and specialty cleaners for critical applications in various industries.
+                    </p>
+
+                    <div
+                        class="absolute bottom-0 left-0 h-1 w-0 bg-[#1A3B1B] transition-all duration-300 group-hover:w-full z-20">
+                    </div>
                 </div>
             <?php } ?>
         </div>
@@ -261,18 +284,31 @@ $mosil_matters = [
                 </h2>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <?php foreach ($mosil_matters as $item): ?>
-                <div class="relative group overflow-hidden w-full h-[300px] flex flex-col justify-end px-5 py-5"
-                    style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8) 100%), 
-                    url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>') no-repeat center/cover;">
+                <div class="relative group overflow-hidden w-full h-[300px] flex flex-col justify-end cursor-pointer">
 
-                    <h6
-                        class="text-[#FFFFFF] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize relative z-10">
-                        <?php echo $item['title']; ?>
-                    </h6>
+                    <div class="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
+                        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), 
+                        url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>') no-repeat center/cover;">
+                    </div>
 
-                    <div class="absolute inset-0 bg-primary/20 opacity-0">
+                    <div
+                        class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform translate-y-15 group-hover:translate-y-0">
+
+                        <h6
+                            class="text-white font-base font-normal md:text-[24px] md:leading-[135%] text-[18px] leading-[140%] tracking-[0.015em] capitalize">
+                            <?php echo $item['title']; ?>
+                        </h6>
+
+                        <p
+                            class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <?php echo $item['description']; ?>
+                        </p>
+                    </div>
+
+                    <div
+                        class="absolute inset-0 bg-main-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     </div>
                 </div>
             <?php endforeach; ?>
