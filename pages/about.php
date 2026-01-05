@@ -38,6 +38,29 @@ with TriboIntel documentation,
         "image" => "matter-6.jpg"
     ]
 ];
+
+$lubricant_features = [
+    [
+        "title" => "Engineered lubricants for high performance",
+        "desc" => "High performance greases, oils, aerosols, coatings, corrosion preventives, dry films anti frictional coatings and specialty cleaners for critical applications in various industries."
+    ],
+    [
+        "title" => "Quadra thinking risk off, performance on",
+        "desc" => "From selection to field alignment, we co-engineer every stage with TriboIntel to lower your risk and raise reliability staying hands-on, start to finish."
+    ],
+    [
+        "title" => "Savings rooted in science",
+        "desc" => "Our aim is to optimize processes that boost machine efficiency, reduce maintenance frequency and increase operational reliability leading to significant cost savings and enhanced productivity."
+    ],
+    [
+        "title" => "Custom solutions, built around your machines",
+        "desc" => "We work together with partners to develop custom solutions that are repeatedly put to the test, refined and adapted to the constantly changing production requirements."
+    ],
+    [
+        "title" => "Partners in progress with infinite possibilities",
+        "desc" => "We invest in high-performance labs and rapid response support that adapts to your evolving production demands."
+    ]
+];
 ?>
 <!-- Hero Section -->
 <section class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
@@ -247,30 +270,29 @@ with TriboIntel documentation,
         </div>
 
         <div class="swiper who-we-are-swiper pt-8 md:block block" id="about-who-we-are-swiper">
-            <div class="swiper-wrapper md:grid md:grid-cols-5 md:gap-5">
-                <?php for ($i = 0; $i < 5; $i++) { ?>
+            <div class="swiper-wrapper md:grid md:grid-cols-5">
+                <?php foreach ($lubricant_features as $feature): ?>
                     <div
-                        class="swiper-slide group relative bg-y100 md:h-[204px] h-[208px]! p-4 overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-2">
+                        class="swiper-slide group relative bg-y100 md:h-[204px] h-[208px]! p-4 overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-2">
                         <div
                             class="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
                         </div>
 
                         <h6
                             class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
-                            Engineered lubricants for high performance
+                            <?php echo $feature['title']; ?>
                         </h6>
 
                         <p
                             class="text-[#666666] font-base font-normal text-[14px] md:text-[12px] leading-[150%] md:leading-[150%] tracking-[0.015em] relative z-10">
-                            High performance greases, oils, aerosols, coatings, corrosion preventives, dry films,
-                            anti-frictional coatings and specialty cleaners for critical applications in various industries.
+                            <?php echo $feature['desc']; ?>
                         </p>
 
                         <div
                             class="absolute bottom-0 left-0 h-1 w-0 bg-[#1A3B1B] transition-all duration-300 group-hover:w-full z-20">
                         </div>
                     </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
 
             <div class="flex md:hidden items-center gap-4 relative z-10 justify-end mt-6">
