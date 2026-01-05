@@ -373,4 +373,21 @@ document.addEventListener("DOMContentLoaded", () => {
       disableOnInteraction: false,
     },
   });
+
+  const whoWeAreSwiper = new Swiper(".who-we-are-swiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".who-we-are-next",
+      prevEl: ".who-we-are-prev",
+    },
+    breakpoints: {
+      768: {
+        enabled: false,
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+    },
+  });
 });

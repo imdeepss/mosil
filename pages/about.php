@@ -83,15 +83,16 @@ with TriboIntel documentation,
                 </h2>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row gap-10 items-stretch">
+        <div class="flex flex-col md:flex-row gap-10 items-stretch flex-col-reverse pt-4 md:pt-0">
 
-            <div class="flex-1 bg-[#F5F5F5] px-[64px] py-8 rounded-bl-[110px] flex flex-col justify-center">
-                <h2 class="text-[#1A3B1B] font-base font-normal text-[28px] leading-[135%] capitalize mb-6">
+            <div
+                class="flex-1 bg-[#F5F5F5] md:px-[64px] pb-12 md:pb-0md:py-8 px-4 py-4 md:rounded-bl-[110px] rounded-bl-[80px] flex flex-col justify-center gap-6">
+                <h2 class="text-[#1A3B1B] font-base font-normal md:text-[28px] text-[24px] leading-[135%] capitalize">
                     India’s leading specialty lubricant & grease manufacturer
                 </h2>
 
                 <div
-                    class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] flex flex-col gap-4">
+                    class="text-[#757575] font-base font-normal md:text-[16px] text-[14px] leading-[150%] tracking-[0.015em] flex flex-col gap-4">
                     <p>
                         50 years ago, MOSIL was born from a simple idea: industrial reliability should not be
                         compromised by
@@ -129,7 +130,7 @@ with TriboIntel documentation,
                 </h2>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-10 pt-10">
             <?php
             $history_data = [
                 [
@@ -170,7 +171,7 @@ with TriboIntel documentation,
                 ]
             ];
             ?>
-            <div class="flex flex-col justify-center gap-3 max-w-md">
+            <div class="flex flex-col justify-center md:gap-3 gap-2 max-w-md order-2 md:order-1">
                 <div class="swiper our-history-swiper w-full">
                     <div class="swiper-wrapper">
                         <?php foreach ($history_data as $history): ?>
@@ -214,23 +215,25 @@ with TriboIntel documentation,
                 </div>
             </div>
 
-            <div class="relative">
+            <div class="relative order-1 md:order-2">
                 <img src="<?php echo SITE_URL; ?>/assets/images/ui/four-square.png" alt="MOSIL Lubricant Manufacturer"
                     class="w-full h-full object-cover rounded-lg shadow-sm">
             </div>
         </div>
     </div>
 </section>
-<section class="bg-primary relative">
-    <div class="absolute bottom-0 left-0">
+<section class="bg-primary relative overflow-hidden z-1">
+    <div class="absolute bottom-0 left-0 -z-10 pointer-events-none hidden md:block">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.png" alt="lubrication decision"
             class="block h-full w-full object-cover object-center" loading="lazy">
     </div>
-    <div class="absolute top-0 right-0 h-full">
+
+    <div class="absolute top-0 right-0 h-full -z-10 pointer-events-none">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.png" alt="lubrication decision"
             class="block h-full w-full object-cover object-center" loading="lazy">
     </div>
-    <div class="container md:pt-16 md:pb-18">
+
+    <div class="container relative z-10 md:pt-16 md:pb-18 pt-4 pb-5">
         <div class="py-3.5">
             <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
                 who we are
@@ -242,30 +245,50 @@ with TriboIntel documentation,
                 </h2>
             </div>
         </div>
-        <div class="pt-8 grid grid-cols-2 md:grid-cols-5 gap-5">
-            <?php for ($i = 0; $i < 5; $i++) { ?>
-                <div
-                    class="group relative bg-y100 h-[204px] p-4 overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-2">
 
+        <div class="swiper who-we-are-swiper pt-8 md:block block" id="about-who-we-are-swiper">
+            <div class="swiper-wrapper md:grid md:grid-cols-5 md:gap-5">
+                <?php for ($i = 0; $i < 5; $i++) { ?>
                     <div
-                        class="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
+                        class="swiper-slide group relative bg-y100 md:h-[204px] h-[208px]! p-4 overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-2">
+                        <div
+                            class="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
+                        </div>
+
+                        <h6
+                            class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
+                            Engineered lubricants for high performance
+                        </h6>
+
+                        <p
+                            class="text-[#666666] font-base font-normal text-[14px] md:text-[12px] leading-[150%] md:leading-[150%] tracking-[0.015em] relative z-10">
+                            High performance greases, oils, aerosols, coatings, corrosion preventives, dry films,
+                            anti-frictional coatings and specialty cleaners for critical applications in various industries.
+                        </p>
+
+                        <div
+                            class="absolute bottom-0 left-0 h-1 w-0 bg-[#1A3B1B] transition-all duration-300 group-hover:w-full z-20">
+                        </div>
                     </div>
+                <?php } ?>
+            </div>
 
-                    <h6 class="text-[#3B3B3B] font-base font-normal text-[18px] leading-[140%] mb-2 relative z-10">
-                        Engineered lubricants for high performance
-                    </h6>
-
-                    <p
-                        class="text-[#666666] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] relative z-10">
-                        High performance greases, oils, aerosols, coatings, corrosion preventives, dry films,
-                        anti-frictional coatings and specialty cleaners for critical applications in various industries.
-                    </p>
-
-                    <div
-                        class="absolute bottom-0 left-0 h-1 w-0 bg-[#1A3B1B] transition-all duration-300 group-hover:w-full z-20">
-                    </div>
-                </div>
-            <?php } ?>
+            <div class="flex md:hidden items-center gap-4 relative z-10 justify-end mt-6">
+                <button class="who-we-are-prev group cursor-pointer" aria-label="Previous slide">
+                    <svg class="w-12 h-12 transition-transform group-active:scale-90" viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="23" stroke="#1A3B1B" stroke-width="2" fill="none" />
+                        <path d="M34 24L14 24M14 24L20 18M14 24L20 30" stroke="#1A3B1B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="who-we-are-next group cursor-pointer" aria-label="Next slide">
+                    <svg class="w-12 h-12 transition-transform group-active:scale-90" viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="23" stroke="#1A3B1B" stroke-width="2" fill="none" />
+                        <path d="M14 24L34 24M34 24L28 18M34 24L28 30" stroke="#1A3B1B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 </section>
@@ -276,7 +299,7 @@ with TriboIntel documentation,
             <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
                 Why Mosil Matters?
             </span>
-            <div class="border-b border-[#ffffff] pb-1">
+            <div class="border-b border-primary pb-1">
                 <h2
                     class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
                     Pushing the boundaries of
@@ -284,9 +307,10 @@ with TriboIntel documentation,
                 </h2>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 md:pt-0">
             <?php foreach ($mosil_matters as $item): ?>
-                <div class="relative group overflow-hidden w-full h-[300px] flex flex-col justify-end cursor-pointer">
+                <div
+                    class="relative group overflow-hidden w-full md:h-[300px] h-[220px] flex flex-col justify-end cursor-pointer">
 
                     <div class="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
                         style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), 
@@ -294,7 +318,7 @@ with TriboIntel documentation,
                     </div>
 
                     <div
-                        class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform translate-y-15 group-hover:translate-y-0">
+                        class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform md:translate-y-15 group-hover:translate-y-0 max-w-[230px] md:max-w-full">
 
                         <h6
                             class="text-white font-base font-normal md:text-[24px] md:leading-[135%] text-[18px] leading-[140%] tracking-[0.015em] capitalize">
@@ -302,7 +326,7 @@ with TriboIntel documentation,
                         </h6>
 
                         <p
-                            class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hidden md:block">
                             <?php echo $item['description']; ?>
                         </p>
                     </div>
@@ -316,11 +340,7 @@ with TriboIntel documentation,
     </div>
 </section>
 <section class="relative bg-[#F5F5F5]">
-    <div class="container pt-5 pb-6 relative">
-        <div class="absolute top-0 right-0 w-full h-full flex justify-end">
-            <img src="<?php echo SITE_URL; ?>/assets/images/ui/directors.svg" alt="Leadership driving progress"
-                class="object-contain object-right-top w-full h-full">
-        </div>
+    <div class="container pt-5 md:pb-6 pb-14 relative">
         <div class="py-3.5">
             <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
                 Visionaries behind
@@ -333,7 +353,12 @@ with TriboIntel documentation,
             </div>
         </div>
         <div class="grid grid-cols-1 pt-7">
-            <div class="px-6 py-6 pt-9 bg-[#ffffff] bg-[#FAFAFA] border-l border-[#F4C300] rounded-bl-[33px] mb-5">
+            <div class="relative md:absolute top-0 right-0 w-full h-full flex justify-end">
+                <img src="<?php echo SITE_URL; ?>/assets/images/ui/directors.svg" alt="Leadership driving progress"
+                    class="object-contain object-right-top w-full h-full">
+            </div>
+            <div
+                class="md:px-6 md:py-6 p-5 pt-9 bg-[#ffffff] bg-[#FAFAFA] border-l border-[#F4C300] rounded-bl-[33px] mb-5">
                 <h2
                     class="flex flex-col gap-1 text-[#1A3B1B] font-base font-normal text-[20px] leading-[150%] tracking-[0.01em]">
                     Great
