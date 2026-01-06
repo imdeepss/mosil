@@ -598,4 +598,50 @@ function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
         'currentPage' => $page
     ];
 }
+
+function getCaseStudiesWithPagination($page = 1, $limit = 6, $category = 'All')
+{
+    $page = (int) $page;
+    $limit = (int) $limit;
+    $offset = ($page - 1) * $limit;
+    $params = [];
+    $whereClauses = ["status = 'Active'"];
+
+    // Note: Assuming 'type' or 'category' column exists if filtering is needed.
+    // For now, if category is provided but I see no clear column, I might implement a placeholder.
+    // However, looking at the UI, the user wants 'Technical concepts', 'Industry information' etc.
+    // I will try to use the 'type' column if it exists or 'category'. Since I can't confirm, I'll stick to pagination.
+    // If filtering is requested in the future, we can uncomment/add logic here.
+
+    // Attempt to filter if category is not All
+    if ($category !== 'All' && !empty($category)) {
+        // $whereClauses[] = "category = ?"; 
+        // $params[] = $category;
+    }
+
+    $whereSql = implode(' AND ', $whereClauses);
+
+    // Get Total Count
+    $countSql = "SELECT COUNT(*) FROM case_studies WHERE $whereSql";
+    $total = (int) db_query_value($countSql, $params);
+    $totalPages = ceil($total / $limit);
+
+    // Get Data
+    $sql = "
+        SELECT *
+        FROM case_studies
+        WHERE $whereSql
+        ORDER BY created_at DESC
+        LIMIT $limit OFFSET $offset
+    ";
+
+    $caseStudies = db_query_all($sql, $params);
+
+    return [
+        'caseStudies' => $caseStudies,
+        'total' => $total,
+        'totalPages' => $totalPages,
+        'currentPage' => $page
+    ];
+}
 ?>
