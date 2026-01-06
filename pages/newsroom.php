@@ -233,7 +233,7 @@ $lubricationItems = [
                     class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Blogs
                 </h2>
-                <a href="<?php echo SITE_URL; ?>/blogs"
+                <a href="<?php echo SITE_URL; ?>/blog"
                     class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
                     See All
                 </a>

@@ -27,28 +27,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
       currentCategory = this.dataset.category;
       currentPage = 1;
-      fetchCaseStudies();
+      fetchBlogs();
     });
   });
 
-  // Function to fetch case studies
-  async function fetchCaseStudies() {
+  // Function to fetch blogs
+  async function fetchBlogs() {
     // Show loading state (optional)
     blogContainer.style.opacity = "0.5";
 
     try {
       const response = await fetch(
-        `${SITE_URL}/ajax/get_case_studies.php?page=${currentPage}&limit=${limit}&category=${encodeURIComponent(
+        `${SITE_URL}/ajax/get_blogs.php?page=${currentPage}&limit=${limit}&category=${encodeURIComponent(
           currentCategory
         )}`
       );
       const data = await response.json();
 
       if (data.status === "success") {
-        renderCaseStudies(data.data.caseStudies);
+        renderBlogs(data.data.blogs);
         renderPagination(data.data);
       } else {
-        console.error("Error fetching case studies:", data.message);
+        console.error("Error fetching blogs:", data.message);
         blogContainer.innerHTML =
           '<p class="text-center text-red-500 w-full col-span-3">Failed to load content.</p>';
       }
@@ -59,49 +59,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Render Case Study Cards
-  function renderCaseStudies(caseStudies) {
-    if (caseStudies.length === 0) {
+  // Render Blog Cards
+  function renderBlogs(blogs) {
+    if (blogs.length === 0) {
       blogContainer.innerHTML =
-        '<p class="text-center text-gray-500 w-full col-span-3 py-10">No case studies found in this category.</p>';
+        '<p class="text-center text-gray-500 w-full col-span-3 py-10">No blogs found in this category.</p>';
       return;
     }
 
-    const html = caseStudies
+    const html = blogs
       .map(
-        (study) => `
+        (blog) => `
             <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
-                    <img src="${study.image_url}"
+                    <img src="${blog.image_url}"
                         alt="Hero Image"
                         class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
                         loading="lazy">
 
-                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                         <h2>
-                            Case Study
+                            Blog
                         </h2>
                     </div>
                 </div>
 
                 <div class="my-4 flex flex-col flex-1">
                     <h2 class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
-                        ${study.title}
+                        ${blog.title}
                     </h2>
                     <p class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
-                        ${study.excerpt}
+                        ${blog.excerpt}
                     </p>
                     <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
-                        Case Study |
-                        ${study.formatted_date}
+                        Blog |
+                        ${blog.formatted_date}
                     </p>
                 </div>
-                <a href="${study.link}" class="group/btn relative
+                <a href="${blog.link}" class="group/btn relative
                 font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit
                 capitalize hover:text-main-green">
-                    Read Case Study
+                    Read Blog
                     <span
-                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[#F9DC6B] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
 
             </div>
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Global function for interaction
   window.changePage = function (p) {
     currentPage = p;
-    fetchCaseStudies();
+    fetchBlogs();
     const container = document.getElementById("blog-container");
     if (container) {
       const headerOffset = 180;

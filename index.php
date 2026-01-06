@@ -24,7 +24,7 @@ $allowed_pages = [
     'newsroom',
     'news',
     'events',
-    'blogs',
+    'blog',
     'case-studies',
     'beyond-business',
     'glossary',
