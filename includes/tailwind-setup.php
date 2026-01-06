@@ -49,7 +49,6 @@
 
 <style type="text/tailwindcss">
     @theme {
-        /* Core Color Palette */
         --color-y50: #FEF9E6;
         --color-y75: #FAE696;
         --color-y100: #F9DC6B;
@@ -70,7 +69,6 @@
         --color-b900: #000000;
         --color-main-green: #1A3B1B;
 
-        /* Semantic Color Mapping */
         --color-primary: var(--color-y300);
         --color-primary-high: var(--color-y50);
         --color-primary-mid: var(--color-y75);
@@ -95,19 +93,14 @@
         --color-bg-body-mid: var(--color-b20);
         --color-bg-body-low: var(--color-b40);
 
-        /* Font Configuration */
-        /* Overriding the default sans font to be Helvetica */
         --font-sans: "Helvetica";
 
-        /* Custom Spacing */
         --spacing-header-height: 60px;
 
-        /* Custom Animations */
         --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
         --animate-slide-left: slideInLeft 0.8s ease-out forwards;
         --animate-slide-right: slideInRight 0.8s ease-out forwards;
         --animate-reveal-up: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-
     }
 
     /* Keyframes */
