@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Newsroom';
 $blogs = getBlogs(3);
+$latestBlogs = getLatestBlogs(5);
 
 
 $mosil_news = [
@@ -128,42 +129,39 @@ $lubricationItems = [
         <div class="newsroom-events py-9.5">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5 auto-rows-[240px]">
 
-                <?php foreach ($mosil_news as $item): ?>
-                    <div class="relative group overflow-hidden 
-                <?php echo $item['is_featured'] ? 'md:col-span-2 md:row-span-2' : 'col-span-1'; ?>">
+                <?php foreach ($latestBlogs as $item): ?>
+                    <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>" class="relative group overflow-hidden block
+       <?php echo $item['is_featured'] ? 'md:col-span-2 md:row-span-2' : 'col-span-1'; ?>">
 
-                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-                            style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), 
-                            url('<?php echo SITE_URL; ?>/assets/images/news/<?php echo $item['image']; ?>') no-repeat center/cover;">
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), 
+            url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>') no-repeat center/cover;">
                         </div>
 
-                        <div
-                            class="relative h-full flex flex-col justify-end  z-10 gap-2 <?php echo $item['is_featured'] ? 'px-7.5 py-8.5' : 'px-3 py-4'; ?>">
+                        <div class="relative h-full flex flex-col justify-end z-10 gap-2
+            <?php echo $item['is_featured'] ? 'px-7.5 py-8.5' : 'px-3 py-4'; ?>">
 
                             <span
                                 class="inline-block bg-[#F9DC6B] text-[#1A3B1B] text-[12px] font-base font-bold uppercase px-2 py-1 w-fit">
-                                <?php echo $item['category']; ?>
+                                <?php echo $item['category_name']; ?>
                             </span>
 
-                            <h3 class="text-[#FFFFFF] font-base font-bold leading-[135%] tracking-[0.01em] 
-                                <?php echo $item['is_featured'] ? 'text-[24px]' : 'text-[14px]'; ?>">
+                            <h3 class="text-[#FFFFFF] font-base font-bold leading-[135%] tracking-[0.01em]
+                <?php echo $item['is_featured'] ? 'text-[24px]' : 'text-[14px]'; ?>">
                                 <?php echo $item['title']; ?>
                             </h3>
 
-                            <?php if (isset($item['date'])): ?>
+                            <?php if (isset($item['created_at'])): ?>
                                 <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[135%] tracking-[0.01em]">
-                                    <?php echo $item['date']; ?>
+                                    <?php echo date('F d, Y', strtotime($item['created_at'])); ?>
                                 </p>
                             <?php endif; ?>
-
                         </div>
 
                         <div
                             class="absolute inset-0 bg-main-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         </div>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
-
             </div>
         </div>
     </div>

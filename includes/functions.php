@@ -511,4 +511,36 @@ function getCategoryDetailsBySlug($slug)
 
     return db_query_one($sql, [$formattedSlug]);
 }
+
+
+function getLatestBlogs($limit = 5)
+{
+    $sql = "SELECT
+    bp.id,
+    bp.title,
+    bp.slug,
+    bp.image,
+    bp.created_at,
+    bc.name AS category_name,
+    CASE
+        WHEN bp.id = (
+            SELECT id
+            FROM blog_posts_v2
+            WHERE status = 'Published'
+            ORDER BY created_at DESC
+            LIMIT 1
+        ) THEN 1
+        ELSE 0
+    END AS is_featured
+FROM blog_posts_v2 bp
+LEFT JOIN blog_categories bc
+    ON bp.category_id = bc.id
+WHERE bp.status = 'Published'
+ORDER BY bp.created_at DESC
+LIMIT ?
+";
+
+    return db_query_all($sql, [$limit]);
+}
+
 ?>
