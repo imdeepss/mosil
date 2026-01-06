@@ -1,10 +1,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 <style>
-    /* Helvetica Light (300) */
+    /* Helvetica Light (300) - Fallback to Regular due to corrupted file */
     @font-face {
         font-family: 'Helvetica';
-        src: url('<?php echo SITE_URL; ?>/assets/fonts/helvetica-light.ttf') format('truetype');
+        src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica.ttf') format('truetype');
         font-weight: 300;
         font-style: normal;
         font-display: swap;
