@@ -644,4 +644,26 @@ function getCaseStudiesWithPagination($page = 1, $limit = 6, $category = 'All')
         'currentPage' => $page
     ];
 }
+
+
+
+
+function getGlossary($letter, $limit = 8, $offset = 0)
+{
+    // Ensure letter is safe (though prepared statements handle this, nice to be explicit)
+    $letterParam = $letter . '%';
+
+    // Get Total Count for this letter
+    $countSql = "SELECT COUNT(*) FROM glossary WHERE keyword LIKE ?";
+    $total = (int) db_query_value($countSql, [$letterParam]);
+
+    // Get Data
+    $sql = "SELECT keyword, explanation FROM glossary WHERE keyword LIKE ? ORDER BY keyword ASC LIMIT " . (int) $limit . " OFFSET " . (int) $offset;
+    $items = db_query_all($sql, [$letterParam]);
+
+    return [
+        'items' => $items,
+        'total' => $total
+    ];
+}
 ?>
