@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentPage = 1;
   let currentCategory = "All";
-  const limit = 6;
+  const limit = 3;
 
   // Initialize Filter Buttons
   filterButtons.forEach((btn) => {
@@ -70,32 +70,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const html = caseStudies
       .map(
         (study) => `
-            <div class="group flex flex-col h-full">
-                <!-- Image -->
-                <div class="relative h-[240px] overflow-hidden rounded-lg mb-4">
+            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+                <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                     <img src="${study.image_url}"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        alt="${study.title}" loading="lazy">
-                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[#F4C300] text-[#1A3B1B] font-bold text-[10px] uppercase">
-                        Case Study
+                        alt="Hero Image"
+                        class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                        loading="lazy">
+
+                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                        <h2>
+                            Case Study
+                        </h2>
                     </div>
                 </div>
 
-                <!-- Content -->
-                <div class="flex flex-col flex-1">
-                    <h3 class="text-xl font-bold text-[#1A3B1B] mb-3 leading-tight group-hover:text-[#415C42] transition-colors">
+                <div class="my-4 flex flex-col flex-1">
+                    <h2 class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
                         ${study.title}
-                    </h3>
-
-                    <p class="text-[#757575] text-sm leading-relaxed mb-4 line-clamp-3">
+                    </h2>
+                    <p class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
                         ${study.excerpt}
                     </p>
-
-                    <div class="mt-auto">
-                         <span class="text-xs text-[#A3A3A3] block mb-1">Case study | ${study.formatted_date}</span>
-                        <a href="${study.link}" class="text-[#1A3B1B] font-bold text-sm hover:underline">Read Case Study</a>
-                    </div>
+                    <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
+                        Case Study |
+                        ${study.formatted_date}
+                    </p>
                 </div>
+                <a href="${study.link}" class="group/btn relative
+                font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit
+                capitalize hover:text-main-green">
+                    Read Case Study
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
+
             </div>
         `
       )

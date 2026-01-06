@@ -1,7 +1,7 @@
 <?php
 $pageTitle = 'Case Studies';
 // Initial load: Page 1, Limit 6, Category All
-$initialData = getCaseStudiesWithPagination(1, 6, 'All');
+$initialData = getCaseStudiesWithPagination(1, 3, 'All');
 $caseStudies = $initialData['caseStudies'];
 $totalPages = $initialData['totalPages'];
 $currentPage = $initialData['currentPage'];
@@ -9,141 +9,216 @@ $currentPage = $initialData['currentPage'];
 
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
 
-<section class="container py-20">
+<section class="container">
 
+    <nav
+        class="flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize flex-wrap py-6">
+        <a href="<?php echo SITE_URL; ?>/" class="text-[#A3A3A3] font-light">Home</a>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <a href="#" class="text-[#575757] font-bold">Events</a>
 
-    <!-- Featured Case Studies Section -->
-    <div class="py-12">
+    </nav>
+    <div class="py-3.5">
         <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
             LATEST CONTENT
         </span>
-        <div class="border-b border-primary pb-1 mb-8">
-            <h2 class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
+        <div class="border-b border-primary pb-1">
+            <h2
+                class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
                 Featured Case Studies
             </h2>
         </div>
+    </div>
+    <!-- Featured Case Studies Section -->
+    <div class="">
 
-        <?php 
+        <?php
         // Fetch top 4 for featured section
-        $featuredData = getCaseStudiesWithPagination(1, 4, 'All'); 
+        $featuredData = getCaseStudiesWithPagination(1, 4, 'All');
         $featuredStudies = $featuredData['caseStudies'];
-        
+
         if (!empty($featuredStudies)):
             $mainFeatured = $featuredStudies[0];
             $subFeatured = array_slice($featuredStudies, 1, 3);
-        ?>
+            ?>
             <!-- Main Featured Item -->
-            <div class="w-full relative mb-8 group cursor-pointer overflow-hidden rounded-lg">
-                <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($mainFeatured["slug"]) ?>" class="block h-[400px] w-full">
-                    <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $mainFeatured['image']; ?>" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            <div class="w-full relative my-6 group cursor-pointer overflow-hidden">
+                <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($mainFeatured["slug"]) ?>"
+                    class="block md:h-[400px] h-[280px] w-full">
+                    <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $mainFeatured['image']; ?>"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         alt="<?php echo $mainFeatured['title']; ?>">
-                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
-                        <h3 class="text-white text-3xl font-bold mb-2"><?php echo $mainFeatured['title']; ?></h3>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/10 to-black/100 pointer-events-none"
+                        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 10.6%, #000 99.84%);">
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent md:p-7.5 p-4">
+                        <div
+                            class="px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] inline-block mb-2">
+                            <h2>
+                                Case Study
+                            </h2>
+                        </div>
+                        <h3 class="text-white font-bold text-[18px] leading-[140%] tracking-[0.015em] mb-2">
+                            <?php echo $mainFeatured['title']; ?>
+                        </h3>
+
+                        <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#ffffff] mt-auto">
+                            Case study |
+                            <?php echo date('F d, Y', strtotime($mainFeatured['created_at'])); ?>
+                        </p>
                     </div>
                 </a>
+                <!-- <img src="<?php echo SITE_URL; ?>/assets/images/ui/case-study-banner.png" /> -->
             </div>
 
             <!-- Sub Featured Items (Row of 3) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="grid grid-cols-2 md:grid-cols-3 md:gap-8 gap-4 [&>:last-child]:hidden! 
+            md:[&>:last-child]:grid!">
                 <?php foreach ($subFeatured as $study): ?>
-                    <div class="group flex flex-col h-full">
-                        <div class="relative h-[200px] overflow-hidden rounded-lg mb-4">
+                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+
+                        <div class="relative md:h-[240px] h-[184px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                alt="<?php echo $study['title']; ?>" loading="lazy">
-                            <div class="absolute bottom-2 left-2 px-2 py-1 bg-[#F4C300] text-[#1A3B1B] font-bold text-[10px] uppercase">
-                                Case Study
+                                alt="Hero Image"
+                                class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                                loading="lazy">
+
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/10 to-black/100 pointer-events-none"
+                                style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 10.6%, #000 99.84%);">
+                            </div>
+
+                            <div class="absolute bottom-2 left-2">
+                                <div
+                                    class="px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] inline-block mb-2">
+                                    <h2>Case Study</h2>
+                                </div>
+                                <h3
+                                    class="text-white font-bold text-[12px] leading-[150%] tracking-[0.015em] mb-2 block md:hidden">
+                                    <?php echo $study['title']; ?>
+                                </h3>
                             </div>
                         </div>
-                        <h3 class="text-lg font-bold text-[#1A3B1B] mb-2 leading-tight group-hover:text-[#415C42] transition-colors">
-                            <?php echo $study['title']; ?>
-                        </h3>
-                        <p class="text-[#757575] text-sm line-clamp-3 mb-3">
-                            <?php 
-                            $intro = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
-                            echo mb_strlen($intro) > 100 ? substr($intro, 0, 100) . '...' : $intro;
-                            ?>
-                        </p>
-                        <div class="mt-auto">
-                            <span class="text-xs text-[#A3A3A3] block mb-1">Case study | <?php echo date('F d, Y', strtotime($study['created_at'])); ?></span>
-                            <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($study["slug"]) ?>" class="text-[#1A3B1B] font-bold text-sm hover:underline">Read Case Study</a>
+
+                        <div class="my-4 flex flex-col flex-1 hidden md:block">
+                            <h2
+                                class="font-bold md:text-lg md:leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
+                                <?php echo $study['title']; ?>
+                            </h2>
+                            <p
+                                class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
+                                <?php
+                                $content = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
+                                echo mb_strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
+                                ?>
+                            </p>
+                            <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
+                                Case study |
+                                <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
+                            </p>
                         </div>
+                        <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($study["slug"]) ?>" class="group/btn
+                    relative font-bold text-[18px] text-[#415C42] pb-2  w-fit
+                    capitalize hover:text-main-green  hidden md:inline-block">
+                            Read Case Study
+                            <span
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[#F9DC6B] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </a>
+
                     </div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
     </div>
 
-    <!-- All Case Studies Section -->
+
+</section>
+<!-- All Case Studies Section -->
+<section class="container md:pt-20 pt-12 md:pb-28 pb-20">
     <div class="py-3.5">
         <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
             RESOURCES
         </span>
         <div class="border-b border-primary pb-1">
-            <h2 class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
+            <h2
+                class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
                 All Case Studies
             </h2>
         </div>
     </div>
 
     <!-- Filter Buttons -->
-    <div class="flex justify-start items-center gap-4 pt-6 pb-8 overflow-x-auto">
+    <div class="flex justify-start items-center gap-4 md:pt-6 md:pb-8 pt-4 pb-4 overflow-x-auto">
         <button
-            class="filter-btn h-12 px-12 py-3 bg-main-green rounded text-white text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+            class="filter-btn h-12 px-8 md:px-12 py-3 bg-main-green rounded text-white text-[16px] leading-[150%] md:text-xl font-normal md:leading-7 tracking-tight transition-colors whitespace-nowrap"
             data-category="All">All Case Studies</button>
         <button
-            class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+            class="filter-btn h-12 px-8 md:px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-[16px] leading-[150%] md:text-xl font-normal md:leading-7 tracking-tight transition-colors whitespace-nowrap"
             data-category="Industry information">Industry information</button>
         <button
-            class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+            class="filter-btn h-12 px-8 md:px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-[16px] leading-[150%] md:text-xl font-normal md:leading-7 tracking-tight transition-colors whitespace-nowrap"
             data-category="General management">General management</button>
         <button
-            class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+            class="filter-btn h-12 px-8 md:px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-[16px] leading-[150%] md:text-xl font-normal md:leading-7 tracking-tight transition-colors whitespace-nowrap"
             data-category="Discover">Discover</button>
         <button
-            class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+            class="filter-btn h-12 px-8 md:px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-[16px] leading-[150%] md:text-xl font-normal md:leading-7 tracking-tight transition-colors whitespace-nowrap"
             data-category="Technical concepts">Technical concepts</button>
     </div>
 
     <!-- Case Studies Grid (Paginated) -->
-    <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-8 gap-4 md:mb-12 mb-10">
         <?php foreach ($caseStudies as $study): ?>
-            <div class="group flex flex-col h-full">
-                <!-- Image -->
-                <div class="relative h-[240px] overflow-hidden rounded-lg mb-4">
+            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+
+                <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        alt="<?php echo $study['title']; ?>" loading="lazy">
-                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[#F4C300] text-[#1A3B1B] font-bold text-[10px] uppercase">
-                        Case Study
+                        alt="Hero Image"
+                        class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                        loading="lazy">
+
+                    <div
+                        class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                        <h2>
+                            Case Study
+                        </h2>
                     </div>
                 </div>
 
-                <!-- Content -->
-                <div class="flex flex-col flex-1">
-                    <h3 class="text-xl font-bold text-[#1A3B1B] mb-3 leading-tight group-hover:text-[#415C42] transition-colors">
+                <div class="my-4 flex flex-col flex-1">
+                    <h2
+                        class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
                         <?php echo $study['title']; ?>
-                    </h3>
-
-                    <p class="text-[#757575] text-sm leading-relaxed mb-4 line-clamp-3">
-                        <?php 
-                        $intro = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
-                        echo mb_strlen($intro) > 150 ? substr($intro, 0, 150) . '...' : $intro;
+                    </h2>
+                    <p class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
+                        <?php
+                        $content = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
+                        echo mb_strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
                         ?>
                     </p>
-
-                    <div class="mt-auto">
-                         <span class="text-xs text-[#A3A3A3] block mb-1">Case study | <?php echo date('F d, Y', strtotime($study['created_at'])); ?></span>
-                        <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($study["slug"]) ?>" class="text-[#1A3B1B] font-bold text-sm hover:underline">Read Case Study</a>
-                    </div>
+                    <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
+                        Case Study |
+                        <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
+                    </p>
                 </div>
+                <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($study["slug"]) ?>" class="group/btn relative
+                font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit
+                capitalize hover:text-main-green">
+                    Read Case Study
+                    <span
+                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[#F9DC6B] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
+
             </div>
         <?php endforeach; ?>
     </div>
 
     <!-- Pagination Container -->
-    <div id="pagination-container" class="mb-12 flex justify-start gap-4">
+    <div id="pagination-container" class="flex md:justify-start justify-center items-center gap-4">
         <!-- Initial Pagination Render (Server Side) -->
         <?php if ($currentPage > 1): ?>
             <button onclick="changePage(<?php echo $currentPage - 1; ?>)"
