@@ -1,8 +1,11 @@
 <?php
 $pageTitle = 'Events';
-$blogs = getBlogs();
+// Initial load: Page 1, Limit 6, Category All
+$initialData = getBlogsWithPagination(1, 6, 'All');
+$blogs = $initialData['blogs'];
+$totalPages = $initialData['totalPages'];
+$currentPage = $initialData['currentPage'];
 ?>
-
 
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
 <div>
@@ -31,23 +34,31 @@ $blogs = getBlogs();
                 </h2>
             </div>
         </div>
-        <div class="flex justify-start items-center gap-4 pt-6 pb-8">
-            <button
-                class="h-12 px-12 py-3 bg-main-green rounded py-3 px-12 text-white text-xl font-normal leading-7 tracking-tight">All</button>
-            <button
-                class="h-12 px-12 py-3 bg-[#F5F5F5] rounded py-3 px-12 text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight">Exhibitions</button>
-            <button
-                class="h-12 px-12 py-3 bg-[#F5F5F5] rounded py-3 px-12 text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight">Events</button>
-            <button
-                class="h-12 px-12 py-3 bg-[#F5F5F5] rounded py-3 px-12 text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight">News</button>
-            <button
-                class="h-12 px-12 py-3 bg-[#F5F5F5] rounded py-3 px-12 text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight">Beyond
-                business</button>
-        </div>
-        <div class="md:mt-8 md:mb-10 swiper newsSwiper">
-            <div class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-10">
-                <?php foreach ($blogs as $blog) { ?>
 
+        <!-- Filter Buttons -->
+        <div class="flex justify-start items-center gap-4 pt-6 pb-8 overflow-x-auto">
+            <button
+                class="filter-btn h-12 px-12 py-3 bg-main-green rounded text-white text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+                data-category="All">All</button>
+            <button
+                class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+                data-category="Exhibitions">Exhibitions</button>
+            <button
+                class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+                data-category="Events">Events</button>
+            <button
+                class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+                data-category="News">News</button>
+            <button
+                class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
+                data-category="Beyond Business">Beyond business</button>
+        </div>
+
+        <div class="md:mt-8 md:mb-10 swiper newsSwiper">
+            <!-- Blog Container -->
+            <div id="blog-container"
+                class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-10 transition-opacity duration-300">
+                <?php foreach ($blogs as $blog) { ?>
                     <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
 
                         <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
@@ -59,7 +70,7 @@ $blogs = getBlogs();
                             <div
                                 class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                                 <h2>
-                                    <?php echo $blog['category_name']; ?>
+                                    <?php echo $blog['category_name'] ?: 'General'; ?>
                                 </h2>
                             </div>
                         </div>
@@ -73,18 +84,18 @@ $blogs = getBlogs();
                                 class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
                                 <?php
                                 $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
-                                echo substr($content, 0, 500);
+                                echo mb_strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
                                 ?>
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
-                                <?php echo $blog['category_name']; ?> |
+                                <?php echo $blog['category_name'] ?: 'General'; ?> |
                                 <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"]) ?>" class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit
                         capitalize hover:text-main-green">
                             Read
-                            <?php echo $blog['category_name']; ?>
+                            <?php echo $blog['category_name'] ?: 'Article'; ?>
                             <span
                                 class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
@@ -93,26 +104,95 @@ $blogs = getBlogs();
                 <?php } ?>
             </div>
         </div>
-        <div class="mb-12 flex justify-start gap-4">
-            <button
-                class="text-[#666666] font-base font-normal text-[18px] leading-[140%] tracking-[0.015em] flex items-center gap-2"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 5L8 12L15 19" stroke="#666666" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>Prev</button>
+
+        <!-- Pagination Container -->
+        <div id="pagination-container" class="mb-12 flex justify-start gap-4">
+            <!-- Initial Pagination Render (Server Side) -->
+            <?php if ($currentPage > 1): ?>
+                <button onclick="changePage(<?php echo $currentPage - 1; ?>)"
+                    class="text-[#666666] font-base font-normal text-[18px] leading-[140%] tracking-[0.015em] flex items-center gap-2 hover:text-main-green">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>Prev
+                </button>
+            <?php else: ?>
+                <button disabled
+                    class="text-gray-300 font-base font-normal text-[18px] flex items-center gap-2 cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>Prev
+                </button>
+            <?php endif; ?>
+
             <div class="flex items-center gap-2">
-                <button class="bg-[#F4C300] rounded text-[#1A3B1B] px-3 py-2">1</button>
-                <button class="bg-[#FAE696] rounded text-[#1A3B1B] px-3 py-2">2</button>
-                ...
-                <button class="bg-[#FAE696] rounded text-[#1A3B1B] px-3 py-2">9</button>
+                <?php
+                $range = [];
+                if ($totalPages <= 7) {
+                    for ($i = 1; $i <= $totalPages; $i++)
+                        $range[] = $i;
+                } else {
+                    if ($currentPage <= 4) {
+                        for ($i = 1; $i <= 5; $i++)
+                            $range[] = $i;
+                        $range[] = '...';
+                        $range[] = $totalPages;
+                    } else if ($currentPage >= $totalPages - 3) {
+                        $range[] = 1;
+                        $range[] = '...';
+                        for ($i = $totalPages - 4; $i <= $totalPages; $i++)
+                            $range[] = $i;
+                    } else {
+                        $range[] = 1;
+                        $range[] = '...';
+                        $range[] = $currentPage - 1;
+                        $range[] = $currentPage;
+                        $range[] = $currentPage + 1;
+                        $range[] = '...';
+                        $range[] = $totalPages;
+                    }
+                }
+
+                foreach ($range as $p) {
+                    if ($p === '...') {
+                        echo '<span class="px-2 text-gray-400">...</span>';
+                    } else {
+                        $activeClass = ($p == $currentPage) ? 'bg-[#F4C300] font-bold' : 'bg-[#FAE696] hover:bg-[#F4C300]';
+                        $onclick = ($p == $currentPage) ? '' : 'onclick="changePage(' . $p . ')"';
+                        echo "<button $onclick class=\"$activeClass rounded text-[#1A3B1B] w-8 h-8 flex items-center justify-center transition-colors\">$p</button>";
+                    }
+                }
+                ?>
             </div>
-            <button
-                class="text-lg font-normal flex items-center gap-2 text-[#666666] font-base font-normal text-[18px] leading-[140%]">Next
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 5L16 12L9 19" stroke="#666666" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg></button>
+
+            <?php if ($currentPage < $totalPages): ?>
+                <button onclick="changePage(<?php echo $currentPage + 1; ?>)"
+                    class="text-[#666666] font-base font-normal text-[18px] leading-[140%] tracking-[0.015em] flex items-center gap-2 hover:text-main-green">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            <?php else: ?>
+                <button disabled
+                    class="text-gray-300 font-base font-normal text-[18px] flex items-center gap-2 cursor-not-allowed">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            <?php endif; ?>
+        </div>
     </section>
-
-
 </div>
+
+<!-- Define SITE_URL for JS if not already defined -->
+<script>
+    if (typeof SITE_URL === 'undefined') {
+        window.SITE_URL = "<?php echo SITE_URL; ?>";
+    }
+</script>
+<script src="<?php echo SITE_URL; ?>/assets/js/events.js"></script>

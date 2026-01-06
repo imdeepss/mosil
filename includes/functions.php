@@ -543,4 +543,59 @@ LIMIT ?
     return db_query_all($sql, [$limit]);
 }
 
+
+function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
+{
+    $page = (int) $page;
+    $limit = (int) $limit;
+    $offset = ($page - 1) * $limit;
+    $params = [];
+    $whereClauses = ["bp.status = 'Published'"];
+
+    if ($category !== 'All' && !empty($category)) {
+        $whereClauses[] = "bc.name = ?";
+        $params[] = $category;
+    }
+
+    $whereSql = implode(' AND ', $whereClauses);
+
+    // Get Total Count
+    $countSql = "
+        SELECT COUNT(*)
+        FROM blog_posts_v2 bp
+        LEFT JOIN blog_categories bc ON bp.category_id = bc.id
+        WHERE $whereSql
+    ";
+
+    // We need to execute count query with same params
+    $total = (int) db_query_value($countSql, $params);
+    $totalPages = ceil($total / $limit);
+
+    // Get Data
+    $sql = "
+        SELECT 
+            bp.id,
+            bp.title,
+            bp.slug,
+            bp.image,
+            bp.content,
+            bp.created_at,
+            bc.name AS category_name
+        FROM blog_posts_v2 bp
+        LEFT JOIN blog_categories bc 
+            ON bp.category_id = bc.id
+        WHERE $whereSql
+        ORDER BY bp.created_at DESC
+        LIMIT $limit OFFSET $offset
+    ";
+
+    $blogs = db_query_all($sql, $params);
+
+    return [
+        'blogs' => $blogs,
+        'total' => $total,
+        'totalPages' => $totalPages,
+        'currentPage' => $page
+    ];
+}
 ?>
