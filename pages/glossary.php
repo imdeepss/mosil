@@ -34,7 +34,7 @@
             </span>
             <a href="<?php echo SITE_URL; ?>/glossary" class="text-[#575757] font-bold">Glossary</a>
         </nav>
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6 border-b border-[#DEDEDE] pb-2 md:border-none md:pb-0">
             <div class="flex justify-between gap-4 items-center">
                 <span class="text-[#1A3B1B] font-base font-normal text-[28px] leading-[135%] capitalize">
                     Glossary
