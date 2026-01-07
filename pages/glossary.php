@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div
-                class="p-5 inline-flex justify-center items-center gap-2 overflow-hidden rounded-[4px] border border-[#DEDEDE] bg-[#FFFFFF]">
+                class="p-5 md:inline-flex justify-center items-center gap-2 overflow-hidden rounded-[4px] border border-[#DEDEDE] bg-[#FFFFFF] hidden">
                 <?php
                 $letters = range('A', 'Z');
                 foreach ($letters as $letter) { ?>
@@ -68,15 +68,29 @@
                 <?php } ?>
             </div>
         </div>
-        <div class="py-6">
-            <div id="glossary-grid" class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-5">
-                <!-- Content will be injected via JS -->
-                <!-- Placeholder shimmer or loading text can go here -->
+        <div class="py-6 flex gap-2 items-start justify-start">
+            <div
+                class="inline-flex flex-col md:hidden justify-center items-center gap-2 overflow-hidden rounded-[4px] bg-[#FFFFFF] ">
+                <?php
+                $letters = range('A', 'Z');
+                foreach ($letters as $letter) { ?>
+                    <button type="button"
+                        class="letter-btn w-10 h-10 px-3 py-1.5 bg-[#F5F5F5] rounded-sm text-[#A3A3A3] hover:bg-gray-200 transition-colors"
+                        data-letter="<?php echo $letter; ?>">
+                        <?php echo $letter; ?>
+                    </button>
+                <?php } ?>
             </div>
-            <div id="load-more-container" class="mx-auto text-center" style="display: none;">
-                <button id="load-more-btn"
-                    class="text-[#1A3B1B] text-center font-base font-bold text-[18px] leading-[120%] tracking-[0.01em] px-5 py-3 rounded-full bg-[#F5F5F5] hover:bg-[#F4C300] transition-colors">See
-                    More</button>
+            <div class="flex-1">
+                <div id="glossary-grid" class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-5">
+                    <!-- Content will be injected via JS -->
+                    <!-- Placeholder shimmer or loading text can go here -->
+                </div>
+                <div id="load-more-container" class="mx-auto text-center" style="display: none;">
+                    <button id="load-more-btn"
+                        class="text-[#1A3B1B] text-center font-base font-bold text-[18px] leading-[120%] tracking-[0.01em] px-5 py-3 rounded-full bg-[#F5F5F5] hover:bg-[#F4C300] transition-colors">See
+                        More</button>
+                </div>
             </div>
         </div>
     </div>

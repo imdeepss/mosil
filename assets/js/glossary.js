@@ -129,9 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const html = items
       .map((item) => {
-        const isLong = item.explanation.length > 120;
+        const isLong = item.explanation.length > 150;
         const displayText = isLong
-          ? item.explanation.substring(0, 120) + "..."
+          ? item.explanation.substring(0, 250) + "..."
           : item.explanation;
 
         return `
