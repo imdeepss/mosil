@@ -666,4 +666,23 @@ function getGlossary($letter, $limit = 8, $offset = 0)
         'total' => $total
     ];
 }
+
+/**
+ * Fetch a single blog post by slug.
+ */
+function getBlogBySlug($slug)
+{
+    $formattedSlug = trim($slug);
+    $sql = "
+        SELECT 
+            bp.*,
+            bc.name AS category_name
+        FROM blog_posts_v2 bp
+        LEFT JOIN blog_categories bc 
+            ON bp.category_id = bc.id
+        WHERE bp.slug = ? AND bp.status = 'Published'
+    ";
+
+    return db_query_one($sql, [$formattedSlug]);
+}
 ?>

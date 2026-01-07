@@ -55,7 +55,7 @@ $currentPage = $initialData['currentPage'];
             ?>
             <!-- Main Featured Item -->
             <div class="w-full relative my-6 group cursor-pointer overflow-hidden">
-                <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($mainFeatured["slug"]) ?>"
+                <a href="<?php echo SITE_URL; ?>/blog/<?php echo $mainFeatured['slug']; ?>"
                     class="block md:h-[400px] h-[280px] w-full">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $mainFeatured['image']; ?>"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -128,7 +128,7 @@ $currentPage = $initialData['currentPage'];
                                 <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                             </p>
                         </div>
-                        <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"]) ?>" class="group/btn
+                        <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>" class="group/btn
                     relative font-bold text-[18px] text-[#415C42] pb-2 w-fit
                     capitalize hover:text-main-green hidden md:inline-block">
                             Read Blog
@@ -211,7 +211,7 @@ $currentPage = $initialData['currentPage'];
                         <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                     </p>
                 </div>
-                <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"]) ?>" class="group/btn relative
+                <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>" class="group/btn relative
                 font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit
                 capitalize hover:text-main-green">
                     Read Blog

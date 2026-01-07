@@ -33,7 +33,8 @@ $allowed_pages = [
     'contact',
     'privacy-policy',
     'industry-category',
-    'product-category'
+    'product-category',
+    'blog-detail'
 ];
 
 if (!in_array($page, $allowed_pages)) {

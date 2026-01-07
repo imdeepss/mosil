@@ -422,7 +422,7 @@ $faqs = [
                                 <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                             </p>
                         </div>
-                        <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"]) ?>"
+                        <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>"
                             class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
                             Read <?php echo $blog['category_name']; ?>
                             <span

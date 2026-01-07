@@ -1,0 +1,195 @@
+<?php
+// Get slug from URL
+$slug = isset($_GET['slug']) ? $_GET['slug'] : '';
+$slug = htmlspecialchars($slug, ENT_QUOTES, 'UTF-8');
+
+// Fetch the blog details
+$blog = getBlogBySlug($slug);
+
+// If blog not found, redirect to blog listing or show 404
+if (!$blog) {
+    // You might want to redirect to a 404 page or back to the blog listing
+    echo '<script>window.location.href = "' . SITE_URL . '/blog";</script>';
+    exit;
+}
+
+// Fetch suggested blogs for the bottom section
+$suggestedBlogs = getBlogs(); // Reuse existing function
+
+// Set Page Title for SEO
+$pageTitle = htmlspecialchars($blog['title']);
+?>
+
+
+<section class="h-[60px] sticky top-0 z-10 bg-white"></section>
+
+
+<section class="w-full bg-white">
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <nav
+            class="flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize flex-wrap py-6">
+            <a href="<?php echo SITE_URL; ?>/" class="text-[#A3A3A3] font-light">Home</a>
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg></span>
+            <a href="<?php echo SITE_URL; ?>/newsroom" class="text-[#A3A3A3] font-light">Newsroom</a>
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg></span>
+            <a href="<?php echo SITE_URL; ?>/blog" class="text-[#A3A3A3] font-light">Blogs</a>
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg></span>
+            <span class="text-[#575757] font-bold line-clamp-1">
+                <?php echo $blog['title']; ?>
+            </span>
+        </nav>
+
+        <!-- Hero Image -->
+        <div class="w-full h-[180px] md:h-[443px] rounded-[4px] overflow-hidden md:mb-8 mb-4">
+            <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
+                alt="<?php echo $blog['title']; ?>" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Content -->
+        <div class="max-w-none">
+            <h1 class="not-prose text-[#4B4D4B] font-bold text-[32px] leading-[120%] capitalize mb-2">
+                <?php echo $blog['title']; ?>
+            </h1>
+
+            <p class="not-prose text-[#575A56] font-normal text-[16px] leading-[135%] tracking-[0.01em] mb-4">
+                <?php echo date('d F Y', strtotime($blog['created_at'])); ?>
+            </p>
+
+            <div id="dynamic-blog-content" class="blog-content prose max-w-none">
+                <?php echo $blog['content']; ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Blogs Section -->
+<section class="w-full md:py-20 py-5">
+    <div class="container">
+
+        <div class="py-3.5">
+
+            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+                <h2
+                    class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    Explore Relevant Blogs</h2>
+                <div class="hidden md:inline-flex justify-start items-center gap-4">
+                    <button
+                        class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] opacity-50 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16"
+                            fill="none">
+                            <path
+                                d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
+                                stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <button
+                        class="swiper-next w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
+                                stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="swiper blogDetailSwiper overflow-hidden md:mt-8 mt-2">
+            <div class="swiper-wrapper">
+                <?php foreach ($suggestedBlogs as $item): ?>
+                    <div class="swiper-slide h-auto">
+                        <div class="flex flex-col h-full bg-white rounded-[4px] overflow-hidden group">
+                            <!-- Image -->
+                            <div class="relative h-[240px] w-full overflow-hidden">
+                                <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>"
+                                    alt="<?php echo $item['title']; ?>"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+
+                                <div
+                                    class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] uppercase">
+                                    <?php echo $item['category_name']; ?>
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3 class="font-bold text-[18px] leading-[140%] text-[#3B3B3B] mb-2 line-clamp-2">
+                                    <?php echo $item['title']; ?>
+                                </h3>
+                                <p class="text-[#757575] text-[16px] leading-[150%] mb-4 line-clamp-2 flex-grow">
+                                    <?php echo substr(strip_tags($item['content']), 0, 100) . '...'; ?>
+                                </p>
+                                <div class="mt-auto">
+                                    <p class="text-[#A3A3A3] text-[14px] mb-3">
+                                        <?php echo date('F d, Y', strtotime($item['created_at'])); ?>
+                                    </p>
+                                    <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>"
+                                        class="inline-block text-[#1A3B1B] font-bold text-[18px] border-b-2 border-transparent hover:border-primary transition-all">
+                                        Read Blog
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="md:hidden flex justify-end items-center gap-4">
+                <button
+                    class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] opacity-50 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16" fill="none">
+                        <path
+                            d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
+                            stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <button
+                    class="swiper-next w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                        <path
+                            d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
+                            stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize Swiper
+        const blogSwiper = new Swiper('.blogDetailSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-next',
+                prevEl: '.swiper-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1280: {
+                    slidesPerView: 3.2,
+                }
+            }
+        });
+    });
+</script>
