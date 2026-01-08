@@ -252,12 +252,12 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
     font-family: 'Helvetica', sans-serif !important;
     font-weight: 700 !important;
     color: #44403c !important;
-    /* text-neutral-700 */
-    text-transform: capitalize !important;
-    line-height: 1.5rem !important;
-    /* leading-6 */
-    letter-spacing: -0.025em !important;
-    /* tracking-tight */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.24px;
+    text-transform: capitalize;
     margin-bottom: 4px !important;
 }
 
@@ -265,11 +265,16 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
     font-family: 'Helvetica', sans-serif !important;
     font-weight: 400 !important;
     color: #78716c !important;
-    /* text-stone-500 */
     line-height: 1.5rem !important;
     letter-spacing: -0.025em !important;
-    margin-bottom: 1rem !important;
+    margin: 0 0 1rem 0 !important;
+    /* margin-bottom: 1rem !important; */
     text-align: justify;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.24px;
 }
 
 #dynamic-blog-content p:empty {
@@ -278,6 +283,7 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
 
 #dynamic-blog-content strong {
     color: #3B3B3B !important;
+    font-weight: 700 !important;
 }
 
 #dynamic-blog-content ul {

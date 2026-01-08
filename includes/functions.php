@@ -685,4 +685,46 @@ function getBlogBySlug($slug)
 
     return db_query_one($sql, [$formattedSlug]);
 }
+
+/**
+ * Fetch a single case study by slug.
+ */
+function getCaseStudyBySlug($slug)
+{
+    $formattedSlug = trim($slug);
+    $sql = "
+        SELECT *
+        FROM case_studies
+        WHERE slug = ? AND status = 'Active'
+    ";
+
+    return db_query_one($sql, [$formattedSlug]);
+}
+
+/**
+ * Clean HTML content by removing empty paragraphs and inline styles.
+ * 
+ * @param string $content
+ * @return string
+ */
+function clean_content($content)
+{
+    if (empty($content)) {
+        return '';
+    }
+
+    // 1. Remove inline 'style' attributes from any tag
+    // This regex looks for style="..." and removes it. 
+    // Uses 'i' modifier for case-insensitivity.
+    $content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
+
+    // Also handle single quotes style='...'
+    $content = preg_replace('/(<[^>]+) style=\'.*?\'/i', '$1', $content);
+
+    // 2. Remove empty paragraphs including those with only whitespace or &nbsp;
+    // Matches <p>...content...</p> where content is only whitespace or &nbsp;
+    $content = preg_replace('/<p[^>]*>(?:\s|&nbsp;)*<\/p>/', '', $content);
+
+    return $content;
+}
 ?>

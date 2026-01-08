@@ -34,7 +34,8 @@ $allowed_pages = [
     'privacy-policy',
     'industry-category',
     'product-category',
-    'blog-detail'
+    'blog-detail',
+    'case-study-detail'
 ];
 
 if (!in_array($page, $allowed_pages)) {
