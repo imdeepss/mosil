@@ -475,7 +475,7 @@ $faqs = [
             </div>
             <?php foreach ($glossary['items'] as $index => $item) { ?>
                 <div
-                    class="glossary-card bg-[#415C42] px-4 py-6 rounded-[4px] flex flex-col gap-4 justify-start items-start h-full border border-transparent hover:bg-primary transition-all group">
+                    class="glossary-card bg-[#415C42] px-4 py-6 rounded-[4px] flex flex-col gap-4 justify-start items-start h-full border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
 
                     <h4
                         class="glossary-title text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors">
@@ -488,7 +488,7 @@ $faqs = [
                     </div>
 
                     <button type="button"
-                        class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors mt-auto cursor-pointer"
+                        class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize transition-colors mt-auto cursor-pointer"
                         data-keyword="<?php echo htmlspecialchars($item['keyword']); ?>"
                         data-full-description="<?php echo htmlspecialchars($item['explanation']); ?>">
                         Read more

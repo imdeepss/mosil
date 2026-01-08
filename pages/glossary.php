@@ -88,7 +88,7 @@
                 </div>
                 <div id="load-more-container" class="mx-auto text-center" style="display: none;">
                     <button id="load-more-btn"
-                        class="text-[#1A3B1B] text-center font-base font-bold text-[18px] leading-[120%] tracking-[0.01em] px-5 py-3 rounded-full bg-[#F5F5F5] hover:bg-[#F4C300] transition-colors">See
+                        class="text-[#1A3B1B] text-center font-base font-bold text-[18px] leading-[120%] tracking-[0.01em] px-5 py-3 rounded-full bg-[#F5F5F5] button-hover-vertical transition-all border-2 border-[#F5F5F5] cursor-pointer">See
                         More</button>
                 </div>
             </div>

@@ -135,16 +135,16 @@ document.addEventListener("DOMContentLoaded", function () {
           : item.explanation;
 
         return `
-            <div class="glossary-card bg-[#F5F5F5] px-4 py-6 rounded flex flex-col gap-4 justify-start items-start h-full">
-                <h4 class="glossary-title text-[#666666] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize">
+            <div class="glossary-card bg-[#F5F5F5] px-4 py-6 rounded flex flex-col gap-4 justify-start items-start h-full hover:bg-primary transition-all ease-in-out duration-300 group">
+                <h4 class="glossary-title text-[#666666] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green">
                     ${item.keyword}
                 </h4>
-                <div class="text-[#666666] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] line-clamp-4">
+                <div class="text-[#666666] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] line-clamp-4 group-hover:text-[#757575] transition-colors">
                     ${displayText}
                 </div>
                 ${
                   isLong
-                    ? `<button class="read-more-btn text-[#666666] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize hover:text-main-green mt-auto" 
+                    ? `<button class="read-more-btn text-[#666666] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize group-hover:text-main-green mt-auto cursor-pointer" 
                        data-full-description="${escapeHtml(item.explanation)}">
                        Read more
                        </button>`
