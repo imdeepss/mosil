@@ -29,7 +29,7 @@ $currentPage = $initialData['currentPage'];
         </span>
         <div class="border-b border-primary pb-1">
             <h2
-                class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
+                class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap md:whitespace-nowrap">
                 Featured Case Studies
             </h2>
         </div>
@@ -145,7 +145,7 @@ $currentPage = $initialData['currentPage'];
         </span>
         <div class="border-b border-primary pb-1">
             <h2
-                class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize md:whitespace-nowrap">
+                class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap md:whitespace-nowrap">
                 All Case Studies
             </h2>
         </div>

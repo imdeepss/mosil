@@ -32,7 +32,7 @@ $blogs = getBlogs(3);
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between gap-13">
                 <h2
-                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Lubricant solutions for every industry
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/"
@@ -143,7 +143,7 @@ $blogs = getBlogs(3);
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
-                    class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Products engineered for performance</h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/product-categories"
                     class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">See
@@ -210,7 +210,7 @@ $blogs = getBlogs(3);
             </p>
             <div class="border-b border-primary pb-1">
                 <h2
-                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Pushing the boundaries of your performance
                 </h2>
             </div>
@@ -304,7 +304,7 @@ $blogs = getBlogs(3);
             </p>
             <div class="border-b border-primary pb-1">
                 <h2
-                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Infrastructure that powers precision
                 </h2>
             </div>
@@ -421,7 +421,7 @@ $lubricationItems = [
             </p>
             <div class="md:border-b md:border-white pb-1">
                 <h2
-                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Four angles of every lubrication decision
                 </h2>
             </div>

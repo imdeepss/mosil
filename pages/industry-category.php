@@ -47,7 +47,7 @@ $industries = getCategoryByParent("2");
         <div class="py-3.5">
             <div class="border-b-2 border-primary pb-1">
                 <h2
-                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Industry categories
                 </h2>
             </div>
