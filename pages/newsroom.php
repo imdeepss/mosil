@@ -2,14 +2,8 @@
 $pageTitle = 'Newsroom';
 $blogs = getBlogs(3);
 $latestBlogs = getLatestBlogs(5);
+$glossary = getGlossary("A", $limit = 3, $offset = 0);
 
-// Source - https://stackoverflow.com/a
-// Posted by Fancy John, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-01-08, License - CC BY-SA 4.0
-
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
 
 
@@ -280,7 +274,7 @@ $faqs = [
                     <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>" class="relative group overflow-hidden block
        <?php echo $item['is_featured'] ? 'md:col-span-2 md:row-span-2' : 'col-span-1'; ?>">
 
-                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), 
+                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-115" style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), 
             url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>') no-repeat center/cover;">
                         </div>
 
@@ -345,22 +339,29 @@ $faqs = [
                 $case_studies = [1, 2, 3];
                 foreach ($case_studies as $cs):
                     ?>
-                    <div class="pt-5 pb-7 pl-8 pr-5.5 bg-[#F4C300] rounded-br-[40px] relative group flex flex-col gap-2">
+                    <div
+                        class="pt-5 pb-7 pl-8 pr-5.5 bg-[#F4C300] rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors">
+
                         <span
-                            class="text-[#3B3B3B] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] opacity-80">
-                            07 May 2025
-                        </span>
+                            class="absolute left-0 top-[20px] bottom-[20px] w-[2px] bg-[#1A3B1B] scale-y-0 transition-transform duration-500 origin-top group-hover:scale-y-100 rounded-full"></span>
 
-                        <h3
-                            class="text-[#3B3B3B] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
-                            Slack adjuster: “Global performance. Local advantage.”
-                        </h3>
+                        <div class="relative z-10">
+                            <span
+                                class="text-[#3B3B3B] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] opacity-80">
+                                07 May 2025
+                            </span>
 
-                        <p class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                            MOSIL developed a customised grease for an automotive brake part manufacturer that met
-                            the customer’s European benchmark and cleared their validation flawlessly.
-                        </p>
+                            <h3
+                                class="mt-2 text-[#3B3B3B] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
+                                Slack adjuster: “Global performance. Local advantage.”
+                            </h3>
 
+                            <p
+                                class="mt-2 text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
+                                MOSIL developed a customised grease for an automotive brake part manufacturer that met
+                                the customer’s European benchmark and cleared their validation flawlessly.
+                            </p>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -455,7 +456,7 @@ $faqs = [
             </div>
         </div>
         <div class="md:mt-8 mt-6 grid grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="bg-[#415C42] px-4 py-6 flex flex-col">
+            <div class="bg-[#415C42] px-4 flex flex-col">
                 <h6 class="text-[#FFFFFF] font-base font-normal text-[64px] leading-[120%]">
                     A
                 </h6>
@@ -467,24 +468,31 @@ $faqs = [
                     You can find more such terms on the glossary page
 
                 </p>
-                <a href="#"
+                <a href="<?php echo SITE_URL; ?>/glossary"
                     class="text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
                     Read all terms
                 </a>
             </div>
-            <?php foreach ($lubricationItems as $index => $item) { ?>
-                <div class="bg-[#415C42] px-4 py-6 flex flex-col gap-4">
-                    <h6 class="text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize">
-                        <?php echo $item['title'] ?>
-                    </h6>
-                    <p
-                        class="text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] line-clamp-4">
-                        <?php echo $item['description'] ?>
-                    </p>
-                    <a href="#"
-                        class="text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
+            <?php foreach ($glossary['items'] as $index => $item) { ?>
+                <div
+                    class="glossary-card bg-[#415C42] px-4 py-6 rounded-[4px] flex flex-col gap-4 justify-start items-start h-full border border-transparent hover:bg-primary transition-all group">
+
+                    <h4
+                        class="glossary-title text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors">
+                        <?php echo htmlspecialchars($item['keyword']); ?>
+                    </h4>
+
+                    <div
+                        class="js-explanation text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] line-clamp-4 group-hover:text-[#757575] transition-colors">
+                        <?php echo htmlspecialchars($item['explanation']); ?>
+                    </div>
+
+                    <button type="button"
+                        class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors mt-auto cursor-pointer"
+                        data-keyword="<?php echo htmlspecialchars($item['keyword']); ?>"
+                        data-full-description="<?php echo htmlspecialchars($item['explanation']); ?>">
                         Read more
-                    </a>
+                    </button>
                 </div>
             <?php } ?>
         </div>
@@ -614,8 +622,92 @@ $faqs = [
     </div>
 </section>
 
+<!-- Modal -->
+<div id="glossary-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity bg-black/50" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl w-full relative">
+            <div class="bg-white px-12.5 py-11 rounded-[4px]">
+                <div class="sm:flex sm:items-start">
+                    <div class="text-left w-full">
+                        <h3 class="text-[#1A3B1B] font-base font-bold text-[24px] leading-[135%] capitalize mb-4"
+                            id="glossary-modal-title">Terms</h3>
+                        <div class="mt-4">
+                            <p class="text-[#666666] font-base font-normal text-[18px] leading-[140%] tracking-[0.015em] whitespace-pre-line"
+                                id="glossary-modal-body">Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute right-4 top-4">
+                <button type="button" id="glossary-modal-close" class="w-8 h-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M8 24L24 8M8 8L24 24" stroke="#A3A3A3" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+        const cards = document.querySelectorAll('.glossary-card');
+        const modal = document.getElementById("glossary-modal");
+        const modalTitle = document.getElementById("glossary-modal-title");
+        const modalBody = document.getElementById("glossary-modal-body");
+        const modalClose = document.getElementById("glossary-modal-close");
+
+        const modalTitleTarget = document.querySelector("#glossary-modal-title"); // Using class selector if id is problematic or ensuring correct selection
+
+        cards.forEach(card => {
+            const explanation = card.querySelector('.js-explanation');
+            const btn = card.querySelector('.read-more-btn');
+
+            // Check if the actual text height is greater than the visible container height
+            if (explanation.scrollHeight > explanation.clientHeight) {
+                btn.classList.remove('hidden');
+            }
+
+            // Add click event for opening modal
+            btn.addEventListener('click', () => {
+                const keyword = btn.getAttribute('data-keyword');
+                const fullDesc = btn.getAttribute('data-full-description');
+
+                // Assuming the title element has id="glossary-modal-title" (fixed in HTML below)
+                if (document.getElementById('glossary-modal-title')) {
+                    document.getElementById('glossary-modal-title').textContent = keyword;
+                }
+                modalBody.textContent = fullDesc;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+        });
+
+        // Close Modal Logic
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        };
+
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+
+        // Close on click outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal.querySelector('.fixed.inset-0.transition-opacity')) {
+                closeModal();
+            }
+        });
+
         const links = document.querySelectorAll('.news-nav-link');
         const sections = ['events', 'case-studies', 'blogs', 'glossary', 'faqs'].map(id => document.getElementById(id));
 
