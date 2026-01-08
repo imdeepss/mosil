@@ -296,3 +296,76 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
     color: #3B3B3B !important;
     margin-bottom: 10px !important;
 }
+
+
+/* Default hidden state */
+#quadra-info-card {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Top Diamond Hovered -> Card moves to Top Right */
+#quadra-info-card.pos-top {
+    /* top: 10%;
+    right: 5%;
+    left: auto;
+    bottom: auto; */
+    bottom: 90%;
+    right: 0;
+    left: auto;
+    top: auto;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Left Diamond Hovered -> Card moves to Top Left */
+#quadra-info-card.pos-left {
+    /* top: 10%;
+    left: 5%;
+    right: auto;
+    bottom: auto; */
+    bottom: 0;
+    right: 0;
+    left: auto;
+    top: auto;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Right Diamond Hovered -> Card moves to Bottom Right */
+#quadra-info-card.pos-right {
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Bottom Diamond Hovered -> Card moves to Bottom Left */
+#quadra-info-card.pos-bottom {
+    bottom: 0;
+    left: 0;
+    right: auto;
+    top: auto;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+
+    #quadra-info-card.pos-top,
+    #quadra-info-card.pos-left,
+    #quadra-info-card.pos-right,
+    #quadra-info-card.pos-bottom {
+        bottom: 0;
+        left: 0;
+        right: auto;
+        top: auto;
+        opacity: 1;
+        transform: translateY(0);
+        width: 100%;
+    }
+}
