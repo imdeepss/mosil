@@ -150,10 +150,9 @@ $pageTitle = 'Quadra Approach';
         <!-- Desktop view -->
         <div class="hidden md:flex relative flex-row items-center justify-between gap-10 md:gap-0">
 
-            <div class="w-[516px] h-[536px] aspect-[129/134] shrink-0 
+            <div id="quadra-3d-desktop" class="w-[516px] h-[536px] aspect-[129/134] shrink-0 
             absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ">
-                <img src="<?php echo SITE_URL; ?>/assets/images/ui/cubic.png" alt="Cubic Process"
-                    class="h-full w-full object-contain">
+                <!-- 3D Canvas will be injected here -->
             </div>
 
             <div class="flex flex-col gap-[200px] flex">
@@ -170,7 +169,6 @@ $pageTitle = 'Quadra Approach';
                         <p class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                             MOSIL engineers lubricants to dynamically control friction under real-world stress through
                             advanced, field-validated formulation science.
-
                         </p>
                     </div>
                     <div class="hidden md:block absolute left-16 top-[75%] w-full h-full z-[100] pointer-events-none">
@@ -235,9 +233,8 @@ $pageTitle = 'Quadra Approach';
         <!-- mobile view -->
         <div class="flex md:hidden relative flex-col items-center justify-between gap-10 md:gap-0">
 
-            <div class="w-full h-full">
-                <img src="<?php echo SITE_URL; ?>/assets/images/ui/cubic.png" alt="Cubic Process"
-                    class="h-full w-full object-contain">
+            <div id="quadra-3d-mobile" class="w-full h-[306px] aspect-[49/51] shrink-0 ">
+                <!-- 3D Canvas will be injected here -->
             </div>
 
             <div class="flex flex-col gap-20 flex">
@@ -317,5 +314,7 @@ $pageTitle = 'Quadra Approach';
 
 <script>
     window.quadraData = <?php echo json_encode($quadraSteps); ?>;
+    window.SITE_URL = "<?php echo SITE_URL; ?>"; // Ensure SITE_URL is available for the script
 </script>
+<script type="module" src="<?php echo SITE_URL; ?>/assets/js/quadra-cube.js"></script>
 <script src="<?php echo SITE_URL; ?>/assets/js/quadra-approach.js"></script>
