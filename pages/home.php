@@ -27,7 +27,8 @@ $blogs = getBlogs(3);
 <section class="bg-white overflow-hidden">
     <div class="container relative md:py-20 py-12">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Industries we serve
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between gap-13">
@@ -36,7 +37,7 @@ $blogs = getBlogs(3);
                     Lubricant solutions for every industry
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/"
-                    class="font-normal md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
                     See All
                 </a>
             </div>
@@ -146,7 +147,7 @@ $blogs = getBlogs(3);
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Products engineered for performance</h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/product-categories"
-                    class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">See
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
                     All</a>
             </div>
         </div>
@@ -205,7 +206,8 @@ $blogs = getBlogs(3);
 <section class="bg-white relative overflow-hidden">
     <div class="container relative z-10 md:pt-7 pt-8">
         <div class="reveal-up py-3.5">
-            <p class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase mb-1">
+            <p
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 the mosil edge
             </p>
             <div class="border-b border-primary pb-1">
@@ -299,7 +301,8 @@ $blogs = getBlogs(3);
 <section class="bg-white relative overflow-hidden">
     <div class="container relative z-10 md:py-20 py-6">
         <div class="py-3.5">
-            <p class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase mb-1">
+            <p
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our Infrastructure
             </p>
             <div class="border-b border-primary pb-1">
@@ -416,10 +419,11 @@ $lubricationItems = [
 
 
         <div class="py-3.5">
-            <p class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase mb-1">
+            <p
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 How we help
             </p>
-            <div class="md:border-b md:border-white pb-1">
+            <div class="border-b border-white pb-1">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Four angles of every lubrication decision
@@ -483,7 +487,7 @@ $lubricationItems = [
                 class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                 MOSIL Newsroom</h2>
             <a href="<?php echo SITE_URL; ?>/newsroom"
-                class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">See
+                class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
                 All</a>
         </div>
 

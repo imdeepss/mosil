@@ -25,7 +25,8 @@ $pageTitle = 'Contact Us';
             </div>
 
             <div class="py-3.5">
-                <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+                <span
+                    class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                     Contact Us
                 </span>
                 <div class="border-b border-primary pb-1">
@@ -156,7 +157,8 @@ $pageTitle = 'Contact Us';
 <section>
     <div class="container md:py-20 py-12">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our locations
             </span>
             <div class="border-b border-primary pb-1">
@@ -247,7 +249,8 @@ $pageTitle = 'Contact Us';
 <section>
     <div class="container">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 on the world map
             </span>
             <div class="border-b border-primary pb-1">

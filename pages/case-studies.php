@@ -24,7 +24,8 @@ $currentPage = $initialData['currentPage'];
 
     </nav>
     <div class="py-3.5">
-        <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+        <span
+            class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
             LATEST CONTENT
         </span>
         <div class="border-b border-primary pb-1">
@@ -140,7 +141,8 @@ $currentPage = $initialData['currentPage'];
 <!-- All Case Studies Section -->
 <section class="container md:pt-20 pt-12 md:pb-28 pb-20">
     <div class="py-3.5">
-        <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+        <span
+            class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
             RESOURCES
         </span>
         <div class="border-b border-primary pb-1">

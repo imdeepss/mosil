@@ -96,7 +96,8 @@ $lubricant_features = [
             <a href="<?php echo SITE_URL; ?>/about" class="text-[#575757] font-bold">About Us</a>
         </nav>
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Overview
             </span>
             <div class="border-b border-primary pb-1">
@@ -143,7 +144,8 @@ $lubricant_features = [
 <section>
     <div class="container md:py-20 py-12">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our History
             </span>
             <div class="border-b border-primary pb-1">
@@ -462,7 +464,8 @@ $lubricant_features = [
 
     <div class="container relative z-10 md:pt-16 md:pb-18 pt-4 pb-5">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 who we are
             </span>
             <div class="border-b border-[#ffffff] pb-1">
@@ -522,7 +525,8 @@ $lubricant_features = [
 <section class="relative">
     <div class="container md:py-20">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Why Mosil Matters?
             </span>
             <div class="border-b border-primary pb-1">
@@ -568,7 +572,8 @@ $lubricant_features = [
 <section class="relative bg-[#F5F5F5]">
     <div class="container pt-5 md:pb-6 pb-14 relative">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Visionaries behind
             </span>
             <div class="border-b border-primary pb-1">

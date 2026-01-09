@@ -255,7 +255,8 @@ $faqs = [
             <a href="#" class="text-[#575757] font-bold">Newsroom</a>
         </nav>
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 in the spotlight
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
@@ -263,7 +264,7 @@ $faqs = [
                     class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Latest events</h2>
                 <a href="<?php echo SITE_URL; ?>/events"
-                    class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">See
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
                     All</a>
             </div>
         </div>
@@ -312,7 +313,8 @@ $faqs = [
 <section id="case-studies" class="w-full bg-[#F5F5F5]">
     <div class="container pt-[30px] pb-[80px]">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 real world performance
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
@@ -321,7 +323,7 @@ $faqs = [
                     Case study
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/case-studies"
-                    class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
                     See All
                 </a>
             </div>
@@ -373,7 +375,8 @@ $faqs = [
 <section id="blogs" class="w-full">
     <div class="container pt-[24px] pb-[80px]">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Lubrication basics and beyond
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
@@ -382,7 +385,7 @@ $faqs = [
                     Blogs
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/blog"
-                    class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
                     See All
                 </a>
             </div>
@@ -512,7 +515,8 @@ $faqs = [
 <section id="faqs" class="w-full">
     <div class="container py-[80px]">
         <div class="py-3.5">
-            <span class="text-b200 font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Faqs
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
@@ -521,7 +525,7 @@ $faqs = [
                     Answer to your questions
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/faqs"
-                    class="font-light md:font-bold text-lg md:text-2xl leading-[120%] tracking-[0.01em] text-main-green hover:text-primary transition-colors whitespace-nowrap">
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
                     See All
                 </a>
             </div>
