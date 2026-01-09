@@ -240,9 +240,29 @@ document.addEventListener("DOMContentLoaded", () => {
     mobileNext.addEventListener("click", () => swiper.slideNext());
   }
 
+  // const brandSwiper = new Swiper(".logoSwiper", {
+  //   slidesPerView: "auto",
+  //   spaceBetween: 50,
+  //   loop: true,
+  //   speed: 1000,
+  //   allowTouchMove: false,
+  //   autoplay: {
+  //     delay: 0,
+  //     disableOnInteraction: false,
+  //     pauseOnMouseEnter: false,
+  //   },
+  //   breakpoints: {
+  //     768: {
+  //       slidesPerView: 3,
+  //       spaceBetween: 20,
+  //     },
+  //   },
+  // });
+
   const brandSwiper = new Swiper(".logoSwiper", {
-    slidesPerView: "auto",
-    spaceBetween: 50,
+    slidesPerView: 3,
+    spaceBetween: 20,
+
     loop: true,
     speed: 1000,
     allowTouchMove: false,
@@ -250,6 +270,13 @@ document.addEventListener("DOMContentLoaded", () => {
       delay: 0,
       disableOnInteraction: false,
       pauseOnMouseEnter: false,
+    },
+
+    breakpoints: {
+      768: {
+        slidesPerView: 4,
+        spaceBetween: 50,
+      },
     },
   });
 
