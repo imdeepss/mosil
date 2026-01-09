@@ -221,7 +221,7 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
     color: var(--main-green);
     transition: all 0.3s ease;
     /* Increase border slightly to make the effect visible */
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     /* The white padding-box keeps the inside of the button solid */
     background:
         linear-gradient(white, white) padding-box,
@@ -232,7 +232,7 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
 .button-hover-vertical:hover {
     color: var(--main-green);
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     background:
         linear-gradient(white, white) padding-box,
         linear-gradient(to bottom, #F4C300, #1A3B1B) border-box;

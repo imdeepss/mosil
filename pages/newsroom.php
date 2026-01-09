@@ -564,11 +564,11 @@ $faqs = [
                 $previewQuestions = array_slice($questions, 0, 2);
                 $isOpen = ($faqLoopIndex === 0) ? 'open' : '';
                 ?>
-                <details class="group border-b-2 border-[#EBEBEB] overflow-hidden transition-all duration-500" <?php echo $isOpen; ?>>
-                    <summary
-                        class="flex justify-between items-center px-4 py-4 md:px-5 md:py-6 cursor-pointer list-none outline-none">
+                <details class="group border-b-2 border-[#EBEBEB] overflow-hidden py-3 px-5 md:py-6" <?php echo $isOpen; ?>>
+
+                    <summary class="flex justify-between items-center cursor-pointer list-none outline-none">
                         <span
-                            class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize transition-transform duration-300">
+                            class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] capitalize md:text-[24px] md:leading-[135%] md:tracking-[0.015em] transition-transform duration-300">
                             <?php echo $categoryName; ?>
                         </span>
 
@@ -579,27 +579,30 @@ $faqs = [
                         </div>
                     </summary>
 
-                    <div class="px-4 py-6">
+                    <div class="flex flex-col gap-6 mt-6">
+
                         <ul class="flex flex-col gap-4">
                             <?php foreach ($previewQuestions as $qa): ?>
                                 <li class="border-b-2 border-[#DEDEDE] pb-3 flex flex-col gap-3">
-                                    <p class="text-[#3B3B3B] font-base font-normal text-[18px] leading-[140%]">
+                                    <p
+                                        class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] md:text-[#3B3B3B] md:text-[18px] md:leading-[140%] md:tracking-normal">
                                         <?php echo $qa['question']; ?>
                                     </p>
                                     <p
-                                        class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
+                                        class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] md:text-[16px] md:tracking-[0.015em]">
                                         <?php echo $qa['answer']; ?>
                                     </p>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
 
-                        <div class="flex justify-center pt-8">
+                        <div class="flex justify-center">
                             <a href="<?php echo SITE_URL; ?>/faqs"
                                 class="px-8 py-2 border border-[#1A3B1B] text-[#1A3B1B] rounded-full hover:bg-[#1A3B1B] hover:text-white transition-all duration-300 font-base text-[14px]">
                                 Read More
                             </a>
                         </div>
+
                     </div>
                 </details>
                 <?php
@@ -639,7 +642,7 @@ $faqs = [
                     </button>
 
                     <button type="button"
-                        class="py-3 px-6 text-[#1A3B1B] bg-transparent border border-[#1A3B1B] text-center font-base font-normal text-[16px] leading-[150%] rounded-full cursor-pointer button-hover-vertical">
+                        class="py-3 px-6 text-[#1A3B1B] border border-[#1A3B1B] text-center font-base font-normal text-[16px] leading-[150%] rounded-full cursor-pointer button-hover-vertical">
                         Subscribe
                     </button>
                 </div>
