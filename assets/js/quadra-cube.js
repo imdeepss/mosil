@@ -203,7 +203,8 @@ document.addEventListener("DOMContentLoaded", function () {
         y: e.offsetY - previousMousePosition.y,
       };
 
-      const rotateSpeed = 0.005;
+      const baseSpeed = 0.005;
+      const rotateSpeed = baseSpeed * 4;
 
       // Update target rotation input
       targetRotation.y += deltaMove.x * rotateSpeed;
@@ -214,6 +215,51 @@ document.addEventListener("DOMContentLoaded", function () {
       x: e.offsetX,
       y: e.offsetY,
     };
+  });
+
+  // Touch Support (Mobile)
+  renderer.domElement.addEventListener(
+    "touchstart",
+    (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        previousMousePosition = {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY,
+        };
+      }
+    },
+    { passive: false }
+  );
+
+  renderer.domElement.addEventListener(
+    "touchmove",
+    (e) => {
+      if (isDragging && e.touches.length === 1) {
+        e.preventDefault(); // Prevent scrolling while rotating
+
+        const deltaMove = {
+          x: e.touches[0].clientX - previousMousePosition.x,
+          y: e.touches[0].clientY - previousMousePosition.y,
+        };
+
+        const baseSpeed = 0.005;
+        const rotateSpeed = baseSpeed * 4;
+
+        targetRotation.y += deltaMove.x * rotateSpeed;
+        targetRotation.x += deltaMove.y * rotateSpeed;
+
+        previousMousePosition = {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY,
+        };
+      }
+    },
+    { passive: false }
+  );
+
+  window.addEventListener("touchend", () => {
+    isDragging = false;
   });
 
   // Easing function for smooth rotation
