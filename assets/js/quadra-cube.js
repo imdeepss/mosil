@@ -393,11 +393,10 @@ document.addEventListener("DOMContentLoaded", function () {
     animateSequence(delta);
 
     // 2. Global Group Movement (Levitation & 360 Rotation)
-    // Continuous 360-degree rotation on Y axis
-    autoRotationGroup.rotation.y += delta * 0.2;
-
-    // Gentle sway on X still looks good combined with spin
-    autoRotationGroup.rotation.x = Math.sin(time * 0.5) * 0.1;
+    // Continuous rotation on all axes for omni-directional spin (Slower)
+    autoRotationGroup.rotation.y += delta * 0.8;
+    autoRotationGroup.rotation.x += delta * 0.6;
+    autoRotationGroup.rotation.z += delta * 0.4;
 
     // Levitation
     const levitation = Math.sin(time * 1.5) * 0.15;
