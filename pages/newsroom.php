@@ -3,6 +3,8 @@ $pageTitle = 'Newsroom';
 $blogs = getBlogs(3);
 $latestBlogs = getLatestBlogs(5);
 $glossary = getGlossary("A", $limit = 3, $offset = 0);
+$caseStudiesData = getCaseStudiesWithPagination(1, 3, 'All');
+$caseStudies = $caseStudiesData['caseStudies'];
 
 
 
@@ -197,10 +199,12 @@ $faqs = [
 ?>
 
 <!-- Hero Section -->
-<section class="relative h-[400px] flex items-center justify-center overflow-hidden">
+<section class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img src="<?php echo SITE_URL; ?>/assets/images/banners/newsroom-banner.png" class="w-full h-full object-cover"
-            alt="Newsroom">
+        <img src="<?php echo SITE_URL; ?>/assets/images/banners/newsroom-banner.png"
+            class="hidden md:block w-full h-full object-cover" alt="Newsroom">
+        <img src="<?php echo SITE_URL; ?>/assets/images/banners/newsroom-banner-mb.png" alt="Newsroom"
+            class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
     </div>
     <div class="container relative z-20 flex items-end justify-start w-full h-full pb-4 md:pb-10">
         <h2
@@ -213,7 +217,7 @@ $faqs = [
 
 <section class="bg-main-green">
     <div class="container">
-        <div class="flex items-center justify-start overflow-x-auto no-scrollbar gap-4 md:gap-0">
+        <div class="md:flex items-center justify-start overflow-x-auto no-scrollbar gap-4 md:gap-0 hidden">
             <?php
             $navItems = [
                 'events' => 'Event',
@@ -268,7 +272,7 @@ $faqs = [
                     All</a>
             </div>
         </div>
-        <div class="newsroom-events py-9.5">
+        <div class="newsroom-events md:py-9.5 py-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5 auto-rows-[240px]">
 
                 <?php foreach ($latestBlogs as $item): ?>
@@ -280,19 +284,29 @@ $faqs = [
                         </div>
 
                         <div class="relative h-full flex flex-col justify-end z-10 gap-2
-            <?php echo $item['is_featured'] ? 'px-7.5 py-8.5' : 'px-3 py-4'; ?>">
+            <?php echo $item['is_featured'] ? 'md:px-7.5 md:py-8.5' : 'md:px-3 md:py-4'; ?> px-4 py-4">
 
-                            <span
-                                class="inline-block bg-[#F9DC6B] text-[#1A3B1B] text-[12px] font-base font-bold uppercase px-2 py-1 w-fit">
+                            <span class="inline-block bg-[#F9DC6B] text-[#1A3B1B] font-base font-bold w-fit px-2 py-1
+                                <?php
+                                if ($item['is_featured']) {
+
+                                    echo 'text-[10px] leading-[120%] tracking-[0.012em] uppercase 
+                                        md:text-[12px] md:leading-[135%] md:tracking-normal md:normal-case';
+                                } else {
+
+                                    echo 'text-[10px] leading-[135%] tracking-[0.01em]';
+                                }
+                                ?>">
                                 <?php echo $item['category_name']; ?>
                             </span>
 
-                            <h3 class="text-[#FFFFFF] font-base font-bold leading-[135%] tracking-[0.01em]
-                <?php echo $item['is_featured'] ? 'text-[24px]' : 'text-[14px]'; ?>">
+                            <h3
+                                class="text-[#FFFFFF] font-base font-bold capitalize 
+                <?php echo $item['is_featured'] ? 'md:text-[24px] md:leading-[135%] md:tracking-[0.01em] text-[18px] leading-[140%] tracking-[0.015em]' : 'text-[14px]'; ?>">
                                 <?php echo $item['title']; ?>
                             </h3>
 
-                            <?php if (isset($item['created_at'])): ?>
+                            <?php if (isset($item['created_at']) && $item['is_featured']): ?>
                                 <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[135%] tracking-[0.01em]">
                                     <?php echo date('F d, Y', strtotime($item['created_at'])); ?>
                                 </p>
@@ -330,42 +344,52 @@ $faqs = [
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
-            <div class="relative overflow-hidden md:h-full h-[300px]">
-                <img src="<?php echo SITE_URL; ?>/assets/images/ui/case-study.png" alt="Case Study Featured"
+            <?php
+            $firstImage = !empty($caseStudies) ? $caseStudies[0]['image'] : '';
+            ?>
+            <div class="relative overflow-hidden md:h-full h-[300px] w-full aspect-[4/3] shrink-0">
+                <img id="case-study-preview"
+                    src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $firstImage; ?>"
+                    alt="Case Study Featured"
                     class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                     loading="lazy" />
             </div>
 
             <div class="flex flex-col gap-5">
                 <?php
-                $case_studies = [1, 2, 3];
-                foreach ($case_studies as $cs):
-                    ?>
-                    <div
-                        class="pt-5 pb-7 pl-8 pr-5.5 bg-[#F4C300] rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors">
+                if (!empty($caseStudies)):
+                    foreach ($caseStudies as $index => $study):
+                        $isActive = $index === 0;
+                        ?>
+                        <div class="case-study-item pt-5 pb-7 pl-8 pr-5.5 <?php echo $isActive ? 'bg-[#F4C300]' : 'bg-white hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
+                            data-image="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>">
 
-                        <span
-                            class="absolute left-0 top-[20px] bottom-[20px] w-[2px] bg-[#1A3B1B] scale-y-0 transition-transform duration-500 origin-top group-hover:scale-y-100 rounded-full"></span>
-
-                        <div class="relative z-10">
                             <span
-                                class="text-[#3B3B3B] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] opacity-80">
-                                07 May 2025
-                            </span>
+                                class="absolute left-0 top-[20px] bottom-[20px] w-[2px] bg-[#1A3B1B] <?php echo $isActive ? 'scale-y-100' : 'scale-y-0'; ?> transition-transform duration-500 origin-top group-hover:scale-y-100 rounded-full"></span>
 
-                            <h3
-                                class="mt-2 text-[#3B3B3B] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
-                                Slack adjuster: “Global performance. Local advantage.”
-                            </h3>
+                            <div class="relative z-10 flex flex-col gap-2">
 
-                            <p
-                                class="mt-2 text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                                MOSIL developed a customised grease for an automotive brake part manufacturer that met
-                                the customer’s European benchmark and cleared their validation flawlessly.
-                            </p>
+
+                                <h3
+                                    class="text-[#3B3B3B] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
+                                    <?php echo $study['title']; ?>
+                                </h3>
+                                <span
+                                    class="text-[#3B3B3B] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] opacity-80">
+                                    <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
+                                </span>
+                                <p class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
+                                    <?php
+                                    $content = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
+                                    echo mb_strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
+                                    ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                        <?php
+                    endforeach;
+                endif;
+                ?>
             </div>
         </div>
     </div>
@@ -491,7 +515,7 @@ $faqs = [
                     </div>
 
                     <button type="button"
-                        class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize transition-colors mt-auto cursor-pointer"
+                        class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize transition-colors mt-auto cursor-pointer group-hover:text-main-green"
                         data-keyword="<?php echo htmlspecialchars($item['keyword']); ?>"
                         data-full-description="<?php echo htmlspecialchars($item['explanation']); ?>">
                         Read more
@@ -648,7 +672,7 @@ $faqs = [
                 </div>
             </div>
             <div class="absolute right-4 top-4">
-                <button type="button" id="glossary-modal-close" class="w-8 h-8">
+                <button type="button" id="glossary-modal-close" class="w-8 h-8 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path d="M8 24L24 8M8 8L24 24" stroke="#A3A3A3" stroke-width="3" stroke-linecap="round"
                             stroke-linejoin="round" />
@@ -757,6 +781,36 @@ $faqs = [
 
         sections.forEach(section => {
             if (section) observer.observe(section);
+        });
+
+        // Case Study Hover Logic
+        const caseStudyItems = document.querySelectorAll('.case-study-item');
+        const previewImage = document.getElementById('case-study-preview');
+
+        caseStudyItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Update Image
+                const newImage = item.getAttribute('data-image');
+                if (newImage && previewImage) {
+                    previewImage.src = newImage;
+                }
+
+                // Update Active Styles (Optional: remove active class from others if needed for strict single-active state)
+                caseStudyItems.forEach(el => {
+                    const indicator = el.querySelector('span.absolute');
+                    if (el === item) {
+                        el.classList.remove('bg-white');
+                        el.classList.add('bg-[#F4C300]');
+                        if (indicator) indicator.classList.remove('scale-y-0');
+                        if (indicator) indicator.classList.add('scale-y-100');
+                    } else {
+                        el.classList.add('bg-white');
+                        el.classList.remove('bg-[#F4C300]');
+                        if (indicator) indicator.classList.add('scale-y-0');
+                        if (indicator) indicator.classList.remove('scale-y-100');
+                    }
+                });
+            });
         });
     });
 </script>
