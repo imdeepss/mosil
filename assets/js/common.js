@@ -389,7 +389,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const historySwiper = new Swiper(".our-history-swiper", {
     slidesPerView: 1,
     spaceBetween: 30,
-    speed: 800,
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+
+    speed: 1000,
     loop: true,
     navigation: {
       nextEl: ".history-next",

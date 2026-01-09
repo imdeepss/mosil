@@ -201,11 +201,13 @@ $lubricant_features = [
                     <div class="swiper-wrapper">
                         <?php foreach ($history_data as $history): ?>
                             <div class="swiper-slide cursor-grab active:cursor-grabbing">
-                                <h2 class="text-[#1A3B1B] font-bold text-[64px] leading-[135%] tracking-[0.01em]">
+                                <h2 class="text-[#1A3B1B] font-bold text-[64px] leading-[135%] tracking-[0.01em] transition-all duration-700 delay-100 transform translate-y-8 opacity-0 
+               [.swiper-slide-active_&]:translate-y-0 [.swiper-slide-active_&]:opacity-100">
                                     <?php echo $history['year']; ?>
                                 </h2>
 
-                                <div class="flex flex-col gap-4">
+                                <div class="flex flex-col gap-4 transition-all duration-700 delay-300 transform translate-y-8 opacity-0 
+                [.swiper-slide-active_&]:translate-y-0 [.swiper-slide-active_&]:opacity-100">
                                     <p
                                         class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize">
                                         <?php echo $history['title']; ?>
@@ -480,7 +482,7 @@ $lubricant_features = [
             <div class="swiper-wrapper md:grid md:grid-cols-5">
                 <?php foreach ($lubricant_features as $feature): ?>
                     <div
-                        class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3   overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-4 !mt-4">
+                        class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) hover:-translate-y-4 hover:shadow-xl group !mt-4 cursor-pointer">
                         <div
                             class="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
                         </div>
@@ -496,7 +498,7 @@ $lubricant_features = [
                         </p>
 
                         <div
-                            class="absolute bottom-0 left-0 h-1 w-0 bg-[#1A3B1B] transition-all duration-300 group-hover:w-full z-20">
+                            class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 z-20">
                         </div>
                     </div>
                 <?php endforeach; ?>

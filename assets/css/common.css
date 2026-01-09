@@ -369,3 +369,25 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
         width: 100%;
     }
 }
+
+/* Smooth opacity transition for the internal content */
+.our-history-swiper .swiper-slide {
+    opacity: 0 !important;
+    transition: opacity 500ms ease-in-out;
+    pointer-events: none;
+}
+
+/* Only the active slide is visible and clickable */
+.our-history-swiper .swiper-slide-active {
+    opacity: 1 !important;
+    pointer-events: auto;
+}
+
+/* Fix for cross-fade positioning */
+.our-history-swiper.swiper-fade .swiper-slide {
+    pointer-events: none;
+}
+
+.our-history-swiper.swiper-fade .swiper-slide-active {
+    pointer-events: auto;
+}
