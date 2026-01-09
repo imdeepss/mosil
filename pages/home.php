@@ -139,7 +139,8 @@ $blogs = getBlogs(3);
 <section class="bg-[var(--color-b10)]">
     <div class="container relative py-6">
         <div class="py-3.5">
-            <span class="text-[var(--color-b200)] font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+            <span
+                class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our Product range
             </span>
             <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
@@ -479,7 +480,8 @@ $lubricationItems = [
 <!-- MOSIL newsroom -->
 <section>
     <div class="container md:py-20 py-6">
-        <span class="text-[var(--color-b200)] font-normal text-xs leading-[120%] tracking-[0.015em] uppercase">
+        <span
+            class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
             In the Spotlight
         </span>
         <div class="mb-3.5 border-b border-primary pb-1 flex items-center justify-between">
