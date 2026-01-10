@@ -24,7 +24,8 @@ $blogs = getBlogs(3);
 
 
 <!-- Lubricant solutions for every industry -->
-<section class="bg-white overflow-hidden">
+<!-- Lubricant solutions for every industry -->
+<section class="bg-white">
     <div class="container relative md:py-20 py-12">
         <div class="py-3.5">
             <span
@@ -45,33 +46,37 @@ $blogs = getBlogs(3);
 
         <div class="md:mt-8 mt-6 flex flex-col lg:flex-row items-stretch gap-5">
             <div
-                class="hidden lg:flex w-full lg:w-[433px] lg:h-[480px] py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20">
+                class="hidden lg:flex w-full lg:w-[433px] lg:h-[480px] py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20 shrink-0">
                 <div class="absolute inset-0 opacity-50 pointer-events-none">
                     <img src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png"
                         class="w-full h-full object-contain opacity-90" alt="" loading="lazy" />
                 </div>
 
-                <div class="relative z-10 flex flex-col gap-4 ">
+                <div class="relative z-10 flex flex-col gap-4">
                     <?php if (!empty($industries)):
                         $firstIndustry = $industries[0];
                         ?>
                         <div id="industry-content">
-                            <h2 class="text-main-green font-normal text-[28px] leading-[135%] capitalize industry-title">
+                            <h2
+                                class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] capitalize md:text-[28px] md:leading-[135%] industry-title">
                                 <?php echo $firstIndustry['mcat_name']; ?>
                             </h2>
                             <p
-                                class="text-[#575757] font-normal text-[14px] leading-[150%] tracking-[0.015em] industry-tagline">
+                                class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] md:text-[14px] md:tracking-[0.015em] industry-tagline line-clamp-4">
                                 <?php echo $firstIndustry['mcat_desc']; ?>
                             </p>
                         </div>
-                        <p class="text-[#575757] font-normal text-[18px] leading-[140%] industry-desc empty:hidden">
+                        <p
+                            class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] md:text-[18px] md:leading-[140%] md:tracking-normal industry-desc empty:hidden">
                             <?php echo $firstIndustry['meta_description']; ?>
                         </p>
 
-                        <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $firstIndustry['slug']; ?>"
-                            class="industry-link inline-block bg-main-green px-10 py-3 rounded-full transition-all w-[124px] button-hover border-2 text-[#FFFFFF] text-center font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
-                            View
-                        </a>
+                        <div class="">
+                            <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $firstIndustry['slug']; ?>"
+                                class="industry-link inline-block bg-main-green px-10 py-3 rounded-full transition-all w-[124px] button-hover border-2 text-[#FFFFFF] text-center font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
+                                View
+                            </a>
+                        </div>
                     <?php endif; ?>
                 </div>
 
@@ -93,31 +98,33 @@ $blogs = getBlogs(3);
                 </div>
             </div>
 
-            <div class="w-full lg:w-[65%] relative">
-                <div class="swiper industrySwiper h-full">
-                    <div class="swiper-wrapper ">
+            <!-- Swiper Container - Flex 1 to fill space, Overflow Visible to bleed right, Clip Left to hide loop ghosts -->
+            <div class="w-full lg:flex-1 min-w-0 relative z-10">
+                <div class="swiper industrySwiper h-full !overflow-visible" style="clip-path: inset(0 -100vw 0 0);">
+                    <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry) { ?>
-                            <div class="swiper-slide bg-[#F5F5F5] overflow-hidden"
+                            <div class="swiper-slide !w-[85vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-auto lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
                                 data-title="<?php echo $industry['mcat_name']; ?>"
                                 data-tagline="<?php echo $industry['mcat_desc']; ?>"
                                 data-desc="<?php echo $industry['meta_description']; ?>"
                                 data-link="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                    class="w-full h-[214px]! md:h-[480px]! object-cover shrink-0 rounded-t-[4px]"
+                                    class="w-full h-[214px]! md:h-[480px]! object-cover shrink-0 rounded-t-[4px] lg:rounded-none"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
-                                <div class="lg:hidden p-6 flex flex-col gap-4">
+
+                                <!-- Mobile Only Content -->
+                                <div class="lg:hidden p-4 flex flex-col gap-4">
                                     <div>
-                                        <h2
-                                            class="text-main-green font-normal md:text-[28px] md:leading-[135%] text-[18px] leading-[140%] capitalize">
+                                        <h2 class="text-main-green font-base font-normal text-[18px] leading-[140%]">
                                             <?php echo $industry['mcat_name']; ?>
                                         </h2>
                                         <p
-                                            class="text-[#575757] font-normal text-[12px] md:text-[14px] leading-[150%] tracking-[0.015em]">
+                                            class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em]">
                                             <?php echo $industry['mcat_desc']; ?>
                                         </p>
                                     </div>
                                     <p
-                                        class="text-[#575757] font-normal text-[14px] leading-[150%] md:text-[18px] md:leading-[140%] empty:hidden">
+                                        class="text-[#575757] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] empty:hidden">
                                         <?php echo $industry['meta_description']; ?>
                                     </p>
                                     <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>"
@@ -149,7 +156,7 @@ $blogs = getBlogs(3);
                     Products engineered for performance</h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/product-categories"
                     class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
-                    All</a>
+                    all</a>
             </div>
         </div>
         <div class="mt-8 flex flex-col lg:flex-row items-stretch gap-0 w-full overflow-hidden">
@@ -490,7 +497,7 @@ $lubricationItems = [
                 MOSIL Newsroom</h2>
             <a href="<?php echo SITE_URL; ?>/newsroom"
                 class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
-                All</a>
+                all</a>
         </div>
 
         <div class="md:mt-8 mt-6 swiper newsSwiper">

@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (statsSection) observer.observe(statsSection);
 
   const swiper = new Swiper(".industrySwiper", {
-    slidesPerView: 1.2,
+    slidesPerView: "auto",
     spaceBetween: 20,
     loop: true,
     speed: 800,
@@ -197,34 +197,28 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     breakpoints: {
       1024: {
-        slidesPerView: 2.9,
+        slidesPerView: "auto",
       },
     },
     on: {
       slideChange: function () {
         const activeSlide = this.slides[this.activeIndex];
+        if (!activeSlide) return;
 
         const title = activeSlide.getAttribute("data-title");
         const tagline = activeSlide.getAttribute("data-tagline");
         const desc = activeSlide.getAttribute("data-desc");
-        const link = activeSlide.getAttribute("data-link"); // Get the link
+        const link = activeSlide.getAttribute("data-link");
 
-        const contentBox = document.querySelector(
-          ".relative.z-10.flex.flex-col.gap-4"
-        );
+        const titleEl = document.querySelector(".industry-title");
+        const taglineEl = document.querySelector(".industry-tagline");
+        const descEl = document.querySelector(".industry-desc");
+        const linkEl = document.querySelector(".industry-link");
 
-        contentBox.style.opacity = "0";
-
-        setTimeout(() => {
-          document.querySelector(".industry-title").innerText = title;
-          document.querySelector(".industry-tagline").innerText = tagline;
-          document.querySelector(".industry-desc").innerText = desc;
-          const linkEl = document.querySelector(".industry-link");
-          if (linkEl) linkEl.href = link; // Update the link href
-
-          contentBox.style.opacity = "1";
-          contentBox.style.transition = "opacity 0.4s ease";
-        }, 300);
+        if (titleEl) titleEl.innerText = title;
+        if (taglineEl) taglineEl.innerText = tagline;
+        if (descEl) descEl.innerText = desc;
+        if (linkEl) linkEl.href = link;
       },
     },
   });
