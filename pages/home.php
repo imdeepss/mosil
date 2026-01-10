@@ -38,7 +38,7 @@ $blogs = getBlogs(3);
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/"
                     class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
-                    See All
+                    See all
                 </a>
             </div>
         </div>
