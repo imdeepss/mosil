@@ -162,14 +162,14 @@ $blogs = getBlogs(3);
         <div class="mt-8 flex flex-col lg:flex-row items-stretch gap-0 w-full overflow-hidden">
             <?php foreach ($products as $product) { ?>
                 <div
-                    class="group relative flex-1 hover:flex-[1.5] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between bg-black cursor-pointer">
+                    class="group relative flex-1 hover:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between bg-black cursor-pointer">
 
-                    <div class="absolute inset-0 w-full h-full z-0">
+                    <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
-                        <div class="absolute inset-0 bg-black/40"></div>
-                    </div>
 
+                        <div class="absolute inset-0 bg-black/25"></div>
+                    </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
 
                         <div class="relative overflow-hidden border-b border-white transition-colors duration-500">
@@ -197,7 +197,7 @@ $blogs = getBlogs(3);
                             </a>
                         </div>
 
-                        <div class="p-6">
+                        <div class="px-6 py-4">
                             <h6
                                 class="font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary transition-colors duration-500 max-w-[250px]">
                                 <?php echo $product['mcat_name']; ?>
@@ -236,16 +236,17 @@ $blogs = getBlogs(3);
                                 alt="Case Study Image"
                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
                                 loading="lazy">
-
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end text-white pb-22">
+                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full h-full">
+                            </div>
+                            <div class="absolute inset-0 flex flex-col justify-end text-white pb-22">
                                 <div class="md:p-8 p-4">
                                     <h3
                                         class="md:text-[20px] text-[16px] font-normal leading-[140%] tracking-[0.01em] md:mb-3.5 mb-2">
                                         <?php echo $study['title']; ?>
                                     </h3>
                                     <p
-                                        class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] md:mb-3.5 mb-2 text-white/90 line-clamp-3">
+                                        class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] text-white/90 line-clamp-4 max-w-xl">
                                         <?php echo cleanText($study['solution']); ?>
                                     </p>
                                 </div>
@@ -258,7 +259,7 @@ $blogs = getBlogs(3);
                         <div class="swiper-pagination inset-auto! relative! w-auto! flex"></div>
                     </div>
                     <a href="<?php echo SITE_URL; ?>/case-studies"
-                        class="text-white font-normal md:text-[18px] text-[16px] uppercase whitespace-nowrap border-t-2 border-white block w-full text-center py-4 cursor-pointer">
+                        class="text-white text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] md:text-[18px] md:leading-[140%] md:tracking-normal border-t-2 border-white block w-full text-center py-4 cursor-pointer">
                         See all
                     </a>
                 </div>

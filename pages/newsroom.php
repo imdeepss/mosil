@@ -361,7 +361,7 @@ $faqs = [
                     foreach ($caseStudies as $index => $study):
                         $isActive = $index === 0;
                         ?>
-                        <div class="case-study-item pt-5 pb-7 pl-8 pr-5.5 <?php echo $isActive ? 'bg-[#F4C300]' : 'bg-white hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
+                        <div class="case-study-item pt-5 pb-7 pl-8 pr-5.5 <?php echo $isActive ? 'bg-[#F4C300]' : 'bg-[#F4C300] hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
                             data-image="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>">
 
                             <span
@@ -802,13 +802,9 @@ $faqs = [
                 caseStudyItems.forEach(el => {
                     const indicator = el.querySelector('span.absolute');
                     if (el === item) {
-                        el.classList.remove('bg-white');
-                        el.classList.add('bg-[#F4C300]');
                         if (indicator) indicator.classList.remove('scale-y-0');
                         if (indicator) indicator.classList.add('scale-y-100');
                     } else {
-                        el.classList.add('bg-white');
-                        el.classList.remove('bg-[#F4C300]');
                         if (indicator) indicator.classList.add('scale-y-0');
                         if (indicator) indicator.classList.remove('scale-y-100');
                     }
