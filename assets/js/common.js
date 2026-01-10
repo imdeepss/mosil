@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       1024: {
         slidesPerView: "auto",
         centeredSlides: false, // Keep desktop left-aligned
-        spaceBetween: 24,
+        spaceBetween: 20,
       },
     },
     on: {

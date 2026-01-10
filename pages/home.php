@@ -45,7 +45,7 @@ $blogs = getBlogs(3);
 
         <div class="md:mt-8 mt-6 flex flex-col lg:flex-row items-stretch gap-5">
             <div
-                class="hidden lg:flex w-full lg:w-[433px] lg:h-[480px] py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20 shrink-0">
+                class="hidden lg:flex w-full lg:w-[433px] lg:h-[480px] py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20 shrink-0 rounded-[4px]">
                 <div class="absolute inset-0 opacity-50 pointer-events-none">
                     <img src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png"
                         class="w-full h-full object-contain opacity-90" alt="" loading="lazy" />
@@ -100,7 +100,6 @@ $blogs = getBlogs(3);
             <!-- Swiper Container - Flex 1 to fill space, Overflow Visible to bleed right, Clip Left to hide loop ghosts -->
             <div class="w-full lg:flex-1 min-w-0 relative z-10">
                 <style>
-                    /* Apply clip-path globally to hide left overflow */
                     #industry-swiper-container {
                         clip-path: inset(0 -100vw 0 0);
                     }
@@ -108,13 +107,13 @@ $blogs = getBlogs(3);
                 <div id="industry-swiper-container" class="swiper industrySwiper h-full !overflow-visible">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry) { ?>
-                            <div class="swiper-slide !w-[85vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-[500px] lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
+                            <div class="swiper-slide !w-[85vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-800 ease-in-out h-[500px] md:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer shrink-0 rounded-[4px]"
                                 data-title="<?php echo $industry['mcat_name']; ?>"
                                 data-tagline="<?php echo $industry['mcat_desc']; ?>"
                                 data-desc="<?php echo $industry['meta_description']; ?>"
                                 data-link="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                    class="w-full h-[214px]! md:h-[480px]! object-cover shrink-0 rounded-t-[4px] lg:rounded-none"
+                                    class="w-full h-[214px]! md:h-[480px]! object-cover shrink-0 rounded-[4px]"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
 
                                 <!-- Mobile Only Content -->
