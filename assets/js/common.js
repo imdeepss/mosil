@@ -246,6 +246,58 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const contentSwiper = new Swiper(".contentSwiper", {
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    allowTouchMove: false,
+    speed: 600,
+    loop: true,
+    slidesPerView: 1,
+  });
+
+  const imageSwiper = new Swiper(".imageSwiper", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    loop: true,
+    speed: 800,
+    centeredSlides: false,
+    grabCursor: true,
+    navigation: {
+      nextEl: ".nav-next",
+      prevEl: ".nav-prev",
+    },
+
+    on: {
+      init: function () {
+        this.slides[this.activeIndex].classList.add("is-expanded");
+        this.update();
+      },
+
+      slideChangeTransitionStart: function () {
+        const activeIndex = this.activeIndex;
+        const slides = this.slides;
+
+        slides[activeIndex].classList.add("is-expanded");
+
+        contentSwiper.slideToLoop(this.realIndex);
+
+        this.update();
+      },
+
+      slideChangeTransitionEnd: function () {
+        const activeIndex = this.activeIndex;
+        const slides = this.slides;
+
+        for (let i = 0; i < slides.length; i++) {
+          if (i !== activeIndex) {
+            slides[i].classList.remove("is-expanded");
+          }
+        }
+
+        this.update();
+      },
+    },
+  });
   // const brandSwiper = new Swiper(".logoSwiper", {
   //   slidesPerView: "auto",
   //   spaceBetween: 50,

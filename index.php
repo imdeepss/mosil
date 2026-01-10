@@ -36,7 +36,8 @@ $allowed_pages = [
     'product-category',
     'blog-detail',
     'case-study-detail',
-    'event-detail'
+    'event-detail',
+    'test'
 ];
 
 if (!in_array($page, $allowed_pages)) {
