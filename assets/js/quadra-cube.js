@@ -89,17 +89,35 @@ document.addEventListener("DOMContentLoaded", function () {
   autoRotationGroup.add(bottomLayer);
 
   // Geometries
-  // Standard rounding for edges/corners
-  const geoStandard = new RoundedBoxGeometry(1.0, 1.0, 1.0, 4, 0.08);
-  // Extra rounding for center face cubics
-  const geoCenter = new RoundedBoxGeometry(1.0, 1.0, 1.0, 8, 0.35);
+  // Uniform rounded box for a cohesive premium look
+  // Geometries
+  // Sharper radius to match the reference "tech" look
+  const geometry = new RoundedBoxGeometry(1.0, 1.0, 1.0, 4, 0.05);
 
-  // Material: Dark Metallic / Graphite
-  const material = new THREE.MeshStandardMaterial({
-    color: 0x2a2a2a,
-    roughness: 0.25,
-    metalness: 0.8,
+  // Materials: Palette of Blacks/Greys matching the reference
+  const matBase = new THREE.MeshPhysicalMaterial({
+    color: 0x050505,
+    roughness: 0.6,
+    metalness: 0.1, // Matte Black
   });
+  const matGloss = new THREE.MeshPhysicalMaterial({
+    color: 0x111111,
+    roughness: 0.1,
+    metalness: 0.8,
+    clearcoat: 1.0, // Shiny Obsidian
+  });
+  const matGrey = new THREE.MeshPhysicalMaterial({
+    color: 0x222222,
+    roughness: 0.8,
+    metalness: 0.2, // Dark Grey Matte
+  });
+  const matMetallic = new THREE.MeshPhysicalMaterial({
+    color: 0x1a1a1a,
+    roughness: 0.3,
+    metalness: 0.9, // Gunmetal
+  });
+
+  const materials = [matBase, matGloss, matGrey, matMetallic];
 
   // Create 3x3x3 Grid
   const gridSize = 3;
@@ -108,18 +126,15 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let x = 0; x < gridSize; x++) {
     for (let y = 0; y < gridSize; y++) {
       for (let z = 0; z < gridSize; z++) {
-        // Use center geometry if this is a "Face Center" (2 coords are center index 1) or Core
-        const isCenter =
-          (x === 1 && y === 1) || (x === 1 && z === 1) || (y === 1 && z === 1);
-        const mesh = new THREE.Mesh(
-          isCenter ? geoCenter : geoStandard,
-          material
-        );
+        // Randomly pick a material for variety
+        const randomMat =
+          materials[Math.floor(Math.random() * materials.length)];
+        const mesh = new THREE.Mesh(geometry, randomMat);
 
-        // Position spaced by 1.0 for no gaps
-        const px = (x - offset) * 1.0;
-        const py = (y - offset) * 1.0;
-        const pz = (z - offset) * 1.0;
+        // Position spaced by 1.01 for tiny gaps (aesthetic line)
+        const px = (x - offset) * 1.02;
+        const py = (y - offset) * 1.02;
+        const pz = (z - offset) * 1.02;
 
         mesh.position.set(px, py, pz);
         mesh.castShadow = true;
@@ -167,7 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
   scene.add(shadowPlane);
 
   // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  // Slightly brighter ambient to show details on black material
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
   scene.add(ambientLight);
 
   const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -178,6 +194,12 @@ document.addEventListener("DOMContentLoaded", function () {
   scene.add(keyLight);
 
   const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  fillLight.position.set(5, 0, 5);
+  scene.add(fillLight);
+
+  const rimLight = new THREE.DirectionalLight(0xffffff, 2.0);
+  rimLight.position.set(5, 5, -10); // Back-lighting for edges
+  scene.add(rimLight);
   fillLight.position.set(5, 0, -5);
   scene.add(fillLight);
 
