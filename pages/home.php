@@ -45,10 +45,10 @@ $blogs = getBlogs(3);
 
         <div class="md:mt-8 mt-6 flex flex-col lg:flex-row items-stretch gap-5">
             <div
-                class="hidden lg:flex w-full lg:w-[35%] lg:h-[480px] py-16 px-8 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20">
+                class="hidden lg:flex w-full lg:w-[433px] lg:h-[480px] py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] relative overflow-hidden z-20">
                 <div class="absolute inset-0 opacity-50 pointer-events-none">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png" class="w-full h-full object-contain"
-                        alt="" loading="lazy" />
+                    <img src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png"
+                        class="w-full h-full object-contain opacity-90" alt="" loading="lazy" />
                 </div>
 
                 <div class="relative z-10 flex flex-col gap-4 ">
@@ -69,7 +69,7 @@ $blogs = getBlogs(3);
                         </p>
 
                         <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $firstIndustry['slug']; ?>"
-                            class="industry-link inline-block bg-main-green text-white px-10 py-3 rounded-full hover:bg-black transition-all w-fit button-hover border-2 ">
+                            class="industry-link inline-block bg-main-green px-10 py-3 rounded-full transition-all w-[124px] button-hover border-2 text-[#FFFFFF] text-center font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
                             View
                         </a>
                     <?php endif; ?>
