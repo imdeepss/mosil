@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const swiper = new Swiper(".industrySwiper", {
     slidesPerView: "auto",
+    centeredSlides: true, // Fix for mobile: Ensures one full card is focused
     spaceBetween: 20,
     loop: true,
     speed: 800,
@@ -198,6 +199,8 @@ document.addEventListener("DOMContentLoaded", () => {
     breakpoints: {
       1024: {
         slidesPerView: "auto",
+        centeredSlides: false, // Keep desktop left-aligned
+        spaceBetween: 24,
       },
     },
     on: {
@@ -223,16 +226,22 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  const mobilePrev = document.querySelector(".industry-mobile-prev");
-  const mobileNext = document.querySelector(".industry-mobile-next");
+  const mobilePrevBtns = document.querySelectorAll(".industry-mobile-prev");
+  const mobileNextBtns = document.querySelectorAll(".industry-mobile-next");
 
-  if (mobilePrev) {
-    mobilePrev.addEventListener("click", () => swiper.slidePrev());
-  }
+  mobilePrevBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      swiper.slidePrev();
+    });
+  });
 
-  if (mobileNext) {
-    mobileNext.addEventListener("click", () => swiper.slideNext());
-  }
+  mobileNextBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      swiper.slideNext();
+    });
+  });
 
   // const brandSwiper = new Swiper(".logoSwiper", {
   //   slidesPerView: "auto",

@@ -24,7 +24,6 @@ $blogs = getBlogs(3);
 
 
 <!-- Lubricant solutions for every industry -->
-<!-- Lubricant solutions for every industry -->
 <section class="bg-white">
     <div class="container relative md:py-20 py-12">
         <div class="py-3.5">
@@ -103,7 +102,7 @@ $blogs = getBlogs(3);
                 <div class="swiper industrySwiper h-full !overflow-visible" style="clip-path: inset(0 -100vw 0 0);">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry) { ?>
-                            <div class="swiper-slide !w-[85vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-auto lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
+                            <div class="swiper-slide !w-[85vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-[500px] lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
                                 data-title="<?php echo $industry['mcat_name']; ?>"
                                 data-tagline="<?php echo $industry['mcat_desc']; ?>"
                                 data-desc="<?php echo $industry['meta_description']; ?>"
@@ -113,24 +112,46 @@ $blogs = getBlogs(3);
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
 
                                 <!-- Mobile Only Content -->
-                                <div class="lg:hidden p-4 flex flex-col gap-4">
-                                    <div>
-                                        <h2 class="text-main-green font-base font-normal text-[18px] leading-[140%]">
-                                            <?php echo $industry['mcat_name']; ?>
-                                        </h2>
+                                <div class="lg:hidden h-[286px] p-4 flex flex-col gap-4">
+                                    <div class="flex flex-col gap-4">
+                                        <div>
+                                            <h2 class="text-main-green font-base font-normal text-[18px] leading-[140%]">
+                                                <?php echo $industry['mcat_name']; ?>
+                                            </h2>
+                                            <p
+                                                class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] line-clamp-3">
+                                                <?php echo $industry['mcat_desc']; ?>
+                                            </p>
+                                        </div>
                                         <p
-                                            class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em]">
-                                            <?php echo $industry['mcat_desc']; ?>
+                                            class="text-[#575757] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] empty:hidden">
+                                            <?php echo clean_content($industry['meta_description']); ?>
                                         </p>
                                     </div>
-                                    <p
-                                        class="text-[#575757] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] empty:hidden">
-                                        <?php echo $industry['meta_description']; ?>
-                                    </p>
-                                    <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>"
-                                        class="inline-block bg-main-green text-white px-10 py-3 rounded-full hover:bg-black transition-all w-fit mt-auto text-[16px] leading-[150%] tracking-[0.015em]">
-                                        View
-                                    </a>
+                                    <div class="flex items-center justify-between gap-4 mt-auto">
+                                        <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>"
+                                            class="inline-block bg-main-green text-white px-10 py-3 rounded-full hover:bg-black transition-all w-[150px] text-[16px] leading-[150%] tracking-[0.015em] text-center">
+                                            View
+                                        </a>
+                                        <div class="flex gap-2">
+                                            <button
+                                                class="industry-mobile-prev w-12 h-12 rounded-full border border-[#1A3B1B] flex items-center justify-center shrink-0">
+                                                <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M34 24L14 24M14 24L20 18M14 24L20 30" stroke="#1A3B1B"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                            <button
+                                                class="industry-mobile-next w-12 h-12 rounded-full border border-[#1A3B1B] flex items-center justify-center shrink-0">
+                                                <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14 24L34 24M34 24L28 18M34 24L28 30" stroke="#1A3B1B"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <?php } ?>
