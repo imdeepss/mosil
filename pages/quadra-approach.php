@@ -74,17 +74,16 @@ $pageTitle = 'Quadra Approach';
                 <?php foreach ($quadraSteps as $index => $step):
                     $isActive = $index === 0 ? 'active' : '';
                     ?>
-                    <div class="quadra-card cursor-pointer relative aspect-square rounded-[40px] <?php echo $step['corner_class']; ?> overflow-hidden group transition-all duration-300 transform hover:scale-[1.02] <?php echo $isActive ? 'ring-4 ring-main-green opacity-100' : 'opacity-50'; ?>"
+                    <div class="quadra-card cursor-pointer relative aspect-square rounded-[40px] <?php echo $step['corner_class']; ?> overflow-hidden group transition-all duration-300 transform <?php echo $isActive ? 'opacity-100' : 'opacity-50'; ?>"
                         data-index="<?php echo $index; ?>">
 
-                        <div class="absolute inset-0 z-0 bg-lightgray transition-transform duration-700 group-hover:scale-110"
-                            style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), 
+                        <div class="absolute inset-0 z-0 bg-lightgray transition-transform duration-700" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), 
                         url('<?php echo $step['bg_image']; ?>') center / cover no-repeat;">
                         </div>
 
-                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full md:gap-4">
+                        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full">
                             <img src="<?php echo $step['icon']; ?>" alt="<?php echo $step['title']; ?>"
-                                class="w-16 h-16 object-contain transition-transform duration-300 group-hover:scale-110">
+                                class="w-[100px] h-[100px] object-contain transition-transform duration-300">
 
                             <h2
                                 class="text-[#FFF] text-center font-base font-normal md:text-[16px] md:leading-[135%] md:tracking-[0.01em] text-[14px] leading-[150%] tracking-[0.015em]">
@@ -101,7 +100,7 @@ $pageTitle = 'Quadra Approach';
                 <div class="flex flex-col md:gap-10 gap-6">
                     <h2
                         class="text-main-green md:font-normal font-bold text-[20px] leading-[140%] md:text-[40px] md:leading-[120%] tracking-normal capitalize">
-                        Four angles of
+                        Four angles of <br />
                         every lubrication decision.
                     </h2>
 
@@ -120,7 +119,7 @@ $pageTitle = 'Quadra Approach';
                     <!-- Content Display -->
                     <div id="quadra-content-container">
                         <p id="quadra-description"
-                            class="text-[#575757] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] animate-fadeIn">
+                            class="text-[#575757] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] animate-fadeIn transition-all duration-200 ease-in-out blur-0">
                             <?php echo $quadraSteps[0]['description']; ?>
                         </p>
                     </div>

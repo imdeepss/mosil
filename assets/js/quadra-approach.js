@@ -19,25 +19,37 @@
 
     if (!descEl || cards.length === 0) return;
 
+    let activeIndex = 0;
+    let transitionTimeout;
+
     /**
      * Updates the visible content and highlights the active item.
      * @param {number} index - The index of the item to activate.
      */
     function updateQuadraContent(index) {
+      // Prevent re-animating the same content
+      if (activeIndex === index) return;
+      activeIndex = index;
+
       // Guard clause for array bounds
       if (!data[index]) return;
 
-      // 1. Update Description with Fade Effect
-      // Reset animation
-      descEl.classList.remove("animate-fadeIn");
-      descEl.style.opacity = "0";
+      // Clear any pending transition to avoid jumping content
+      if (transitionTimeout) clearTimeout(transitionTimeout);
 
-      // Update text after a short delay for the fade-out effect
-      setTimeout(() => {
+      // 1. Update Description with Blur-Fade Effect
+      // Remove initial animation class if present
+      descEl.classList.remove("animate-fadeIn");
+
+      // Start fade out with blur
+      descEl.classList.add("opacity-0", "blur-sm");
+
+      // Update text after transition delay (faster swap)
+      transitionTimeout = setTimeout(() => {
         descEl.textContent = data[index].description;
-        descEl.style.opacity = "1";
-        descEl.classList.add("animate-fadeIn");
-      }, 200);
+        // Start fade in (remove blur and opacity)
+        descEl.classList.remove("opacity-0", "blur-sm");
+      }, 150);
 
       // 2. Update Cards (Left Side Images)
       cards.forEach((card) => {
@@ -48,20 +60,10 @@
         // Using toggle for cleaner class management where possible,
         // but explicit add/remove is safer for specific sets of utility classes.
         if (isTarget) {
-          card.classList.add(
-            "ring-4",
-            "ring-main-green",
-            "z-10",
-            "opacity-100"
-          );
+          card.classList.add("z-10", "opacity-100");
           card.classList.remove("opacity-50");
         } else {
-          card.classList.remove(
-            "ring-4",
-            "ring-main-green",
-            "z-10",
-            "opacity-100"
-          );
+          card.classList.remove("z-10", "opacity-100");
           card.classList.add("opacity-50");
         }
       });
@@ -81,9 +83,9 @@
       });
     }
 
-    // Attach Click Listeners to Cards
+    // Attach Hover Listeners to Cards
     cards.forEach((card) => {
-      card.addEventListener("click", function () {
+      card.addEventListener("mouseenter", function () {
         const index = parseInt(this.dataset.index, 10);
         updateQuadraContent(index);
       });
