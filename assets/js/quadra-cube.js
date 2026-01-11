@@ -91,33 +91,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Geometries
   // Uniform rounded box for a cohesive premium look
   // Geometries
-  // Sharper radius to match the reference "tech" look
-  const geometry = new RoundedBoxGeometry(1.0, 1.0, 1.0, 4, 0.05);
+  // Sharper radius to match the reference "tech" look -> Adjusted to semi-sharp
+  const geometry = new RoundedBoxGeometry(1.0, 1.0, 1.0, 4, 0.08);
 
-  // Materials: Palette of Blacks/Greys matching the reference
-  const matBase = new THREE.MeshPhysicalMaterial({
-    color: 0x050505,
-    roughness: 0.6,
-    metalness: 0.1, // Matte Black
+  // Material: Dark Iridescent Metal
+  const matIridescent = new THREE.MeshPhysicalMaterial({
+    color: 0x151515, // Lighter blackish base
+    roughness: 0.1, // Highly polished
+    metalness: 0.95,
+    clearcoat: 1.0, // High polish
+    clearcoatRoughness: 0.05, // Ultra smooth clearcoat
+    reflectivity: 1.0,
   });
-  const matGloss = new THREE.MeshPhysicalMaterial({
-    color: 0x111111,
-    roughness: 0.1,
-    metalness: 0.8,
-    clearcoat: 1.0, // Shiny Obsidian
-  });
-  const matGrey = new THREE.MeshPhysicalMaterial({
-    color: 0x222222,
-    roughness: 0.8,
-    metalness: 0.2, // Dark Grey Matte
-  });
-  const matMetallic = new THREE.MeshPhysicalMaterial({
-    color: 0x1a1a1a,
-    roughness: 0.3,
-    metalness: 0.9, // Gunmetal
-  });
-
-  const materials = [matBase, matGloss, matGrey, matMetallic];
 
   // Create 3x3x3 Grid
   const gridSize = 3;
@@ -126,10 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let x = 0; x < gridSize; x++) {
     for (let y = 0; y < gridSize; y++) {
       for (let z = 0; z < gridSize; z++) {
-        // Randomly pick a material for variety
-        const randomMat =
-          materials[Math.floor(Math.random() * materials.length)];
-        const mesh = new THREE.Mesh(geometry, randomMat);
+        // Use the unified shiny material
+        const mesh = new THREE.Mesh(geometry, matIridescent);
 
         // Position spaced by 1.01 for tiny gaps (aesthetic line)
         const px = (x - offset) * 1.02;
@@ -181,27 +164,34 @@ document.addEventListener("DOMContentLoaded", function () {
   shadowPlane.position.y = -2.2; // Slightly lower to clear the cube movement
   scene.add(shadowPlane);
 
-  // Lighting
-  // Slightly brighter ambient to show details on black material
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  // Lighting - Cyberpunk Gradient Setup
+
+  // Ambient - Low to keep blacks deep
+  const ambientLight = new THREE.AmbientLight(0x111111, 1.0);
   scene.add(ambientLight);
 
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
+  // Key Light (Main White/Blueish Highlight)
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
   keyLight.position.set(-5, 8, 8);
   keyLight.castShadow = true;
   keyLight.shadow.mapSize.width = 1024;
   keyLight.shadow.mapSize.height = 1024;
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  fillLight.position.set(5, 0, 5);
-  scene.add(fillLight);
+  // Purple Shine (From Top/Right)
+  const purpleLight = new THREE.PointLight(0xaa00ff, 3.0, 20);
+  purpleLight.position.set(5, 5, 5);
+  scene.add(purpleLight);
 
-  const rimLight = new THREE.DirectionalLight(0xffffff, 2.0);
-  rimLight.position.set(5, 5, -10); // Back-lighting for edges
+  // Cyan Shine (From Bottom/Left)
+  const cyanLight = new THREE.PointLight(0x00aaff, 3.0, 20);
+  cyanLight.position.set(-5, -2, 2);
+  scene.add(cyanLight);
+
+  // Rim Light (Back)
+  const rimLight = new THREE.DirectionalLight(0xffffff, 1.0); // White rim for edge definition
+  rimLight.position.set(0, 5, -10);
   scene.add(rimLight);
-  fillLight.position.set(5, 0, -5);
-  scene.add(fillLight);
 
   // Mouse Interaction (Manual Drag Rotation with Smoothness)
   let isDragging = false;
@@ -224,9 +214,9 @@ document.addEventListener("DOMContentLoaded", function () {
         x: e.offsetX - previousMousePosition.x,
         y: e.offsetY - previousMousePosition.y,
       };
-
+      // cursor speed
       const baseSpeed = 0.005;
-      const rotateSpeed = baseSpeed * 4;
+      const rotateSpeed = baseSpeed * 2;
 
       // Update target rotation input
       targetRotation.y += deltaMove.x * rotateSpeed;
@@ -266,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         const baseSpeed = 0.005;
-        const rotateSpeed = baseSpeed * 4;
+        const rotateSpeed = baseSpeed * 1.2;
 
         targetRotation.y += deltaMove.x * rotateSpeed;
         targetRotation.x += deltaMove.y * rotateSpeed;
