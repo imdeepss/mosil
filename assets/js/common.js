@@ -184,9 +184,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const swiper = new Swiper(".industrySwiper", {
     slidesPerView: "auto",
-    centeredSlides: false, // Updated to false to match 'left overflow hidden' request
-    spaceBetween: 20,
+    centeredSlides: false,
+    spaceBetween: 16,
     loop: true,
+    loopedSlides: 5, // Ensure enough duplicates for smooth loop with auto width
+    loopAdditionalSlides: 2,
+    watchSlidesProgress: true, // Improves visibility calculation
     speed: 800,
     autoplay: {
       delay: 5000,
