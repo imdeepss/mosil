@@ -31,7 +31,7 @@ $blogs = getBlogs(3);
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Industries we serve
             </span>
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between gap-13">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between gap-13">
                 <h2
                     class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Lubricant solutions for every industry
@@ -178,7 +178,7 @@ $blogs = getBlogs(3);
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our Product range
             </span>
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Products engineered for performance</h2>
@@ -246,7 +246,7 @@ $blogs = getBlogs(3);
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 the mosil edge
             </p>
-            <div class="border-b border-primary pb-1">
+            <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Pushing the boundaries of your performance
@@ -342,7 +342,7 @@ $blogs = getBlogs(3);
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our Infrastructure
             </p>
-            <div class="border-b border-primary pb-1">
+            <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Infrastructure that powers precision
@@ -520,7 +520,7 @@ $lubricationItems = [
             class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
             In the Spotlight
         </span>
-        <div class="mb-3.5 border-b border-primary pb-1 flex items-center justify-between">
+        <div class="mb-3.5 border-b-2 border-primary pb-1 flex items-center justify-between">
             <h2
                 class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                 MOSIL Newsroom</h2>
@@ -600,7 +600,7 @@ $lubricationItems = [
     <div class="container md:py-10 py-6">
 
         <div class="py-3.5">
-            <div class="border-b border-primary pb-1 ">
+            <div class="border-b-2 border-primary pb-1 ">
                 <h2
                     class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Mobilise your profit

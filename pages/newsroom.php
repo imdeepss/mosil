@@ -263,7 +263,7 @@ $faqs = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 in the spotlight
             </span>
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Latest events</h2>
@@ -331,7 +331,7 @@ $faqs = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 real world performance
             </span>
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Case study
@@ -403,7 +403,7 @@ $faqs = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Lubrication basics and beyond
             </span>
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Blogs
@@ -543,7 +543,7 @@ $faqs = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Faqs
             </span>
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Answer to your questions

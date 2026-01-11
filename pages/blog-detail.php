@@ -78,7 +78,7 @@ $pageTitle = htmlspecialchars($blog['title']);
 
         <div class="py-3.5">
 
-            <div class="border-b border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
                     class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Explore Relevant Blogs</h2>

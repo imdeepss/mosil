@@ -100,7 +100,7 @@ $lubricant_features = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Overview
             </span>
-            <div class="border-b border-primary pb-1">
+            <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     We are MOSIL
@@ -148,7 +148,7 @@ $lubricant_features = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Our History
             </span>
-            <div class="border-b border-primary pb-1">
+            <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     The journey that shaped us
@@ -531,7 +531,7 @@ $lubricant_features = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Why Mosil Matters?
             </span>
-            <div class="border-b border-primary pb-1">
+            <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Pushing the boundaries of
@@ -578,7 +578,7 @@ $lubricant_features = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 Visionaries behind
             </span>
-            <div class="border-b border-primary pb-1">
+            <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Leadership driving progress

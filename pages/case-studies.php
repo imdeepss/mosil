@@ -28,7 +28,7 @@ $currentPage = $initialData['currentPage'];
             class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
             LATEST CONTENT
         </span>
-        <div class="border-b border-primary pb-1">
+        <div class="border-b-2 border-primary pb-1">
             <h2
                 class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap md:whitespace-nowrap">
                 Featured Case Studies
@@ -145,7 +145,7 @@ $currentPage = $initialData['currentPage'];
             class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
             RESOURCES
         </span>
-        <div class="border-b border-primary pb-1">
+        <div class="border-b-2 border-primary pb-1">
             <h2
                 class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap md:whitespace-nowrap">
                 All Case Studies

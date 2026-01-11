@@ -103,7 +103,7 @@ $pageTitle = htmlspecialchars($event['title']);
         <!-- Right Column: Sidebar (4 cols) -->
         <div class="md:col-span-4 border-l-0 md:border-l md:border-[#D9D9D9] md:pl-8">
             <div class="py-3.5">
-                <div class="border-b border-primary pb-1">
+                <div class="border-b-2 border-primary pb-1">
                     <h3
                         class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                         Suggested Blogs
