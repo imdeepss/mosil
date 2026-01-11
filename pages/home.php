@@ -99,7 +99,13 @@ $blogs = getBlogs(3);
 
             <!-- Swiper Container - Flex 1 to fill space, Overflow Visible to bleed right, Clip Left to hide loop ghosts -->
             <div class="w-full lg:flex-1 min-w-0 relative z-10">
-                <div class="swiper industrySwiper h-full !overflow-visible" style="clip-path: inset(0 -100vw 0 0);">
+                <style>
+                    /* Apply clip-path globally to hide left overflow */
+                    #industry-swiper-container {
+                        clip-path: inset(0 -100vw 0 0);
+                    }
+                </style>
+                <div id="industry-swiper-container" class="swiper industrySwiper h-full !overflow-visible">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry) { ?>
                             <div class="swiper-slide !w-[85vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-[500px] lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
@@ -128,14 +134,15 @@ $blogs = getBlogs(3);
                                             <?php echo clean_content($industry['meta_description']); ?>
                                         </p>
                                     </div>
-                                    <div class="flex items-center justify-between gap-4 mt-auto">
+                                    <div
+                                        class="flex items-center justify-between gap-4 mt-auto swiper-no-swiping relative z-50">
                                         <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>"
                                             class="inline-block bg-main-green text-white px-10 py-3 rounded-full hover:bg-black transition-all w-[150px] text-[16px] leading-[150%] tracking-[0.015em] text-center">
                                             View
                                         </a>
                                         <div class="flex gap-2">
                                             <button
-                                                class="industry-mobile-prev w-12 h-12 rounded-full border border-[#1A3B1B] flex items-center justify-center shrink-0">
+                                                class="industry-mobile-prev w-12 h-12 rounded-full border border-[#1A3B1B] flex items-center justify-center shrink-0 bg-transparent hover:bg-gray-100 transition-colors">
                                                 <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M34 24L14 24M14 24L20 18M14 24L20 30" stroke="#1A3B1B"
@@ -143,7 +150,7 @@ $blogs = getBlogs(3);
                                                 </svg>
                                             </button>
                                             <button
-                                                class="industry-mobile-next w-12 h-12 rounded-full border border-[#1A3B1B] flex items-center justify-center shrink-0">
+                                                class="industry-mobile-next w-12 h-12 rounded-full border border-[#1A3B1B] flex items-center justify-center shrink-0 bg-transparent hover:bg-gray-100 transition-colors">
                                                 <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M14 24L34 24M34 24L28 18M34 24L28 30" stroke="#1A3B1B"

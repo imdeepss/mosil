@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const swiper = new Swiper(".industrySwiper", {
     slidesPerView: "auto",
-    centeredSlides: true, // Fix for mobile: Ensures one full card is focused
+    centeredSlides: false, // Updated to false to match 'left overflow hidden' request
     spaceBetween: 20,
     loop: true,
     speed: 800,
