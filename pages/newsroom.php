@@ -209,7 +209,7 @@ $faqs = [
     <div class="container relative z-20 flex items-end justify-start w-full h-full pb-4 md:pb-10">
         <h2
             class="text-white font-base font-normal text-[32px] md:text-[48px] leading-[120%] tracking-normal capitalize">
-            Newsroom
+            MOSIL Newsroom
         </h2>
     </div>
 </section>

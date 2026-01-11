@@ -168,7 +168,7 @@
                                     <li
                                         class="group hover:bg-[var(--color-b900)]/50 transition-all duration-300 ease-in-out cursor-pointer">
                                         <a href="<?php echo SITE_URL . $item['url']; ?>"
-                                            class="inline-block w-full h-full transition-transform duration-300 group-hover:translate-x-2 group-hover:text-[var(--color-b100)]">
+                                            class="inline-block w-full h-full transition-transform duration-300 group-hover:text-[var(--color-b100)]">
                                             <?php echo $item['label']; ?>
                                         </a>
                                     </li>

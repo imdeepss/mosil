@@ -619,7 +619,7 @@ $lubricationItems = [
                 foreach ($brands as $brand) { ?>
                     <div class="swiper-slide !w-auto">
                         <div
-                            class="md:w-[276px] md:h-[132px] w-[112px] h-[56px] bg-white p-1 md:p-2 flex items-center justify-center">
+                            class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
                             <img src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo $brand; ?>" alt="Brand Logo"
                                 class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
