@@ -119,7 +119,7 @@ $categories = [
                 you in
                 finding systems best suited for your needs.</p>
             <a href="<?php echo SITE_URL; ?>/contact"
-                class="bg-main-green text-white font-base font-normal md:text-base text-[14px] leading-[150%] tracking-[0.015em] capitalize px-12 py-3 rounded-full inline-block">Contact
+                class="bg-main-green text-white font-base font-normal md:text-base text-[14px] leading-[150%] tracking-[0.015em] px-12 py-3 rounded-full inline-block md:w-[207px] w-fit text-center">Contact
                 us</a>
         </div>
         <div class="absolute left-0 bottom-0 w-full h-auto">

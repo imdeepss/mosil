@@ -73,7 +73,7 @@ $pageTitle = 'Quadra Approach';
             <div class="w-full md:basis-2/5 grid grid-cols-2 md:gap-6 gap-3">
                 <?php foreach ($quadraSteps as $index => $step):
                     $isActive = $index === 0 ? 'active' : '';
-                    ?>
+                ?>
                     <div class="quadra-card cursor-pointer relative aspect-square rounded-[40px] <?php echo $step['corner_class']; ?> overflow-hidden group transition-all duration-300 transform <?php echo $isActive ? 'opacity-100' : 'opacity-50'; ?>"
                         data-index="<?php echo $index; ?>">
 
@@ -105,10 +105,10 @@ $pageTitle = 'Quadra Approach';
                     </h2>
 
                     <!-- Tab Headers -->
-                    <ul class="flex items-center gap-2 border-b md:w-fit overflow-x-auto">
+                    <ul class="flex items-center border-b md:w-fit overflow-x-auto">
                         <?php foreach ($quadraSteps as $index => $step):
                             $activeClass = $index === 0 ? 'border-b-2 border-main-green text-main-green font-bold' : 'text-main-green font-normal hover:text-main-green';
-                            ?>
+                        ?>
                             <li class="quadra-tab px-4 pb-2 text-[14px] leading-[150%] tracking-[0.015em] cursor-pointer whitespace-nowrap transition-colors <?php echo $activeClass; ?>"
                                 data-index="<?php echo $index; ?>">
                                 <?php echo $step['title']; ?>
@@ -158,7 +158,7 @@ $pageTitle = 'Quadra Approach';
 
                 <div class="order-1 flex flex-row items-start gap-4 relative group">
                     <div
-                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 relative z-10">
+                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 relative z-10 group-hover:bg-primary">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/chart-pie.svg" alt="Icon">
                     </div>
                     <div class="flex flex-col max-w-[306px]">
@@ -176,7 +176,7 @@ $pageTitle = 'Quadra Approach';
                 </div>
 
                 <div class="order-3 flex flex-row items-start gap-4 md:gap-6 relative group">
-                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
+                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/flag.svg" alt="Search">
                     </div>
                     <div class="flex flex-col max-w-[306px]">
@@ -204,7 +204,7 @@ $pageTitle = 'Quadra Approach';
                             detailed on-site assessments, ensuring solutions match exact operating conditions and
                             evolving needs.</p>
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
+                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/light-bulb.svg" alt="Search">
                     </div>
                     <div class="hidden md:block absolute right-0 top-[75%] w-full h-full z-[100] pointer-events-none">
@@ -219,7 +219,7 @@ $pageTitle = 'Quadra Approach';
                         <p class="text-[#575757] text-[14px] leading-[150%]">MOSIL applies lifecycle intelligence using
                             data, prediction, and field feedback to anticipate and prevent equipment failures.</p>
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0">
+                    <div class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/puzzle.svg" alt="Search">
                     </div>
                     <div

@@ -201,13 +201,11 @@ $lubricant_features = [
                     <div class="swiper-wrapper">
                         <?php foreach ($history_data as $history): ?>
                             <div class="swiper-slide cursor-grab active:cursor-grabbing">
-                                <h2 class="text-[#1A3B1B] font-bold text-[64px] leading-[135%] tracking-[0.01em] transition-all duration-700 delay-100 transform translate-y-8 opacity-0 
-               [.swiper-slide-active_&]:translate-y-0 [.swiper-slide-active_&]:opacity-100">
+                                <h2 class="text-[#1A3B1B] font-bold text-[64px] leading-[135%] tracking-[0.01em]">
                                     <?php echo $history['year']; ?>
                                 </h2>
 
-                                <div class="flex flex-col gap-4 transition-all duration-700 delay-300 transform translate-y-8 opacity-0 
-                [.swiper-slide-active_&]:translate-y-0 [.swiper-slide-active_&]:opacity-100">
+                                <div class="flex flex-col gap-4">
                                     <p
                                         class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize">
                                         <?php echo $history['title']; ?>
@@ -298,8 +296,8 @@ $lubricant_features = [
                             fill="#757575" />
                     </g>
 
-                    <g class="quadra-box" data-pos="left" data-title="Expectation Mapping"
-                        data-desc="Clear communication is key. We actively validate your goals and requirements, recognizing that standard solutions may need customization."
+                    <g class="quadra-box" data-pos="left" data-title="TriboIntel"
+                        data-desc="Leveraging decades of tribological expertise, we analyze data to scientifically determine the best lubrication strategy."
                         filter="url(#filter1_d_1109_6875)">
                         <path
                             d="M550.212 174.428L443.007 111.924L365.443 157.191C352.292 164.866 352.351 183.888 365.549 191.481L443.06 236.077L550.212 174.428Z"
@@ -329,8 +327,8 @@ $lubricant_features = [
                         </g>
                     </g>
 
-                    <g class="quadra-box" data-pos="right" data-title="TriboIntel"
-                        data-desc="Leveraging decades of tribological expertise, we analyze data to scientifically determine the best lubrication strategy."
+                    <g class="quadra-box" data-pos="right" data-title="Expectation Mapping"
+                        data-desc="Clear communication is key. We actively validate your goals and requirements, recognizing that standard solutions may need customization."
                         filter="url(#filter2_d_1109_6875)">
                         <path
                             d="M87.0006 174.428L194.205 111.924L271.77 157.191C284.921 164.866 284.862 183.888 271.664 191.481L194.153 236.077L87.0006 174.428Z"

@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
       crossFade: true,
     },
 
-    speed: 1000,
+    speed: 0,
     loop: true,
     navigation: {
       nextEl: ".history-next",

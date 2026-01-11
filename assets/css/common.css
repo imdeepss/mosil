@@ -373,7 +373,6 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
 /* Smooth opacity transition for the internal content */
 .our-history-swiper .swiper-slide {
     opacity: 0 !important;
-    transition: opacity 500ms ease-in-out;
     pointer-events: none;
 }
 
