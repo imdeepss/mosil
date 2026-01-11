@@ -108,7 +108,7 @@ $blogs = getBlogs(3);
                 <div id="industry-swiper-container" class="swiper industrySwiper h-full !overflow-visible">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry) { ?>
-                            <div class="swiper-slide !w-[350px] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-[500px] lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
+                            <div class="swiper-slide !w-[100vw] md:!w-[270px] [&.swiper-slide-active]:md:!w-[426px] [&.swiper-slide-duplicate-active]:md:!w-[426px] transition-[width] duration-500 ease-in-out h-[500px] lg:h-[480px] bg-[#F5F5F5] overflow-hidden relative group cursor-pointer"
                                 data-title="<?php echo $industry['mcat_name']; ?>"
                                 data-tagline="<?php echo $industry['mcat_desc']; ?>"
                                 data-desc="<?php echo $industry['meta_description']; ?>"
