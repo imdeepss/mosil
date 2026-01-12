@@ -59,7 +59,7 @@
 
                 <div class="relative hidden h-8 w-[218px] md:block">
                     <input type="text" name="search" placeholder="Search"
-                        class="search-input h-full w-full rounded-full border border-white bg-white/35 px-4 text-sm text-white placeholder-neutral-300 outline-none focus:ring-1 focus:ring-white/50" />
+                        class="search-input h-full w-full rounded-full  outline outline-1 outline-offset-[-0.50px] outline-white bg-zinc-400/30 px-4 text-sm text-white placeholder-white" />
                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/search.png" alt="Search"
                         class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4">
                     <!-- Search Results Dropdown (Desktop) -->
@@ -129,10 +129,11 @@
 
                             <?php foreach ($sidebarNav as $item): ?>
                                 <?php if (isset($item['submenu'])): ?>
-                                    <li class="group has-submenu !px-0 !py-0">
+                                    <li class="has-submenu !px-0 !py-0">
                                         <div
-                                            class="flex items-center justify-between w-full px-6 py-2.5 border-[#EAEAEA] border-b">
-                                            <a href="<?php echo SITE_URL . $item['url']; ?>">
+                                            class="group flex items-center justify-between w-full px-6 py-2.5 border-[#EAEAEA] border-b">
+                                            <a href="<?php echo SITE_URL . $item['url']; ?>"
+                                                class="transition-colors duration-300 group-hover:text-[var(--color-b70)]">
                                                 <?php echo $item['label']; ?>
                                             </a>
                                             <span class="cursor-pointer submenu-toggle px-2">
@@ -157,18 +158,20 @@
                                             <ul
                                                 class="overflow-hidden w-full bg-[#0E0E0E]/20 text-white [&>li]:border-b [&>li]:border-[#EAEAEA] [&>li]:px-16 [&>li]:py-2.5 text-lg font-light leading-[140%] tracking-normal [&>li:last-child]:border-b-0">
                                                 <?php foreach ($item['submenu'] as $subItem): ?>
-                                                    <li><a
-                                                            href="<?php echo SITE_URL . $subItem['url']; ?>"><?php echo $subItem['label']; ?></a>
+                                                    <li class="group">
+                                                        <a href="<?php echo SITE_URL . $subItem['url']; ?>"
+                                                            class="block w-full transition-colors duration-300 group-hover:text-[var(--color-b70)]">
+                                                            <?php echo $subItem['label']; ?>
+                                                        </a>
                                                     </li>
                                                 <?php endforeach; ?>
                                             </ul>
                                         </div>
                                     </li>
                                 <?php else: ?>
-                                    <li
-                                        class="group hover:bg-[var(--color-b900)]/50 transition-all duration-300 ease-in-out cursor-pointer">
+                                    <li class="group transition-all duration-300 ease-in-out cursor-pointer">
                                         <a href="<?php echo SITE_URL . $item['url']; ?>"
-                                            class="inline-block w-full h-full transition-transform duration-300 group-hover:text-[var(--color-b100)]">
+                                            class="inline-block w-full h-full transition-transform duration-300 group-hover:text-[var(--color-b70)]">
                                             <?php echo $item['label']; ?>
                                         </a>
                                     </li>

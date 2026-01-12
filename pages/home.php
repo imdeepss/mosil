@@ -611,10 +611,21 @@ $lubricationItems = [
         <div class="md:mt-8 mt-6 swiper logoSwiper">
             <div class="swiper-wrapper flex items-center" style="transition-timing-function: linear !important;">
                 <?php
-                $brands = [];
-                foreach (range('A', 'L') as $letter) {
-                    $brands[] = $letter . '.png';
-                }
+                $brands = [
+                    'Bonfiglioli.png',
+                    'Daikin.png',
+                    'Daimler Truck Asia.png',
+                    'Epiroc.png',
+                    'Funskool.png',
+                    "Haldiram's.png",
+                    'Hyundai.png',
+                    'ITC Limites.png',
+                    'Jindal Stainless.png',
+                    'Sail.png',
+                    'Suzuki.png',
+                    'Tata Steel.png',
+                ];
+
                 foreach ($brands as $brand) { ?>
                     <div class="swiper-slide !w-auto">
                         <div
