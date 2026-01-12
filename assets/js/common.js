@@ -318,21 +318,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // });
 
   const brandSwiper = new Swiper(".logoSwiper", {
-    slidesPerView: 3,
+    slidesPerView: "auto",
     spaceBetween: 20,
-
     loop: true,
     speed: 1000,
     allowTouchMove: false,
+    freeMode: true,
     autoplay: {
       delay: 0,
       disableOnInteraction: false,
-      pauseOnMouseEnter: false,
     },
+    easing: "linear",
 
     breakpoints: {
       768: {
-        slidesPerView: 4,
         spaceBetween: 50,
       },
     },
