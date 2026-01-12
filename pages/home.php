@@ -66,13 +66,13 @@ $blogs = getBlogs(3);
                             </p>
                         </div>
                         <p
-                            class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] md:text-[18px] md:leading-[140%] md:tracking-normal industry-desc empty:hidden">
+                            class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] md:text-[18px] md:leading-[140%] md:tracking-normal industry-desc min-h-[150px] overflow-hidden">
                             <?php echo $firstIndustry['meta_description']; ?>
                         </p>
 
                         <div class="">
                             <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $firstIndustry['slug']; ?>"
-                                class="industry-link inline-block bg-main-green px-10 py-3 rounded-full transition-all w-[124px] button-hover border-2 text-[#FFFFFF] text-center font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
+                                class="industry-link inline-flex items-center justify-center bg-main-green px-10 h-[48px] rounded-full transition-all w-[124px] button-hover border-2 border-transparent text-[#FFFFFF] text-center font-base font-normal text-[16px] leading-none tracking-[0.015em]">
                                 View
                             </a>
                         </div>

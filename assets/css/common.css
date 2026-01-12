@@ -119,14 +119,20 @@ details[open] summary~* {
     animation: fadeIn 0.4s ease-out;
 }
 
-.button-hover:hover {
-    color: var(--main-green);
+.button-hover {
+    box-sizing: border-box;
+    /* Ensures border is included in the 48px height */
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+}
+
+.button-hover:hover {
+    color: #1A3B1B;
+    /* Using your Main Green hex */
     background:
         linear-gradient(white, white) padding-box,
         linear-gradient(to right, #30442C, #F4C300) border-box;
-
+    border: 2px solid transparent;
+    /* Required for the border-box gradient to show */
 }
 
 /* Hover Effect for Stats Section */
