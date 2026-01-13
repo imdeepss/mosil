@@ -11,6 +11,7 @@ $currentPage = $initialData['currentPage'];
 
 <section class="container">
 
+
     <nav
         class="flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize flex-wrap py-6">
         <a href="<?php echo SITE_URL; ?>/" class="text-[#A3A3A3] font-light">Home</a>
@@ -20,8 +21,14 @@ $currentPage = $initialData['currentPage'];
                     stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </span>
-        <a href="#" class="text-[#575757] font-bold">Events</a>
-
+        <a href="<?php echo SITE_URL; ?>/newsroom" class="text-[#A3A3A3] font-light">Newsroom</a>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+        <a href="#" class="text-[#575757] font-bold pointer-events-none">Case Studies</a>
     </nav>
     <div class="py-3.5">
         <span

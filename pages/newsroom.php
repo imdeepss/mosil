@@ -291,7 +291,7 @@ $faqs = [
                         </div>
 
                         <div class="relative h-full flex flex-col justify-end z-10 gap-2
-            <?php echo $item['is_featured'] ? 'md:px-7.5 md:py-8.5' : 'md:px-3 md:py-4'; ?> px-4 py-4">
+            <?php echo $item['is_featured'] ? 'md:px-7.5 md:py-8.5 px-4 py-4' : 'md:px-3 md:py-4 px-3 py-3'; ?> ">
 
                             <span class="inline-block bg-[#F9DC6B] text-[#1A3B1B] font-base font-bold w-fit px-2 py-1
                                 <?php
@@ -306,10 +306,11 @@ $faqs = [
                                 ?>">
                                 <?php echo $item['category_name']; ?>
                             </span>
-
-                            <h3
-                                class="text-[#FFFFFF] font-base font-bold capitalize 
-                <?php echo $item['is_featured'] ? 'md:text-[24px] md:leading-[135%] md:tracking-[0.01em] text-[18px] leading-[140%] tracking-[0.015em]' : 'text-[14px]'; ?>">
+                            <h3 class="text-white font-['Helvetica'] font-bold capitalize 
+                                <?php echo $item['is_featured']
+                                    ? 'text-[18px] leading-[140%] tracking-[0.27px] md:text-[24px] md:leading-[135%] md:tracking-[0.24px]'
+                                    : 'text-[12px] leading-[150%] tracking-[0.18px] md:text-[14px] md:leading-[135%] md:tracking-[0.14px]';
+                                ?>">
                                 <?php echo $item['title']; ?>
                             </h3>
 

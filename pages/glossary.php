@@ -32,7 +32,7 @@
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </span>
-            <a href="<?php echo SITE_URL; ?>/glossary" class="text-[#575757] font-bold">Glossary</a>
+            <a href="<?php echo SITE_URL; ?>/glossary" class="text-[#575757] font-bold pointer-events-none">Glossary</a>
         </nav>
         <div class="flex flex-col gap-6 border-b border-[#DEDEDE] pb-2 md:border-none md:pb-0">
             <div class="flex justify-between gap-4 items-center">

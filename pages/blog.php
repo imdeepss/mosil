@@ -27,7 +27,7 @@ $currentPage = $initialData['currentPage'];
                     stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </span>
-        <a href="#" class="text-[#575757] font-bold">Blog</a>
+        <a href="#" class="text-[#575757] font-bold pointer-events-none">Blog</a>
 
     </nav>
     <div class="py-3.5">
