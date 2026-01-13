@@ -476,10 +476,14 @@ $faqs = [
             <p class="text-[#FAFAFA] font-normal text-xs leading-[120%] tracking-[0.015em] uppercase mb-1">
                 Glossary
             </p>
-            <div class="md:border-b md:border-primary pb-1">
+            <div class="md:border-b md:border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2 class="text-white font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Know the important terms
                 </h2>
+                <a href="<?php echo SITE_URL; ?>/glossary"
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
+                    See all
+                </a>
             </div>
         </div>
         <div class="md:mt-8 mt-6 grid grid-cols-2 lg:grid-cols-4 gap-5">

@@ -534,7 +534,7 @@ $lubricant_features = [
                 </h2>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 md:pt-0 group/section">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 md:pt-10 group/section">
             <?php foreach ($mosil_matters as $item): ?>
                 <div
                     class="relative group overflow-hidden w-full md:h-[300px] h-[220px] flex flex-col justify-end cursor-pointer transition-opacity duration-300 md:group-hover/section:opacity-50 md:hover:!opacity-100">
