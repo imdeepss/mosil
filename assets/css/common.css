@@ -360,21 +360,7 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
     transform: translateY(0);
 }
 
-@media (max-width: 768px) {
 
-    #quadra-info-card.pos-top,
-    #quadra-info-card.pos-left,
-    #quadra-info-card.pos-right,
-    #quadra-info-card.pos-bottom {
-        bottom: 0;
-        left: 0;
-        right: auto;
-        top: auto;
-        opacity: 1;
-        transform: translateY(0);
-        width: 100%;
-    }
-}
 
 /* Smooth opacity transition for the internal content */
 .our-history-swiper .swiper-slide {
@@ -395,4 +381,47 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
 
 .our-history-swiper.swiper-fade .swiper-slide-active {
     pointer-events: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MOBILE VIEW ONLY */
+@media (max-width: 768px) {
+
+    #quadra-info-card.pos-top,
+    #quadra-info-card.pos-left,
+    #quadra-info-card.pos-right,
+    #quadra-info-card.pos-bottom {
+        bottom: 0;
+        left: 0;
+        right: auto;
+        top: auto;
+        opacity: 1;
+        transform: translateY(0);
+        width: 100%;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-x: auto;
+    }
+
+    #pagination-container .flex>button:nth-child(n+3):nth-child(-n+6) {
+        display: none;
+    }
 }

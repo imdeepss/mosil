@@ -161,7 +161,7 @@ $currentPage = $initialData['currentPage'];
     </div>
 
     <!-- Filter Buttons -->
-    <div class="flex justify-start items-center gap-4 md:pt-6 md:pb-8 pt-4 pb-4 overflow-x-auto">
+    <div class="flex justify-start items-center gap-4 md:pt-6 md:pb-8 pt-4 pb-4 overflow-x-auto no-scrollbar">
         <button
             class="filter-btn h-12 px-8 md:px-12 py-3 bg-main-green rounded text-white text-[16px] leading-[150%] md:text-xl font-normal md:leading-7 tracking-tight transition-colors whitespace-nowrap"
             data-category="All">All Blogs</button>

@@ -37,7 +37,7 @@ $currentPage = $initialData['currentPage'];
         </div>
 
         <!-- Filter Buttons -->
-        <div class="flex justify-start items-center gap-4 pt-6 pb-8 overflow-x-auto">
+        <div class="flex justify-start items-center gap-4 pt-6 pb-8 overflow-x-auto no-scrollbar">
             <button
                 class="filter-btn h-12 px-12 py-3 bg-main-green rounded text-white text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
                 data-category="All">All</button>
@@ -55,7 +55,7 @@ $currentPage = $initialData['currentPage'];
                 data-category="Beyond Business">Beyond business</button>
         </div>
 
-        <div class="md:mt-8 md:mb-10 swiper newsSwiper">
+        <div class="md:mt-8 mb-10 swiper newsSwiper">
             <!-- Blog Container -->
             <div id="blog-container"
                 class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-10 transition-opacity duration-300">
@@ -107,7 +107,7 @@ $currentPage = $initialData['currentPage'];
         </div>
 
         <!-- Pagination Container -->
-        <div id="pagination-container" class="mb-12 flex justify-start gap-4">
+        <div id="pagination-container" class="mb-12 flex md:justify-start justify-center items-center gap-4">
             <!-- Initial Pagination Render (Server Side) -->
             <?php if ($currentPage > 1): ?>
                 <button onclick="changePage(<?php echo $currentPage - 1; ?>)"
