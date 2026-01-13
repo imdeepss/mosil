@@ -47,25 +47,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const value = input.value.trim();
     const name = input.name;
 
-    if (input.hasAttribute("required") && !value) {
-      showError(input, "This field is required.");
-      return false;
-    }
+    // if (input.hasAttribute("required") && !value) {
+    //   showError(input, "This field is required.");
+    //   return false;
+    // }
 
-    if (name === "email" && value && !validateEmail(value)) {
-      showError(input, "Please enter a valid email address.");
-      return false;
-    }
+    // if (name === "email" && value && !validateEmail(value)) {
+    //   showError(input, "Please enter a valid email address.");
+    //   return false;
+    // }
 
-    if (name === "mobile" && value && !validatePhone(value)) {
-      showError(input, "Please enter a valid phone number (10-15 digits).");
-      return false;
-    }
+    // if (name === "mobile" && value && !validatePhone(value)) {
+    //   showError(input, "Please enter a valid phone number (10-15 digits).");
+    //   return false;
+    // }
 
-    if (name === "pincode" && value && !/^\d+$/.test(value)) {
-      showError(input, "Pincode must be numeric.");
-      return false;
-    }
+    // if (name === "pincode" && value && !/^\d+$/.test(value)) {
+    //   showError(input, "Pincode must be numeric.");
+    //   return false;
+    // }
 
     return true;
   }

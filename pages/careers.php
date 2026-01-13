@@ -98,9 +98,9 @@ $positions = getCareerPosition();
                 <div class="md:col-span-2 relative">
                     <input type="file" id="upload" name="resume" class="hidden" accept=".pdf,.doc,.docx">
                     <label for="upload" id="fileLabel"
-                        class="w-full p-3 border border-gray-200 rounded-md flex justify-between items-center cursor-pointer text-[#757575]">
-                        <span>Upload Resume (PDF/DOC)</span> <img
-                            src="<?php echo SITE_URL ?>/assets/icons/svg/upload.svg" width="24" height="24" />
+                        class="w-full p-3 flex justify-between items-center cursor-pointer text-[#757575] bg-[#FFF] rounded-[4px] border border-[#DEDEDE]">
+                        <span>Upload</span> <img src="<?php echo SITE_URL ?>/assets/icons/svg/upload.svg" width="24"
+                            height="24" />
                     </label>
                 </div>
 
