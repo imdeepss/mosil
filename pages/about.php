@@ -534,35 +534,50 @@ $lubricant_features = [
                 </h2>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 md:pt-10 group/section">
-            <?php foreach ($mosil_matters as $item): ?>
-                <div
-                    class="relative group overflow-hidden w-full md:h-[300px] h-[220px] flex flex-col justify-end cursor-pointer transition-opacity duration-300 md:group-hover/section:opacity-50 md:hover:!opacity-100">
+        <div class="relative w-full mt-6 md:mt-10 group/section" id="mosil-matters-section">
+            <!-- Dynamic Background (Desktop Only) -->
+            <?php $firstImage = !empty($mosil_matters) ? $mosil_matters[0]['image'] : ''; ?>
+            <div id="mosil-matters-bg"
+                class="hidden md:block absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out z-0 opacity-0 group-hover/section:opacity-100"
+                style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $firstImage; ?>') lightgray 50% / cover no-repeat;">
+            </div>
 
-                    <div class="absolute inset-0"
-                        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), 
-                        url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>') no-repeat center/cover;">
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10">
+                <?php foreach ($mosil_matters as $item): ?>
+                    <div class="mosil-matter-card relative group overflow-hidden w-full md:h-[300px] h-[220px] flex flex-col justify-end cursor-pointer border-r border-b border-white/20 transition-all duration-300 md:hover:bg-transparent"
+                        data-bg="<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>">
+
+                        <!-- Mobile Background Image -->
+                        <div class="md:hidden absolute inset-0"
+                            style="background: url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>') lightgray 50% / cover no-repeat;">
+                        </div>
+                        <!-- Mobile Gradient Overlay -->
+                        <div class="md:hidden absolute inset-0 mobile-gradient-overlay transition-opacity duration-300"
+                            style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);">
+                        </div>
+
+                        <!-- Desktop Card Background (Visible by default, hidden on section hover) -->
+                        <div class="hidden md:block absolute inset-0 transition-opacity duration-300 group-hover/section:opacity-0"
+                            style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>') lightgray 50% / cover no-repeat;">
+                        </div>
+
+                        <!-- Content -->
+                        <div
+                            class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform md:translate-y-15 group-hover:translate-y-0 max-w-[230px] md:max-w-full">
+                            <h6
+                                class="text-white font-base font-normal md:text-[24px] md:leading-[135%] text-[18px] leading-[140%] tracking-[0.015em] capitalize transition-opacity duration-300 md:group-hover/section:opacity-50 md:group-hover:!opacity-100">
+                                <?php echo $item['title']; ?>
+                            </h6>
+
+                            <p
+                                class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 md:group-hover:opacity-100 hidden md:block">
+                                <?php echo $item['description']; ?>
+                            </p>
+                        </div>
                     </div>
-
-                    <div
-                        class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform md:translate-y-15 group-hover:translate-y-0 max-w-[230px] md:max-w-full">
-
-                        <h6
-                            class="text-white font-base font-normal md:text-[24px] md:leading-[135%] text-[18px] leading-[140%] tracking-[0.015em] capitalize">
-                            <?php echo $item['title']; ?>
-                        </h6>
-
-                        <p
-                            class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hidden md:block">
-                            <?php echo $item['description']; ?>
-                        </p>
-                    </div>
-
-                    <div
-                        class="absolute inset-0 bg-main-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </section>
@@ -669,5 +684,40 @@ $lubricant_features = [
                 card.classList.remove(...positions);
             }
         });
+
+        // Use requestAnimationFrame for smoother image updates if frequent
+        const bgContainer = document.getElementById('mosil-matters-bg');
+        const cards = document.querySelectorAll('.mosil-matter-card');
+
+        if (bgContainer && cards.length > 0) {
+            cards.forEach(card => {
+                // Desktop Hover Effect
+                card.addEventListener('mouseenter', () => {
+                    const bgUrl = card.getAttribute('data-bg');
+                    if (bgUrl) {
+                        bgContainer.style.background = `linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), url('${bgUrl}') lightgray 50% / cover no-repeat`;
+                    }
+                });
+
+                // Mobile Click Effect (Exclusive Focus)
+                card.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        cards.forEach(c => {
+                            const overlay = c.querySelector('.mobile-gradient-overlay');
+                            if (c === card) {
+                                // Active Card: Clean Image (Remove Gradient)
+                                if (overlay) overlay.classList.add('opacity-0');
+                            } else {
+                                // Inactive Cards: Default State (Show Gradient)
+                                if (overlay) overlay.classList.remove('opacity-0');
+                            }
+                            
+                            // Ensure we don't accidentally keep opacity classes if they were added previously
+                            c.classList.remove('opacity-50', 'opacity-100'); 
+                        });
+                    }
+                });
+            });
+        }
     });
 </script>
