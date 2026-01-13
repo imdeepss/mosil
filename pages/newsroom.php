@@ -272,12 +272,19 @@ $faqs = [
                     All</a>
             </div>
         </div>
-        <div class="newsroom-events md:py-9.5 py-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 auto-rows-[240px]">
+        <div class="newsroom-events md:py-9.5 py-0">
+            <div class="grid grid-cols-2 md:grid-cols-4 md:gap-5 gap-4">
 
                 <?php foreach ($latestBlogs as $item): ?>
+                    <?php
+                    if ($item['is_featured']) {
+                        $heightClass = 'h-[281px] md:h-[558px] col-span-2 md:row-span-2';
+                    } else {
+                        $heightClass = 'h-[184px] md:h-[269px] col-span-1';
+                    }
+                    ?>
                     <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>" class="relative group overflow-hidden block
-       <?php echo $item['is_featured'] ? 'md:col-span-2 md:row-span-2' : 'col-span-1'; ?>">
+       <?php echo $heightClass; ?>">
 
                         <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-115" style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), 
             url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>') no-repeat center/cover;">
@@ -325,7 +332,7 @@ $faqs = [
 
 
 <section id="case-studies" class="w-full bg-[#F5F5F5]">
-    <div class="container pt-[30px] pb-[80px]">
+    <div class="container md:pt-[30px] md:pb-[80px] pt-[24px] pb-[24px]">
         <div class="py-3.5">
             <span
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
@@ -343,11 +350,11 @@ $faqs = [
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 gap-2 md:mt-6 mt-4">
             <?php
             $firstImage = !empty($caseStudies) ? $caseStudies[0]['image'] : '';
             ?>
-            <div class="relative overflow-hidden md:h-full h-[300px] w-full aspect-[4/3] shrink-0">
+            <div class="relative overflow-hidden md:h-full h-[280px] w-full aspect-[4/3] shrink-0">
                 <img id="case-study-preview"
                     src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $firstImage; ?>"
                     alt="Case Study Featured"
@@ -355,13 +362,13 @@ $faqs = [
                     loading="lazy" />
             </div>
 
-            <div class="flex flex-col gap-5">
+            <div class="flex flex-col md:gap-5 gap-2">
                 <?php
                 if (!empty($caseStudies)):
                     foreach ($caseStudies as $index => $study):
                         $isActive = $index === 0;
                         ?>
-                        <div class="case-study-item pt-5 pb-7 pl-8 pr-5.5 <?php echo $isActive ? 'bg-[#F4C300]' : 'bg-[#F4C300] hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
+                        <div class="case-study-item md:pt-5 md:pb-7 md:pl-8 md:pr-5.5 pt-4 pb-4 pl-4 pr-4 <?php echo $isActive ? 'bg-[#F4C300]' : 'bg-[#F4C300] hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
                             data-image="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>">
 
                             <span
@@ -397,7 +404,7 @@ $faqs = [
 
 
 <section id="blogs" class="w-full">
-    <div class="container pt-[24px] pb-[80px]">
+    <div class="container pt-[24px] md:pb-[80px] pb-12">
         <div class="py-3.5">
             <span
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
@@ -462,20 +469,18 @@ $faqs = [
             </div>
             <div class="md:hidden flex justify-end items-center gap-4 mt-4">
                 <button
-                    class="blog-swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16" fill="none">
-                        <path
-                            d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
-                            stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    class="blog-swiper-prev w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                        <path d="M10 5L3 12M3 12L10 19M3 12L21 12" stroke="#1A3B1B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
 
                 <button
-                    class="blog-swiper-next w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                        <path
-                            d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
-                            stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    class="blog-swiper-next w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 5L21 12M21 12L14 19M21 12L3 12" stroke="#1A3B1B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </div>
@@ -486,7 +491,7 @@ $faqs = [
 <section id="glossary" class="bg-main-green relative">
     <div class="absolute bottom-0 left-0">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.png" alt="lubrication decision"
-            class="block h-full w-full object-cover object-center" loading="lazy">
+            class="block h-full w-full object-cover object-center opacity-9" loading="lazy">
     </div>
     <div class="container relative z-10 md:pt-[64px] md:pb-[86px] pt-6 pb-6">
 
@@ -495,7 +500,7 @@ $faqs = [
             <p class="text-[#FAFAFA] font-normal text-xs leading-[120%] tracking-[0.015em] uppercase mb-1">
                 Glossary
             </p>
-            <div class="md:border-b md:border-primary pb-1 flex md:items-center items-end justify-between">
+            <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2 class="text-white font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Know the important terms
                 </h2>
@@ -505,52 +510,71 @@ $faqs = [
                 </a>
             </div>
         </div>
-        <div class="md:mt-8 mt-6 grid grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="bg-[#415C42] px-4 flex flex-col">
-                <h6 class="text-[#FFFFFF] font-base font-normal text-[64px] leading-[120%]">
-                    A
-                </h6>
-                <p class="text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] mb-2">
-                    Lubrications terms as per letter A
+        <div class="md:mt-8 mt-6 swiper glossarySwiper">
+            <div class="swiper-wrapper md:!grid md:grid-cols-2 lg:grid-cols-4 md:gap-5">
+                <div class="swiper-slide md:h-[220px]! bg-[#415C42] px-4! flex flex-col h-[220px]!">
+                    <h6 class="text-[#FFFFFF] font-base font-normal text-[64px] leading-[120%]">
+                        A
+                    </h6>
+                    <p class="text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] mb-2">
+                        Lubrications terms as per letter A
 
-                </p>
-                <p class="text-[#F5F5F5] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] mb-6">
-                    You can find more such terms on the glossary page
+                    </p>
+                    <p class="text-[#F5F5F5] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] mb-6">
+                        You can find more such terms on the glossary page
 
-                </p>
-                <a href="<?php echo SITE_URL; ?>/glossary"
-                    class="text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
-                    Read all terms
-                </a>
-            </div>
-            <?php foreach ($glossary['items'] as $index => $item) { ?>
-                <div
-                    class="glossary-card bg-[#415C42] px-4 py-6 rounded-[4px] flex flex-col gap-4 justify-start items-start h-full border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
-
-                    <h4
-                        class="glossary-title text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors">
-                        <?php echo htmlspecialchars($item['keyword']); ?>
-                    </h4>
-
-                    <div
-                        class="js-explanation text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] line-clamp-4 group-hover:text-[#757575] transition-colors">
-                        <?php echo htmlspecialchars($item['explanation']); ?>
-                    </div>
-
-                    <button type="button"
-                        class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize transition-colors mt-auto cursor-pointer group-hover:text-main-green"
-                        data-keyword="<?php echo htmlspecialchars($item['keyword']); ?>"
-                        data-full-description="<?php echo htmlspecialchars($item['explanation']); ?>">
-                        Read more
-                    </button>
+                    </p>
+                    <a href="<?php echo SITE_URL; ?>/glossary"
+                        class="text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
+                        Read all terms
+                    </a>
                 </div>
-            <?php } ?>
+                <?php foreach ($glossary['items'] as $index => $item) { ?>
+                    <div
+                        class="swiper-slide glossary-card bg-[#415C42] px-4! py-6 rounded-[4px] flex! flex-col gap-4 justify-start items-start h-[220px]! border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
+
+                        <h4
+                            class="glossary-title text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors">
+                            <?php echo htmlspecialchars($item['keyword']); ?>
+                        </h4>
+
+                        <div
+                            class="js-explanation text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] line-clamp-4 group-hover:text-[#757575] transition-colors">
+                            <?php echo htmlspecialchars($item['explanation']); ?>
+                        </div>
+
+                        <button type="button"
+                            class="read-more-btn hidden text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize transition-colors mt-auto cursor-pointer group-hover:text-main-green"
+                            data-keyword="<?php echo htmlspecialchars($item['keyword']); ?>"
+                            data-full-description="<?php echo htmlspecialchars($item['explanation']); ?>">
+                            Read more
+                        </button>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="md:hidden flex justify-end items-center gap-4 mt-4">
+                <button
+                    class="glossary-swiper-prev w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#7A8D7B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                        <path d="M10 5L3 12M3 12L10 19M3 12L21 12" stroke="#7A8D7B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <button
+                    class="glossary-swiper-next w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#7A8D7B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 5L21 12M21 12L14 19M21 12L3 12" stroke="#7A8D7B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
         </div>
 
     </div>
     <div class="absolute top-0 right-0 h-full">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.png" alt="lubrication decision"
-            class="block h-full w-full object-cover object-center" loading="lazy">
+            class="block h-full w-full object-cover object-center opacity-9" loading="lazy">
     </div>
 </section>
 
@@ -560,7 +584,7 @@ $faqs = [
 
 
 <section id="faqs" class="w-full">
-    <div class="container py-[80px]">
+    <div class="container md:py-[80px] py-6">
         <div class="py-3.5">
             <span
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
@@ -639,26 +663,28 @@ $faqs = [
 
 
 <section class="w-full bg-white">
-    <div class="container py-20">
+    <div class="container md:py-20 py-6">
         <div class="flex flex-col md:flex-row items-stretch overflow-hidden">
 
-            <div class="relative w-full md:w-[437px] h-[280px] shrink-0">
+            <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
                 <img src="<?php echo SITE_URL; ?>/assets/images/ui/connect.jpg" alt="Stay connected"
                     class="w-full h-full object-cover" />
             </div>
 
-            <div class="p-[50px] bg-[#F4C300] flex flex-col justify-center flex-grow">
+            <div class="md:p-[50px] p-[24px] bg-[#F4C300] flex flex-col justify-center flex-grow">
 
-                <h2 class="text-[#1A3B1B] font-base font-normal text-[32px] leading-[120%] capitalize mb-4">
+                <h2
+                    class="text-[#1A3B1B] font-base font-normal md:text-[32px] md:leading-[120%] text-[24px] font-normal leading-[135%] capitalize mb-4">
                     Stay connected
                 </h2>
 
-                <p class="text-[#3B3B3B] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] mb-6">
+                <p
+                    class="text-[#3B3B3B] font-base font-normal md:text-[16px] md:leading-[150%] text-[14px] leading-[150%] tracking-[0.015em] mb-6">
                     Get MOSIL press releases & newsletters in your inbox, and reach our media relations team for
                     interviews or info – stay connected to our experts worldwide.
                 </p>
 
-                <div class="flex flex-wrap items-center gap-4 justify-start">
+                <!-- <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
                     <button type="button"
                         class="py-3 px-6 bg-[#1A3B1B] text-white text-center font-base font-normal text-[16px] leading-[150%] rounded-full border border-[#1A3B1B] cursor-pointer button-hover-vertical">
                         Contact the team
@@ -666,6 +692,17 @@ $faqs = [
 
                     <button type="button"
                         class="py-3 px-6 text-[#1A3B1B] border border-[#1A3B1B] text-center font-base font-normal text-[16px] leading-[150%] rounded-full cursor-pointer button-hover-vertical">
+                        Subscribe
+                    </button>
+                </div> -->
+                <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
+                    <button type="button"
+                        class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
+                        Contact the team
+                    </button>
+
+                    <button type="button"
+                        class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
                         Subscribe
                     </button>
                 </div>
@@ -763,6 +800,65 @@ $faqs = [
                 }
             }
         });
+
+        // Initialize Glossary Swiper
+        const mobilePrevGlossary = document.querySelector('.glossarySwiper .glossary-swiper-prev');
+        const mobileNextGlossary = document.querySelector('.glossarySwiper .glossary-swiper-next');
+
+        function updateGlossaryMobileButtons(swiper) {
+            if (!mobilePrevGlossary || !mobileNextGlossary) return;
+
+            // Handle Previous Button
+            if (swiper.isBeginning) {
+                mobilePrevGlossary.classList.add('opacity-50');
+                mobilePrevGlossary.disabled = true;
+            } else {
+                mobilePrevGlossary.classList.remove('opacity-50');
+                mobilePrevGlossary.disabled = false;
+            }
+
+            // Handle Next Button
+            if (swiper.isEnd) {
+                mobileNextGlossary.classList.add('opacity-50');
+                mobileNextGlossary.disabled = true;
+            } else {
+                mobileNextGlossary.classList.remove('opacity-50');
+                mobileNextGlossary.disabled = false;
+            }
+        }
+
+        const glossarySwiper = new Swiper('.glossarySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    enabled: false,
+                    slidesPerView: 4,
+                }
+            },
+            on: {
+                init: function (swiper) {
+                    updateGlossaryMobileButtons(swiper);
+                },
+                slideChange: function (swiper) {
+                    updateGlossaryMobileButtons(swiper);
+                }
+            }
+        });
+
+        if (mobilePrevGlossary && mobileNextGlossary) {
+            mobilePrevGlossary.addEventListener('click', (e) => {
+                e.preventDefault();
+                glossarySwiper.slidePrev();
+            });
+            mobileNextGlossary.addEventListener('click', (e) => {
+                e.preventDefault();
+                glossarySwiper.slideNext();
+            });
+        }
 
         if (mobilePrevNews && mobileNextNews) {
             mobilePrevNews.addEventListener('click', (e) => {

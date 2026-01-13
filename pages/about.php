@@ -468,7 +468,7 @@ $lubricant_features = [
                 class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
                 who we are
             </span>
-            <div class="border-b border-[#ffffff] pb-1">
+            <div class="border-b-2 border-[#ffffff] pb-1">
                 <h2
                     class="text-main-green font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     A brand driven by purpose, backed by science. since 1971
