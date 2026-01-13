@@ -273,6 +273,109 @@ $lubricant_features = [
                         }
                     </style>
 
+                    <g transform="translate(0, 9.5) scale(0.815)">
+                        <g clip-path="url(#clip0_1114_7465)">
+                            <rect width="787" height="480" fill="url(#paint0_radial_1114_7465)" />
+                            <line x1="58.1148" y1="-62.6271" x2="1101.24" y2="551.229" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-18.9916" y1="33.5184" x2="1024.14" y2="647.375" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="24.9254" y1="-12.2199" x2="1068.05" y2="601.636" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-52.182" y1="83.9256" x2="990.946" y2="697.782" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="37.3697" y1="-37.5881" x2="1080.5" y2="576.268" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-39.7367" y1="58.5584" x2="1003.39" y2="672.415" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="4.18027" y1="12.8201" x2="1047.31" y2="626.676" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-72.9271" y1="108.966" x2="970.201" y2="722.822" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="33.0143" y1="-59.4475" x2="1076.14" y2="554.409" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-44.0922" y1="36.698" x2="999.036" y2="650.554" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-0.175194" y1="-9.04023" x2="1042.95" y2="604.816" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-77.2816" y1="87.1063" x2="965.847" y2="700.962" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="12.2701" y1="-34.4074" x2="1055.4" y2="579.449" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-64.8373" y1="61.7381" x2="978.291" y2="675.594" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-20.9203" y1="15.9998" x2="1022.21" y2="629.856" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line x1="-98.0268" y1="112.145" x2="945.102" y2="726.002" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 753.268 -115.678)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 831.333 -20.3086)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 786.96 -65.6055)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 865.025 29.7646)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 774.262 -90.8467)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 852.327 4.52246)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 807.955 -40.7744)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 886.02 54.5957)" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 778.398 -112.749)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 856.464 -17.3799)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 812.091 -62.6768)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 890.156 32.6934)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 799.394 -87.918)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 877.458 7.45117)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 833.086 -37.8457)"
+                                stroke="#949494" stroke-width="0.691643" />
+                            <line y1="-0.345821" x2="1210.35" y2="-0.345821"
+                                transform="matrix(-0.856727 0.515771 0.515771 0.856727 911.15 57.5244)" stroke="#949494"
+                                stroke-width="0.691643" />
+                            <rect x="-118" y="-62" width="979" height="597" fill="url(#paint1_radial_1114_7465)" />
+                        </g>
+                        <defs>
+                            <radialGradient id="paint0_radial_1114_7465" cx="0" cy="0" r="1"
+                                gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(393.5 240) rotate(90) scale(240 393.5)">
+                                <stop stop-color="#AAAAAA" />
+                                <stop offset="1" stop-color="white" />
+                            </radialGradient>
+                            <radialGradient id="paint1_radial_1114_7465" cx="0" cy="0" r="1"
+                                gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(371.5 236.5) rotate(90) scale(298.5 489.5)">
+                                <stop stop-color="white" stop-opacity="0" />
+                                <stop offset="1" stop-color="white" />
+                            </radialGradient>
+                            <clipPath id="clip0_1114_7465">
+                                <rect width="787" height="480" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </g>
                     <g class="quadra-box" data-pos="top" data-title="Identify Painpoints"
                         data-desc="We begin by deeply understanding your unique challenges. At MOSIL, selling isn’t about pushing products, it’s about solving problems."
                         filter="url(#filter0_d_1109_6875)">
@@ -711,9 +814,9 @@ $lubricant_features = [
                                 // Inactive Cards: Default State (Show Gradient)
                                 if (overlay) overlay.classList.remove('opacity-0');
                             }
-                            
+
                             // Ensure we don't accidentally keep opacity classes if they were added previously
-                            c.classList.remove('opacity-50', 'opacity-100'); 
+                            c.classList.remove('opacity-50', 'opacity-100');
                         });
                     }
                 });
