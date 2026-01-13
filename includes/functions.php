@@ -667,6 +667,13 @@ function getGlossary($letter, $limit = 8, $offset = 0)
     ];
 }
 
+function searchGlossaryItems($term)
+{
+    $termLike = '%' . $term . '%';
+    $sql = "SELECT keyword, explanation FROM glossary WHERE keyword LIKE ? ORDER BY keyword ASC LIMIT 10";
+    return db_query_all($sql, [$termLike]);
+}
+
 /**
  * Fetch a single blog post by slug.
  */

@@ -41,16 +41,22 @@
                 </span>
 
                 <div class="w-60 h-10 max-w-[720px] rounded-3xl border border-[#757575] relative">
-
-                    <input type="text"
+                    <input type="text" id="glossary-search-input"
                         class="justify-center text-sm text-[#757575] font-normal leading-5 tracking-tight py-1.5 w-full outline-none px-5 pr-10 h-full placeholder-[#757575]"
-                        name="search" placeholder="search keyword">
+                        name="glossary_search" placeholder="search keyword" autocomplete="off">
+
                     <div class="w-4 h-4 right-4 top-1/2 -translate-y-1/2 absolute overflow-hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                             <path
                                 d="M13.8833 14.875L9.42083 10.4125C9.06667 10.6958 8.65937 10.9201 8.19896 11.0854C7.73854 11.2507 7.24861 11.3333 6.72917 11.3333C5.44236 11.3333 4.3533 10.8877 3.46198 9.99635C2.57066 9.10503 2.125 8.01597 2.125 6.72917C2.125 5.44236 2.57066 4.3533 3.46198 3.46198C4.3533 2.57066 5.44236 2.125 6.72917 2.125C8.01597 2.125 9.10503 2.57066 9.99635 3.46198C10.8877 4.3533 11.3333 5.44236 11.3333 6.72917C11.3333 7.24861 11.2507 7.73854 11.0854 8.19896C10.9201 8.65937 10.6958 9.06667 10.4125 9.42083L14.875 13.8833L13.8833 14.875ZM6.72917 9.91667C7.61458 9.91667 8.36719 9.60677 8.98698 8.98698C9.60677 8.36719 9.91667 7.61458 9.91667 6.72917C9.91667 5.84375 9.60677 5.09115 8.98698 4.47135C8.36719 3.85156 7.61458 3.54167 6.72917 3.54167C5.84375 3.54167 5.09115 3.85156 4.47135 4.47135C3.85156 5.09115 3.54167 5.84375 3.54167 6.72917C3.54167 7.61458 3.85156 8.36719 4.47135 8.98698C5.09115 9.60677 5.84375 9.91667 6.72917 9.91667Z"
                                 fill="#757575" />
                         </svg>
+                    </div>
+
+                    <!-- Search Results Dropdown -->
+                    <div id="search-results"
+                        class="absolute left-0 top-full mt-2 w-full bg-white border border-[#DEDEDE] rounded shadow-lg z-50 hidden max-h-60 overflow-y-auto">
+                        <!-- Results injected by JS -->
                     </div>
 
                 </div>
@@ -61,7 +67,7 @@
                 $letters = range('A', 'Z');
                 foreach ($letters as $letter) { ?>
                     <button type="button"
-                        class="letter-btn w-10 h-10 px-3 py-1.5 bg-[#F5F5F5] rounded-sm text-[#A3A3A3] hover:bg-gray-200 transition-colors"
+                        class="letter-btn w-10 h-10 px-3 py-1.5 bg-[#F5F5F5] rounded-sm text-[#A3A3A3] hover:bg-gray-200 transition-colors cursor-pointer"
                         data-letter="<?php echo $letter; ?>">
                         <?php echo $letter; ?>
                     </button>
@@ -107,8 +113,8 @@
             <div class="bg-white px-12.5 py-11 rounded-[4px]">
                 <div class="sm:flex sm:items-start">
                     <div class="text-left w-full">
-                        <h3 class="text-[#1A3B1B] font-base font-bold text-[24px] leading-[135%] capitalize"
-                            id="glossary-modal-title mb-4">Terms</h3>
+                        <h3 class="text-[#1A3B1B] font-base font-bold text-[24px] leading-[135%] capitalize mb-4"
+                            id="glossary-modal-title">Terms</h3>
                         <div class="mt-4">
                             <p class="text-[#666666] font-base font-normal text-[18px] leading-[140%] tracking-[0.015em] whitespace-pre-line"
                                 id="glossary-modal-body">Description
@@ -118,7 +124,7 @@
                 </div>
             </div>
             <div class="absolute right-4 top-4">
-                <button type="button" id="glossary-modal-close" class="w-8 h-8">
+                <button type="button" id="glossary-modal-close" class="w-8 h-8 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path d="M8 24L24 8M8 8L24 24" stroke="#A3A3A3" stroke-width="3" stroke-linecap="round"
                             stroke-linejoin="round" />
@@ -134,4 +140,4 @@
         window.SITE_URL = "<?php echo SITE_URL; ?>";
     }
 </script>
-<script src="<?php echo SITE_URL; ?>/assets/js/glossary.js"></script>
+<script src="<?php echo SITE_URL; ?>/assets/js/glossary.js?v=<?php echo time(); ?>"></script>

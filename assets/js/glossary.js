@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const modalTitle = document.getElementById("glossary-modal-title");
   const modalBody = document.getElementById("glossary-modal-body");
   const modalClose = document.getElementById("glossary-modal-close");
+  const searchInput = document.getElementById("glossary-search-input");
+  const searchResults = document.getElementById("search-results");
 
   // Check SITE_URL
   if (typeof SITE_URL === "undefined") {
@@ -16,9 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentLetter = "A";
   let currentOffset = 0;
-  const limit = 8;
+  let limit = 8;
   let isLoading = false;
   let totalItems = 0;
+  let searchTimeout = null;
+  let highlightKeyword = null;
 
   // Initial Load
   init();
@@ -39,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       currentLetter = letter;
       currentOffset = 0; // Reset pagination
+      highlightKeyword = null; // Reset highlight
+      limit = 8; // Reset limit
       updateActiveLetter(letter);
       fetchGlossary(false); // New fetch, replace content
     });
@@ -50,6 +56,61 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!isLoading) {
         currentOffset += limit;
         fetchGlossary(true); // Append content
+      }
+    });
+  }
+
+  // Search Input Listener
+  if (searchInput) {
+    searchInput.addEventListener("input", function (e) {
+      const query = e.target.value.trim();
+      console.log("Search input:", query);
+      clearTimeout(searchTimeout);
+
+      if (query.length < 1) {
+        searchResults.classList.add("hidden");
+        searchResults.innerHTML = "";
+        return;
+      }
+
+      searchTimeout = setTimeout(() => {
+        fetchSearchResults(query);
+      }, 300);
+    });
+
+    // Close search results on click outside
+    document.addEventListener("click", function (e) {
+      if (
+        searchResults &&
+        !searchResults.contains(e.target) &&
+        e.target !== searchInput
+      ) {
+        searchResults.classList.add("hidden");
+      }
+    });
+  }
+
+  // Search Result Click (Delegated)
+  if (searchResults) {
+    searchResults.addEventListener("click", function (e) {
+      const resultItem = e.target.closest(".search-result-item");
+      if (resultItem) {
+        const keyword = resultItem.dataset.keyword;
+        const letter = keyword.charAt(0).toUpperCase();
+
+        // Set state
+        currentLetter = letter;
+        currentOffset = 0;
+        limit = 1000; // Load all to ensure highlighted item is visible
+        highlightKeyword = keyword;
+
+        // UI Updates
+        updateActiveLetter(letter);
+        searchResults.classList.add("hidden");
+        searchInput.value = ""; // Optional: clean input
+
+        // Fetch
+        fetchGlossary(false);
       }
     });
   }
@@ -81,9 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     letterButtons.forEach((btn) => {
       if (btn.dataset.letter === letter) {
         btn.classList.remove("bg-[#F5F5F5]", "text-[#A3A3A3]");
-        btn.classList.add("bg-[#F4C300]", "text-[#1A3B1B]"); // Active styling (based on sample) or user request?
-        // User sample had: //on active text-main-green bg-[#F4C300]
-        // Default: bg-[#F5F5F5] text-[#A3A3A3]
+        btn.classList.add("bg-[#F4C300]", "text-[#1A3B1B]");
       } else {
         btn.classList.add("bg-[#F5F5F5]", "text-[#A3A3A3]");
         btn.classList.remove("bg-[#F4C300]", "text-[#1A3B1B]");
@@ -91,9 +150,54 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  async function fetchSearchResults(query) {
+    console.log("Fetching results for:", query);
+    try {
+      const response = await fetch(
+        `${SITE_URL}/ajax/get_glossary.php?search=${encodeURIComponent(query)}`
+      );
+      const data = await response.json();
+
+      if (data.status === "success") {
+        renderSearchResults(data.data.items);
+      } else {
+        console.warn("Search returned status:", data.status);
+      }
+    } catch (error) {
+      console.error("Search error:", error);
+    }
+  }
+
+  function renderSearchResults(items) {
+    if (!items || items.length === 0) {
+      searchResults.innerHTML =
+        '<div class="px-4 py-2 text-[#757575] text-sm">No results found</div>';
+      searchResults.classList.remove("hidden");
+      return;
+    }
+
+    const html = items
+      .map(
+        (item) => `
+        <div class="search-result-item px-4 py-2 hover:bg-[#F5F5F5] cursor-pointer text-[#1A3B1B] text-sm border-b border-[#F5F5F5] last:border-none duration-200 transition-colors" data-keyword="${item.keyword}">
+            ${item.keyword}
+        </div>
+      `
+      )
+      .join("");
+
+    searchResults.innerHTML = html;
+    searchResults.classList.remove("hidden");
+  }
+
   async function fetchGlossary(append) {
     isLoading = true;
     if (loadMoreBtn) loadMoreBtn.innerText = "Loading...";
+
+    // If we have a highlighter query and we are resetting (not appending), we might want to ensure we fetch enough items?
+    // For now, respect standard pagination. If the item is not in the first page, it won't be highlighted.
+    // NOTE: Ideally we'd ask backend "find page for this keyword".
+    // Proceeding with standard logic.
 
     try {
       const response = await fetch(
@@ -105,6 +209,23 @@ document.addEventListener("DOMContentLoaded", function () {
         totalItems = data.data.total;
         renderGlossary(data.data.items, append);
         updateLoadMoreVisibility();
+
+        // Handle Highlight Scroll
+        if (highlightKeyword && !append) {
+          setTimeout(() => {
+            const highlightedCard = document.querySelector(
+              `[data-card-keyword="${highlightKeyword}"]`
+            );
+            if (highlightedCard) {
+              highlightedCard.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
+            // Reset after generic highlight
+            // highlightKeyword = null; // Keep it? No need.
+          }, 100);
+        }
       } else {
         console.error("Error loading glossary:", data.message);
       }
@@ -134,8 +255,16 @@ document.addEventListener("DOMContentLoaded", function () {
           ? item.explanation.substring(0, 250) + "..."
           : item.explanation;
 
+        const isHighlighted =
+          highlightKeyword && item.keyword === highlightKeyword;
+        const borderClass = isHighlighted
+          ? "border-[#F4C300] border-2 shadow-lg"
+          : "border-transparent"; // Custom highlight
+
         return `
-            <div class="glossary-card bg-[#F5F5F5] px-4 py-6 rounded flex flex-col gap-4 justify-start items-start h-full hover:bg-primary transition-all ease-in-out duration-300 group">
+            <div data-card-keyword="${
+              item.keyword
+            }" class="glossary-card bg-[#F5F5F5] px-4 py-6 rounded flex flex-col gap-4 justify-start items-start h-full hover:bg-primary transition-all ease-in-out duration-300 group ${borderClass} box-border">
                 <h4 class="glossary-title text-[#666666] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green">
                     ${item.keyword}
                 </h4>
@@ -163,25 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateLoadMoreVisibility() {
-    const currentCount = currentOffset + limit; // Items potentially shown
-    // Logic: if currentOffset + limit >= total, hide button.
-    // Actually, on initial load (offset 0), we asked for `limit`.
-    // If append, we increased offset.
-    // It's safer to track how many we actually have on screen, but calculation is fine.
-
-    // Better logic: if the loaded items count (items.length from fetch) < limit, we reached end.
-    // OR: if currentOffset + fetched_items_count >= totalItems.
-
-    // Let's use totalItems from backend.
-    // We display items from 0 to currentOffset + (fetched count).
-    // If we just fetched 'limit' items, and currentOffset + limit < totalItems, show button.
-
-    // Wait, fetchGlossary keeps currentOffset.
-    // If we have rendered `currentOffset + newlyFetchedCount` items?
-    // Let's simplify:
     if (loadMoreContainer) {
-      // We need to know how many items are currently displayed?
-      // Or simply:
       if (currentOffset + limit < totalItems) {
         loadMoreContainer.style.display = "block";
       } else {

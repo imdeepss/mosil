@@ -479,23 +479,23 @@ $lubricant_features = [
         <div class="swiper who-we-are-swiper !pt-8 md:block block" id="about-who-we-are-swiper">
             <div class="swiper-wrapper md:grid md:grid-cols-5">
                 <?php foreach ($lubricant_features as $feature): ?>
-                    <div
-                        class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-4 !mt-4 cursor-pointer">
-
-                        <h6
-                            class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
-                            <?php echo $feature['title']; ?>
-                        </h6>
-
-                        <p
-                            class="text-[#666666] font-base font-normal text-[14px] md:text-[12px] leading-[150%] md:leading-[150%] tracking-[0.015em] relative z-10">
-                            <?php echo $feature['desc']; ?>
-                        </p>
-
                         <div
-                            class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 z-20">
+                            class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-4 !mt-4 cursor-pointer">
+
+                            <h6
+                                class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
+                                <?php echo $feature['title']; ?>
+                            </h6>
+
+                            <p
+                                class="text-[#666666] font-base font-normal text-[14px] md:text-[12px] leading-[150%] md:leading-[150%] tracking-[0.015em] relative z-10">
+                                <?php echo $feature['desc']; ?>
+                            </p>
+
+                            <div
+                                class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 z-20">
+                            </div>
                         </div>
-                    </div>
                 <?php endforeach; ?>
             </div>
 
@@ -536,32 +536,32 @@ $lubricant_features = [
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 md:pt-0 group/section">
             <?php foreach ($mosil_matters as $item): ?>
-                <div
-                    class="relative group overflow-hidden w-full md:h-[300px] h-[220px] flex flex-col justify-end cursor-pointer transition-opacity duration-300 md:group-hover/section:opacity-50 md:hover:!opacity-100">
+                    <div
+                        class="relative group overflow-hidden w-full md:h-[300px] h-[220px] flex flex-col justify-end cursor-pointer transition-opacity duration-300 md:group-hover/section:opacity-50 md:hover:!opacity-100">
 
-                    <div class="absolute inset-0"
-                        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), 
+                        <div class="absolute inset-0"
+                            style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), 
                         url('<?php echo SITE_URL; ?>/assets/images/ui/<?php echo $item['image']; ?>') no-repeat center/cover;">
+                        </div>
+
+                        <div
+                            class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform md:translate-y-15 group-hover:translate-y-0 max-w-[230px] md:max-w-full">
+
+                            <h6
+                                class="text-white font-base font-normal md:text-[24px] md:leading-[135%] text-[18px] leading-[140%] tracking-[0.015em] capitalize">
+                                <?php echo $item['title']; ?>
+                            </h6>
+
+                            <p
+                                class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hidden md:block">
+                                <?php echo $item['description']; ?>
+                            </p>
+                        </div>
+
+                        <div
+                            class="absolute inset-0 bg-main-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                     </div>
-
-                    <div
-                        class="relative z-10 md:px-6 md:py-5 px-4 py-4 transition-transform duration-500 ease-out transform md:translate-y-15 group-hover:translate-y-0 max-w-[230px] md:max-w-full">
-
-                        <h6
-                            class="text-white font-base font-normal md:text-[24px] md:leading-[135%] text-[18px] leading-[140%] tracking-[0.015em] capitalize">
-                            <?php echo $item['title']; ?>
-                        </h6>
-
-                        <p
-                            class="text-white font-base font-light text-[15px] leading-[150%] mt-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hidden md:block">
-                            <?php echo $item['description']; ?>
-                        </p>
-                    </div>
-
-                    <div
-                        class="absolute inset-0 bg-main-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
     </div>
