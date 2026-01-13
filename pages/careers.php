@@ -68,7 +68,7 @@ $positions = getCareerPosition();
                 <div class="relative flex min-w-[240px] flex-1">
                     <select name="position" id="positionSelect" required
                         class="appearance-none flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green cursor-pointer">
-                        <option value="" disabled selected>Please select your position</option>
+                        <option value="" disabled selected>Position</option>
                         <?php foreach ($positions as $position): ?>
                             <option value="<?= htmlspecialchars($position['position']) ?>" class="text-black">
                                 <?= htmlspecialchars($position['position']) ?>

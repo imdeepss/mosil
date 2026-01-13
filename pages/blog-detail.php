@@ -84,7 +84,7 @@ $pageTitle = htmlspecialchars($blog['title']);
                     Explore Relevant Blogs</h2>
                 <div class="hidden md:inline-flex justify-start items-center gap-4">
                     <button
-                        class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] opacity-50 cursor-pointer">
+                        class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16"
                             fill="none">
                             <path
@@ -147,7 +147,7 @@ $pageTitle = htmlspecialchars($blog['title']);
             </div>
             <div class="md:hidden flex justify-end items-center gap-4">
                 <button
-                    class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] opacity-50 cursor-pointer">
+                    class="mobile-swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16" fill="none">
                         <path
                             d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
@@ -156,7 +156,7 @@ $pageTitle = htmlspecialchars($blog['title']);
                 </button>
 
                 <button
-                    class="swiper-next w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                    class="mobile-swiper-next w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 16 16" fill="none">
                         <path
                             d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
@@ -170,6 +170,9 @@ $pageTitle = htmlspecialchars($blog['title']);
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const mobilePrev = document.querySelector('.mobile-swiper-prev');
+        const mobileNext = document.querySelector('.mobile-swiper-next');
+
         // Initialize Swiper
         const blogSwiper = new Swiper('.blogDetailSwiper', {
             slidesPerView: 1,
@@ -177,6 +180,14 @@ $pageTitle = htmlspecialchars($blog['title']);
             navigation: {
                 nextEl: '.swiper-next',
                 prevEl: '.swiper-prev',
+            },
+            on: {
+                init: function (swiper) {
+                    updateMobileButtons(swiper);
+                },
+                slideChange: function (swiper) {
+                    updateMobileButtons(swiper);
+                }
             },
             breakpoints: {
                 640: {
@@ -191,5 +202,38 @@ $pageTitle = htmlspecialchars($blog['title']);
                 }
             }
         });
+
+        if (mobilePrev && mobileNext) {
+            mobilePrev.addEventListener('click', (e) => {
+                e.preventDefault();
+                blogSwiper.slidePrev();
+            });
+            mobileNext.addEventListener('click', (e) => {
+                e.preventDefault();
+                blogSwiper.slideNext();
+            });
+        }
+
+        function updateMobileButtons(swiper) {
+            if (!mobilePrev || !mobileNext) return;
+
+            // Handle Previous Button
+            if (swiper.isBeginning) {
+                mobilePrev.classList.add('opacity-50');
+                mobilePrev.disabled = true;
+            } else {
+                mobilePrev.classList.remove('opacity-50');
+                mobilePrev.disabled = false;
+            }
+
+            // Handle Next Button
+            if (swiper.isEnd) {
+                mobileNext.classList.add('opacity-50');
+                mobileNext.disabled = true;
+            } else {
+                mobileNext.classList.remove('opacity-50');
+                mobileNext.disabled = false;
+            }
+        }
     });
 </script>

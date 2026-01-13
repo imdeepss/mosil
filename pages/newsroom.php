@@ -415,7 +415,7 @@ $faqs = [
             </div>
         </div>
 
-        <div class="md:mt-8 mt-6 swiper newsSwiper">
+        <div class="md:mt-8 mt-6 swiper blogSwiper">
             <div class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-10">
                 <?php foreach ($blogs as $blog) { ?>
 
@@ -460,6 +460,25 @@ $faqs = [
                     </div>
                 <?php } ?>
             </div>
+            <div class="md:hidden flex justify-end items-center gap-4 mt-4">
+                <button
+                    class="blog-swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16" fill="none">
+                        <path
+                            d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
+                            stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <button
+                    class="blog-swiper-next w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                        <path
+                            d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
+                            stroke="#1A3B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 </section>
@@ -481,7 +500,7 @@ $faqs = [
                     Know the important terms
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/glossary"
-                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
+                    class="text-white font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
                     See all
                 </a>
             </div>
@@ -693,6 +712,68 @@ $faqs = [
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+
+
+        const mobilePrevNews = document.querySelector('.blogSwiper .blog-swiper-prev');
+        const mobileNextNews = document.querySelector('.blogSwiper .blog-swiper-next');
+
+        function updateNewsMobileButtons(swiper) {
+            if (!mobilePrevNews || !mobileNextNews) return;
+
+            // Handle Previous Button
+            if (swiper.isBeginning) {
+                mobilePrevNews.classList.add('opacity-50');
+                mobilePrevNews.disabled = true;
+            } else {
+                mobilePrevNews.classList.remove('opacity-50');
+                mobilePrevNews.disabled = false;
+            }
+
+            // Handle Next Button
+            if (swiper.isEnd) {
+                mobileNextNews.classList.add('opacity-50');
+                mobileNextNews.disabled = true;
+            } else {
+                mobileNextNews.classList.remove('opacity-50');
+                mobileNextNews.disabled = false;
+            }
+        }
+
+        // Initialize News Swiper
+        const blogSwiper = new Swiper('.blogSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                    enabled: false,
+                }
+            },
+            on: {
+                init: function (swiper) {
+                    updateNewsMobileButtons(swiper);
+                },
+                slideChange: function (swiper) {
+                    updateNewsMobileButtons(swiper);
+                }
+            }
+        });
+
+        if (mobilePrevNews && mobileNextNews) {
+            mobilePrevNews.addEventListener('click', (e) => {
+                e.preventDefault();
+                blogSwiper.slidePrev();
+            });
+            mobileNextNews.addEventListener('click', (e) => {
+                e.preventDefault();
+                blogSwiper.slideNext();
+            });
+        }
 
         const cards = document.querySelectorAll('.glossary-card');
         const modal = document.getElementById("glossary-modal");
