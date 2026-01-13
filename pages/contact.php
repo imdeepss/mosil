@@ -261,7 +261,7 @@ $pageTitle = 'Contact Us';
             </div>
         </div>
     </div>
-    <div class="bg-primary relative overflow-hidden md:min-h-[800.077px] min-h-[240px] flex items-center">
+    <div class="bg-primary relative overflow-hidden md:min-h-[800.077px] min-h-[240px] flex items-center md:mt-5 mt-4">
 
         <div class="absolute inset-0 z-0">
             <img src="<?php echo SITE_URL ?>/assets/images/ui/linear-box-bg.svg"
