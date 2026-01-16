@@ -1,0 +1,401 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: login");
+    exit;
+}
+
+require_once '../includes/config.php';
+require_once '../includes/functions.php';
+
+$success_message = '';
+$error_message = '';
+
+
+function updateSanitizeInput($data, $allow_html = false)
+{
+    if (is_array($data)) {
+        return array_map(function ($item) use ($allow_html) {
+            return updateSanitizeInput($item, $allow_html);
+        }, $data);
+    }
+
+    $data = trim($data);
+    $data = stripslashes($data);
+
+    return $allow_html ? $data : htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+
+        $title = updateSanitizeInput($_POST['title']);
+        $introduction = updateSanitizeInput($_POST['introduction']);
+        $solution = updateSanitizeInput($_POST['solution']);
+        $result = updateSanitizeInput($_POST['result']);
+        $industry_segment = updateSanitizeInput($_POST['industry_segment']);
+        $equipment = updateSanitizeInput($_POST['equipment']);
+        $application = updateSanitizeInput($_POST['application']);
+        $challenge = updateSanitizeInput($_POST['challenge']);
+        $expectation = updateSanitizeInput($_POST['expectation']);
+        $recommendation = updateSanitizeInput($_POST['recommendation']);
+        $benefits = updateSanitizeInput($_POST['benefits']);
+        $status = updateSanitizeInput($_POST['status']);
+        $image_path = '';
+        $case_study_file_path = '';
+
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            $file_type = $_FILES['image']['type'];
+
+            if (!in_array($file_type, $allowed_types)) {
+                throw new Exception('Invalid image type. Only JPEG, PNG, GIF, and WebP are allowed.');
+            }
+
+            if ($_FILES['image']['size'] > 5 * 1024 * 1024) {
+                throw new Exception('Image file size must be less than 5MB.');
+            }
+
+            $upload_dir = '../uploads/case_studies/images';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $filename = uniqid() . '_' . time() . '.' . $file_extension;
+            $image_path = $upload_dir . $filename;
+
+            if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
+                throw new Exception('Failed to upload image.');
+            }
+            $case_study_img = $filename;
+        }
+
+
+        if (isset($_FILES['case_study_file']) && $_FILES['case_study_file']['error'] === UPLOAD_ERR_OK) {
+            $allowed_types = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            $file_type = $_FILES['case_study_file']['type'];
+
+            if (!in_array($file_type, $allowed_types)) {
+                throw new Exception('Invalid file type. Only PDF and Word documents are allowed.');
+            }
+
+            if ($_FILES['case_study_file']['size'] > 10 * 1024 * 1024) {
+                throw new Exception('File size must be less than 10MB.');
+            }
+            $upload_dir = '../uploads/case_studies/files';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            $file_extension = pathinfo($_FILES['case_study_file']['name'], PATHINFO_EXTENSION);
+            $filename = uniqid() . '_' . time() . '.' . $file_extension;
+            $case_study_file_path = $upload_dir . $filename;
+
+            if (!move_uploaded_file($_FILES['case_study_file']['tmp_name'], $case_study_file_path)) {
+                throw new Exception('Failed to upload case study file.');
+            }
+            $case_study_file = $filename;
+        }
+
+        $sql = "INSERT INTO case_studies (title,  introduction, image, solution, result, case_study_file, 
+                industry_segment, equipment, application, challenge, expectation, recommendation, benefits, 
+                status, created_at, updated_at) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param(
+            "ssssssssssssss",
+            $title,
+            $introduction,
+            $case_study_img,
+            $solution,
+            $result,
+            $case_study_file,
+            $industry_segment,
+            $equipment,
+            $application,
+            $challenge,
+            $expectation,
+            $recommendation,
+            $benefits,
+            $status
+        );
+
+        if ($stmt->execute()) {
+            $success_message = 'Case study added successfully!';
+            logActivity('case_study_add', "Added case study: $title");
+        } else {
+            throw new Exception("Database error: " . $stmt->error);
+        }
+
+        $success_message = 'Case study added successfully!';
+
+
+        logActivity('case_study_add', "Added case study: $title");
+    } catch (Exception $e) {
+        $error_message = $e->getMessage();
+    }
+}
+?>
+
+
+<?php include 'includes/header.php'; ?>
+
+<div class="container-fluid">
+    <div class="row">
+        <?php include 'includes/sidebar.php'; ?>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2"><i class="fas fa-plus-circle me-2"></i>Add Case Study</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <a href="case_studies" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Back to List
+                    </a>
+                </div>
+            </div>
+
+            <!-- Alert Container -->
+            <div id="alertContainer"></div>
+
+            <?php if ($success_message): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i><?php echo $success_message; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($error_message): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i><?php echo $error_message; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+
+            <form id="caseStudyForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-lg-8">
+                        <!-- Basic Information -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="title" name="title" required>
+                                    <div class="invalid-feedback">Please provide a valid title.</div>
+                                </div>
+
+
+
+                                <div class="mb-3">
+                                    <label for="introduction" class="form-label">Introduction <span class="text-danger">*</span></label>
+                                    <textarea class="form-control tinymce-editor" id="introduction" name="introduction" rows="4" required></textarea>
+                                    <div class="invalid-feedback">Please provide an introduction.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Case Study Details -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="fas fa-clipboard-list me-2"></i>Case Study Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="challenge" class="form-label">Challenge</label>
+                                    <textarea class="form-control tinymce-editor" id="challenge" name="challenge" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="expectation" class="form-label">Expectation</label>
+                                    <textarea class="form-control tinymce-editor" id="expectation" name="expectation" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="solution" class="form-label">Solution</label>
+                                    <textarea class="form-control tinymce-editor" id="solution" name="solution" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="result" class="form-label">Result</label>
+                                    <textarea class="form-control tinymce-editor" id="result" name="result" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="recommendation" class="form-label">Recommendation</label>
+                                    <textarea class="form-control tinymce-editor" id="recommendation" name="recommendation" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="benefits" class="form-label">Benefits</label>
+                                    <textarea class="form-control tinymce-editor" id="benefits" name="benefits" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-lg-4">
+                        <!-- Publish Settings -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="fas fa-cog me-2"></i>Publish Settings</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="statusActive" value="Active" checked>
+                                            <label class="form-check-label" for="statusActive">
+                                                <i class="fas fa-eye text-success me-1"></i>Active
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="statusInactive" value="Inactive">
+                                            <label class="form-check-label" for="statusInactive">
+                                                <i class="fas fa-eye-slash text-warning me-1"></i>Inactive
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                                        <i class="fas fa-save me-2"></i>Save Case Study
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Industry & Equipment -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="fas fa-industry me-2"></i>Industry & Equipment</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="industry_segment" class="form-label">Industry Segment</label>
+                                    <input type="text" class="form-control" id="industry_segment" name="industry_segment">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="equipment" class="form-label">Equipment</label>
+                                    <input type="text" class="form-control" id="equipment" name="equipment">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="application" class="form-label">Application</label>
+                                    <input type="text" class="form-control" id="application" name="application">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Media -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="fas fa-image me-2"></i>Media</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Featured Image</label>
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                    <div class="form-text">Max size: 5MB. Formats: JPG, PNG, GIF, WebP</div>
+                                    <div class="mt-2">
+                                        <img id="imagePreview" src="/placeholder.svg" alt="Preview" class="img-thumbnail" style="max-width: 200px; display: none;">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="case_study_file" class="form-label">Case Study File</label>
+                                    <input type="file" class="form-control" id="case_study_file" name="case_study_file" accept=".pdf,.doc,.docx">
+                                    <div class="form-text">Max size: 10MB. Formats: PDF, DOC, DOCX</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+
+
+<?php include 'includes/footer.php'; ?>
+
+<script>
+    $(document).ready(function() {
+
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 300,
+            menubar: false,
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
+        });
+
+
+
+        $('#image').on('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $('#imagePreview').hide();
+            }
+        });
+
+
+        $('#caseStudyForm').validate({
+            rules: {
+                title: {
+                    required: true,
+                    minlength: 3
+                },
+
+                introduction: {
+                    required: true
+                }
+            },
+            messages: {
+                title: {
+                    required: "Please enter a title",
+                    minlength: "Title must be at least 3 characters"
+                },
+                introduction: {
+                    required: "Please enter an introduction"
+                }
+            },
+            submitHandler: function(form) {
+
+                tinymce.triggerSave();
+
+
+                $('#submitBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Saving...');
+
+                form.submit();
+            }
+        });
+    });
+</script>

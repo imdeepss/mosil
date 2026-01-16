@@ -1,0 +1,8 @@
+:root {
+  --primary-color: #f6c81b;
+}
+
+/* color */
+.bg-yellow {
+  background-color: var(--primary-color);
+}
