@@ -87,11 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (show) {
       sidebar.classList.remove("translate-x-full", "invisible");
       sidebarOverlay.classList.remove("hidden");
-      setTimeout(() => sidebarOverlay.classList.add("opacity-100"), 10);
+      setTimeout(() => sidebarOverlay.classList.add("opacity-50"), 10);
       document.body.classList.add("overflow-hidden");
     } else {
       sidebar.classList.add("translate-x-full", "invisible");
-      sidebarOverlay.classList.remove("opacity-100");
+      sidebarOverlay.classList.remove("opacity-50");
       setTimeout(() => sidebarOverlay.classList.add("hidden"), 300);
       document.body.classList.remove("overflow-hidden");
     }

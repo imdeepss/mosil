@@ -77,7 +77,7 @@ $lubricant_features = [
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/about-us.png" alt="Career"
             class="hidden md:block w-full h-full object-cover object-[50%_75%]" fetchpriority="high">
 
-        <img src="<?php echo SITE_URL; ?>/assets/images/banners/career_mb_v2.png" alt="Career"
+        <img src="<?php echo SITE_URL; ?>/assets/images/banners/Mosil-truck-mb.png" alt="Career"
             class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
     </div>
 </section>

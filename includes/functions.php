@@ -7,6 +7,59 @@
  * --------------------------------------------------------------------------
  */
 
+
+
+/**
+ * Check if the session has timed out
+ * 
+ * @return bool True if session has timed out, false otherwise
+ */
+function isSessionTimedOut()
+{
+    if (!isset($_SESSION['admin_last_activity'])) {
+        return true;
+    }
+
+    if (time() - $_SESSION['admin_last_activity'] > SESSION_TIMEOUT) {
+        return true;
+    }
+
+    // Update last activity time
+    $_SESSION['admin_last_activity'] = time();
+
+    return false;
+}
+
+/**
+ * Check if user has permission for a specific action
+ * 
+ * @param string $permission The permission to check
+ * @return bool True if user has permission, false otherwise
+ */
+function hasPermission($permission)
+{
+    // For demo purposes, we'll assume administrator role has all permissions
+    if ($_SESSION['admin_role'] === 'administrator') {
+        return true;
+    }
+
+    // In a real application, you would check against a permissions table
+    $permissions = [
+        'editor' => ['view_dashboard', 'edit_content', 'view_reports'],
+        'viewer' => ['view_dashboard', 'view_reports']
+    ];
+
+    if (
+        isset($permissions[$_SESSION['admin_role']]) &&
+        in_array($permission, $permissions[$_SESSION['admin_role']])
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
+
 /**
  * Execute a query and fetch all results.
  * Supports standard parameter binding.

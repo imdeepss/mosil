@@ -4,6 +4,7 @@
 // Site Configuration
 define('SITE_NAME', 'MOSIL Lubricants');
 define('SITE_URL', 'http://localhost/mosil-new');
+define('BASE_URL', SITE_URL . '/');
 
 // Database Configuration (Placeholder)
 //localhost db config
@@ -23,4 +24,10 @@ define('DB_NAME', 'u698941191_mosil');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+// Session Configuration
+define('SESSION_TIMEOUT', 1800); // 30 minutes
+
+// Database Connection
+require_once 'db.php';
 ?>

@@ -64,7 +64,7 @@ $categories = [
         </div>
 
         <p
-            class="md:pr-28 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-[var(--color-b100)] hidden md:block">
+            class="md:pr-28 pr-16 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-[var(--color-b100)]">
             We offer a diverse range of products tailored to meet the needs of various industries. From innovative tech
             solutions to essential manufacturing tools, we cater to every sector's unique requirements.
         </p>
