@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Blog Posts</h1>
-                <a href="<?= HOME_URL;?>/admin/blog_add_post.php" class="btn btn-sm btn-primary">
+                <a href="<?= BASE_URL; ?>admin/blog_add_post.php" class="btn btn-sm btn-primary">
                     <i class="fas fa-plus me-1"></i> Add Post
                 </a>
             </div>
@@ -67,8 +67,8 @@ if ($result->num_rows > 0) {
                         <div class="card-body">
                             <h5 class="card-title">Active Blogs</h5>
                             <p class="card-text h2"><?php echo count(array_filter($posts, function ($post) {
-                                                        return strtolower($post['status']) === 'published';
-                                                    })); ?></p>
+                                return strtolower($post['status']) === 'published';
+                            })); ?></p>
                         </div>
                     </div>
                 </div>
@@ -77,8 +77,8 @@ if ($result->num_rows > 0) {
                         <div class="card-body">
                             <h5 class="card-title">Inactive Blogs</h5>
                             <p class="card-text h2"><?php echo count(array_filter($posts, function ($post) {
-                                                        return strtolower($post['status']) !== 'published';
-                                                    })); ?></p>
+                                return strtolower($post['status']) !== 'published';
+                            })); ?></p>
                         </div>
                     </div>
                 </div>
@@ -113,10 +113,12 @@ if ($result->num_rows > 0) {
                                     <td><?= htmlspecialchars($post['category_name']) ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <a href="/admin/blog_edit_post.php?id=<?= $post['id'] ?>" class="btn btn-primary">
+                                            <a href="<?= BASE_URL ?>admin/blog_edit_post.php?id=<?= $post['id'] ?>"
+                                                class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <button class="btn btn-danger delete-btn" data-id="<?= $post['id'] ?>" data-title="<?= htmlspecialchars($post['title']) ?>">
+                                            <button class="btn btn-danger delete-btn" data-id="<?= $post['id'] ?>"
+                                                data-title="<?= htmlspecialchars($post['title']) ?>">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
@@ -137,7 +139,8 @@ if ($result->num_rows > 0) {
 
 
 <!-- Delete Confirmation Form (Hidden) -->
-<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" style="display: none;">
+<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+    style="display: none;">
     <input type="hidden" name="action" value="delete">
     <input type="hidden" id="delete_category_id" name="category_id" value="">
 </form>
@@ -160,7 +163,7 @@ if ($result->num_rows > 0) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // === Datatable Initialization ===
         const table = $('#postsTable').DataTable({
             responsive: true,
@@ -179,7 +182,7 @@ if ($result->num_rows > 0) {
 
 
         // === Delete Confirmation with SweetAlert2 ===
-        $(document).on('click', '.delete-btn', function() {
+        $(document).on('click', '.delete-btn', function () {
             const categoryId = $(this).data('id');
             const categoryName = $(this).data('name');
             $('#delete_category_id').val(categoryId);

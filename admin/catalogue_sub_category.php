@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $status = sanitizeInput($_POST['status'] ?? '');
 
         if ($action === 'add' || $action === 'edit') {
-            
+
             if ($action === 'add') {
                 // Insert new sub-category
                 $stmt = $conn->prepare("INSERT INTO sub_category (scat_name, m_cat, meta_title, meta_keywords, meta_description, status) VALUES (?, ?, ?, ?, ?, ?)");
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $messageType = "danger";
                 }
             }
-            
+
         } elseif ($action === 'delete') {
             // Delete sub-category
             $stmt = $conn->prepare("DELETE FROM sub_category WHERE id = ?");
@@ -139,18 +139,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php include 'includes/sidebar.php'; ?>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Sub Categories</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary" id="exportBtn">
                             <i class="fas fa-download me-1"></i> Export
                         </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                            data-bs-target="#importModal">
                             <i class="fas fa-upload me-1"></i> Import
                         </button>
                     </div>
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#addCategoryModal">
                         <i class="fas fa-plus me-1"></i> Add New Category
                     </button>
                 </div>
@@ -181,8 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="card-body">
                             <h5 class="card-title">Active Categories</h5>
                             <p class="card-text h2"><?php echo count(array_filter($categories, function ($cat) {
-                                                        return $cat['status'] === 'Active';
-                                                    })); ?></p>
+                                return $cat['status'] === 'Active';
+                            })); ?></p>
                         </div>
                     </div>
                 </div>
@@ -191,8 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="card-body">
                             <h5 class="card-title">Inactive Categories</h5>
                             <p class="card-text h2"><?php echo count(array_filter($categories, function ($cat) {
-                                                        return $cat['status'] === 'Inactive';
-                                                    })); ?></p>
+                                return $cat['status'] === 'Inactive';
+                            })); ?></p>
                         </div>
                     </div>
                 </div>
@@ -232,19 +235,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-primary btnEditModal"  data-id="<?php echo $category['id']; ?>">
+                                            <button type="button" class="btn btn-sm btn-primary btnEditModal"
+                                                data-id="<?php echo $category['id']; ?>">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <?php if ($category['status'] === 'Active'): ?>
-                                                <button type="button" class="btn btn-sm btn-warning unpublish-btn" data-id="<?php echo $category['id']; ?>">
+                                                <button type="button" class="btn btn-sm btn-warning unpublish-btn"
+                                                    data-id="<?php echo $category['id']; ?>">
                                                     <i class="fas fa-eye-slash"></i>
                                                 </button>
                                             <?php else: ?>
-                                                <button type="button" class="btn btn-sm btn-success publish-btn" data-id="<?php echo $category['id']; ?>">
+                                                <button type="button" class="btn btn-sm btn-success publish-btn"
+                                                    data-id="<?php echo $category['id']; ?>">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             <?php endif; ?>
-                                            <button type="button" class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $category['id']; ?>" data-name="<?php echo htmlspecialchars($category['name']); ?>">
+                                            <button type="button" class="btn btn-sm btn-danger delete-btn"
+                                                data-id="<?php echo $category['id']; ?>"
+                                                data-name="<?php echo htmlspecialchars($category['name']); ?>">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
@@ -273,20 +281,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" enctype="multipart/form-data" id="addCategoryForm" novalidate>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation"
+                enctype="multipart/form-data" id="addCategoryForm" novalidate>
                 <div class="modal-body">
                     <input type="hidden" name="action" value="add">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="sub_category_name" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="sub_category_name" name="sub_category_name" required>
+                            <input type="text" class="form-control" id="sub_category_name" name="sub_category_name"
+                                required>
                             <div class="invalid-feedback">
                                 Please provide a category name.
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="main_category_name" class="form-label">Select Main Category</label>
-                            <select class="form-select select2" id="main_category_name" name="main_category_name[]" multiple required>
+                            <select class="form-select select2" id="main_category_name" name="main_category_name[]"
+                                multiple required>
                                 <option value="">-- Select Main Category --</option>
                                 <?php foreach ($main_categories as $m_category): ?>
                                     <option value="<?php echo $m_category['id']; ?>">
@@ -316,7 +327,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="col-12 mb-3">
                             <label for="meta_description" class="form-label">Meta Description</label>
-                            <textarea class="form-control" id="meta_description" name="meta_description" rows="3"></textarea>
+                            <textarea class="form-control" id="meta_description" name="meta_description"
+                                rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -337,12 +349,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h5 class="modal-title" id="importModalLabel">Import Categories</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="import_file" class="form-label">CSV File</label>
-                        <input type="file" class="form-control" id="import_file" name="import_file" accept=".csv" required>
-                        <div class="form-text">Please upload a CSV file with the following columns: scat_name, m_cat, meta_title, meta_keywords, meta_description, status</div>
+                        <input type="file" class="form-control" id="import_file" name="import_file" accept=".csv"
+                            required>
+                        <div class="form-text">Please upload a CSV file with the following columns: scat_name, m_cat,
+                            meta_title, meta_keywords, meta_description, status</div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -355,19 +370,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <!-- Delete Confirmation Form (Hidden) -->
-<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" style="display: none;">
+<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+    style="display: none;">
     <input type="hidden" name="action" value="delete">
     <input type="hidden" id="delete_category_id" name="category_id" value="">
 </form>
 
 <!-- Publish Form (Hidden) -->
-<form id="publishForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" style="display: none;">
+<form id="publishForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+    style="display: none;">
     <input type="hidden" name="action" value="publish">
     <input type="hidden" id="publish_category_id" name="category_id" value="">
 </form>
 
 <!-- Unpublish Form (Hidden) -->
-<form id="unpublishForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" style="display: none;">
+<form id="unpublishForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+    style="display: none;">
     <input type="hidden" name="action" value="unpublish">
     <input type="hidden" id="unpublish_category_id" name="category_id" value="">
 </form>
@@ -375,224 +393,224 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'includes/footer.php'; ?>
 
 <script>
-// === INIT SELECT2 ===
-function initSelect2($container = $(document)) {
-    $container.find(".select2").each(function () {
-        const $el = $(this);
-        const $modalParent = $el.closest(".modal");
-        if ($el.hasClass("select2-hidden-accessible")) {
-            $el.select2("destroy");
-        }
-        $el.select2({
-            dropdownParent: $modalParent.length ? $modalParent : $(document.body),
-            width: "100%",
-            placeholder: "-- Select Category --",
-            allowClear: true
+    // === INIT SELECT2 ===
+    function initSelect2($container = $(document)) {
+        $container.find(".select2").each(function () {
+            const $el = $(this);
+            const $modalParent = $el.closest(".modal");
+            if ($el.hasClass("select2-hidden-accessible")) {
+                $el.select2("destroy");
+            }
+            $el.select2({
+                dropdownParent: $modalParent.length ? $modalParent : $(document.body),
+                width: "100%",
+                placeholder: "-- Select Category --",
+                allowClear: true
+            });
         });
-    });
-}
+    }
 
-// === INIT VALIDATION ===
-function initValidation($container = $(document)) {
-    $container.find(".needs-validation").each(function () {
-        $(this).validate({
-            rules: {
-                sub_category_name: {
-                    required: true,
-                    minlength: 3
+    // === INIT VALIDATION ===
+    function initValidation($container = $(document)) {
+        $container.find(".needs-validation").each(function () {
+            $(this).validate({
+                rules: {
+                    sub_category_name: {
+                        required: true,
+                        minlength: 3
+                    },
+                    main_category_name: {
+                        required: true
+                    },
+                    status: {
+                        required: true
+                    },
+                    meta_title: {
+                        minlength: 3
+                    },
+                    meta_keywords: {
+                        minlength: 3
+                    },
+                    meta_description: {
+                        minlength: 5
+                    }
                 },
-                main_category_name: {
-                    required: true
+                messages: {
+                    sub_category_name: {
+                        required: "Please enter a category name",
+                        minlength: "Category name must be at least 3 characters"
+                    },
+                    main_category_name: {
+                        required: "Please select a parent category"
+                    },
+                    status: {
+                        required: "Please select a status"
+                    },
+                    meta_title: {
+                        minlength: "Meta title must be at least 3 characters"
+                    },
+                    meta_keywords: {
+                        minlength: "Meta keywords must be at least 3 characters"
+                    },
+                    meta_description: {
+                        minlength: "Meta description must be at least 5 characters"
+                    }
                 },
-                status: {
-                    required: true
+                errorElement: "div",
+                errorClass: "invalid-feedback",
+                highlight: function (element) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
                 },
-                meta_title: {
-                    minlength: 3
+                unhighlight: function (element) {
+                    $(element).removeClass("is-invalid").addClass("is-valid");
                 },
-                meta_keywords: {
-                    minlength: 3
+                errorPlacement: function (error, element) {
+                    if (element.hasClass("select2-hidden-accessible")) {
+                        error.insertAfter(element.next(".select2-container"));
+                    } else {
+                        error.insertAfter(element);
+                    }
                 },
-                meta_description: {
-                    minlength: 5
+            });
+        });
+    }
+
+    // === DOCUMENT READY ===
+    $(document).ready(function () {
+        // === DATATABLES ===
+        const table = $('#categoriesTable').DataTable({
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    className: 'btn btn-sm btn-secondary',
+                    exportOptions: { columns: [0, 1, 2] }
+                },
+                {
+                    extend: 'csv',
+                    className: 'btn btn-sm btn-secondary',
+                    exportOptions: { columns: [0, 1, 2] }
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn btn-sm btn-secondary',
+                    exportOptions: { columns: [0, 1, 2] }
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn btn-sm btn-secondary',
+                    exportOptions: { columns: [0, 1, 2] }
+                },
+                {
+                    extend: 'print',
+                    className: 'btn btn-sm btn-secondary',
+                    exportOptions: { columns: [0, 1, 2] }
                 }
-            },
-            messages: {
-                sub_category_name: {
-                    required: "Please enter a category name",
-                    minlength: "Category name must be at least 3 characters"
-                },
-                main_category_name: {
-                    required: "Please select a parent category"
-                },
-                status: {
-                    required: "Please select a status"
-                },
-                meta_title: {
-                    minlength: "Meta title must be at least 3 characters"
-                },
-                meta_keywords: {
-                    minlength: "Meta keywords must be at least 3 characters"
-                },
-                meta_description: {
-                    minlength: "Meta description must be at least 5 characters"
+            ]
+        });
+
+        $('.dt-buttons').hide();
+
+        $('#exportBtn').on('click', function () {
+            $('.buttons-excel').click();
+        });
+
+        // === SELECT2 INIT ON PAGE LOAD ===
+        initSelect2();
+
+        // === VALIDATION INIT ON PAGE LOAD ===
+        initValidation();
+
+        // === CONFIRM DELETE ===
+        $(document).on('click', '.delete-btn', function () {
+            const categoryId = $(this).data('id');
+            const categoryName = $(this).data('name');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to delete the category "${categoryName}". This action cannot be undone!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    $('#delete_category_id').val(categoryId);
+                    $('#deleteForm').submit();
                 }
-            },
-            errorElement: "div",
-            errorClass: "invalid-feedback",
-            highlight: function (element) {
-                $(element).addClass("is-invalid").removeClass("is-valid");
-            },
-            unhighlight: function (element) {
-                $(element).removeClass("is-invalid").addClass("is-valid");
-            },
-            errorPlacement: function (error, element) {
-                if (element.hasClass("select2-hidden-accessible")) {
-                    error.insertAfter(element.next(".select2-container"));
-                } else {
-                    error.insertAfter(element);
+            });
+        });
+
+        // === CONFIRM PUBLISH ===
+        $(document).on('click', '.publish-btn', function () {
+            const categoryId = $(this).data('id');
+
+            Swal.fire({
+                title: 'Activate Category',
+                text: 'Are you sure you want to activate this category?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, activate it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    $('#publish_category_id').val(categoryId);
+                    $('#publishForm').submit();
                 }
-            },           
+            });
+        });
+
+        // === CONFIRM UNPUBLISH ===
+        $(document).on('click', '.unpublish-btn', function () {
+            const categoryId = $(this).data('id');
+
+            Swal.fire({
+                title: 'Deactivate Category',
+                text: 'Are you sure you want to deactivate this category?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#ffc107',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, deactivate it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    $('#unpublish_category_id').val(categoryId);
+                    $('#unpublishForm').submit();
+                }
+            });
+        });
+
+        // === LOAD MODAL CONTENT VIA AJAX ===
+        $(document).on('click', '.btnEditModal', function () {
+            const productId = $(this).data('id');
+            $.ajax({
+                url: "<?= BASE_URL ?>admin/_ajax/getSubCat.php",
+                type: "POST",
+                data: { id: productId },
+                dataType: "html",
+                success: function (data) {
+                    $("#editCategoryModal").html(data);
+                    const $modal = $("#editCategoryModal");
+
+                    $modal.modal("show");
+
+                    $modal.on("shown.bs.modal", function () {
+                        initSelect2($(this));
+                        // initValidation($(this));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Load Error',
+                        text: 'Unable to load edit form. Please try again later.'
+                    });
+                }
+            });
         });
     });
-}
-
-// === DOCUMENT READY ===
-$(document).ready(function () {
-    // === DATATABLES ===
-    const table = $('#categoriesTable').DataTable({
-        responsive: true,
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'copy',
-                className: 'btn btn-sm btn-secondary',
-                exportOptions: { columns: [0, 1, 2] }
-            },
-            {
-                extend: 'csv',
-                className: 'btn btn-sm btn-secondary',
-                exportOptions: { columns: [0, 1, 2] }
-            },
-            {
-                extend: 'excel',
-                className: 'btn btn-sm btn-secondary',
-                exportOptions: { columns: [0, 1, 2] }
-            },
-            {
-                extend: 'pdf',
-                className: 'btn btn-sm btn-secondary',
-                exportOptions: { columns: [0, 1, 2] }
-            },
-            {
-                extend: 'print',
-                className: 'btn btn-sm btn-secondary',
-                exportOptions: { columns: [0, 1, 2] }
-            }
-        ]
-    });
-
-    $('.dt-buttons').hide();
-
-    $('#exportBtn').on('click', function () {
-        $('.buttons-excel').click();
-    });
-
-    // === SELECT2 INIT ON PAGE LOAD ===
-    initSelect2();
-
-    // === VALIDATION INIT ON PAGE LOAD ===
-    initValidation();
-
-    // === CONFIRM DELETE ===
-    $(document).on('click', '.delete-btn', function () {
-        const categoryId = $(this).data('id');
-        const categoryName = $(this).data('name');
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: `You are about to delete the category "${categoryName}". This action cannot be undone!`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#dc3545',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Yes, delete it!'
-        }).then(result => {
-            if (result.isConfirmed) {
-                $('#delete_category_id').val(categoryId);
-                $('#deleteForm').submit();
-            }
-        });
-    });
-
-    // === CONFIRM PUBLISH ===
-    $(document).on('click', '.publish-btn', function () {
-        const categoryId = $(this).data('id');
-
-        Swal.fire({
-            title: 'Activate Category',
-            text: 'Are you sure you want to activate this category?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#28a745',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Yes, activate it!'
-        }).then(result => {
-            if (result.isConfirmed) {
-                $('#publish_category_id').val(categoryId);
-                $('#publishForm').submit();
-            }
-        });
-    });
-
-    // === CONFIRM UNPUBLISH ===
-    $(document).on('click', '.unpublish-btn', function () {
-        const categoryId = $(this).data('id');
-
-        Swal.fire({
-            title: 'Deactivate Category',
-            text: 'Are you sure you want to deactivate this category?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#ffc107',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Yes, deactivate it!'
-        }).then(result => {
-            if (result.isConfirmed) {
-                $('#unpublish_category_id').val(categoryId);
-                $('#unpublishForm').submit();
-            }
-        });
-    });
-
-    // === LOAD MODAL CONTENT VIA AJAX ===
-    $(document).on('click', '.btnEditModal', function () {
-        const productId = $(this).data('id');
-        $.ajax({
-            url: "./_ajax/getSubCat.php",
-            type: "POST",
-            data: { id: productId },
-            dataType: "html",
-            success: function (data) {
-                $("#editCategoryModal").html(data);
-                const $modal = $("#editCategoryModal");
-
-                $modal.modal("show");
-
-                $modal.on("shown.bs.modal", function () {
-                    initSelect2($(this));
-                    // initValidation($(this));
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error("AJAX Error:", status, error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Load Error',
-                    text: 'Unable to load edit form. Please try again later.'
-                });
-            }
-        });
-    });
-});
 </script>

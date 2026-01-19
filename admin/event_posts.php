@@ -126,7 +126,7 @@ if ($result->num_rows > 0) {
                                     <td><?= htmlspecialchars($post['category_name']) ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <a href="/admin/event_edit_post.php?id=<?= $post['id'] ?>"
+                                            <a href="<?= BASE_URL ?>admin/event_edit_post.php?id=<?= $post['id'] ?>"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
                                             </a>

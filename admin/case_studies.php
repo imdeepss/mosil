@@ -27,7 +27,7 @@ while ($row = $result->fetch_assoc()) {
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Case Studies</h1>
-                <a href="/admin/case_studies_add" class="btn btn-sm btn-primary">
+                <a href="<?= BASE_URL ?>admin/case_studies_add.php" class="btn btn-sm btn-primary">
                     <i class="fas fa-plus me-1"></i> Add Case Study
                 </a>
             </div>
@@ -57,11 +57,11 @@ while ($row = $result->fetch_assoc()) {
                                     <td><?= htmlspecialchars($post['title']) ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <a href="/admin/case_studies_edit.php?id=<?= $post['id'] ?>" class="btn btn-primary">
+                                            <a href="<?= BASE_URL ?>admin/case_studies_edit.php?id=<?= $post['id'] ?>"
+                                                class="btn btn-primary">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <button class="btn btn-danger delete-btn"
-                                                data-id="<?= $post['id'] ?>"
+                                            <button class="btn btn-danger delete-btn" data-id="<?= $post['id'] ?>"
                                                 data-title="<?= htmlspecialchars($post['title']) ?>">
                                                 <i class="fas fa-trash"></i>
                                             </button>
@@ -98,7 +98,7 @@ while ($row = $result->fetch_assoc()) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize DataTables
         $('#postsTable').DataTable({
             responsive: true,
@@ -113,7 +113,7 @@ while ($row = $result->fetch_assoc()) {
         });
 
         // SweetAlert2 for delete
-        $(document).on('click', '.delete-btn', function() {
+        $(document).on('click', '.delete-btn', function () {
             const categoryId = $(this).data('id');
             const title = $(this).data('title');
             $('#delete_category_id').val(categoryId);
