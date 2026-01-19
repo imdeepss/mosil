@@ -133,6 +133,34 @@ if (isSessionTimedOut()) {
                     </ul>
                 </div>
             </li>
+            <!-- Events Section -->
+            <li class="nav-item">
+                <a class="nav-link <?php echo $active_menu === 'events' ? 'active' : ''; ?>" data-bs-toggle="collapse"
+                    href="#eventsSubmenu" role="button" aria-expanded="false" aria-controls="eventsSubmenu">
+                    <i class="fas fa-calendar-alt me-2"></i>
+                    Events
+                    <i class="fas fa-chevron-down ms-auto"></i>
+                </a>
+                <div class="collapse <?php echo strpos($active_menu, 'event_') === 0 ? 'show' : ''; ?>"
+                    id="eventsSubmenu">
+                    <ul class="nav flex-column ms-3">
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo $active_menu === 'event_posts' ? 'active' : ''; ?>"
+                                href="event_posts">
+                                <i class="fas fa-calendar-check me-2"></i>
+                                Event Posts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo $active_menu === 'event_categories' ? 'active' : ''; ?>"
+                                href="event_categories">
+                                <i class="fas fa-tags me-2"></i>
+                                Event Categories
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
             <!-- Catalogue Section -->
             <li class="nav-item">
