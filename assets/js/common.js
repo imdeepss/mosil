@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // New Swiper Initializations for Product Detail Page
   // New Swiper Initializations for Product Detail Page
   const relevantProductsSwiper = new Swiper(".relevantProductsSwiper", {
-    slidesPerView: 1.2,
+    slidesPerView: 2,
     spaceBetween: 16,
     loop: false,
     speed: 600,
@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const caseStudySwiper = new Swiper(".caseStudySwiper", {
-    slidesPerView: 1.2,
+    slidesPerView: 1,
     spaceBetween: 16,
     loop: false,
     speed: 600,

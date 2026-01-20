@@ -486,229 +486,238 @@ function parseTableString($str)
     </div>
 
     <!-- Relevant Products Slider -->
-    <section class="container">
-        <div class="mt-[56px] overflow-hidden">
-            <div class="py-[14px] mt-4 md:mt-0">
-                <div class="border-b-2 border-primary pb-2 flex items-center justify-between gap-4">
+    <section class="overflow-hidden">
+        <div class="container">
+            <div class="mt-[56px]">
+                <div class="py-[14px] mt-4 md:mt-0">
+                    <div class="border-b-2 border-primary pb-2 flex items-center justify-between gap-4">
 
-                    <h2
-                        class="text-main-green font-normal md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] capitalize flex items-center gap-4">
-                        Relevant products
-                    </h2>
-                    <div class="hidden md:flex items-center gap-4 relative z-10">
-                        <button
-                            class="group cursor-pointer relevant-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                            <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
-                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                        <h2
+                            class="text-main-green font-normal md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] capitalize flex items-center gap-4">
+                            Relevant products
+                        </h2>
+                        <div class="hidden md:flex items-center gap-4 relative z-10">
+                            <button
+                                class="group cursor-pointer relevant-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                                <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
+                                    viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                                <g transform="translate(8, 8)">
-                                    <path
-                                        d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </g>
-                            </svg>
-                        </button>
-                        <button
-                            class="group cursor-pointer relevant-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                            <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green"
-                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                                    <g transform="translate(8, 8)">
+                                        <path
+                                            d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
+                            <button
+                                class="group cursor-pointer relevant-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                                <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green"
+                                    viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                                <g transform="translate(8, 8)">
-                                    <path
-                                        d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </g>
-                            </svg>
-                        </button>
+                                    <g transform="translate(8, 8)">
+                                        <path
+                                            d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Swiper Container -->
-            <div class="relevantProductsSwiper swiper w-full md:py-2">
-                <div class="swiper-wrapper">
-                    <?php foreach ($relatedProducts as $product):
-                        $productName = $product['name'];
-                        $productSlug = $product['slug']; ?>
-
-                        <div
-                            class="swiper-slide group cursor-pointer py-4 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-3 will-change-transform relative">
-
-                            <a href="<?php echo SITE_URL; ?>/product-finder/<?php echo $categorySlug ? $categorySlug : 'all'; ?>/<?php echo $productSlug; ?>"
-                                class="block">
-
-                                <div
-                                    class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-4 mb-2 md:border md:border-[#EBEBEB] md:h-[208px] h-[150px] w-full px-6">
-                                    <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image']; ?>"
-                                        alt="<?php echo htmlspecialchars($productName); ?>"
-                                        class="w-auto h-auto max-w-[90%] max-h-[85%] object-contain transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-105 mix-blend-darken will-change-transform">
-                                </div>
-
-                                <h3
-                                    class="text-[#3B3B3B] font-base font-bold text-[22px] md:text-[24px] leading-[135%] capitalize md:mb-2 mb-1 transition-colors duration-300 group-hover:text-main-green">
-                                    <?php echo $productName; ?>
-                                </h3>
-
-                                <p
-                                    class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-3">
-                                    <?php echo $product['short_description']; ?>
-                                </p>
-                            </a>
+                <!-- Swiper Container -->
+                <div class="relevantProductsSwiper swiper md:w-[calc(50vw+50%)] w-full md:py-2">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($relatedProducts as $product):
+                            $productName = $product['name'];
+                            $productSlug = $product['slug']; ?>
 
                             <div
-                                class="absolute bottom-0 left-0 h-[3px] w-full bg-primary origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 will-change-transform">
+                                class="swiper-slide group cursor-pointer py-4 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-3 will-change-transform relative">
+
+                                <a href="<?php echo SITE_URL; ?>/product-finder/<?php echo $categorySlug ? $categorySlug : 'all'; ?>/<?php echo $productSlug; ?>"
+                                    class="block">
+
+                                    <div
+                                        class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-4 mb-2 md:border md:border-[#EBEBEB] md:h-[208px] h-[150px] w-full px-6">
+                                        <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image']; ?>"
+                                            alt="<?php echo htmlspecialchars($productName); ?>"
+                                            class="w-auto h-auto max-w-[90%] max-h-[85%] object-contain transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-105 mix-blend-darken will-change-transform">
+                                    </div>
+
+                                    <h3
+                                        class="text-[#3B3B3B] font-base font-bold text-[22px] md:text-[24px] leading-[135%] capitalize md:mb-2 mb-1 transition-colors duration-300 group-hover:text-main-green">
+                                        <?php echo $productName; ?>
+                                    </h3>
+
+                                    <p
+                                        class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-3">
+                                        <?php echo $product['short_description']; ?>
+                                    </p>
+                                </a>
+
+                                <div
+                                    class="absolute bottom-0 left-0 h-[3px] w-full bg-primary origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 will-change-transform">
+                                </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
-            <div class="flex md:hidden items-center justify-end gap-4 relative z-10 pt-4">
-                <button
-                    class="group cursor-pointer relevant-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                    <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
-                        viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                <div class="flex md:hidden items-center justify-end gap-4 relative z-10 pt-4">
+                    <button
+                        class="group cursor-pointer relevant-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                        <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
+                            viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                        <g transform="translate(8, 8)">
-                            <path
-                                d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                    </svg>
-                </button>
-                <button
-                    class="group cursor-pointer relevant-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                    <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green" viewBox="0 0 32 32"
-                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                            <g transform="translate(8, 8)">
+                                <path
+                                    d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </button>
+                    <button
+                        class="group cursor-pointer relevant-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                        <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green"
+                            viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                        <g transform="translate(8, 8)">
-                            <path
-                                d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                    </svg>
-                </button>
+                            <g transform="translate(8, 8)">
+                                <path
+                                    d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Case Studies Slider -->
-    <section class="container">
-        <div class="mt-[56px] mb-[10px] overflow-hidden">
-            <div class="py-[14px] mt-4 md:mt-0">
-                <div class="border-b-2 border-primary pb-2 flex items-center justify-between gap-4">
+    <section class="overflow-hidden">
+        <div class="container">
+            <div class="mt-[56px] mb-[10px]">
+                <div class="py-[14px] mt-4 md:mt-0">
+                    <div class="border-b-2 border-primary pb-2 flex items-center justify-between gap-4">
 
-                    <h2
-                        class="text-main-green font-normal md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] capitalize  flex items-center gap-4">
-                        Case studies
-                    </h2>
-                    <div class="md:flex hidden items-center gap-4 relative z-10">
-                        <button
-                            class="group cursor-pointer case-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                            <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
-                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                        <h2
+                            class="text-main-green font-normal md:text-[40px] md:leading-[120%] text-[24px] leading-[135%] capitalize  flex items-center gap-4">
+                            Case studies
+                        </h2>
+                        <div class="md:flex hidden items-center gap-4 relative z-10">
+                            <button
+                                class="group cursor-pointer case-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                                <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
+                                    viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                                <g transform="translate(8, 8)">
-                                    <path
-                                        d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </g>
-                            </svg>
-                        </button>
-                        <button
-                            class="group cursor-pointer case-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                            <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green"
-                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                                    <g transform="translate(8, 8)">
+                                        <path
+                                            d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
+                            <button
+                                class="group cursor-pointer case-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                                <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green"
+                                    viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                                <g transform="translate(8, 8)">
-                                    <path
-                                        d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </g>
-                            </svg>
-                        </button>
+                                    <g transform="translate(8, 8)">
+                                        <path
+                                            d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Swiper Container -->
-            <div class="caseStudySwiper swiper w-full mt-8">
-                <div class="swiper-wrapper ">
-                    <?php foreach ($blogs as $blog): ?>
-                        <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! ">
-                            <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
-                                <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
-                                    alt="Hero Image"
-                                    class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
-                                    loading="lazy">
-                                <div
-                                    class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
-                                    <h2><?php echo $blog['category_name']; ?></h2>
+                <!-- Swiper Container -->
+                <div class="caseStudySwiper swiper md:w-[calc(50vw+50%)] w-full mt-8">
+                    <div class="swiper-wrapper ">
+                        <?php foreach ($blogs as $blog): ?>
+                            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! ">
+                                <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
+                                    <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
+                                        alt="Hero Image"
+                                        class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                                        loading="lazy">
+                                    <div
+                                        class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                                        <h2><?php echo $blog['category_name']; ?></h2>
+                                    </div>
                                 </div>
+                                <div class="my-4 flex flex-col flex-1">
+                                    <h2
+                                        class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
+                                        <?php echo $blog['title']; ?>
+                                    </h2>
+                                    <p
+                                        class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
+                                        <?php
+                                        $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
+                                        echo substr($content, 0, 500);
+                                        ?>
+                                    </p>
+                                    <p
+                                        class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
+                                        <?php echo $blog['category_name']; ?> |
+                                        <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
+                                    </p>
+                                </div>
+                                <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"] ?? '') ?>"
+                                    class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
+                                    Read <?php echo $blog['category_name']; ?>
+                                    <span
+                                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                </a>
                             </div>
-                            <div class="my-4 flex flex-col flex-1">
-                                <h2
-                                    class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
-                                    <?php echo $blog['title']; ?>
-                                </h2>
-                                <p
-                                    class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
-                                    <?php
-                                    $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
-                                    echo substr($content, 0, 500);
-                                    ?>
-                                </p>
-                                <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
-                                    <?php echo $blog['category_name']; ?> |
-                                    <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
-                                </p>
-                            </div>
-                            <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"] ?? '') ?>"
-                                class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
-                                Read <?php echo $blog['category_name']; ?>
-                                <span
-                                    class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
-            <div class="flex md:hidden items-center justify-end gap-4 relative z-10 pt-4">
-                <button
-                    class="group cursor-pointer case-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                    <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
-                        viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                <div class="flex md:hidden items-center justify-end gap-4 relative z-10 pt-4 pr-4">
+                    <button
+                        class="group cursor-pointer case-prev [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                        <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green rotate-180"
+                            viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                        <g transform="translate(8, 8)">
-                            <path
-                                d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                    </svg>
-                </button>
-                <button
-                    class="group cursor-pointer case-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
-                    <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green" viewBox="0 0 32 32"
-                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
+                            <g transform="translate(8, 8)">
+                                <path
+                                    d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </button>
+                    <button
+                        class="group cursor-pointer case-next [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:cursor-not-allowed">
+                        <svg class="w-8 h-8 transition-transform group-active:scale-90 text-main-green"
+                            viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2" />
 
-                        <g transform="translate(8, 8)">
-                            <path
-                                d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                    </svg>
-                </button>
+                            <g transform="translate(8, 8)">
+                                <path
+                                    d="M8.88307 3.17285L13.3247 7.61451M13.3247 7.61451L8.88306 12.0562M13.3247 7.61451L1.90332 7.61451"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
