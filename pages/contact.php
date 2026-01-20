@@ -40,31 +40,32 @@ $pageTitle = 'Contact Us';
             <form id="contactForm" method="POST" action="" class="scroll-mt-20">
                 <div id="contactResponse" class="hidden mb-4 p-4 rounded text-center text-sm font-medium"></div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 mb-4">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 mb-4 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em]">
                     <input type="text" name="name" required placeholder="Name"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
+                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
                     <input type="email" name="email" required placeholder="Email"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
+                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
                     <input type="tel" name="contact" required placeholder="+91 Phone"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
+                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
                     <input type="text" name="company_name" required placeholder="Company Name"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
+                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
 
                     <div class="md:col-span-2">
                         <input type="text" name="subject" required placeholder="Subject"
                             value="<?= htmlspecialchars($product['name'] ?? '') ?>"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white">
+                            class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
                     </div>
 
                     <div class="md:col-span-2">
                         <textarea name="message" required placeholder="Write your message here" rows="4"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400 bg-white"></textarea>
+                            class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green"></textarea>
                     </div>
                 </div>
 
                 <div class="text-center">
                     <button type="submit" id="submitBtn"
-                        class="px-8 py-3 bg-main-green text-white font-medium rounded-full hover:bg-opacity-90 transition-colors w-full disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        class="bg-main-green text-white font-normal text-[16px] leading-[150%] tracking-[0.24px] md:font-bold md:text-[20px] md:leading-[135%] md:tracking-[0.2px] w-full disabled:bg-gray-400 disabled:cursor-not-allowed py-4 rounded-full text-center">
                         Send
                     </button>
                 </div>
@@ -229,7 +230,7 @@ $pageTitle = 'Contact Us';
                     </ul>
 
                     <ul
-                        class="flex gap-4 items-center [&_li]:w-[42px] [&_li]:h-[42px] [&_li]:p-[9px] [&_li]:rounded-full [&_li]:flex [&_li]:items-center [&_li]:justify-center [&_li]:bg-main-green [&_li]:transition-transform [&_li]:duration-300 hover:[&_li]:scale-110">
+                        class="flex gap-4 items-center [&_li]:w-[42px] [&_li]:h-[42px] [&_li]:p-[9px] [&_li]:rounded-full [&_li]:flex [&_li]:items-center [&_li]:justify-center [&_li]:bg-main-green [&_li]:transition-transform [&_li]:duration-300 [&_li:hover]:scale-110">
                         <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/x.svg" alt="X"></a></li>
                         <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/facebook.svg"
                                     alt="Facebook"></a></li>
