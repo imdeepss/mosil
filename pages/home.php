@@ -359,16 +359,14 @@ $blogs = getBlogs(3);
         </div>
 
         <div class="md:mt-8 mt-6 grid grid-cols-1 lg:grid-cols-2 md:gap-8 gap-5">
-            <div
-                class="group flex flex-col bg-[#F5F5F5] overflow-hidden opacity-0 animate-slide-left transition-all duration-500 hover:shadow-2xl">
+            <div class="flex flex-col bg-[#F5F5F5] overflow-hidden">
                 <div class="h-[153px] md:h-[256px] w-full overflow-hidden">
                     <img src="<?php echo SITE_URL; ?>/assets/images/ui/manufacturing-plant.png"
-                        alt="Manufacturing Plant"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Manufacturing Plant" class="w-full h-full object-cover transition-transform duration-700"
                         loading="lazy">
                 </div>
                 <div
-                    class="md:px-4.5 px-2.5 md:py-6 py-4 border-l-4 border-transparent transition-all duration-300 group-hover:border-main-green flex-1">
+                    class="md:px-4.5 px-2.5 md:py-6 py-4 border-l-4 border-transparent transition-all duration-300 flex-1">
                     <h3
                         class="font-bold md:text-[18px] text-[16px] leading-[140%] tracking-[0.015em] capitalize text-main-green md:mb-2 mb-1">
                         Manufacturing Plant
@@ -384,15 +382,13 @@ $blogs = getBlogs(3);
             </div>
 
             <div class="flex flex-col md:gap-6 gap-5">
-                <div
-                    class="group flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px] opacity-0 animate-slide-right [animation-delay:200ms] hover:shadow-xl transition-all duration-300">
+                <div class="flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px]">
                     <div class="w-full sm:w-2/5 shrink-0 overflow-hidden h-[153px] md:h-[193px]">
                         <img src="<?php echo SITE_URL; ?>/assets/images/ui/warehouse.png" alt="Warehouse"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy">
+                            class="w-full h-full object-cover transition-transform duration-700" loading="lazy">
                     </div>
                     <div
-                        class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300 group-hover:border-primary">
+                        class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300">
                         <h3
                             class="font-bold md:text-[18px] text-[16px] leading-[140%] tracking-[0.015em] capitalize text-main-green md:mb-2 mb-1">
                             Warehouse
@@ -405,15 +401,13 @@ $blogs = getBlogs(3);
                     </div>
                 </div>
 
-                <div
-                    class="group flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px] opacity-0 animate-slide-right [animation-delay:400ms] hover:shadow-xl transition-all duration-300">
+                <div class="flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px]">
                     <div class="w-full sm:w-2/5 shrink-0 overflow-hidden h-[153px] md:h-[193px]">
                         <img src="<?php echo SITE_URL; ?>/assets/images/ui/resreach-development.png" alt="R&D Lab"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy">
+                            class="w-full h-full object-cover transition-transform duration-700" loading="lazy">
                     </div>
                     <div
-                        class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300 group-hover:border-primary">
+                        class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300">
                         <h3
                             class="font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize text-main-green mb-2">
                             Research & Development & QA Lab
