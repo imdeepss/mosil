@@ -160,7 +160,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
                     Explore Relevant Case Studies</h2>
                 <div class="hidden md:inline-flex justify-start items-center gap-4">
                     <button
-                        class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] opacity-50 cursor-pointer">
+                        class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16"
                             fill="none">
                             <path
@@ -211,7 +211,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
                                     <p class="text-[#A3A3A3] text-[14px] mb-3">
                                         <?php echo date('F d, Y', strtotime($item['created_at'])); ?>
                                     </p>
-                                    <a href="<?php echo SITE_URL; ?>/case-study/<?php echo $item['slug']; ?>"
+                                    <a href="<?php echo SITE_URL; ?>/case-studies/<?php echo $item['slug']; ?>"
                                         class="inline-block text-[#1A3B1B] font-bold text-[18px] border-b-2 border-transparent hover:border-primary transition-all">
                                         Read Case Study
                                     </a>
@@ -223,7 +223,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
             </div>
             <div class="md:hidden flex justify-end items-center gap-4">
                 <button
-                    class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] opacity-50 cursor-pointer">
+                    class="swiper-prev w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#1A3B1B] cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-180" viewBox="0 0 16 16" fill="none">
                         <path
                             d="M8.88331 3.17188L13.325 7.61353M13.325 7.61353L8.88331 12.0552M13.325 7.61353L1.90356 7.61353"
@@ -246,14 +246,16 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Collect buttons from both desktop and mobile views
+        const nextButtons = document.querySelectorAll('.swiper-next');
+        const prevButtons = document.querySelectorAll('.swiper-prev');
+
         // Initialize Swiper
         const caseStudySwiper = new Swiper('.caseStudyDetailSwiper', {
             slidesPerView: 1,
             spaceBetween: 20,
-            navigation: {
-                nextEl: '.swiper-next',
-                prevEl: '.swiper-prev',
-            },
+            speed: 800, // Smoother transition
+            grabCursor: true, // Better UX
             breakpoints: {
                 640: {
                     slidesPerView: 2,
@@ -265,7 +267,61 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
                 1280: {
                     slidesPerView: 3.2,
                 }
+            },
+            on: {
+                init: function (swiper) {
+                    updateNavButtons(swiper);
+                },
+                slideChange: function (swiper) {
+                    updateNavButtons(swiper);
+                },
+                lock: function (swiper) {
+                    // Hide buttons if not enough slides
+                    // Optional: You might want to hide the whole nav container
+                    toggleButtonsVisibility(false);
+                },
+                unlock: function (swiper) {
+                    toggleButtonsVisibility(true);
+                }
             }
+        });
+
+        // Helper to update button disabled states logic disable when last and frist logic
+        function updateNavButtons(swiper) {
+            // Handle Prev Buttons
+            if (swiper.isBeginning) {
+                prevButtons.forEach(btn => btn.classList.add('swiper-button-disabled'));
+            } else {
+                prevButtons.forEach(btn => btn.classList.remove('swiper-button-disabled'));
+            }
+
+            // Handle Next Buttons
+            if (swiper.isEnd) {
+                nextButtons.forEach(btn => btn.classList.add('swiper-button-disabled'));
+            } else {
+                nextButtons.forEach(btn => btn.classList.remove('swiper-button-disabled'));
+            }
+        }
+
+        function toggleButtonsVisibility(show) {
+            const display = show ? '' : 'none';
+            nextButtons.forEach(btn => btn.style.display = display);
+            prevButtons.forEach(btn => btn.style.display = display);
+        }
+
+        // Manually attach click listeners to all buttons
+        nextButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                caseStudySwiper.slideNext();
+            });
+        });
+
+        prevButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                caseStudySwiper.slidePrev();
+            });
         });
     });
 </script>

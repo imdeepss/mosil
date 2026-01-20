@@ -433,3 +433,9 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
 .smooth-transform-transition {
     transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
+
+.swiper-button-disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
