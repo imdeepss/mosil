@@ -199,7 +199,7 @@ $faqs = [
 ?>
 
 <!-- Hero Section -->
-<section class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
+<section id="newsroom-hero" class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
     <div class="absolute inset-0 z-0">
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/newsroom-banner.png"
             class="hidden md:block w-full h-full object-cover" alt="Newsroom">
@@ -214,8 +214,10 @@ $faqs = [
     </div>
 </section>
 
+<!-- Placeholder for sticky nav -->
+<div id="sticky-nav-placeholder" class="hidden w-full"></div>
 
-<section class="bg-main-green">
+<section id="newsroom-nav" class="bg-main-green z-40 shadow-sm transition-all duration-300 w-full bg-main-green">
     <div class="container">
         <div class="md:flex items-center justify-start overflow-x-auto no-scrollbar gap-4 md:gap-0 hidden">
             <?php
@@ -993,5 +995,62 @@ $faqs = [
                 });
             });
         });
+        // Sticky Nav Logic
+        const nav = document.getElementById('newsroom-nav');
+        const hero = document.getElementById('newsroom-hero');
+        const placeholder = document.getElementById('sticky-nav-placeholder');
+        const mainHeader = document.querySelector('header');
+        const headerHeight = 60; // Your fixed header height
+
+        if (mainHeader) {
+            mainHeader.style.transition = 'transform 0.3s ease-in-out';
+        }
+
+        if (nav && hero && placeholder && mainHeader) {
+            // Set placeholder height to match nav height
+            const updatePlaceholderHeight = () => {
+                placeholder.style.height = `${nav.offsetHeight}px`;
+            };
+
+            // Update on load and resize
+            updatePlaceholderHeight();
+            window.addEventListener('resize', updatePlaceholderHeight);
+
+            const handleScroll = () => {
+                // Calculate the bottom position of the hero section relative to the document
+                const heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+
+                // Thresholds
+                const hideHeaderThreshold = heroBottom - headerHeight;
+                const stickNavThreshold = heroBottom;
+
+                // Logic to hide/show Main Header
+                if (window.scrollY >= hideHeaderThreshold) {
+                    mainHeader.style.transform = 'translateY(-100%)';
+                } else {
+                    mainHeader.style.transform = 'translateY(0)';
+                }
+
+                // Logic to Stick Nav
+                if (window.scrollY >= stickNavThreshold) {
+                    if (!nav.classList.contains('fixed')) {
+                        nav.classList.add('fixed', 'top-0', 'left-0', 'right-0', 'z-50');
+                        nav.classList.remove('z-40', 'top-[60px]');
+                        placeholder.classList.remove('hidden');
+                    }
+                } else {
+                    if (nav.classList.contains('fixed')) {
+                        nav.classList.remove('fixed', 'top-0', 'left-0', 'right-0', 'z-50');
+                        nav.classList.add('z-40');
+                        placeholder.classList.add('hidden');
+                    }
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            // Run once on load to set initial state
+            handleScroll();
+        }
+
     });
 </script>
