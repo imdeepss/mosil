@@ -72,7 +72,7 @@ $products = getCategoryByParent("3");
                         ?>
                         <a href="<?php echo SITE_URL; ?>/product-finder/product-categories/<?php echo $slug; ?>">
                             <div
-                                class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/80 rounded-[4px]">
+                                class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/60 rounded-[4px]">
                             </div>
                             <div class="relative w-full h-full overflow-hidden rounded-[4px]">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
@@ -94,7 +94,7 @@ $products = getCategoryByParent("3");
                                         <?php echo $product['mcat_desc']; ?>
                                     </p>
                                     <button
-                                        class="inline-flex shrink-0 origin-center will-change-transform transition-all duration-500 ease-in-out text-white group-hover:text-primary group-hover:-rotate-45">
+                                        class="inline-flex shrink-0 origin-center will-change-transform transition-all duration-500 ease-in-out text-white group-hover:-rotate-45">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                             fill="none">
@@ -114,8 +114,8 @@ $products = getCategoryByParent("3");
 
             <div class="mx-auto">
                 <button type="button" id="product-load-more"
-                    class="border border-[#1A3B1B] text-[#1A3B1B] font-base font-normal text-[14px] md:text-base leading-[150%] tracking-[0.015em] capitalize px-8 py-3 rounded-full inline-block button-hover-vertical cursor-pointer">
-                    see more
+                    class="h-[48px] px-8 flex items-center justify-center border-2 border-[#1A3B1B] text-[#1A3B1B] font-base font-normal text-[14px] md:text-base leading-none tracking-[0.015em] rounded-full button-hover-vertical cursor-pointer">
+                    See more
                 </button>
 
             </div>
@@ -124,11 +124,30 @@ $products = getCategoryByParent("3");
 </section>
 
 
-<section class="md:py-6 py-12 bg-white relative">
-    <div class="container">
+
+<section class="md:py-6 py-12 bg-white relative
+    after:content-[''] 
+    after:absolute 
+    after:inset-0
+    after:z-20 
+    after:pointer-events-none
+
+    /* Mobile Background Image */
+    after:bg-[url('<?php echo SITE_URL; ?>/assets/images/ui/high-performance-mb-bg.svg')] 
+    after:bg-contain 
+    after:bg-center 
+    after:bg-no-repeat 
+    
+    /* Desktop Background Image */
+    md:after:bg-[url('<?php echo SITE_URL; ?>/assets/images/ui/high-performance-bg.svg')] 
+    md:after:bg-center
+    md:after:bg-contain 
+    ">
+
+    <div class="container mx-auto">
         <div class="relative z-10 md:max-w-xl max-w-[310px] pb-18 pt-3 md:pb-[161px] md:pt-[177px]">
             <h2
-                class="text-main-green font-base font-normal md:text-[32px] md:leading-[120%] md:tracking-normal capitalize mb-1 text-[20px] leading-[140%] tracking-[0.01em]">
+                class="text-main-green font-base font-bold md:font-normal md:text-[32px] md:leading-[120%] md:tracking-normal capitalize mb-1 text-[20px] leading-[140%] tracking-[0.01em]">
                 High-performance industrial lubrication
             </h2>
             <p
@@ -137,5 +156,4 @@ $products = getCategoryByParent("3");
             </p>
         </div>
     </div>
-
 </section>

@@ -4,7 +4,7 @@ function setupLoadMore(
   buttonId,
   mobileInitial,
   desktopInitial,
-  batchSize
+  batchSize,
 ) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -14,29 +14,37 @@ function setupLoadMore(
 
   // Determine initial count based on screen width
   const isMobile = window.innerWidth < 768; // Tailwind md breakpoint
-  let visibleCount = isMobile ? mobileInitial : desktopInitial;
+  const initialCount = isMobile ? mobileInitial : desktopInitial;
+  let visibleCount = initialCount;
 
   // Helper to update visibility
   const updateVisibility = () => {
+    let allVisible = true;
+
     items.forEach((item, index) => {
       if (index < visibleCount) {
-        // Remove hidden class if present, ensure display
         item.classList.remove("hidden");
       } else {
         item.classList.add("hidden");
+        allVisible = false;
       }
     });
 
-    // Hide button if all items are visible
-    if (visibleCount >= items.length) {
-      if (loadMoreBtn) {
+    if (loadMoreBtn) {
+      // If total items are fewer than or equal to initial count, always hide button
+      if (items.length <= initialCount) {
         loadMoreBtn.classList.add("hidden");
-        loadMoreBtn.style.display = "none"; // Force hide
-      }
-    } else {
-      if (loadMoreBtn) {
+        loadMoreBtn.style.display = "none";
+      } else {
+        // Otherwise, managing button state
         loadMoreBtn.classList.remove("hidden");
-        loadMoreBtn.style.display = ""; // Reset to default (inline-block from class)
+        loadMoreBtn.style.display = ""; // Reset to default
+
+        if (visibleCount >= items.length) {
+          loadMoreBtn.innerText = "See less";
+        } else {
+          loadMoreBtn.innerText = "See more";
+        }
       }
     }
   };
@@ -48,16 +56,18 @@ function setupLoadMore(
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      visibleCount += batchSize;
+
+      if (visibleCount >= items.length) {
+        // "See less" logic: remove last batch, but don't go below initial
+        visibleCount = Math.max(initialCount, visibleCount - batchSize);
+      } else {
+        // "See more" logic
+        visibleCount += batchSize;
+      }
+
       updateVisibility();
     });
   }
-
-  // Optional: Handle resize if you want to switch logic dynamically,
-  // but usually "Load More" state is preserved or reset.
-  // For simplicity, we stick to the state started on load, or we can reload on resize.
-  // A simple resize check to re-evaluate isMobile often leads to UX jumps.
-  // We will stick to the logic: if user resizes, we don't automatically hide items back.
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -68,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "industry-load-more",
     4,
     8,
-    4
+    8,
   );
 
   // Setup for Product Categories

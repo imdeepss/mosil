@@ -75,7 +75,7 @@ $industries = getCategoryByParent("2");
                         ?>
                         <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $slug; ?>">
                             <div
-                                class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/80 rounded-[4px]">
+                                class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/60 rounded-[4px]">
                             </div>
                             <div class="relative w-full h-full overflow-hidden rounded-[4px]">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
@@ -97,7 +97,7 @@ $industries = getCategoryByParent("2");
                                         <?php echo $industry['mcat_desc']; ?>
                                     </p>
                                     <button
-                                        class="inline-flex shrink-0 origin-center will-change-transform transition-all duration-500 ease-in-out text-white group-hover:text-primary group-hover:-rotate-45">
+                                        class="inline-flex shrink-0 origin-center will-change-transform transition-all duration-500 ease-in-out text-white group-hover:-rotate-45">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                             fill="none">
@@ -117,10 +117,9 @@ $industries = getCategoryByParent("2");
 
             <div class="mx-auto">
                 <button type="button" id="industry-load-more"
-                    class="border border-[#1A3B1B] text-[#1A3B1B] font-base font-normal text-[14px] md:text-base leading-[150%] tracking-[0.015em] capitalize px-8 py-3 rounded-full inline-block button-hover-vertical cursor-pointer">
-                    see more
+                    class="h-[48px] px-8 flex items-center justify-center border-2 border-[#1A3B1B] text-[#1A3B1B] font-base font-normal text-[14px] md:text-base leading-none tracking-[0.015em] rounded-full button-hover-vertical cursor-pointer">
+                    See more
                 </button>
-
             </div>
         </div>
     </div>
