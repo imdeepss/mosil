@@ -478,21 +478,15 @@ $lubricationItems = [
         <div class="md:mt-8 mt-6 grid grid-cols-2 lg:grid-cols-4 md:gap-10 gap-4">
             <?php foreach ($lubricationItems as $index => $item) { ?>
                 <div
-                    class="group bg-y100 h-[208px] px-3 pt-2 md:pb-6 pb-3 relative flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-2">
-
-                    <div
-                        class="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500 group-hover:translate-y-0">
-                    </div>
-
-                    <div
-                        class="w-[72px] h-[72px] ml-auto relative z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    class="group bg-y100 h-[208px] px-3 pt-2 md:pb-6 pb-3 relative flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2">
+                    <div class="w-[72px] h-[72px] ml-auto relative z-10">
                         <img src="<?php echo SITE_URL; ?><?php echo $item['image']; ?>" alt="<?php echo $item['title']; ?>"
                             class="block h-full w-full object-cover object-center" loading="lazy">
                     </div>
 
                     <div class="relative z-10">
                         <h6
-                            class="font-normal md:text-2xl text-lg leading-[135%] tracking-[0.015em] capitalize text-main-green mb-1 transition-colors duration-300 group-hover:text-black">
+                            class="font-normal md:text-2xl text-lg leading-[135%] tracking-[0.015em] capitalize text-main-green mb-1">
                             <?php echo $item['title']; ?>
                         </h6>
                         <p class="font-normal text-xm md:text-xs leading-[150%] tracking-[0.015em] text-[#1A3B1B]">
