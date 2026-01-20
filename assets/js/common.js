@@ -385,10 +385,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // New Swiper Initializations for Product Detail Page
+  // New Swiper Initializations for Product Detail Page
   const relevantProductsSwiper = new Swiper(".relevantProductsSwiper", {
     slidesPerView: 1.2,
     spaceBetween: 16,
-    loop: true,
+    loop: false,
+    speed: 600,
+    navigation: {
+      nextEl: ".relevant-next",
+      prevEl: ".relevant-prev",
+    },
     breakpoints: {
       768: {
         slidesPerView: 3.2,
@@ -400,7 +406,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const caseStudySwiper = new Swiper(".caseStudySwiper", {
     slidesPerView: 1.2,
     spaceBetween: 16,
-    loop: true,
+    loop: false,
+    speed: 600,
+    navigation: {
+      nextEl: ".case-next",
+      prevEl: ".case-prev",
+    },
     breakpoints: {
       768: {
         slidesPerView: 3.2,
