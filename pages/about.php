@@ -1,5 +1,4 @@
 <?php
-// pages/about.php
 $pageTitle = 'About Us';
 
 $mosil_matters = [
@@ -13,7 +12,7 @@ $mosil_matters = [
         "description" => "Globally certified with ISO 9001, 
 14001, 45001 and NSF 
 certifications",
-        "image" => "matter-2.jpg"
+        "image" => "matter-2-1.jpg"
     ],
     [
         "title" => "Data-driven quadra methodology",
@@ -252,6 +251,7 @@ $lubricant_features = [
                         /* 1. Target Top Face (Light Grey to Main Green) */
                         g:hover path[fill="#F5F5F5"] {
                             fill: #1A3B1B !important;
+                            transform: none !important;
                         }
 
                         /* 2. Target Side Faces (Gradient/Grey to Dark Green) */
@@ -260,11 +260,13 @@ $lubricant_features = [
                         g:hover path[fill="#B0B0B0"],
                         g:hover path[fill="#EBEBEB"] {
                             fill: #142e15 !important;
+                            transform: none !important;
                         }
 
                         /* 3. Target Icons (Grey to White) */
                         g:hover path[fill="#757575"] {
                             fill: #FFFFFF !important;
+                            transform: none !important;
                         }
 
                         /* Make groups behave like buttons */

@@ -450,16 +450,11 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeEffect: {
       crossFade: true,
     },
-
     speed: 0,
-    loop: true,
+    loop: false,
     navigation: {
       nextEl: ".history-next",
       prevEl: ".history-prev",
-    },
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
     },
   });
 
