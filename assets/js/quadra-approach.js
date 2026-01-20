@@ -49,7 +49,7 @@
         descEl.textContent = data[index].description;
         // Start fade in (remove blur and opacity)
         descEl.classList.remove("opacity-0", "blur-sm");
-      }, 150);
+      }, 250);
 
       // 2. Update Cards (Left Side Images)
       cards.forEach((card) => {
@@ -83,11 +83,26 @@
       });
     }
 
+    // Generic debounce/delay variable for hover
+    let hoverTimeout;
+
     // Attach Hover Listeners to Cards
     cards.forEach((card) => {
       card.addEventListener("mouseenter", function () {
         const index = parseInt(this.dataset.index, 10);
-        updateQuadraContent(index);
+
+        // Clear any existing pending update
+        if (hoverTimeout) clearTimeout(hoverTimeout);
+
+        // slight delay to prevent jitter on fast cursor movement
+        hoverTimeout = setTimeout(() => {
+          updateQuadraContent(index);
+        }, 80);
+      });
+
+      // Optional: Clear timeout if they leave instantly (prevent accidental trigger)
+      card.addEventListener("mouseleave", function () {
+        if (hoverTimeout) clearTimeout(hoverTimeout);
       });
     });
 
@@ -95,6 +110,8 @@
     tabs.forEach((tab) => {
       tab.addEventListener("click", function () {
         const index = parseInt(this.dataset.index, 10);
+        // Clicks should be immediate
+        if (hoverTimeout) clearTimeout(hoverTimeout);
         updateQuadraContent(index);
       });
     });

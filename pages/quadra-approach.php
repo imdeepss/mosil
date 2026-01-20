@@ -74,16 +74,16 @@ $pageTitle = 'Quadra Approach';
                 <?php foreach ($quadraSteps as $index => $step):
                     $isActive = $index === 0 ? 'active' : '';
                     ?>
-                    <div class="quadra-card cursor-pointer relative aspect-square rounded-[40px] <?php echo $step['corner_class']; ?> overflow-hidden group transition-all duration-300 transform <?php echo $isActive ? 'opacity-100' : 'opacity-50'; ?>"
+                    <div class="quadra-card cursor-pointer relative aspect-square rounded-[40px] <?php echo $step['corner_class']; ?> overflow-hidden group smooth-hover-transition transform <?php echo $isActive ? 'opacity-100' : 'opacity-50'; ?>"
                         data-index="<?php echo $index; ?>">
 
-                        <div class="absolute inset-0 z-0 bg-lightgray transition-transform duration-700 bg-size" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), 
+                        <div class="absolute inset-0 z-0 bg-lightgray smooth-transform-transition bg-size" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), 
                         url('<?php echo $step['bg_image']; ?>') center / cover no-repeat;">
                         </div>
 
                         <div class="relative z-10 flex flex-col items-center justify-center w-full h-full">
                             <img src="<?php echo $step['icon']; ?>" alt="<?php echo $step['title']; ?>"
-                                class="w-[100px] h-[100px] object-contain transition-transform duration-300">
+                                class="w-[100px] h-[100px] object-contain smooth-hover-transition">
 
                             <h2
                                 class="text-[#FFF] text-center font-base font-normal md:text-[16px] md:leading-[135%] md:tracking-[0.01em] text-[14px] leading-[150%] tracking-[0.015em]">
@@ -109,7 +109,7 @@ $pageTitle = 'Quadra Approach';
                         <?php foreach ($quadraSteps as $index => $step):
                             $activeClass = $index === 0 ? 'border-b-2 border-main-green text-main-green font-bold' : 'text-main-green font-normal hover:text-main-green';
                             ?>
-                            <li class="quadra-tab px-4 pb-2 text-[14px] leading-[150%] tracking-[0.015em] cursor-pointer whitespace-nowrap transition-colors <?php echo $activeClass; ?>"
+                            <li class="quadra-tab px-4 pb-2 text-[14px] leading-[150%] tracking-[0.015em] cursor-pointer whitespace-nowrap transition-colors duration-300 <?php echo $activeClass; ?>"
                                 data-index="<?php echo $index; ?>">
                                 <?php echo $step['title']; ?>
                             </li>
@@ -119,7 +119,7 @@ $pageTitle = 'Quadra Approach';
                     <!-- Content Display -->
                     <div id="quadra-content-container">
                         <p id="quadra-description"
-                            class="text-[#575757] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] animate-fadeIn transition-all duration-200 ease-in-out blur-0">
+                            class="text-[#575757] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] animate-fadeIn transition-all duration-500 ease-in-out blur-0">
                             <?php echo $quadraSteps[0]['description']; ?>
                         </p>
                     </div>
@@ -158,7 +158,7 @@ $pageTitle = 'Quadra Approach';
 
                 <div class="order-1 flex flex-row items-start gap-4 relative group">
                     <div
-                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 relative z-10 group-hover:bg-primary">
+                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 relative z-10 group-hover:bg-primary transition-colors duration-300 ease-in-out">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/chart-pie.svg" alt="Icon">
                     </div>
                     <div class="flex flex-col max-w-[306px]">
@@ -177,7 +177,7 @@ $pageTitle = 'Quadra Approach';
 
                 <div class="order-3 flex flex-row items-start gap-4 md:gap-6 relative group">
                     <div
-                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary">
+                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300 ease-in-out">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/flag.svg" alt="Search">
                     </div>
                     <div class="flex flex-col max-w-[306px]">
@@ -206,7 +206,7 @@ $pageTitle = 'Quadra Approach';
                             evolving needs.</p>
                     </div>
                     <div
-                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary">
+                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300 ease-in-out">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/light-bulb.svg" alt="Search">
                     </div>
                     <div class="hidden md:block absolute right-0 top-[75%] w-full h-full z-[100] pointer-events-none">
@@ -222,7 +222,7 @@ $pageTitle = 'Quadra Approach';
                             data, prediction, and field feedback to anticipate and prevent equipment failures.</p>
                     </div>
                     <div
-                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary">
+                        class="w-[75px] h-[75px] rounded-full bg-[#DEDEDE] flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-300 ease-in-out">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/svg/puzzle.svg" alt="Search">
                     </div>
                     <div

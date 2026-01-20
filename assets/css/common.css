@@ -425,3 +425,11 @@ form textarea:not(:focus):invalid:not(:placeholder-shown) {
         display: none;
     }
 }
+
+.smooth-hover-transition {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.smooth-transform-transition {
+    transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
