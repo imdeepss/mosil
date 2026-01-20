@@ -372,10 +372,8 @@ $blogs = getBlogs(3);
                         Manufacturing Plant
                     </h3>
                     <p class="font-normal text-[14px]  leading-[150%] tracking-[0.015em] text-[#575757]">
-                        At MOSIL, every solution is backed by strong infrastructure designed for consistency and
-                        scale.
-                        Our three advanced manufacturing units—two in Navi Mumbai and one in Palghar—provide
-                        flexible
+                        At MOSIL, every solution is backed by strong infrastructure designed for consistency and scale.
+                        Our three advanced manufacturing units two in Navi Mumbai and one in Palghar provides flexible
                         production lines and integrated quality control systems.
                     </p>
                 </div>
@@ -394,9 +392,9 @@ $blogs = getBlogs(3);
                             Warehouse
                         </h3>
                         <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
-                            With in-house NABL accredited tribology labs, pilot scale testing facilities, and an
-                            expert
-                            team of chemists and tribologists.
+                            With in-house NABL accredited tribology labs, pilot scale testing facilities and an expert
+                            team of chemists and tribologists, we translate
+                            formulation science into industrial reliability consistently, batch after batch.
                         </p>
                     </div>
                 </div>
@@ -413,8 +411,9 @@ $blogs = getBlogs(3);
                             Research & Development & QA Lab
                         </h3>
                         <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
-                            At MOSIL, R&D is the engine driving every innovation we deliver through intelligence &
-                            advanced methods.
+                            At MOSIL, R&D is the engine driving every innovation we deliver. Leveraging our operating
+                            intelligence & advanced scientific methods, state-of-the-art facilities, we develop products
+                            that consistently performs.
                         </p>
                     </div>
                 </div>
