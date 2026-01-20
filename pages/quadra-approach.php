@@ -45,7 +45,7 @@ $pageTitle = 'Quadra Approach';
                 'id' => 'expectation',
                 'title' => 'Expectation Mapping',
                 'icon' => SITE_URL . '/assets/images/ui/ExpectationMappingWhite.png',
-                'bg_image' => SITE_URL . '/assets/images/ui/EM.png',
+                'bg_image' => SITE_URL . '/assets/images/ui/mapping_v2.png',
                 'description' => "Once we understand the problem, we align on success. We map out your specific technical and operational expectations—whether it’s extending equipment life, reducing downtime, or improving efficiency. This step ensures that our proposed solution matches your goals perfectly.",
                 'corner_class' => 'rounded-tr-none'
             ],
@@ -77,7 +77,7 @@ $pageTitle = 'Quadra Approach';
                     <div class="quadra-card cursor-pointer relative aspect-square rounded-[40px] <?php echo $step['corner_class']; ?> overflow-hidden group transition-all duration-300 transform <?php echo $isActive ? 'opacity-100' : 'opacity-50'; ?>"
                         data-index="<?php echo $index; ?>">
 
-                        <div class="absolute inset-0 z-0 bg-lightgray transition-transform duration-700" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), 
+                        <div class="absolute inset-0 z-0 bg-lightgray transition-transform duration-700 bg-size" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), 
                         url('<?php echo $step['bg_image']; ?>') center / cover no-repeat;">
                         </div>
 
