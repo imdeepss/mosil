@@ -22,50 +22,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showError(input, message) {
     // Check if error already exists
-    let existingError = input.parentElement.querySelector(".text-red-500");
+    let existingError = input.parentElement.querySelector(".error-text");
     if (!existingError) {
-      const errorDiv = document.createElement("div");
-      errorDiv.className = "text-red-500 text-sm mt-1 ml-2";
+      const errorDiv = document.createElement("span");
+      errorDiv.className = "error-text text-xs text-red-500 mt-1 block";
       errorDiv.textContent = message;
       input.parentElement.appendChild(errorDiv);
-      input.classList.add("border-red-500");
-      input.classList.remove("border-[#DEDEDE]");
+      input.classList.add("input-error");
     }
   }
 
   function clearError(input) {
-    const existingError = input.parentElement.querySelector(".text-red-500");
+    const existingError = input.parentElement.querySelector(".error-text");
     if (existingError) {
       existingError.remove();
     }
-    input.classList.remove("border-red-500");
-    input.classList.add("border-[#DEDEDE]");
+    input.classList.remove("input-error");
   }
 
   function validateInput(input) {
-    clearError(input);
     const value = input.value.trim();
     const name = input.name;
 
-    // if (input.hasAttribute("required") && !value) {
-    //   showError(input, "This field is required.");
-    //   return false;
-    // }
+    // Reset error first
+    clearError(input);
 
-    // if (name === "email" && value && !validateEmail(value)) {
-    //   showError(input, "Please enter a valid email address.");
-    //   return false;
-    // }
+    if (input.hasAttribute("required") && !value) {
+      showError(input, "This field is required.");
+      return false;
+    }
 
-    // if (name === "mobile" && value && !validatePhone(value)) {
-    //   showError(input, "Please enter a valid phone number (10-15 digits).");
-    //   return false;
-    // }
+    if (name === "email" && value && !validateEmail(value)) {
+      showError(input, "Please enter a valid email address.");
+      return false;
+    }
 
-    // if (name === "pincode" && value && !/^\d+$/.test(value)) {
-    //   showError(input, "Pincode must be numeric.");
-    //   return false;
-    // }
+    if (name === "mobile" && value && !validatePhone(value)) {
+      showError(input, "Please enter a valid phone number (10-15 digits).");
+      return false;
+    }
+
+    if (name === "pincode" && value && !/^\d+$/.test(value)) {
+      showError(input, "Pincode must be numeric.");
+      return false;
+    }
 
     return true;
   }
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "bg-green-100",
       "text-green-700",
       "bg-red-100",
-      "text-red-700"
+      "text-red-700",
     );
 
     if (type === "success") {
@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
       formResponse.classList.add("bg-red-100", "text-red-700");
     }
 
-    // Auto-hide after 5 seconds if success? Maybe not, keep it visible.
     formResponse.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -95,8 +94,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputs = careerForm.querySelectorAll("input, select");
   inputs.forEach((input) => {
     if (input.type !== "file") {
-      input.addEventListener("blur", () => validateInput(input));
-      input.addEventListener("input", () => clearError(input));
+      input.addEventListener("blur", () => {
+        if (input.value.trim() !== "") validateInput(input);
+      });
+      input.addEventListener("input", () => {
+        // Only clear error on input, do not re-validate (which would re-add error as they type)
+        // and do not show success state.
+        clearError(input);
+      });
     }
   });
 
@@ -207,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("AJAX Error:", error);
       showFormResponse(
         "Application could not be sent. Please try again later.",
-        "error"
+        "error",
       );
     } finally {
       // UI Feedback: Restore Button

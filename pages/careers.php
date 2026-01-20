@@ -60,45 +60,60 @@ $positions = getCareerPosition();
             </div>
             <form id="careerForm" method="POST" enctype="multipart/form-data"
                 data-url="<?php echo SITE_URL; ?>/ajax/career.php"
-                class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 md:py-6 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em] pt-4 md:pt-6">
+                class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-4 md:py-6 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em] pt-4 md:pt-6"
+                novalidate>
 
-                <input type="text" name="name" placeholder="Name" required
-                    class="flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
+                <div class="flex flex-col">
+                    <input type="text" name="name" placeholder="Name" required
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                </div>
 
-                <div class="relative flex min-w-[240px] flex-1">
-                    <select name="position" id="positionSelect" required
-                        class="appearance-none flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green cursor-pointer">
-                        <option value="" disabled selected>Position</option>
-                        <?php foreach ($positions as $position): ?>
-                            <option value="<?= htmlspecialchars($position['position']) ?>" class="text-black">
-                                <?= htmlspecialchars($position['position']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
+                <div class="flex flex-col relative min-w-[240px] flex-1">
+                    <div class="relative w-full">
+                        <select name="position" id="positionSelect" required
+                            class="appearance-none flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green cursor-pointer transition-colors">
+                            <option value="" disabled selected>Position</option>
+                            <?php foreach ($positions as $position): ?>
+                                <option value="<?= htmlspecialchars($position['position']) ?>" class="text-black">
+                                    <?= htmlspecialchars($position['position']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
-                <input type="tel" name="mobile" placeholder="+91 Phone" required
-                    class="flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none">
+                <div class="flex flex-col">
+                    <input type="tel" name="mobile" placeholder="+91 Phone" required
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                </div>
 
-                <input type="email" name="email" placeholder="Email" required
-                    class="flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none">
+                <div class="flex flex-col">
+                    <input type="email" name="email" placeholder="Email" required
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                </div>
 
-                <input type="text" name="city" placeholder="City" required
-                    class="flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none">
+                <div class="flex flex-col">
+                    <input type="text" name="city" placeholder="City" required
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                </div>
 
-                <input type="text" name="pincode" placeholder="Pincode" required
-                    class="flex min-w-[240px] px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none">
+                <div class="flex flex-col">
+                    <input type="text" name="pincode" placeholder="Pincode" required
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                </div>
 
-                <div class="md:col-span-2 relative">
+                <div class="md:col-span-2 relative flex flex-col">
                     <input type="file" id="upload" name="resume" class="hidden" accept=".pdf,.doc,.docx">
                     <label for="upload" id="fileLabel"
-                        class="w-full p-3 flex justify-between items-center cursor-pointer text-[#757575] bg-[#FFF] rounded-[4px] border border-[#DEDEDE]">
+                        class="w-full p-3 flex justify-between items-center cursor-pointer text-[#757575] bg-[#FFF] rounded-[4px] border border-[#DEDEDE] transition-colors">
                         <span>Upload</span> <img src="<?php echo SITE_URL ?>/assets/icons/svg/upload.svg" width="24"
                             height="24" />
                     </label>
@@ -108,7 +123,7 @@ $positions = getCareerPosition();
                     class="md:col-span-2 hidden rounded-md p-4 mb-2 text-center text-sm font-semibold"></div>
 
                 <button type="submit" id="submitBtn"
-                    class="md:col-span-2 bg-main-green text-white font-normal text-[16px] leading-[150%] tracking-[0.24px] md:font-bold md:text-[20px] md:leading-[135%] md:tracking-[0.2px] disabled:bg-gray-400 py-4 rounded-full text-center">
+                    class="md:col-span-2 bg-main-green text-white font-normal text-[16px] leading-[150%] tracking-[0.24px] md:font-bold md:text-[20px] md:leading-[135%] md:tracking-[0.2px] disabled:bg-main-green/50 disabled:cursor-not-allowed py-4 rounded-full text-center cursor-pointer">
                     Send Application
                 </button>
             </form>

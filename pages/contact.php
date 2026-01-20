@@ -37,111 +37,164 @@ $pageTitle = 'Contact Us';
                 </div>
             </div>
 
-            <form id="contactForm" method="POST" action="" class="scroll-mt-20">
-                <div id="contactResponse" class="hidden mb-4 p-4 rounded text-center text-sm font-medium"></div>
+            <form id="contactForm" method="POST" action="" class="scroll-mt-20" novalidate>
 
                 <div
-                    class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-2 mb-4 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em]">
-                    <input type="text" name="name" required placeholder="Name"
-                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
-                    <input type="email" name="email" required placeholder="Email"
-                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
-                    <input type="tel" name="contact" required placeholder="+91 Phone"
-                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
-                    <input type="text" name="company_name" required placeholder="Company Name"
-                        class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
+                    class="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-4 mb-4 text-[#757575] font-helvetica font-normal text-[20px] leading-[140%] tracking-[0.01em]">
+                    <!-- Name -->
+                    <div class="flex flex-col">
+                        <input type="text" name="name" required placeholder="Name"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Name is required</span>
+                    </div>
 
-                    <div class="md:col-span-2">
+                    <!-- Email -->
+                    <div class="flex flex-col">
+                        <input type="email" name="email" required placeholder="Email"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Valid email is required</span>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex flex-col">
+                        <input type="tel" name="contact" required placeholder="+91 Phone"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Valid phone number is required</span>
+                    </div>
+
+                    <!-- Company -->
+                    <div class="flex flex-col">
+                        <input type="text" name="company_name" required placeholder="Company Name"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Company name is required</span>
+                    </div>
+
+                    <!-- Subject -->
+                    <div class="md:col-span-2 flex flex-col">
                         <input type="text" name="subject" required placeholder="Subject"
                             value="<?= htmlspecialchars($product['name'] ?? '') ?>"
-                            class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green">
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Subject is required</span>
                     </div>
 
-                    <div class="md:col-span-2">
+                    <!-- Message -->
+                    <div class="md:col-span-2 flex flex-col">
                         <textarea name="message" required placeholder="Write your message here" rows="4"
-                            class="flex w-full px-4 py-3 items-center flex-1 self-stretch rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green"></textarea>
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors"></textarea>
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Message is required</span>
                     </div>
                 </div>
-
+                <div id="contactResponse" class="hidden my-4 p-4 rounded text-center text-sm font-medium"></div>
                 <div class="text-center">
                     <button type="submit" id="submitBtn"
-                        class="bg-main-green text-white font-normal text-[16px] leading-[150%] tracking-[0.24px] md:font-bold md:text-[20px] md:leading-[135%] md:tracking-[0.2px] w-full disabled:bg-gray-400 disabled:cursor-not-allowed py-4 rounded-full text-center">
+                        class="bg-main-green text-white font-normal text-[16px] leading-[150%] tracking-[0.24px] md:font-bold md:text-[20px] md:leading-[135%] md:tracking-[0.2px] w-full disabled:bg-main-green/50 disabled:cursor-not-allowed py-4 rounded-full text-center cursor-pointer">
                         Send
                     </button>
                 </div>
             </form>
 
             <script>
-                document.getElementById('contactForm').addEventListener('submit', function (e) {
-                    e.preventDefault();
+                document.addEventListener('DOMContentLoaded', () => {
+                    const form = document.getElementById('contactForm');
+                    const inputs = form.querySelectorAll('input, textarea');
 
-                    const form = this;
-                    const btn = document.getElementById('submitBtn');
-                    const responseDiv = document.getElementById('contactResponse');
+                    // Validation Functions
+                    const validators = {
+                        email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+                        tel: (value) => /^[0-9+\-\s]{10,}$/.test(value),
+                        default: (value) => value.trim().length > 0
+                    };
 
-                    // Basic JS Validation
-                    const name = form.name.value.trim();
-                    const email = form.email.value.trim();
-                    const contact = form.contact.value.trim();
-                    const message = form.message.value.trim();
+                    const validateField = (input) => {
+                        const type = input.name === 'email' ? 'email' : (input.name === 'contact' ? 'tel' : 'default');
+                        const isValid = validators[type](input.value);
+                        const wrapper = input.parentElement;
+                        const errorMsg = wrapper.querySelector('.error-text');
 
-                    if (!name || !email || !contact || !message) {
-                        showResponse('Please fill in all required fields.', 'error');
-                        return;
-                    }
+                        if (!isValid) {
+                            input.classList.add('input-error');
+                            if (errorMsg) errorMsg.classList.remove('hidden');
+                        } else {
+                            input.classList.remove('input-error');
+                            if (errorMsg) errorMsg.classList.add('hidden');
+                        }
+                        return isValid;
+                    };
 
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(email)) {
-                        showResponse('Please enter a valid email address.', 'error');
-                        return;
-                    }
-
-                    const phoneRegex = /^[0-9+\-\s]{10,}$/;
-                    if (!phoneRegex.test(contact)) {
-                        showResponse('Please enter a valid phone number (at least 10 digits).', 'error');
-                        return;
-                    }
-
-                    // Prepare Data
-                    const formData = new FormData(form);
-
-                    // Disable UI
-                    btn.disabled = true;
-                    btn.textContent = 'Sending...';
-                    responseDiv.classList.add('hidden');
-
-                    fetch('<?php echo SITE_URL; ?>/ajax/contact.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.success) {
-                                showResponse(data.message === 'success' ? 'Thank you! Your message has been sent successfully.' : data.message, 'success');
-                                form.reset();
-                            } else {
-                                showResponse(data.message || 'Something went wrong. Please try again.', 'error');
+                    // Event Listeners
+                    inputs.forEach(input => {
+                        input.addEventListener('blur', () => {
+                            if (input.value.trim() !== '') {
+                                validateField(input);
                             }
-                        })
-                        .catch(err => {
-                            console.error(err);
-                            showResponse('An unexpected error occurred. Please try again later.', 'error');
-                        })
-                        .finally(() => {
-                            btn.disabled = false;
-                            btn.textContent = 'Send';
                         });
 
-                    function showResponse(msg, type) {
-                        responseDiv.textContent = msg;
-                        responseDiv.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+                        input.addEventListener('input', () => {
+                            // Only clear error, do not show success
+                            if (input.classList.contains('input-error')) {
+                                input.classList.remove('input-error');
+                                const wrapper = input.parentElement;
+                                const errorMsg = wrapper.querySelector('.error-text');
+                                if (errorMsg) errorMsg.classList.add('hidden');
+                            }
+                        });
+                    });
 
-                        if (type === 'success') {
-                            responseDiv.classList.add('bg-green-100', 'text-green-700');
-                        } else {
-                            responseDiv.classList.add('bg-red-100', 'text-red-700');
+                    // Form Submission
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        let isFormValid = true;
+                        inputs.forEach(input => {
+                            if (!validateField(input)) {
+                                isFormValid = false;
+                            }
+                        });
+
+                        if (!isFormValid) return;
+
+                        const btn = document.getElementById('submitBtn');
+                        const responseDiv = document.getElementById('contactResponse');
+                        const formData = new FormData(form);
+
+                        // Disable UI
+                        btn.disabled = true;
+                        btn.textContent = 'Sending...';
+                        responseDiv.classList.add('hidden');
+
+                        fetch('<?php echo SITE_URL; ?>/ajax/contact.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.success) {
+                                    showResponse(data.message === 'success' ? 'Thank you! Your message has been sent successfully.' : data.message, 'success');
+                                    form.reset();
+                                    inputs.forEach(i => i.classList.remove('input-error'));
+                                } else {
+                                    showResponse(data.message || 'Something went wrong. Please try again.', 'error');
+                                }
+                            })
+                            .catch(err => {
+                                console.error(err);
+                                showResponse('An unexpected error occurred. Please try again later.', 'error');
+                            })
+                            .finally(() => {
+                                btn.disabled = false;
+                                btn.textContent = 'Send';
+                            });
+
+                        function showResponse(msg, type) {
+                            responseDiv.textContent = msg;
+                            responseDiv.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+                            if (type === 'success') {
+                                responseDiv.classList.add('bg-green-100', 'text-green-700');
+                            } else {
+                                responseDiv.classList.add('bg-red-100', 'text-red-700');
+                            }
                         }
-                    }
+                    });
                 });
             </script>
         </div>

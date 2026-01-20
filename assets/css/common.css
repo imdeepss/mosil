@@ -202,24 +202,25 @@ form select:focus {
 }
 
 /* ─────────────────────────────────────── */
-/* Show red ONLY when the field is focused AND invalid */
-/* This prevents red on load / untouched required selects */
-form input:focus:invalid,
-form textarea:focus:invalid,
-form select:focus:invalid {
-    border-color: #ef4444;
+/* Error State Class - Applied via JS */
+.input-error {
+    border-color: #ef4444 !important;
     /* red-500 */
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25);
-    background-color: #fef2f2;
+    background-color: #fef2f2 !important;
     /* subtle red tint */
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25) !important;
 }
 
-/* Optional: very soft hint after user typed/changed something wrong (but not focused) */
-form input:not(:focus):invalid:not(:placeholder-shown),
-form textarea:not(:focus):invalid:not(:placeholder-shown) {
-    border-color: #fca5a5;
-    /* much softer red-300 */
-    background-color: #fef2f2;
+/* Success State Class (Removed) */
+/* .input-success {
+    border-color: #22c55e !important;
+} */
+
+/* Error Message Text */
+.error-text {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
 }
 
 
