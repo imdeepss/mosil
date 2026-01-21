@@ -517,7 +517,7 @@ $faqs = [
         </div>
         <div class="md:mt-8 mt-6 swiper glossarySwiper">
             <div class="swiper-wrapper md:!grid md:grid-cols-2 lg:grid-cols-4 md:gap-5">
-                <div class="swiper-slide md:h-[220px]! bg-[#415C42] px-4! flex flex-col h-[220px]!">
+                <div class="swiper-slide md:h-[220px]! bg-[#415C42] p-4! flex flex-col h-[208px]!">
                     <h6 class="text-[#FFFFFF] font-base font-normal text-[64px] leading-[120%]">
                         A
                     </h6>
@@ -536,7 +536,7 @@ $faqs = [
                 </div>
                 <?php foreach ($glossary['items'] as $index => $item) { ?>
                     <div
-                        class="swiper-slide glossary-card bg-[#415C42] px-4! py-6 rounded-[4px] flex! flex-col gap-4 justify-start items-start h-[220px]! border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
+                        class="swiper-slide glossary-card bg-[#415C42] px-4! py-6 rounded-[4px] flex! flex-col gap-4 justify-start items-start md:h-[220px]! h-[208px]! border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
 
                         <h4
                             class="glossary-title text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors">
@@ -726,7 +726,7 @@ $faqs = [
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div
             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl w-full relative">
-            <div class="bg-white px-12.5 py-11 rounded-[4px]">
+            <div class="bg-white md:px-12.5 md:py-11 px-4 py-10 rounded-[4px]">
                 <div class="sm:flex sm:items-start">
                     <div class="text-left w-full">
                         <h3 class="text-[#1A3B1B] font-base font-bold text-[24px] leading-[135%] capitalize mb-4"
