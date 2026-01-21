@@ -334,7 +334,7 @@ $faqs = [
 </section>
 
 
-<section id="case-studies" class="w-full bg-[#F5F5F5]">
+<section id="case-studies" class="w-full md:bg-[#F5F5F5] bg-white">
     <div class="container md:pt-[30px] md:pb-[80px] pt-[24px] pb-[24px]">
         <div class="py-3.5">
             <span
@@ -371,7 +371,7 @@ $faqs = [
                     foreach ($caseStudies as $index => $study):
                         $isActive = $index === 0;
                         ?>
-                        <div class="case-study-item md:pt-5 md:pb-7 md:pl-8 md:pr-5.5 pt-4 pb-4 pl-4 pr-4 <?php echo $isActive ? 'bg-[#F4C300]' : 'bg-[#F4C300] hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
+                        <div class="case-study-item md:pt-5 md:pb-7 md:pl-8 md:pr-5.5 pt-4 pb-4 pl-4 pr-4 <?php echo $isActive ? 'bg-[#F4C300] md:bg-[#F4C300]' : 'md:bg-[#F4C300] bg-[#F5F5F5] hover:bg-[#F4C300]'; ?> rounded-br-[40px] relative group flex flex-col gap-2 overflow-hidden transition-colors cursor-pointer"
                             data-image="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>">
 
                             <span
@@ -388,10 +388,12 @@ $faqs = [
                                     class="text-[#3B3B3B] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] opacity-80">
                                     <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
                                 </span>
-                                <p class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
+                                <p
+                                    class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-2">
                                     <?php
                                     $content = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
-                                    echo mb_strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
+                                    // echo mb_strlen($content) > 150 ? substr($content, 0, 150) . '...' : $content;
+                                    echo $content;
                                     ?>
                                 </p>
                             </div>
