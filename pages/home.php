@@ -476,8 +476,8 @@ $lubricationItems = [
             application, environment, and customer reality together</p>
         <div class="md:mt-8 mt-6 grid grid-cols-2 lg:grid-cols-4 md:gap-10 gap-4">
             <?php foreach ($lubricationItems as $index => $item) { ?>
-                <div
-                    class="group bg-y100 h-[208px] px-3 pt-2 md:pb-6 pb-3 relative flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2 active:-translate-y-2">
+                <div onclick="this.classList.toggle('active')"
+                    class="group bg-y100 h-[208px] px-3 pt-2 md:pb-6 pb-3 relative flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2 [&.active]:-translate-y-2 cursor-pointer">
                     <div class="w-[72px] h-[72px] ml-auto relative z-10">
                         <img src="<?php echo SITE_URL; ?><?php echo $item['image']; ?>" alt="<?php echo $item['title']; ?>"
                             class="block h-full w-full object-cover object-center" loading="lazy">
@@ -494,7 +494,7 @@ $lubricationItems = [
                     </div>
 
                     <div
-                        class="absolute bottom-0 left-0 h-1 w-0 bg-main-green transition-all duration-300 group-hover:w-full group-active:w-full">
+                        class="absolute bottom-0 left-0 h-1 w-0 bg-main-green transition-all duration-300 group-hover:w-full [.active_&]:w-full">
                     </div>
                 </div>
             <?php } ?>
