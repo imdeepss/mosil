@@ -710,11 +710,12 @@ $lubricant_features = [
                     class="object-contain object-right-top w-full h-full">
             </div>
             <div
-                class="md:px-6 md:py-6 p-5 pt-9 bg-[#ffffff] bg-[#FAFAFA] border-l border-[#F4C300] rounded-bl-[33px] mb-5">
+                class="md:px-6 md:py-6 px-9 py-5 md:pt-9 pt-5 bg-[#ffffff] bg-[#FAFAFA] border-l border-[#F4C300] rounded-bl-[33px] mb-5">
                 <h2
-                    class="text-[#1A3B1B] font-base font-normal text-[20px] leading-[150%] tracking-[0.01em] relative pl-10">
-                    <span class="absolute md:bottom-1/2 bottom-full left-0"><img
-                            src="<?php echo SITE_URL; ?>/assets/icons/svg/quotes.svg" alt=" quote" /></span>
+                    class="text-[#1A3B1B] text-base leading-[1.5] tracking-[0.24px] md:text-xl md:tracking-[0.2px] relative md:pl-10 md:text-left text-center">
+                    <span class="absolute md:bottom-1/2 bottom-[70%] left-0 "><img
+                            src="<?php echo SITE_URL; ?>/assets/icons/svg/quotes.svg" class="w-5 h-5 md:w-8 md:h-8"
+                            alt="quote" /></span>
                     Great machines builds nation, great lubricants keep them alive
                 </h2>
             </div>
