@@ -217,7 +217,7 @@ $faqs = [
 <!-- Placeholder for sticky nav -->
 <div id="sticky-nav-placeholder" class="hidden w-full"></div>
 
-<section id="newsroom-nav" class="bg-main-green z-40 shadow-sm transition-all duration-300 w-full bg-main-green">
+<section id="newsroom-nav" class="bg-main-green z-40 shadow-sm w-full bg-main-green">
     <div class="container">
         <div class="md:flex items-center justify-start overflow-x-auto no-scrollbar gap-4 md:gap-0 hidden">
             <?php
@@ -1001,10 +1001,6 @@ $faqs = [
         const placeholder = document.getElementById('sticky-nav-placeholder');
         const mainHeader = document.querySelector('header');
         const headerHeight = 60; // Your fixed header height
-
-        if (mainHeader) {
-            mainHeader.style.transition = 'transform 0.3s ease-in-out';
-        }
 
         if (nav && hero && placeholder && mainHeader) {
             // Set placeholder height to match nav height

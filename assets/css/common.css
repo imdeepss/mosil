@@ -205,10 +205,6 @@ form select:focus {
 /* Error State Class - Applied via JS */
 .input-error {
     border-color: #ef4444 !important;
-    /* red-500 */
-    background-color: #fef2f2 !important;
-    /* subtle red tint */
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25) !important;
 }
 
 /* Success State Class (Removed) */

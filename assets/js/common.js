@@ -385,7 +385,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // New Swiper Initializations for Product Detail Page
-  // New Swiper Initializations for Product Detail Page
   const relevantProductsSwiper = new Swiper(".relevantProductsSwiper", {
     slidesPerView: 2,
     spaceBetween: 16,
@@ -403,6 +402,20 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  // Manually bind navigation for multiple buttons (Mobile/Desktop)
+  document.querySelectorAll(".relevant-prev").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      relevantProductsSwiper.slidePrev();
+    });
+  });
+  document.querySelectorAll(".relevant-next").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      relevantProductsSwiper.slideNext();
+    });
+  });
+
   const caseStudySwiper = new Swiper(".caseStudySwiper", {
     slidesPerView: 1,
     spaceBetween: 16,
@@ -418,6 +431,20 @@ document.addEventListener("DOMContentLoaded", () => {
         spaceBetween: 20,
       },
     },
+  });
+
+  // Manually bind navigation for multiple buttons (Mobile/Desktop)
+  document.querySelectorAll(".case-prev").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      caseStudySwiper.slidePrev();
+    });
+  });
+  document.querySelectorAll(".case-next").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      caseStudySwiper.slideNext();
+    });
   });
 
   // Counter animation logic

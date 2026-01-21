@@ -530,7 +530,7 @@ function parseTableString($str)
                 </div>
 
                 <!-- Swiper Container -->
-                <div class="relevantProductsSwiper swiper md:w-[calc(50vw+50%)] w-full md:py-2">
+                <div class="relevantProductsSwiper swiper md:w-[calc(50vw+50%)] w-full md:py-2 !overflow-visible">
                     <div class="swiper-wrapper">
                         <?php foreach ($relatedProducts as $product):
                             $productName = $product['name'];
@@ -646,7 +646,7 @@ function parseTableString($str)
                 </div>
 
                 <!-- Swiper Container -->
-                <div class="caseStudySwiper swiper md:w-[calc(50vw+50%)] w-full mt-8">
+                <div class="caseStudySwiper swiper md:w-[calc(50vw+50%)] w-full mt-8 !overflow-visible">
                     <div class="swiper-wrapper ">
                         <?php foreach ($blogs as $blog): ?>
                             <div class="swiper-slide md:!w-[400px] !grid !grid-rows-[auto_1fr_auto] ">
