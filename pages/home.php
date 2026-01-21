@@ -563,7 +563,7 @@ $lubricationItems = [
                             class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
                             Read <?php echo $blog['category_name']; ?>
                             <span
-                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-100 md:scale-x-0 md:group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
 
                     </div>
