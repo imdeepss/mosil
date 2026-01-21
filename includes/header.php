@@ -92,7 +92,7 @@
                             class="search-input flex-grow bg-transparent text-white placeholder-neutral-400 outline-none text-lg h-full min-w-0">
                         <!-- Search Results Dropdown (Mobile) -->
                         <div
-                            class="search-results-container absolute top-[60px] left-0 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-40 hidden max-h-[80vh] overflow-y-auto">
+                            class="search-results-container fixed top-[60px] left-0 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-[60] hidden max-h-[80vh] overflow-y-auto">
                         </div>
                         <!-- Spacer for Hamburger/Close Button -->
                         <div class="w-12 shrink-0"></div>

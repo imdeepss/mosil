@@ -68,6 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileSearchBar.classList.remove("w-full");
       // Revert Hamburger Icon
       openSidebarImg.src = menuIconSrc;
+
+      // Hide results container if open
+      const results = mobileSearchBar.querySelector(
+        ".search-results-container",
+      );
+      if (results) results.classList.add("hidden");
     }
   }
 
