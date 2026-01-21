@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     breakpoints: {
       768: {
-        slidesPerView: 3.2,
+        slidesPerView: "auto", // Set to auto to respect CSS fixed width
         spaceBetween: 20,
       },
     },
@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     breakpoints: {
       768: {
-        slidesPerView: 3.2,
+        slidesPerView: "auto",
         spaceBetween: 20,
       },
     },
