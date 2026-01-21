@@ -537,7 +537,7 @@ function parseTableString($str)
                             $productSlug = $product['slug']; ?>
 
                             <div
-                                class="swiper-slide md:w-[405px]! group cursor-pointer py-4 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-3 will-change-transform relative">
+                                class="swiper-slide md:!w-[405px] group cursor-pointer py-4 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-3 will-change-transform relative">
 
                                 <a href="<?php echo SITE_URL; ?>/product-finder/<?php echo $categorySlug ? $categorySlug : 'all'; ?>/<?php echo $productSlug; ?>"
                                     class="block">
@@ -649,7 +649,7 @@ function parseTableString($str)
                 <div class="caseStudySwiper swiper md:w-[calc(50vw+50%)] w-full mt-8">
                     <div class="swiper-wrapper ">
                         <?php foreach ($blogs as $blog): ?>
-                            <div class="swiper-slide md:w-[400px]! grid! grid-rows-[auto_1fr_auto]! ">
+                            <div class="swiper-slide md:!w-[400px] !grid !grid-rows-[auto_1fr_auto] ">
                                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                                     <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
                                         alt="Hero Image"
@@ -678,7 +678,7 @@ function parseTableString($str)
                                         <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                                     </p>
                                 </div>
-                                <a href="<?php echo SITE_URL; ?>/blog/<?= urlencode($blog["slug"] ?? '') ?>"
+                                <a href="<?php echo SITE_URL; ?>/blog/<?= $blog["slug"] ?? '' ?>"
                                     class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
                                     Read <?php echo $blog['category_name']; ?>
                                     <span

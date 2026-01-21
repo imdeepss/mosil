@@ -56,7 +56,7 @@ $currentPage = $initialData['currentPage'];
             ?>
             <!-- Main Featured Item -->
             <div class="w-full relative my-6 group cursor-pointer overflow-hidden">
-                <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($mainFeatured["slug"] ?? '') ?>"
+                <a href="<?php echo SITE_URL; ?>/case-studies/<?= $mainFeatured["slug"] ?? '' ?>"
                     class="block md:h-[400px] h-[280px] w-full">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $mainFeatured['image']; ?>"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -129,7 +129,7 @@ $currentPage = $initialData['currentPage'];
                                 <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
                             </p>
                         </div>
-                        <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($study["slug"] ?? '') ?>" class="group/btn
+                        <a href="<?php echo SITE_URL; ?>/case-studies/<?= $study["slug"] ?? '' ?>" class="group/btn
                     relative font-bold text-[18px] text-[#415C42] pb-2  w-fit
                     capitalize hover:text-main-green  hidden md:inline-block">
                             Read Case Study
@@ -214,7 +214,7 @@ $currentPage = $initialData['currentPage'];
                         <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
                     </p>
                 </div>
-                <a href="<?php echo SITE_URL; ?>/case-studies/<?= urlencode($study["slug"] ?? '') ?>" class="group/btn relative
+                <a href="<?php echo SITE_URL; ?>/case-studies/<?= $study["slug"] ?? '' ?>" class="group/btn relative
                 font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit
                 capitalize hover:text-main-green">
                     Read Case Study
