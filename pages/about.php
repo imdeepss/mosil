@@ -241,7 +241,7 @@ $lubricant_features = [
 
             <div class="relative order-1 md:order-2 group/main md:pb-0 pb-28">
                 <div id="quadra-info-card"
-                    class="absolute z-50 w-[330px] p-4 bg-white border border-[#E5E5E5] rounded-[4px] shadow-xl transition-all duration-300 opacity-0 pointer-events-none">
+                    class="absolute z-50 w-[330px] p-4 bg-white border border-[#E5E5E5] rounded-[4px] md:shadow-xl transition-all duration-300 opacity-0 pointer-events-none">
                     <h3 id="info-title" class="text-[#3B3B3B] font-bold text-[16px] mb-1 capitalize"></h3>
                     <p id="info-desc" class="text-[#757575] text-[12px] leading-[150%]"></p>
                 </div>
