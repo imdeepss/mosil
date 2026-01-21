@@ -505,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const whoWeAreSwiper = new Swiper(".who-we-are-swiper", {
     slidesPerView: 1,
     spaceBetween: 20,
-    loop: true,
+    loop: false,
     navigation: {
       nextEl: ".who-we-are-next",
       prevEl: ".who-we-are-prev",

@@ -605,14 +605,18 @@ $lubricant_features = [
             </div>
 
             <div class="flex md:hidden items-center gap-4 relative z-10 justify-end mt-6">
-                <button class="who-we-are-prev group cursor-pointer" aria-label="Previous slide">
+                <button
+                    class="who-we-are-prev group cursor-pointer [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:pointer-events-none"
+                    aria-label="Previous slide">
                     <svg class="w-12 h-12 transition-transform group-active:scale-90" viewBox="0 0 48 48">
                         <circle cx="24" cy="24" r="23" stroke="#1A3B1B" stroke-width="2" fill="none" />
                         <path d="M34 24L14 24M14 24L20 18M14 24L20 30" stroke="#1A3B1B" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-                <button class="who-we-are-next group cursor-pointer" aria-label="Next slide">
+                <button
+                    class="who-we-are-next group cursor-pointer [&.swiper-button-disabled]:opacity-50 [&.swiper-button-disabled]:pointer-events-none"
+                    aria-label="Next slide">
                     <svg class="w-12 h-12 transition-transform group-active:scale-90" viewBox="0 0 48 48">
                         <circle cx="24" cy="24" r="23" stroke="#1A3B1B" stroke-width="2" fill="none" />
                         <path d="M14 24L34 24M34 24L28 18M34 24L28 30" stroke="#1A3B1B" stroke-width="2"
