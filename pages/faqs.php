@@ -156,7 +156,7 @@ $faqs = [
     </div>
 </section>
 
-<section class="bg-white min-h-screen">
+<section class="bg-white md:min-h-screen">
     <div class="flex flex-col md:flex-row relative">
 
         <aside id="productCategorySidebar"
@@ -328,7 +328,7 @@ $faqs = [
                 </li>
             `).join('');
 
-            listContainer.innerHTML = `<ul class="flex flex-col gap-6 md:max-h-[600px] md:overflow-y-auto gap-4 custom-scrollbar md:pr-14 pr-0">${html}</ul>`;
+            listContainer.innerHTML = `<ul class="flex flex-col gap-6 max-h-[567px] md:max-h-[600px] overflow-y-auto overscroll-y-auto scroll-smooth gap-4 custom-scrollbar md:pr-14 pr-2" style="-webkit-overflow-scrolling: touch;">${html}</ul>`;
         }
     });
 </script>
