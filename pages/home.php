@@ -197,8 +197,8 @@ $blogs = getBlogs(3);
         </div>
         <div class="mt-8 flex flex-col lg:flex-row items-stretch gap-0 w-full overflow-hidden">
             <?php foreach ($products as $product) { ?>
-                <div
-                    class="group relative flex-1 hover:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between bg-black cursor-pointer">
+                <div onclick="this.classList.toggle('active')"
+                    class="group relative flex-1 hover:flex-[1.4] [&.active]:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between bg-black cursor-pointer">
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
@@ -210,22 +210,23 @@ $blogs = getBlogs(3);
 
                         <div class="relative overflow-hidden border-b border-white transition-colors duration-500">
                             <div
-                                class="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out z-0">
+                                class="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 [.active_&]:translate-x-0 transition-transform duration-500 ease-in-out z-0">
                             </div>
                             <a
                                 href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $product['slug']; ?>">
                                 <div class="relative z-10 flex items-center justify-between px-6 py-4">
                                     <p
-                                        class="text-white group-hover:text-main-green font-normal text-base leading-[120%] tracking-[0.015em] transition-all duration-500 opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0">
+                                        class="text-white group-hover:text-main-green [.active_&]:text-main-green font-normal text-base leading-[120%] tracking-[0.015em] transition-all duration-500 opacity-0 translate-x-[-10px] group-hover:opacity-100 [.active_&]:opacity-100 group-hover:translate-x-0 [.active_&]:translate-x-0">
                                         <?php echo $product['mcat_desc']; ?>
                                     </p>
 
-                                    <button class="transition-all duration-500 transform group-hover:-rotate-45">
+                                    <button
+                                        class="transition-all duration-500 transform group-hover:-rotate-45 [.active_&]:-rotate-45">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                             fill="none">
                                             <path d="M14 5L21 12M21 12L14 19M21 12L3 12" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="text-white group-hover:text-main-green transition-colors duration-500" />
+                                                class="text-white group-hover:text-main-green [.active_&]:text-main-green transition-colors duration-500" />
                                         </svg>
                                     </button>
                                     </svg>
@@ -235,7 +236,7 @@ $blogs = getBlogs(3);
 
                         <div class="px-6 py-4">
                             <h6
-                                class="font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary transition-colors duration-500 max-w-[250px]">
+                                class="font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px]">
                                 <?php echo $product['mcat_name']; ?>
                             </h6>
                         </div>
