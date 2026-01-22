@@ -301,6 +301,15 @@ $faqs = [
             });
         });
 
+        // Close sidebar with close button
+        const closeBtn = document.getElementById('closeProductSidebar');
+        if (closeBtn && sidebar && overlay) {
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            });
+        }
+
         function renderFaqs(category) {
             if (!faqsData[category]) return;
 
