@@ -78,7 +78,47 @@ function hasPermission($permission)
 
     return false;
 }
+/**
+ * Generate a random token
+ * 
+ * @param int $length The length of the token
+ * @return string The generated token
+ */
+function generateToken($length = 32)
+{
+    return bin2hex(random_bytes($length));
+}
 
+/**
+ * Log activity
+ * 
+ * @param string $action The action performed
+ * @param string $description The description of the action
+ * @return bool True if logged successfully, false otherwise
+ */
+function logActivity($action, $description)
+{
+    // In a real application, you would log to database
+    // For demo purposes, we'll just return true
+    return true;
+}
+
+function generateSlug($string)
+{
+    // Convert to lowercase
+    $slug = strtolower($string);
+
+    // Replace special characters with empty string
+    $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug); // Removes special characters except dash and space
+
+    // Replace multiple spaces or dashes with a single dash
+    $slug = preg_replace('/[\s-]+/', '-', $slug);
+
+    // Trim dashes from the beginning and end
+    $slug = trim($slug, '-');
+
+    return $slug;
+}
 
 /**
  * Execute a query and fetch all results.
