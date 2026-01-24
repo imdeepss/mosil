@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     45,
     currentContainer.clientWidth / currentContainer.clientHeight,
     0.1,
-    100
+    100,
   );
   camera.position.set(5, 5, 5);
   camera.lookAt(0, 0, 0);
@@ -94,13 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Sharper radius to match the reference "tech" look -> Adjusted to semi-sharp
   const geometry = new RoundedBoxGeometry(1.0, 1.0, 1.0, 4, 0.08);
 
-  // Material: Dark Iridescent Metal
-  const matIridescent = new THREE.MeshPhysicalMaterial({
-    color: 0x151515, // Lighter blackish base
-    roughness: 0.1, // Highly polished
+  // Material: Secondary Green
+  const matPrimary = new THREE.MeshPhysicalMaterial({
+    color: 0x1a3b1b,
+    roughness: 0.1,
     metalness: 0.95,
-    clearcoat: 1.0, // High polish
-    clearcoatRoughness: 0.05, // Ultra smooth clearcoat
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.05,
     reflectivity: 1.0,
   });
 
@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let x = 0; x < gridSize; x++) {
     for (let y = 0; y < gridSize; y++) {
       for (let z = 0; z < gridSize; z++) {
-        // Use the unified shiny material
-        const mesh = new THREE.Mesh(geometry, matIridescent);
+        // Use the unified shiny material (Primary Gold)
+        const mesh = new THREE.Mesh(geometry, matPrimary);
 
         // Position spaced by 1.01 for tiny gaps (aesthetic line)
         const px = (x - offset) * 1.02;
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   const shadowPlane = new THREE.Mesh(
     new THREE.PlaneGeometry(6, 6), // Slightly larger spread
-    shadowMaterial
+    shadowMaterial,
   );
   shadowPlane.rotation.x = -Math.PI / 2;
   shadowPlane.position.y = -2.2; // Slightly lower to clear the cube movement
@@ -178,15 +178,15 @@ document.addEventListener("DOMContentLoaded", function () {
   keyLight.shadow.mapSize.height = 1024;
   scene.add(keyLight);
 
-  // Purple Shine (From Top/Right)
-  const purpleLight = new THREE.PointLight(0xaa00ff, 3.0, 20);
-  purpleLight.position.set(5, 5, 5);
-  scene.add(purpleLight);
+  // Green Shine (From Top/Right)
+  const greenLight = new THREE.PointLight(0x1a3b1b, 3.0, 20);
+  greenLight.position.set(5, 5, 5);
+  scene.add(greenLight);
 
-  // Cyan Shine (From Bottom/Left)
-  const cyanLight = new THREE.PointLight(0x00aaff, 3.0, 20);
-  cyanLight.position.set(-5, -2, 2);
-  scene.add(cyanLight);
+  // Gold Shine (From Bottom/Left)
+  const goldLight = new THREE.PointLight(0xf4c300, 3.0, 20);
+  goldLight.position.set(-5, -2, 2);
+  scene.add(goldLight);
 
   // Rim Light (Back)
   const rimLight = new THREE.DirectionalLight(0xffffff, 1.0); // White rim for edge definition
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
       }
     },
-    { passive: false }
+    { passive: false },
   );
 
   renderer.domElement.addEventListener(
@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
       }
     },
-    { passive: false }
+    { passive: false },
   );
 
   window.addEventListener("touchend", () => {
