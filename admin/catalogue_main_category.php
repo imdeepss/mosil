@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Process product image upload
                 if (isset($_FILES['category_image']) && $_FILES['category_image']['error'] === UPLOAD_ERR_OK) {
-                    $uploadDir = '../uploads/main-category/';
+                    $uploadDir = '../assets/uploads/main-category/';
                     if (!file_exists($uploadDir)) {
                         mkdir($uploadDir, 0777, true);
                     }
@@ -361,7 +361,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                             <div class="imagePreview mt-3"
                                                                  style="display: <?php echo !empty($category['mcat_image']) ? 'block' : 'none'; ?>;">
                                                                 <img class="previewImg img-fluid rounded"
-                                                                     src="<?php echo !empty($category['mcat_image']) ? '../uploads/main-category/' . htmlspecialchars($category['mcat_image']) : '/placeholder.svg'; ?>"
+                                                                     src="<?php echo !empty($category['mcat_image']) ? '../assets/uploads/main-category/' . htmlspecialchars($category['mcat_image']) : '/placeholder.svg'; ?>"
                                                                      alt="Preview" style="max-height: 200px;" />
                                                             </div>
                                                         </div>

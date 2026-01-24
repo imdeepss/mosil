@@ -10,6 +10,26 @@
 
 
 /**
+ * Sanitize input data to prevent XSS and SQL injection.
+ * 
+ * @param string|array $data The data to sanitize
+ * @return string|array The sanitized data
+ */
+function sanitizeInput($data)
+{
+    if (is_array($data)) {
+        foreach ($data as $key => $value) {
+            $data[$key] = sanitizeInput($value);
+        }
+    } else {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+    }
+    return $data;
+}
+
+/**
  * Check if the session has timed out
  * 
  * @return bool True if session has timed out, false otherwise

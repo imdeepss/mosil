@@ -76,12 +76,8 @@ $products = getCategoryByParent("3");
                             </div>
                             <div class="relative w-full h-full overflow-hidden rounded-[4px]">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
-                                    alt="<?php echo $product['mcat_name']; ?>" class="absolute inset-0 w-full h-full "
-                                    loading="lazy" />
-
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-[58.65%] to-black">
-                                </div>
+                                    alt="<?php echo $product['mcat_name']; ?>"
+                                    class="absolute inset-0 w-full h-full object-center object-cover " loading="lazy" />
                             </div>
                             <div class="absolute inset-0 z-20 flex flex-col justify-end px-4 md:py-4 py-3">
                                 <h2
