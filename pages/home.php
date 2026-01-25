@@ -198,7 +198,7 @@ $blogs = getBlogs(3);
         <div class="mt-8 flex flex-col lg:flex-row items-stretch gap-0 w-full overflow-hidden">
             <?php foreach ($products as $product) { ?>
                 <div onclick="this.classList.toggle('active')"
-                    class="group relative flex-1 hover:flex-[1.4] [&.active]:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between bg-black cursor-pointer">
+                    class="group relative flex-1 hover:flex-[1.4] [&.active]:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between cursor-pointer">
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
