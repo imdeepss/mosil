@@ -270,7 +270,7 @@ function getCategoryByParent($parentCatId, $limit = null)
             FROM main_category
             WHERE parent_cat = " . intval($parentCatId) . "
               AND status = 'Active'
-            ORDER BY mcat_name ASC";
+            ORDER BY mcat_name DESC";
 
     if (!empty($limit)) {
         $sql .= " LIMIT " . intval($limit);
