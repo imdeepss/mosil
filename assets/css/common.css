@@ -135,6 +135,20 @@ details[open] summary~* {
     /* Required for the border-box gradient to show */
 }
 
+.btn-gradient-hover {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.btn-gradient-hover:hover {
+    color: #1A3B1B;
+    background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(to right, #30442C, #F4C300) border-box;
+    border: 2px solid transparent;
+}
+
 /* Hover Effect for Stats Section */
 /* When hovering the container, dim all children */
 .text-cursor-hover-effect:hover>div {
