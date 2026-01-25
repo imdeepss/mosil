@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(
         `${SITE_URL}/ajax/get_blogs.php?page=${currentPage}&limit=${limit}&category=${encodeURIComponent(
-          currentCategory
-        )}`
+          currentCategory,
+        )}`,
       );
       const data = await response.json();
 
@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     </p>
                     <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                         ${blog.category_name || "General"} | ${
-          blog.formatted_date
-        }
+                          blog.formatted_date
+                        }
                     </p>
                 </div>
                 <a href="${
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
             </div>
-        `
+        `,
       )
       .join("");
 
@@ -200,7 +200,16 @@ document.addEventListener("DOMContentLoaded", function () {
   window.changePage = function (p) {
     currentPage = p;
     fetchBlogs();
-    // Scroll to top of list
-    blogContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    const container = document.getElementById("blog-container");
+    if (container) {
+      const headerOffset = 180;
+      const elementPosition = container.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 });

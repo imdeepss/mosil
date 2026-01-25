@@ -668,6 +668,9 @@ function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
     if ($category !== 'All' && !empty($category)) {
         $whereClauses[] = "bc.name = ?";
         $params[] = $category;
+    } else {
+        // Exclude 'Beyond Business' (handle case variations) and 'News' from 'All' listing
+        $whereClauses[] = "bc.name NOT IN ('Beyond Business', 'Beyond business', 'News')";
     }
 
     $whereSql = implode(' AND ', $whereClauses);
