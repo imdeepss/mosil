@@ -6354,13 +6354,16 @@ $pageTitle = 'Contact Us';
                 }
             </style>
             <script>
-                (function() {
+                (function() { 
                     function initMap() {
                         const svg = document.getElementById('world-map-svg');
                         if (!svg) {
                             setTimeout(initMap, 100);
                             return;
                         }
+
+                        // Optimization for touch devices
+                        svg.style.touchAction = 'manipulation'; 
 
                         // Make SVG responsive by removing fixed dimensions and relying on viewBox + CSS
                         svg.removeAttribute('width');
@@ -6384,27 +6387,52 @@ $pageTitle = 'Contact Us';
                         let isZoomed = false;
                         let currentAnimation = null;
 
+                        // Helper to add robust click/touch listeners
+                        function addInteractionListener(element, handler) {
+                            // We use 'click' which is generally universally supported now, 
+                            // but ensuring it works on mobile sometimes 'touchend' is more responsive.
+                            // However, mixing them can cause ghost clicks. 
+                            // Standard practice: just use click, but ensure the element has pointer cursor
+                            // and is clickable. if issues persist, we handle touchend specifically.
+                            
+                            // For this specific request, the user says click/tap isn't triggering. 
+                            // We will listen to 'click' but also 'touchend' carefully.
+                            
+                            let handled = false;
+                            const wrappedHandler = (e) => {
+                                if (e.type === 'touchend') handled = true;
+                                if (e.type === 'click' && handled) return; // Prevent double fire from ghost click
+                                
+                                handler(e);
+                            };
+
+                            element.addEventListener('click', wrappedHandler);
+                            element.addEventListener('touchend', wrappedHandler);
+                        }
+
                         // Events
                         markers.forEach(marker => {
-                            marker.onclick = function(e) {
+                            addInteractionListener(marker, (e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 zoomToMarker(marker);
-                            };
+                            });
                         });
 
-                        svg.onclick = function(e) {
+                        addInteractionListener(svg, (e) => {
                             if (isZoomed) {
+                                // If the user taps the background, reset
                                 animateViewBox(initialVBValues, 800);
                                 isZoomed = false;
                             }
-                        };
+                        });
+
 
                         function zoomToMarker(el) {
                             const bbox = el.getBBox();
                             
                             // High-quality zoom settings
-                            const zoomLevel = 0.25; // View 25% of the original map width
+                            const zoomLevel = 0.25; 
                             const targetWidth = initialVBValues[2] * zoomLevel; 
                             const aspectRatio = initialVBValues[2] / initialVBValues[3];
                             const targetHeight = targetWidth / aspectRatio;
@@ -6416,8 +6444,7 @@ $pageTitle = 'Contact Us';
                             let x = cx - targetWidth / 2;
                             let y = cy - targetHeight / 2;
 
-                            // Boundary clamping (optional: keeps the map from floating away into white space)
-                            // This ensures we don't pan past the edges of the original map
+                            // Boundary clamping
                             if (x < initialVBValues[0]) x = initialVBValues[0];
                             if (y < initialVBValues[1]) y = initialVBValues[1];
                             if (x + targetWidth > initialVBValues[0] + initialVBValues[2]) x = initialVBValues[0] + initialVBValues[2] - targetWidth;
@@ -6428,7 +6455,6 @@ $pageTitle = 'Contact Us';
                         }
 
                         function animateViewBox(targetValues, duration) {
-                            // Cancel any pending animation
                             if (currentAnimation) cancelAnimationFrame(currentAnimation);
 
                             const currentVB = svg.getAttribute('viewBox').split(' ').map(parseFloat);
@@ -6438,7 +6464,7 @@ $pageTitle = 'Contact Us';
                                 const elapsed = currentTime - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
                                 
-                                // EaseInOutCubic for premium feel
+                                // EaseInOutCubic
                                 const ease = progress < 0.5 
                                     ? 4 * progress * progress * progress 
                                     : 1 - Math.pow(-2 * progress + 2, 3) / 2;
