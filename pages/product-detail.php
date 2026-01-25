@@ -224,7 +224,7 @@ function parseTableString($str)
                             <?php $shortDescList = parseListString($product['short_description'] ?? ''); ?>
                             <?php if (!empty($shortDescList)): ?>
                                 <ul
-                                    class="list-inside list-disc font-normal md:text-[18px] md:leading-[140%] text-[16px] leading-[150%] text-[#575757] flex flex-col gap-2">
+                                    class="custom-product-list font-normal md:text-[18px] md:leading-[140%] text-[16px] leading-[150%] text-[#575757] flex flex-col gap-2">
                                     <?php foreach ($shortDescList as $descItem): ?>
                                         <li><?= nl2br(htmlspecialchars($descItem)) ?></li>
                                     <?php endforeach; ?>

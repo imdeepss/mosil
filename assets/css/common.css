@@ -445,8 +445,23 @@ form select:focus {
     transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
-.swiper-button-disabled {
-    opacity: 0.5 !important;
-    cursor: not-allowed !important;
-    pointer-events: none;
+.custom-product-list {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+.custom-product-list li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.custom-product-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    /* Top margin centers it relative to line-height ~24px, Side margins 12px */
+    margin: 10px 12px 0 12px;
+    flex-shrink: 0;
 }
