@@ -203,8 +203,6 @@ $blogs = getBlogs(3);
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
-
-                        <div class="absolute inset-0 bg-black/25"></div>
                     </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
 
