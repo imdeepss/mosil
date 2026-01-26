@@ -319,7 +319,7 @@ $pageTitle = 'Contact Us';
         <div class="w-full h-full flex justify-center items-center">
             <svg id="world-map-svg" xmlns="http://www.w3.org/2000/svg" width="1440" height="862" viewBox="0 0 1440 862"
                 fill="none">
-                <rect width="1440" height="862" fill="#F4C300" />
+                <!-- <rect width="1440" height="862" fill="#F4C300" /> -->
                 <g opacity="0.05" clip-path="url(#clip0_1820_19416)">
                     <path d="M1408 862H33V0H1408V862ZM34.7785 860.224H1406.22V1.78024H34.7785V860.224Z"
                         fill="url(#paint0_linear_1820_19416)" />
@@ -6354,7 +6354,7 @@ $pageTitle = 'Contact Us';
                 }
             </style>
             <script>
-                (function() { 
+                (function () {
                     function initMap() {
                         const svg = document.getElementById('world-map-svg');
                         if (!svg) {
@@ -6363,7 +6363,7 @@ $pageTitle = 'Contact Us';
                         }
 
                         // Optimization for touch devices
-                        svg.style.touchAction = 'manipulation'; 
+                        svg.style.touchAction = 'manipulation';
 
                         // Make SVG responsive by removing fixed dimensions and relying on viewBox + CSS
                         svg.removeAttribute('width');
@@ -6378,11 +6378,11 @@ $pageTitle = 'Contact Us';
                         // Store original viewBox
                         let initialViewBox = svg.getAttribute('viewBox');
                         if (!initialViewBox) {
-                            initialViewBox = "0 0 1440 862"; 
+                            initialViewBox = "0 0 1440 862";
                             svg.setAttribute('viewBox', initialViewBox);
                         }
                         const initialVBValues = initialViewBox.split(' ').map(parseFloat);
-                        
+
                         // State
                         let isZoomed = false;
                         let currentAnimation = null;
@@ -6394,15 +6394,15 @@ $pageTitle = 'Contact Us';
                             // However, mixing them can cause ghost clicks. 
                             // Standard practice: just use click, but ensure the element has pointer cursor
                             // and is clickable. if issues persist, we handle touchend specifically.
-                            
+
                             // For this specific request, the user says click/tap isn't triggering. 
                             // We will listen to 'click' but also 'touchend' carefully.
-                            
+
                             let handled = false;
                             const wrappedHandler = (e) => {
                                 if (e.type === 'touchend') handled = true;
                                 if (e.type === 'click' && handled) return; // Prevent double fire from ghost click
-                                
+
                                 handler(e);
                             };
 
@@ -6430,10 +6430,10 @@ $pageTitle = 'Contact Us';
 
                         function zoomToMarker(el) {
                             const bbox = el.getBBox();
-                            
+
                             // High-quality zoom settings
-                            const zoomLevel = 0.25; 
-                            const targetWidth = initialVBValues[2] * zoomLevel; 
+                            const zoomLevel = 0.25;
+                            const targetWidth = initialVBValues[2] * zoomLevel;
                             const aspectRatio = initialVBValues[2] / initialVBValues[3];
                             const targetHeight = targetWidth / aspectRatio;
 
@@ -6463,10 +6463,10 @@ $pageTitle = 'Contact Us';
                             function step(currentTime) {
                                 const elapsed = currentTime - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
-                                
+
                                 // EaseInOutCubic
-                                const ease = progress < 0.5 
-                                    ? 4 * progress * progress * progress 
+                                const ease = progress < 0.5
+                                    ? 4 * progress * progress * progress
                                     : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
                                 const nextValues = currentVB.map((start, i) => {

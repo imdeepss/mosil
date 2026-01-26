@@ -1,5 +1,5 @@
 <?php
-$industries = getCategoryByParent("2");
+$industries = getCategoryByParent("2", "4");
 $products = getCategoryByParent("3", "4");
 $caseStudies = getCaseStudy("3");
 $blogs = getBlogs(3);

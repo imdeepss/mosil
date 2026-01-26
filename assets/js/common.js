@@ -280,26 +280,35 @@ document.addEventListener("DOMContentLoaded", () => {
       },
 
       slideChangeTransitionStart: function () {
-        const activeIndex = this.activeIndex;
-        const slides = this.slides;
-
-        slides[activeIndex].classList.add("is-expanded");
-
         contentSwiper.slideToLoop(this.realIndex);
 
-        this.update();
-      },
-
-      slideChangeTransitionEnd: function () {
         const activeIndex = this.activeIndex;
         const slides = this.slides;
 
+        // Manually correct translation on desktop to account for width change
+        // This prevents the carousel from overshooting/rubber-banding because Swiper
+        // calculates position based on the "expanded" width of the previous slide,
+        // but we are shrinking it during the transition.
+        if (window.innerWidth >= 1024) {
+          const collapsedWidth = 270;
+          const gap = 20;
+          const stride = collapsedWidth + gap;
+          // Calculate where the wrapper SHOULD be if all previous slides were collapsed
+          const targetTranslate = -1 * activeIndex * stride;
+
+          this.setTranslate(targetTranslate);
+        }
+
         for (let i = 0; i < slides.length; i++) {
-          if (i !== activeIndex) {
+          if (i === activeIndex) {
+            slides[i].classList.add("is-expanded");
+          } else {
             slides[i].classList.remove("is-expanded");
           }
         }
+      },
 
+      slideChangeTransitionEnd: function () {
         this.update();
       },
     },
