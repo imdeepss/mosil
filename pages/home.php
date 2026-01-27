@@ -211,7 +211,7 @@ $blogs = getBlogs(3);
                                 class="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 [.active_&]:translate-x-0 transition-transform duration-500 ease-in-out z-0">
                             </div>
                             <a
-                                href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $product['slug']; ?>">
+                                href="<?php echo SITE_URL; ?>/product-finder/product-categories/<?php echo $product['slug']; ?>">
                                 <div class="relative z-10 flex items-center justify-between px-6 py-4">
                                     <p
                                         class="text-white group-hover:text-main-green [.active_&]:text-main-green font-normal text-base leading-[120%] tracking-[0.015em] transition-all duration-500 opacity-0 translate-x-[-10px] group-hover:opacity-100 [.active_&]:opacity-100 group-hover:translate-x-0 [.active_&]:translate-x-0">

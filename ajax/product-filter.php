@@ -29,14 +29,14 @@ if (!empty($products)):
         // Construct Detail Link
         $detailLink = SITE_URL . '/product-finder/' . ($categorySlug ? $categorySlug : 'all') . '/' . $productSlug;
         ?>
-        <div class="group cursor-pointer py-4">
+        <div class="group cursor-pointer py-4 transition-all duration-500 ease-in-out hover:-translate-y-4 relative">
             <a href="<?php echo $detailLink; ?>">
                 <div
                     class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-2.5 mb-2 md:border md:border-[#EBEBEB] md:py-5 md:px-22 md:h-[135px] h-[150px] w-full px-[34px] py-[30px]">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $productImage; ?>"
-                        alt="<?php echo htmlspecialchars($productName); ?>"
-                        class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110">
+                        alt="<?php echo htmlspecialchars($productName); ?>" class="w-full h-full object-contain">
                 </div>
+
                 <h3
                     class="text-[#3B3B3B] font-base font-bold md:text-[18px] md:leading-[140%] text-[16px] leading-[150%] tracking-[0.015em] capitalize md:mb-2 mb-1">
                     <?php echo $productName; ?>
@@ -45,6 +45,8 @@ if (!empty($products)):
                     <?php echo $shortDesc; ?>
                 </p>
             </a>
+            <div class="absolute bottom-0 left-0 h-1 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+            </div>
         </div>
         <?php
     endforeach;
