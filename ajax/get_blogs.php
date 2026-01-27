@@ -19,9 +19,14 @@ try {
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
     $limit = isset($_GET['limit']) ? (int) $_GET['limit'] : 6;
     $category = isset($_GET['category']) ? trim($_GET['category']) : 'All';
+    $type = isset($_GET['type']) ? trim($_GET['type']) : 'blog';
 
-    // Fetch data
-    $result = getBlogsWithPagination($page, $limit, $category);
+    // Fetch data based on type
+    if ($type === 'events') {
+        $result = getEventsWithPagination($page, $limit, $category);
+    } else {
+        $result = getBlogsWithPagination($page, $limit, $category);
+    }
 
     // Process blogs to clean content and format dates
     foreach ($result['blogs'] as &$blog) {

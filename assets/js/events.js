@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(
-        `${SITE_URL}/ajax/get_blogs.php?page=${currentPage}&limit=${limit}&category=${encodeURIComponent(
+        `${SITE_URL}/ajax/get_blogs.php?type=events&page=${currentPage}&limit=${limit}&category=${encodeURIComponent(
           currentCategory,
         )}`,
       );

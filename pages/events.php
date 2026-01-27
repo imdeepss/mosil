@@ -1,7 +1,7 @@
 <?php
 $pageTitle = 'Events';
 // Initial load: Page 1, Limit 6, Category All
-$initialData = getBlogsWithPagination(1, 6, 'All');
+$initialData = getEventsWithPagination(1, 6, 'All');
 $blogs = $initialData['blogs'];
 $totalPages = $initialData['totalPages'];
 $currentPage = $initialData['currentPage'];
