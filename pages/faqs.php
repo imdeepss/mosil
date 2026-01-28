@@ -329,6 +329,29 @@ $faqs = [
             `).join('');
 
             listContainer.innerHTML = `<ul class="flex flex-col gap-6 max-h-[567px] md:max-h-[600px] overflow-y-auto overscroll-y-auto scroll-smooth gap-4 custom-scrollbar md:pr-14 pr-2" style="-webkit-overflow-scrolling: touch;">${html}</ul>`;
+
+            // Add smooth parent scroll logic
+            const scrollUl = listContainer.querySelector('ul');
+            if (scrollUl) {
+                scrollUl.addEventListener('wheel', (e) => {
+                    // Only apply on desktop
+                    if (window.innerWidth >= 768) {
+                        const { scrollTop, scrollHeight, clientHeight } = scrollUl;
+
+                        // Check boundaries with 1px tolerance
+                        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+                        const isAtTop = scrollTop <= 0;
+
+                        if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
+                            e.preventDefault();
+                            window.scrollBy({
+                                top: e.deltaY,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }, { passive: false });
+            }
         }
     });
 </script>
