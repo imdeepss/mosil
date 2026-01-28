@@ -81,12 +81,13 @@ $categories = [
                         <div
                             class="w-full bg-primary text-mid-green py-2.5 md:py-7 md:px-9 px-2.5 flex justify-between items-center">
                             <h2
-                                class="font-base font-normal md:text-[32px] md:leading-[120%] text-[16px] leading-[150%] tracking-normal capitalize flex flex-col pb-2 text-main-green">
+                                class="font-base font-normal md:text-[32px] md:leading-[120%] text-[16px] leading-[150%] tracking-normal capitalize flex flex-col text-main-green pb-2">
                                 <?php echo $item['title_line1']; ?>
                                 <span><?php echo $item['title_line2']; ?></span>
                             </h2>
 
-                            <button class="transition-all duration-500 transform group-hover:-rotate-45 shrink-0">
+                            <button
+                                class="transition-all duration-500 transform group-hover:-rotate-45 shrink-0 text-main-green">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"
                                     class="w-5 h-5 md:w-10 md:h-10 transition-all duration-500">
                                     <path d="M23.3333 8.3335L35 20.0002M35 20.0002L23.3333 31.6668M35 20.0002L5 20.0002"
