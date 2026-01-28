@@ -199,7 +199,7 @@ $pageTitle = 'Contact Us';
             </script>
         </div>
 
-        <div class="md:w-[526px] md:h-[578px] w-full h-[404px] shrink-0 overflow-hidden">
+        <div class="md:w-[526px] md:h-auto w-full h-[404px] shrink-0 overflow-hidden">
             <img src="<?php echo SITE_URL ?>/assets/images/ui/get-it-touch-banner.png"
                 class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
                 alt="Get in touch" loading="lazy">
