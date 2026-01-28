@@ -269,5 +269,32 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                     productGrid.style.opacity = '1';
                 });
         }
+
+        // Smoothly scroll the parent (window) when the custom scrollbar reaches the end
+        productGrid.addEventListener('wheel', (e) => {
+            // Only apply on desktop where the fixed height/overflow exists (md breakpoint)
+            if (window.innerWidth >= 768) {
+                const {
+                    scrollTop,
+                    scrollHeight,
+                    clientHeight
+                } = productGrid;
+
+                // Check boundaries with 1px tolerance
+                const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+                const isAtTop = scrollTop <= 0;
+
+                // Propagate scroll to window if at boundary
+                if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
+                    e.preventDefault();
+                    window.scrollBy({
+                        top: e.deltaY,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }, {
+            passive: false
+        });
     });
 </script>
