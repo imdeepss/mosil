@@ -1,7 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 <style>
-    /* Helvetica Light (300) - Fallback to Regular due to corrupted file */
     @font-face {
         font-family: 'Helvetica';
         src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica.ttf') format('truetype');
@@ -10,7 +9,7 @@
         font-display: swap;
     }
 
-    /* Helvetica Regular (400) */
+
     @font-face {
         font-family: 'Helvetica';
         src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica.ttf') format('truetype');
@@ -19,7 +18,7 @@
         font-display: swap;
     }
 
-    /* Helvetica Italic (400i) */
+
     @font-face {
         font-family: 'Helvetica';
         src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-Oblique.ttf') format('truetype');
@@ -28,7 +27,7 @@
         font-display: swap;
     }
 
-    /* Helvetica Bold (700) */
+
     @font-face {
         font-family: 'Helvetica';
         src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-Bold.ttf') format('truetype');
@@ -37,7 +36,7 @@
         font-display: swap;
     }
 
-    /* Helvetica Bold Italic (700i) */
+
     @font-face {
         font-family: 'Helvetica';
         src: url('<?php echo SITE_URL; ?>/assets/fonts/Helvetica-BoldOblique.ttf') format('truetype');
@@ -103,7 +102,6 @@
         --animate-reveal-up: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* Keyframes */
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -123,7 +121,6 @@
 
     @layer base {
         :root {
-            /* Legacy CSS variables remain for raw CSS usage */
             --container-width: 1280px;
             --spacing-sm: 8px;
             --spacing-md: 16px;
