@@ -2,7 +2,7 @@
 $industries = getCategoryByParent("2", "4");
 $products = getCategoryByParent("3", "4");
 $caseStudies = getCaseStudy("3");
-$blogs = getBlogs(3);
+$blogs = getHomeFeaturedBlogs();
 
 ?>
 <!-- Hero Section -->
@@ -537,7 +537,8 @@ $lubricationItems = [
 
                             <div
                                 class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
-                                <h2><?php echo $blog['category_name']; ?></h2>
+                                <h2><?php echo $blog['category_name'] === "Discover" ? "Read Blog" : $blog['category_name']; ?>
+                                </h2>
                             </div>
                         </div>
 
@@ -560,7 +561,7 @@ $lubricationItems = [
                         </div>
                         <a href="<?php echo SITE_URL; ?>/blog/<?= $blog["slug"] ?? '' ?>"
                             class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
-                            Read <?php echo $blog['category_name']; ?>
+                            Read <?php echo $blog['category_name'] === "Discover" ? "Blog" : $blog['category_name']; ?>
                             <span
                                 class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-100 md:scale-x-0 md:group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>

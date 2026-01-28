@@ -914,4 +914,36 @@ function clean_content($content)
 
     return $content;
 }
+/**
+ * Fetch 3 specific blogs for Home Page:
+ * 1. Category 'News'
+ * 2. Category 'Beyond Business'
+ * 3. Any other category (General Blog)
+ */
+function getHomeFeaturedBlogs()
+{
+    $sql = "
+    (SELECT bp.*, bc.name as category_name, 1 as sort_order 
+     FROM blog_posts_v2 bp 
+     LEFT JOIN blog_categories bc ON bp.category_id = bc.id 
+     WHERE bp.status = 'Published' AND bc.name = 'News' 
+     ORDER BY bp.created_at DESC LIMIT 1)
+    UNION
+    (SELECT bp.*, bc.name as category_name, 2 as sort_order 
+     FROM blog_posts_v2 bp 
+     LEFT JOIN blog_categories bc ON bp.category_id = bc.id 
+     WHERE bp.status = 'Published' AND bc.name IN ('Beyond Business', 'Beyond business') 
+     ORDER BY bp.created_at DESC LIMIT 1)
+    UNION
+    (SELECT bp.*, bc.name as category_name, 3 as sort_order 
+     FROM blog_posts_v2 bp 
+     LEFT JOIN blog_categories bc ON bp.category_id = bc.id 
+     WHERE bp.status = 'Published' AND (bc.name NOT IN ('News', 'Beyond Business', 'Beyond business') OR bc.name IS NULL)
+     ORDER BY bp.created_at DESC LIMIT 1)
+    ORDER BY sort_order ASC
+    ";
+
+    return db_query_all($sql);
+}
+
 ?>
