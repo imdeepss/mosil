@@ -715,7 +715,6 @@ $faqs = [
 
         </div>
     </div>
-    </div>
 </section>
 
 <!-- Modal -->

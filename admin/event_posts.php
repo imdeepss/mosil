@@ -13,16 +13,9 @@ $page_title = "Event Posts";
 $active_menu = "event_posts";
 
 
-// Fetch categories for dropdown
-$categories = [];
-$catResult = $conn->query("SELECT id, name FROM event_categories ORDER BY name ASC");
-while ($row = $catResult->fetch_assoc()) {
-    $categories[] = $row;
-}
-
 // Fetch Event Posts
 $posts = [];
-$sql = "SELECT p.*, c.name AS category_name FROM event_posts p JOIN event_categories c ON p.category_id = c.id ORDER BY p.id DESC";
+$sql = "SELECT * FROM event_posts ORDER BY id DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -82,66 +75,52 @@ if ($result->num_rows > 0) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Categories</h5>
-                            <p class="card-text h2"><?php echo count($categories); ?></p>
-                        </div>
+
+
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <table id="postsTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Title</th>
+                                    <th>Location</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($posts as $post): ?>
+                                    <tr>
+                                        <td><?= $post['id'] ?></td>
+                                        <td><?= htmlspecialchars($post['title']) ?></td>
+                                        <td><?= htmlspecialchars($post['location']) ?></td>
+                                        <td><?= date('Y-m-d H:i', strtotime($post['event_date'])) ?></td>
+                                        <td>
+                                            <span
+                                                class="badge bg-<?= $post['status'] === 'Published' ? 'success' : 'warning' ?>">
+                                                <?= $post['status'] ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="<?= BASE_URL ?>admin/event_edit_post.php?id=<?= $post['id'] ?>"
+                                                    class="btn btn-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-danger delete-btn" data-id="<?= $post['id'] ?>"
+                                                    data-title="<?= htmlspecialchars($post['title']) ?>">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-
-            <!-- Category Filter -->
-            <div class="row mb-3">
-                <div class="col-md-3">
-                    <select id="categoryFilter" class="form-select">
-                        <option value="">All Categories</option>
-                        <?php foreach ($categories as $cat): ?>
-                            <option value="<?= htmlspecialchars($cat['name']) ?>"><?= htmlspecialchars($cat['name']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
-
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <table id="postsTable" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#ID</th>
-                                <th>Title</th>
-                                <th>Slug</th>
-                                <th>Category</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($posts as $post): ?>
-                                <tr>
-                                    <td><?= $post['id'] ?></td>
-                                    <td><?= htmlspecialchars($post['title']) ?></td>
-                                    <td><?= htmlspecialchars($post['slug']) ?></td>
-                                    <td><?= htmlspecialchars($post['category_name']) ?></td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="<?= BASE_URL ?>admin/event_edit_post.php?id=<?= $post['id'] ?>"
-                                                class="btn btn-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button class="btn btn-danger delete-btn" data-id="<?= $post['id'] ?>"
-                                                data-title="<?= htmlspecialchars($post['title']) ?>">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </main>
     </div>
 </div>
@@ -191,15 +170,7 @@ if ($result->num_rows > 0) {
         });
 
         // Filter Logic
-        $('#categoryFilter').on('change', function () {
-            var val = $.fn.dataTable.util.escapeRegex(
-                $(this).val()
-            );
 
-            table.column(3) // Column index 3 is Category
-                .search(val ? '^' + val + '$' : '', true, false)
-                .draw();
-        });
 
         $('.dt-buttons').hide();
         $('#exportBtn').on('click', () => $('.buttons-excel').click());
