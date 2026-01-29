@@ -91,12 +91,12 @@ $latestEvent = getLatestEvent();
                         Date: <?php echo date('d/m/Y', strtotime($latestEvent['event_date'])); ?>
                     </p>
                     <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
-                        <button type="button"
+                        <button type="button" onclick="openContactModal('Contact')"
                             class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
                             Contact the team
                         </button>
 
-                        <button type="button"
+                        <button type="button" onclick="openRegisterModal()"
                             class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
                             Register
                         </button>
@@ -123,12 +123,12 @@ $latestEvent = getLatestEvent();
                     </p>
 
                     <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
-                        <button type="button"
+                        <button type="button" onclick="openContactModal('Contact')"
                             class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
                             Contact the team
                         </button>
 
-                        <button type="button"
+                        <button type="button" onclick="openRegisterModal()"
                             class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
                             Register
                         </button>
@@ -279,3 +279,393 @@ $latestEvent = getLatestEvent();
     }
 </script>
 <script src="<?php echo SITE_URL; ?>/assets/js/events.js"></script>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="fixed inset-0 z-[9999] hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeContactModal()"></div>
+
+    <!-- Modal Content -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-auto max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl p-6 md:p-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-[#1A3B1B] font-bold text-[24px] leading-tight">Get in Touch</h2>
+            <button onclick="closeContactModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <form id="contactForm" method="POST" action="" class="space-y-4" novalidate>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Name -->
+                <div class="flex flex-col">
+                    <input type="text" name="name" required placeholder="Name"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Name is required</span>
+                </div>
+
+                <!-- Email -->
+                <div class="flex flex-col">
+                    <input type="email" name="email" required placeholder="Email"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Valid email is required</span>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex flex-col">
+                    <input type="tel" name="contact" required placeholder="+91 Phone"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Valid phone number is required</span>
+                </div>
+
+                <!-- Company -->
+                <div class="flex flex-col">
+                    <input type="text" name="company_name" required placeholder="Company Name"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Company name is required</span>
+                </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="flex flex-col">
+                <input type="text" name="subject" id="modalSubject" required placeholder="Subject"
+                    class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                <span class="error-text hidden text-xs text-red-500 mt-1">Subject is required</span>
+            </div>
+
+            <!-- Message -->
+            <div class="flex flex-col">
+                <textarea name="message" required placeholder="Write your message here" rows="4"
+                    class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors"></textarea>
+                <span class="error-text hidden text-xs text-red-500 mt-1">Message is required</span>
+            </div>
+
+            <div id="contactResponse" class="hidden p-4 rounded text-center text-sm font-medium"></div>
+
+            <div class="text-center pt-2">
+                <button type="submit" id="submitBtn"
+                    class="bg-main-green text-white font-bold text-[16px] md:text-[18px] w-full py-3 rounded-full text-center cursor-pointer hover:bg-[#334d34] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Send Message
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Event Registration Modal -->
+<div id="registerModal" class="fixed inset-0 z-[9999] hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeRegisterModal()"></div>
+
+    <!-- Modal Content -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-auto max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl p-6 md:p-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-[#1A3B1B] font-bold text-[24px] leading-tight">Event Registration</h2>
+            <button onclick="closeRegisterModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mb-4">
+            <p class="text-sm text-gray-600">Registering for:</p>
+            <h3 class="text-lg font-bold text-[#1A3B1B]" id="registerEventTitle"></h3>
+        </div>
+
+        <form id="registerForm" method="POST" action="" class="space-y-4" novalidate>
+            <input type="hidden" name="event_title" id="formEventTitle">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- First Name -->
+                <div class="flex flex-col">
+                    <input type="text" name="first_name" required placeholder="First Name"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">First Name is required</span>
+                </div>
+
+                <!-- Last Name -->
+                <div class="flex flex-col">
+                    <input type="text" name="last_name" required placeholder="Last Name"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Last Name is required</span>
+                </div>
+
+                <!-- Email -->
+                <div class="flex flex-col">
+                    <input type="email" name="email" required placeholder="Email"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Valid email is required</span>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex flex-col">
+                    <input type="tel" name="mobile" required placeholder="Mobile Number"
+                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                    <span class="error-text hidden text-xs text-red-500 mt-1">Valid mobile number is required</span>
+                </div>
+            </div>
+
+            <div id="registerResponse" class="hidden p-4 rounded text-center text-sm font-medium"></div>
+
+            <div class="text-center pt-2">
+                <button type="submit" id="registerSubmitBtn"
+                    class="bg-main-green text-white font-bold text-[16px] md:text-[18px] w-full py-3 rounded-full text-center cursor-pointer hover:bg-[#334d34] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Register Now
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openContactModal(type) {
+        document.getElementById('contactModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+        const subjectInput = document.getElementById('modalSubject');
+        // Safely get title handling potential quotes
+        const latestEventTitle = <?php echo json_encode($latestEvent ? $latestEvent['title'] : ''); ?>;
+
+        if (type === 'Contact' && latestEventTitle) {
+            subjectInput.value = 'Enquiry regarding: ' + latestEventTitle;
+        } else {
+            subjectInput.value = 'General Enquiry';
+        }
+    }
+
+    function closeContactModal() {
+        document.getElementById('contactModal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function openRegisterModal() {
+        document.getElementById('registerModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        const latestEventTitle = <?php echo json_encode($latestEvent ? $latestEvent['title'] : 'Event'); ?>;
+        document.getElementById('registerEventTitle').textContent = latestEventTitle;
+        document.getElementById('formEventTitle').value = latestEventTitle;
+    }
+
+    function closeRegisterModal() {
+        document.getElementById('registerModal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // Modal Form Logic (Reused from contact.php)
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Register Form Logic ---
+        const registerForm = document.getElementById('registerForm');
+        if (registerForm) {
+            const registerInputs = registerForm.querySelectorAll('input');
+
+            const validateRegisterField = (input) => {
+                const type = input.name === 'email' ? 'email' : (input.name === 'mobile' ? 'tel' : 'default');
+                const validators = {
+                    email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+                    tel: (value) => /^[0-9+\-\s]{10,}$/.test(value),
+                    default: (value) => value.trim().length > 0
+                };
+
+                const isValid = validators[type](input.value);
+                const wrapper = input.parentElement;
+                const errorMsg = wrapper.querySelector('.error-text');
+
+                if (!isValid) {
+                    input.classList.add('border-red-500', 'border-2');
+                    if (errorMsg) errorMsg.classList.remove('hidden');
+                } else {
+                    input.classList.remove('border-red-500', 'border-2');
+                    if (errorMsg) errorMsg.classList.add('hidden');
+                }
+                return isValid;
+            };
+
+            registerInputs.forEach(input => {
+                if (input.type === 'hidden') return;
+                input.addEventListener('blur', () => {
+                    if (input.value.trim() !== '') validateRegisterField(input);
+                });
+                input.addEventListener('input', () => {
+                    if (input.classList.contains('border-red-500')) {
+                        input.classList.remove('border-red-500', 'border-2');
+                        const wrapper = input.parentElement;
+                        const errorMsg = wrapper.querySelector('.error-text');
+                        if (errorMsg) errorMsg.classList.add('hidden');
+                    }
+                });
+            });
+
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                let isFormValid = true;
+                registerInputs.forEach(input => {
+                    if (input.type === 'hidden') return;
+                    if (!validateRegisterField(input)) isFormValid = false;
+                });
+
+                if (!isFormValid) return;
+
+                const btn = document.getElementById('registerSubmitBtn');
+                const responseDiv = document.getElementById('registerResponse');
+                const formData = new FormData(registerForm);
+
+                btn.disabled = true;
+                btn.textContent = 'Registering...';
+                btn.classList.add('opacity-75');
+                responseDiv.classList.add('hidden');
+
+                fetch('<?php echo SITE_URL; ?>/ajax/event_register.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            showRegisterResponse(data.message === 'success' ? 'Registration successful! Check your email.' : data.message, 'success');
+                            registerForm.reset();
+                            // Reset hidden field value if reset clears it
+                            const latestEventTitle = <?php echo json_encode($latestEvent ? $latestEvent['title'] : 'Event'); ?>;
+                            document.getElementById('formEventTitle').value = latestEventTitle;
+
+                            registerInputs.forEach(i => i.classList.remove('border-red-500', 'border-2'));
+                            setTimeout(closeRegisterModal, 3000);
+                        } else {
+                            showRegisterResponse(data.message || 'Error registering. Please try again.', 'error');
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        showRegisterResponse('An unexpected error occurred.', 'error');
+                    })
+                    .finally(() => {
+                        btn.disabled = false;
+                        btn.textContent = 'Register Now';
+                        btn.classList.remove('opacity-75');
+                    });
+
+                function showRegisterResponse(msg, type) {
+                    responseDiv.textContent = msg;
+                    responseDiv.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+                    if (type === 'success') {
+                        responseDiv.classList.add('bg-green-100', 'text-green-700');
+                    } else {
+                        responseDiv.classList.add('bg-red-100', 'text-red-700');
+                    }
+                }
+            });
+        }
+
+        // --- Contact Form Logic ---
+        const form = document.getElementById('contactForm');
+        const inputs = form.querySelectorAll('input, textarea');
+
+        // Validation Functions
+        const validators = {
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            tel: (value) => /^[0-9+\-\s]{10,}$/.test(value),
+            default: (value) => value.trim().length > 0
+        };
+
+        const validateField = (input) => {
+            const type = input.name === 'email' ? 'email' : (input.name === 'contact' ? 'tel' : 'default');
+            const isValid = validators[type](input.value);
+            const wrapper = input.parentElement;
+            const errorMsg = wrapper.querySelector('.error-text');
+
+            if (!isValid) {
+                input.classList.add('border-red-500', 'border-2'); // Added border-2 for visibility
+                if (errorMsg) errorMsg.classList.remove('hidden');
+            } else {
+                input.classList.remove('border-red-500', 'border-2');
+                if (errorMsg) errorMsg.classList.add('hidden');
+            }
+            return isValid;
+        };
+
+        // Event Listeners
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if (input.value.trim() !== '') {
+                    validateField(input);
+                }
+            });
+
+            input.addEventListener('input', () => {
+                if (input.classList.contains('border-red-500')) {
+                    input.classList.remove('border-red-500', 'border-2');
+                    const wrapper = input.parentElement;
+                    const errorMsg = wrapper.querySelector('.error-text');
+                    if (errorMsg) errorMsg.classList.add('hidden');
+                }
+            });
+        });
+
+        // Form Submission
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let isFormValid = true;
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isFormValid = false;
+                }
+            });
+
+            if (!isFormValid) return;
+
+            const btn = document.getElementById('submitBtn');
+            const responseDiv = document.getElementById('contactResponse');
+            const formData = new FormData(form);
+
+            // Disable UI
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            btn.classList.add('opacity-75'); // Visual feedback
+            responseDiv.classList.add('hidden');
+
+            fetch('<?php echo SITE_URL; ?>/ajax/contact.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        showResponse(data.message === 'success' ? 'Thank you! Your message has been sent successfully.' : data.message, 'success');
+                        form.reset();
+                        inputs.forEach(i => i.classList.remove('border-red-500', 'border-2'));
+                        setTimeout(closeContactModal, 3000); // Auto close after success
+                    } else {
+                        showResponse(data.message || 'Something went wrong. Please try again.', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    showResponse('An unexpected error occurred. Please try again later.', 'error');
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = 'Send Message';
+                    btn.classList.remove('opacity-75');
+                });
+
+            function showResponse(msg, type) {
+                responseDiv.textContent = msg;
+                responseDiv.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+                if (type === 'success') {
+                    responseDiv.classList.add('bg-green-100', 'text-green-700');
+                } else {
+                    responseDiv.classList.add('bg-red-100', 'text-red-700');
+                }
+            }
+        });
+    });
+</script>
