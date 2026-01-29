@@ -283,6 +283,13 @@ if (isSessionTimedOut()) {
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link <?php echo $active_menu === 'enquiries_event' ? 'active' : ''; ?>"
+                                href="enquiries_event">
+                                <i class="fas fa-calendar-check me-2"></i>
+                                Event Registrations
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <?php echo $active_menu === 'enquiries_career' ? 'active' : ''; ?>"
                                 href="enquiries_career">
                                 <i class="fas fa-briefcase me-2"></i>
