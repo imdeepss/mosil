@@ -100,10 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($action === 'add' || $action === 'edit') {
             // Get form data
-            $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+            $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
             $productName = sanitizeInput($_POST['product_name'] ?? '');
             $sub_title = sanitizeInput($_POST['sub_title'] ?? '');
-            $productSlug = sanitizeInput($_POST['product_slug'] ?? ''); 
+            $productSlug = sanitizeInput($_POST['product_slug'] ?? '');
 
             // Handle multiple select values
             $parentCat = isset($_POST['parent_cat']) && is_array($_POST['parent_cat']) ? implode(',', $_POST['parent_cat']) : '';
@@ -127,10 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Handle file uploads
             $productImage = '';
             $tdsFile = '';
-            
+
             // Process product image upload
             if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = '../uploads/products-image/';
+                $uploadDir = '../assets/uploads/products-image/';
                 if (!file_exists($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
                 $newFileName = 'product_' . time() . '_' . uniqid() . '.' . $fileExt;
                 $uploadFile = $uploadDir . $newFileName;
-                $validExtensions = ['jpg', 'jpeg', 'png', 'gif','webp'];
+                $validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
                 if (in_array(strtolower($fileExt), $validExtensions)) {
                     if (move_uploaded_file($_FILES['product_image']['tmp_name'], $uploadFile)) {
                         $productImage = $newFileName;
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Process TDS file upload
             if (isset($_FILES['tds_file']) && $_FILES['tds_file']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = '../uploads/tds/';
+                $uploadDir = '../assets/uploads/tds/';
                 if (!file_exists($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $messageType = "danger";
             }
 
-            
+
             // Validate form data
             if (empty($productName) || empty($productSlug)) {
                 $message = "Please fill in all required fields.";
@@ -342,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } elseif ($action === 'delete') {
-            $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+            $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
 
             // Get product details before deletion for logging
             $getProductSql = "SELECT name, image, tds_file FROM products_v2 WHERE id = ?";
@@ -434,23 +434,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             }
                             // Validate and sanitize data
                             if (count($data) >= 9) {
-                                $productName        = sanitizeInput($data[0]);
-                                $productSlug        = generateSlug($productName);
-                                $parentCat          = sanitizeInput($data[1]);
-                                $mainCat            = sanitizeInput($data[2]);
-                                $subCat             = sanitizeInput($data[3]);
-                                $attribute          = sanitizeInput($data[4]);
-                                $mainAttribute      = sanitizeInput($data[5]);
-                                $subAttribute       = sanitizeInput($data[6]);
-                                $tdsFile            = sanitizeInput($data[7]);
-                                $image              = sanitizeInput($data[8]);
+                                $productName = sanitizeInput($data[0]);
+                                $productSlug = generateSlug($productName);
+                                $parentCat = sanitizeInput($data[1]);
+                                $mainCat = sanitizeInput($data[2]);
+                                $subCat = sanitizeInput($data[3]);
+                                $attribute = sanitizeInput($data[4]);
+                                $mainAttribute = sanitizeInput($data[5]);
+                                $subAttribute = sanitizeInput($data[6]);
+                                $tdsFile = sanitizeInput($data[7]);
+                                $image = sanitizeInput($data[8]);
                                 $shortDescription = '';
                                 $areaOfApplication = '';
                                 $benefits = '';
                                 $characteristics = '';
                                 $packing = '';
                                 $status = 'Active';
-                                $currentTime        = date('Y-m-d H:i:s');
+                                $currentTime = date('Y-m-d H:i:s');
 
 
                                 // // Check if product with this slug already exists
@@ -560,8 +560,8 @@ if (isset($_GET['success'])) {
             $messageType = "success";
             break;
         case 'imported':
-            $importCount = isset($_GET['count']) ? (int)$_GET['count'] : 0;
-            $errorCount = isset($_GET['errors']) ? (int)$_GET['errors'] : 0;
+            $importCount = isset($_GET['count']) ? (int) $_GET['count'] : 0;
+            $errorCount = isset($_GET['errors']) ? (int) $_GET['errors'] : 0;
             $message = "Import completed: $importCount products imported successfully, $errorCount errors.";
             $messageType = "success";
             break;
@@ -576,18 +576,21 @@ if (isset($_GET['success'])) {
         <?php include 'includes/sidebar.php'; ?>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Products</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary" id="exportBtn">
                             <i class="fas fa-download me-1"></i> Export
                         </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                            data-bs-target="#importModal">
                             <i class="fas fa-upload me-1"></i> Import
                         </button>
                     </div>
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#addProductModal">
                         <i class="fas fa-plus me-1"></i> Add New Product
                     </button>
                 </div>
@@ -631,10 +634,13 @@ if (isset($_GET['success'])) {
                                             </td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-primary btnEditModal" data-id="<?php echo $product['id']; ?>">
+                                                    <button type="button" class="btn btn-sm btn-primary btnEditModal"
+                                                        data-id="<?php echo $product['id']; ?>">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $product['id']; ?>" data-name="<?php echo htmlspecialchars($product['name']); ?>">
+                                                    <button type="button" class="btn btn-sm btn-danger delete-btn"
+                                                        data-id="<?php echo $product['id']; ?>"
+                                                        data-name="<?php echo htmlspecialchars($product['name']); ?>">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -659,28 +665,39 @@ if (isset($_GET['success'])) {
                 <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" enctype="multipart/form-data" id="addProductForm">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation"
+                enctype="multipart/form-data" id="addProductForm">
                 <div class="modal-body">
                     <input type="hidden" name="action" value="add">
 
                     <ul class="nav nav-tabs" id="productTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-controls="basic" aria-selected="true">Basic Information</button>
+                            <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
+                                type="button" role="tab" aria-controls="basic" aria-selected="true">Basic
+                                Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories" type="button" role="tab" aria-controls="categories" aria-selected="false">Categories</button>
+                            <button class="nav-link" id="categories-tab" data-bs-toggle="tab"
+                                data-bs-target="#categories" type="button" role="tab" aria-controls="categories"
+                                aria-selected="false">Categories</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="attributes-tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes" aria-selected="false">Attributes</button>
+                            <button class="nav-link" id="attributes-tab" data-bs-toggle="tab"
+                                data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes"
+                                aria-selected="false">Attributes</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Product Details</button>
+                            <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details"
+                                type="button" role="tab" aria-controls="details" aria-selected="false">Product
+                                Details</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="media-tab" data-bs-toggle="tab" data-bs-target="#media" type="button" role="tab" aria-controls="media" aria-selected="false">Media</button>
+                            <button class="nav-link" id="media-tab" data-bs-toggle="tab" data-bs-target="#media"
+                                type="button" role="tab" aria-controls="media" aria-selected="false">Media</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button" role="tab" aria-controls="seo" aria-selected="false">SEO</button>
+                            <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo"
+                                type="button" role="tab" aria-controls="seo" aria-selected="false">SEO</button>
                         </li>
                     </ul>
 
@@ -690,14 +707,18 @@ if (isset($_GET['success'])) {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="product_name" class="form-label">Product Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="product_name" name="product_name" required>
+                                        <label for="product_name" class="form-label">Product Name <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="product_name" name="product_name"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="product_slug" class="form-label">Product Slug <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="product_slug" name="product_slug" required>
+                                        <label for="product_slug" class="form-label">Product Slug <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="product_slug" name="product_slug"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -708,7 +729,8 @@ if (isset($_GET['success'])) {
 
                             <div class="mb-3">
                                 <label for="short_description" class="form-label">Short Description</label>
-                                <textarea class="form-control" id="short_description" name="short_description" rows="3"></textarea>
+                                <textarea class="form-control" id="short_description" name="short_description"
+                                    rows="3"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -723,8 +745,10 @@ if (isset($_GET['success'])) {
                         <!-- Categories Tab -->
                         <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
                             <div class="mb-3">
-                                <label for="parent_cat" class="form-label">Parent Category <span class="text-danger">*</span></label>
-                                <select class="form-select select2" id="parent_cat" name="parent_cat[]" multiple required>
+                                <label for="parent_cat" class="form-label">Parent Category <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select select2" id="parent_cat" name="parent_cat[]" multiple
+                                    required>
                                     <option value="">Select Parent Category</option>
                                     <?php foreach ($parentCategories as $parentCat): ?>
                                         <option value="<?php echo htmlspecialchars($parentCat['id']); ?>">
@@ -751,7 +775,8 @@ if (isset($_GET['success'])) {
                                 <select class="form-select select2" id="sub_cat" name="sub_cat[]" multiple>
                                     <option value="">Select Sub Category</option>
                                     <?php foreach ($subCategories as $subCat): ?>
-                                        <option value="<?php echo htmlspecialchars($subCat['id']); ?>" data-main-cat="<?php echo htmlspecialchars($subCat['m_cat']); ?>">
+                                        <option value="<?php echo htmlspecialchars($subCat['id']); ?>"
+                                            data-main-cat="<?php echo htmlspecialchars($subCat['m_cat']); ?>">
                                             <?php echo htmlspecialchars($subCat['scat_name']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -763,7 +788,8 @@ if (isset($_GET['success'])) {
                         <div class="tab-pane fade" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
                             <div class="mb-3">
                                 <label for="parent_attribute" class="form-label">Parent Attribute</label>
-                                <select class="form-select select2" id="parent_attribute" name="parent_attribute[]" multiple>
+                                <select class="form-select select2" id="parent_attribute" name="parent_attribute[]"
+                                    multiple>
                                     <option value="">Select Main Attribute</option>
                                     <?php foreach ($parentAttributes as $parentAttr): ?>
                                         <option value="<?php echo htmlspecialchars($parentAttr['id']); ?>">
@@ -775,7 +801,8 @@ if (isset($_GET['success'])) {
 
                             <div class="mb-3">
                                 <label for="main_attribute" class="form-label">Main Attribute</label>
-                                <select class="form-select select2" id="main_attribute" name="main_attribute[]" multiple>
+                                <select class="form-select select2" id="main_attribute" name="main_attribute[]"
+                                    multiple>
                                     <option value="">Select Main Attribute</option>
                                     <?php foreach ($mainAttributes as $mainAttr): ?>
                                         <option value="<?php echo htmlspecialchars($mainAttr['id']); ?>">
@@ -829,17 +856,20 @@ if (isset($_GET['success'])) {
 
                             <div class="mb-3">
                                 <label for="area_of_application" class="form-label">Area of Application</label>
-                                <textarea class="form-control rich-editor" id="area_of_application" name="area_of_application" rows="5"></textarea>
+                                <textarea class="form-control rich-editor" id="area_of_application"
+                                    name="area_of_application" rows="5"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="benifits" class="form-label">Benefits</label>
-                                <textarea class="form-control rich-editor" id="benifits" name="benifits" rows="5"></textarea>
+                                <textarea class="form-control rich-editor" id="benifits" name="benifits"
+                                    rows="5"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="characteristics" class="form-label">Characteristics</label>
-                                <textarea class="form-control rich-editor" id="characteristics" name="characteristics" rows="5"></textarea>
+                                <textarea class="form-control rich-editor" id="characteristics" name="characteristics"
+                                    rows="5"></textarea>
                                 <div class="form-text">Add rows in a table as per your requirement.</div>
                             </div>
 
@@ -855,31 +885,43 @@ if (isset($_GET['success'])) {
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="product_image" class="form-label">Product Image</label>
-                                        <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*">
+                                        <input type="file" class="form-control" id="product_image" name="product_image"
+                                            accept="image/*">
                                         <div class="form-text">Accepted formats: WEBP, JPG, JPEG, PNG, GIF.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="tds_file" class="form-label">TDS File</label>
-                                        <input type="file" class="form-control" id="tds_file" name="tds_file" accept=".pdf,.doc,.docx">
+                                        <input type="file" class="form-control" id="tds_file" name="tds_file"
+                                            accept=".pdf,.doc,.docx">
                                         <div class="form-text">Accepted formats: PDF, DOC, DOCX.</div>
                                     </div>
                                 </div>
-								<div class="col-md-6">
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="product_cat_image" class="form-label">Product Cat Image</label>
-										<select class="form-select" id="product_cat_image" name="product_cat_image">
-											<option value="">Select Product Image</option>
-											<?php
-											$cat_options = [
-												"Autoassembly","Cardoor","Carseat","Engineparts","Fastners","Guideslideways","Motor","Opengear","Rollerbearing","Sunroof","Wireropep"
-											];
-											foreach ($cat_options as $option) {
-												echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
-											}
-											?>
-										</select>
+                                        <select class="form-select" id="product_cat_image" name="product_cat_image">
+                                            <option value="">Select Product Image</option>
+                                            <?php
+                                            $cat_options = [
+                                                "Autoassembly",
+                                                "Cardoor",
+                                                "Carseat",
+                                                "Engineparts",
+                                                "Fastners",
+                                                "Guideslideways",
+                                                "Motor",
+                                                "Opengear",
+                                                "Rollerbearing",
+                                                "Sunroof",
+                                                "Wireropep"
+                                            ];
+                                            foreach ($cat_options as $option) {
+                                                echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -894,7 +936,8 @@ if (isset($_GET['success'])) {
 
                             <div class="mb-3">
                                 <label for="meta_description" class="form-label">Meta Description</label>
-                                <textarea class="form-control" id="meta_description" name="meta_description" rows="3"></textarea>
+                                <textarea class="form-control" id="meta_description" name="meta_description"
+                                    rows="3"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -926,13 +969,16 @@ if (isset($_GET['success'])) {
                 <h5 class="modal-title" id="importModalLabel">Import Products</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" class="needs-validation">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                enctype="multipart/form-data" class="needs-validation">
                 <div class="modal-body">
                     <input type="hidden" name="action" value="import">
                     <div class="mb-3">
                         <label for="import_file" class="form-label">CSV File</label>
-                        <input type="file" class="form-control" id="import_file" name="import_file" accept=".csv" required>
-                        <div class="form-text">Please upload a CSV file with the required columns: Name, Slug, Status (optional).</div>
+                        <input type="file" class="form-control" id="import_file" name="import_file" accept=".csv"
+                            required>
+                        <div class="form-text">Please upload a CSV file with the required columns: Name, Slug, Status
+                            (optional).</div>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
@@ -943,7 +989,8 @@ if (isset($_GET['success'])) {
                         </div>
                     </div>
                     <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i> The CSV file should have at least the following columns: Product Name, Product Slug. Additional columns will be ignored.
+                        <i class="fas fa-info-circle me-2"></i> The CSV file should have at least the following columns:
+                        Product Name, Product Slug. Additional columns will be ignored.
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -956,7 +1003,8 @@ if (isset($_GET['success'])) {
 </div>
 
 <!-- Delete Confirmation Form (Hidden) -->
-<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" style="display: none;">
+<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+    style="display: none;">
     <input type="hidden" name="action" value="delete">
     <input type="hidden" id="delete_product_id" name="product_id" value="">
 </form>

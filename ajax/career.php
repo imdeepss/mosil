@@ -35,7 +35,7 @@ $resume_full_path = '';
 $original_file_name = '';
 
 if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = '../uploads/resumes/';
+    $uploadDir = '../assets/uploads/resumes/';
     // Ensure directory exists
     if (!is_dir($uploadDir)) {
         if (!mkdir($uploadDir, 0777, true)) {

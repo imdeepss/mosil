@@ -5,6 +5,9 @@ $initialData = getEventsWithPagination(1, 6, 'All');
 $blogs = $initialData['blogs'];
 $totalPages = $initialData['totalPages'];
 $currentPage = $initialData['currentPage'];
+
+// Fetch latest event
+$latestEvent = getLatestEvent();
 ?>
 
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
@@ -60,7 +63,80 @@ $currentPage = $initialData['currentPage'];
                 class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
                 data-category="Beyond Business">Beyond business</button>
         </div>
+        <div class="flex flex-col md:flex-row items-stretch overflow-hidden">
 
+            <?php if ($latestEvent): ?>
+                <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
+                    <img src="<?php echo SITE_URL; ?>/assets/uploads/events/<?php echo $latestEvent['image']; ?>"
+                        alt="<?php echo htmlspecialchars($latestEvent['title']); ?>" class="w-full h-full object-cover" />
+                </div>
+
+                <div
+                    class="md:px-[50px] md:py-[36px] px-[24px] py-[24px] bg-[#F5F5F5] flex flex-col justify-center flex-grow">
+
+                    <h2
+                        class="text-[#1A3B1B] font-base font-normal md:text-[32px] md:leading-[120%] text-[24px] font-normal leading-[135%] capitalize mb-4">
+                        <?php echo htmlspecialchars($latestEvent['title']); ?>
+                    </h2>
+
+                    <div
+                        class="text-[#3B3B3B] font-base font-normal md:text-[16px] md:leading-[150%] text-[14px] leading-[150%] tracking-[0.015em] mb-2">
+                        <?php
+                        $desc = trim(preg_replace('/\s+/', ' ', strip_tags($latestEvent['description'])));
+                        echo mb_strimwidth($desc, 0, 200, '...');
+                        ?>
+                    </div>
+                    <p
+                        class="text-[#3B3B3B] font-base font-normal md:text-[16px] md:leading-[150%] text-[14px] leading-[150%] tracking-[0.015em] mb-6">
+                        Date: <?php echo date('d/m/Y', strtotime($latestEvent['event_date'])); ?>
+                    </p>
+                    <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
+                        <button type="button"
+                            class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
+                            Contact the team
+                        </button>
+
+                        <button type="button"
+                            class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            <?php else: ?>
+                <!-- Fallback if no event found -->
+                <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
+                    <img src="<?php echo SITE_URL; ?>/assets/images/ui/connect.jpg" alt="Stay connected"
+                        class="w-full h-full object-cover" />
+                </div>
+
+                <div class="md:p-[50px] p-[24px] bg-[#F5F5F5] flex flex-col justify-center flex-grow">
+
+                    <h2
+                        class="text-[#1A3B1B] font-base font-normal md:text-[32px] md:leading-[120%] text-[24px] font-normal leading-[135%] capitalize mb-4">
+                        Stay connected
+                    </h2>
+
+                    <p
+                        class="text-[#3B3B3B] font-base font-normal md:text-[16px] md:leading-[150%] text-[14px] leading-[150%] tracking-[0.015em] mb-6">
+                        Get MOSIL press releases & newsletters in your inbox, and reach our media relations team for
+                        interviews or info – stay connected to our experts worldwide.
+                    </p>
+
+                    <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
+                        <button type="button"
+                            class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
+                            Contact the team
+                        </button>
+
+                        <button type="button"
+                            class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+        </div>
         <div class="md:mt-8 mb-10 swiper newsSwiper">
             <!-- Blog Container -->
             <div id="blog-container"

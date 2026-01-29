@@ -73,7 +73,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'check_slug') {
     header('Content-Type: application/json');
 
     $slug = sanitizeInput($_GET['slug'] ?? '');
-    $excludeId = isset($_GET['exclude_id']) ? (int)$_GET['exclude_id'] : null;
+    $excludeId = isset($_GET['exclude_id']) ? (int) $_GET['exclude_id'] : null;
 
     if (empty($slug)) {
         echo json_encode(['available' => false, 'message' => 'Slug cannot be empty']);
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slug = sanitizeInput($_POST['slug'] ?? '');
     $shortDescription = sanitizeInput($_POST['short_description'] ?? '');
     $content = $_POST['content'] ?? ''; // Don't sanitize rich content
-    $categoryId = (int)($_POST['category_id'] ?? 0);
+    $categoryId = (int) ($_POST['category_id'] ?? 0);
     $tags = sanitizeInput($_POST['tags'] ?? '');
     $status = sanitizeInput($_POST['status'] ?? 'Draft');
     $metaTitle = sanitizeInput($_POST['meta_title'] ?? '');
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle image upload
     $imageName = '';
     if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../uploads/blog/';
+        $uploadDir = '../assets/uploads/blog/';
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
@@ -230,7 +230,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         <?php include 'includes/sidebar.php'; ?>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Add New Blog Post</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
@@ -250,7 +251,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
             <div class="row">
                 <div class="col-lg-8">
-                    <form id="blogPostForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <form id="blogPostForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                        enctype="multipart/form-data" class="needs-validation" novalidate>
 
                         <!-- Basic Information Card -->
                         <div class="card shadow-sm mb-4">
@@ -259,8 +261,10 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="title" name="title" value="<?php echo htmlspecialchars($formData['title'] ?? ''); ?>" required>
+                                    <label for="title" class="form-label">Title <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        value="<?php echo htmlspecialchars($formData['title'] ?? ''); ?>" required>
                                     <div class="invalid-feedback">
                                         Please provide a valid title.
                                     </div>
@@ -269,7 +273,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 <div class="mb-3">
                                     <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="slug" name="slug" value="<?php echo htmlspecialchars($formData['slug'] ?? ''); ?>" required>
+                                        <input type="text" class="form-control" id="slug" name="slug"
+                                            value="<?php echo htmlspecialchars($formData['slug'] ?? ''); ?>" required>
                                         <button type="button" class="btn btn-outline-secondary" id="generateSlug">
                                             <i class="fas fa-sync-alt"></i>
                                         </button>
@@ -282,13 +287,17 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
                                 <div class="mb-3">
                                     <label for="short_description" class="form-label">Short Description</label>
-                                    <textarea class="form-control" id="short_description" name="short_description" rows="3" placeholder="Brief description of the blog post..."><?php echo htmlspecialchars($formData['short_description'] ?? ''); ?></textarea>
+                                    <textarea class="form-control" id="short_description" name="short_description"
+                                        rows="3"
+                                        placeholder="Brief description of the blog post..."><?php echo htmlspecialchars($formData['short_description'] ?? ''); ?></textarea>
                                     <div class="form-text">This will be used as excerpt in blog listings.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="content" class="form-label">Content <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="content" name="content" rows="15" required><?php echo htmlspecialchars($formData['content'] ?? ''); ?></textarea>
+                                    <label for="content" class="form-label">Content <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="content" name="content" rows="15"
+                                        required><?php echo htmlspecialchars($formData['content'] ?? ''); ?></textarea>
                                     <div class="invalid-feedback">
                                         Please provide blog content.
                                     </div>
@@ -304,13 +313,18 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="meta_title" class="form-label">Meta Title</label>
-                                    <input type="text" class="form-control" id="meta_title" name="meta_title" value="<?php echo htmlspecialchars($formData['meta_title'] ?? ''); ?>" maxlength="60">
-                                    <div class="form-text">Recommended length: 50-60 characters. Leave empty to use post title.</div>
+                                    <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                        value="<?php echo htmlspecialchars($formData['meta_title'] ?? ''); ?>"
+                                        maxlength="60">
+                                    <div class="form-text">Recommended length: 50-60 characters. Leave empty to use post
+                                        title.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="meta_description" class="form-label">Meta Description</label>
-                                    <textarea class="form-control" id="meta_description" name="meta_description" rows="3" maxlength="160" placeholder="Brief description for search engines..."><?php echo htmlspecialchars($formData['meta_description'] ?? ''); ?></textarea>
+                                    <textarea class="form-control" id="meta_description" name="meta_description"
+                                        rows="3" maxlength="160"
+                                        placeholder="Brief description for search engines..."><?php echo htmlspecialchars($formData['meta_description'] ?? ''); ?></textarea>
                                     <div class="form-text">Recommended length: 150-160 characters.</div>
                                 </div>
                             </div>
@@ -329,13 +343,15 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 <label class="form-label">Status <span class="text-danger">*</span></label>
                                 <div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" id="status_draft" value="Draft" <?php echo (!isset($formData['status']) || $formData['status'] === 'Draft') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="status" id="status_draft"
+                                            value="Draft" <?php echo (!isset($formData['status']) || $formData['status'] === 'Draft') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="status_draft">
                                             <i class="fas fa-edit text-warning me-1"></i> Draft
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="status" id="status_published" value="Published" <?php echo (isset($formData['status']) && $formData['status'] === 'Published') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" type="radio" name="status" id="status_published"
+                                            value="Published" <?php echo (isset($formData['status']) && $formData['status'] === 'Published') ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="status_published">
                                             <i class="fas fa-globe text-success me-1"></i> Published
                                         </label>
@@ -358,7 +374,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
-                                <label for="category_id" class="form-label">Select Category <span class="text-danger">*</span></label>
+                                <label for="category_id" class="form-label">Select Category <span
+                                        class="text-danger">*</span></label>
                                 <select class="form-select" id="category_id" name="category_id" required>
                                     <option value="">Choose a category...</option>
                                     <?php foreach ($categories as $category): ?>
@@ -382,7 +399,9 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="tags" class="form-label">Tags</label>
-                                <input type="text" class="form-control" id="tags" name="tags" value="<?php echo htmlspecialchars($formData['tags'] ?? ''); ?>" placeholder="technology, web development, php">
+                                <input type="text" class="form-control" id="tags" name="tags"
+                                    value="<?php echo htmlspecialchars($formData['tags'] ?? ''); ?>"
+                                    placeholder="technology, web development, php">
                                 <div class="form-text">Separate tags with commas.</div>
                             </div>
                         </div>
@@ -396,12 +415,14 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="featured_image" class="form-label">Upload Image</label>
-                                <input type="file" class="form-control" id="featured_image" name="featured_image" accept="image/*">
+                                <input type="file" class="form-control" id="featured_image" name="featured_image"
+                                    accept="image/*">
                                 <div class="form-text">Recommended size: 1200x630px. Max file size: 5MB.</div>
                             </div>
 
                             <div id="imagePreview" class="mt-3" style="display: none;">
-                                <img id="previewImg" src="/placeholder.svg" alt="Preview" class="img-fluid rounded" style="max-height: 200px;">
+                                <img id="previewImg" src="/placeholder.svg" alt="Preview" class="img-fluid rounded"
+                                    style="max-height: 200px;">
                                 <button type="button" class="btn btn-sm btn-outline-danger mt-2" id="removeImage">
                                     <i class="fas fa-times me-1"></i> Remove
                                 </button>
@@ -419,13 +440,14 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 <?php include 'includes/footer.php'; ?>
 
 <!-- Include TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/jdlddjyw65lbpcj8b5s2zxpdezsrtr1671boojev4vxaefsb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/jdlddjyw65lbpcj8b5s2zxpdezsrtr1671boojev4vxaefsb/tinymce/7/tinymce.min.js"
+    referrerpolicy="origin"></script>
 
 <!-- Include jQuery Validation -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         let slugCheckTimeout;
 
         // Initialize TinyMCE
@@ -442,8 +464,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
             content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px }',
-            setup: function(editor) {
-                editor.on('change', function() {
+            setup: function (editor) {
+                editor.on('change', function () {
                     editor.save();
                     $('#content').trigger('blur'); // Trigger validation
                 });
@@ -470,10 +492,10 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             $('#slugFeedback').html('<i class="fas fa-spinner fa-spin"></i> Checking availability...').removeClass('text-success text-danger text-warning').addClass('text-info');
 
             $.get('blog_add_post.php', {
-                    action: 'check_slug',
-                    slug: slug
-                })
-                .done(function(response) {
+                action: 'check_slug',
+                slug: slug
+            })
+                .done(function (response) {
                     if (response.available) {
                         $('#slugFeedback').html('<i class="fas fa-check text-success"></i> ' + response.message).removeClass('text-info text-danger text-warning').addClass('text-success');
                         $('#slug').removeClass('is-invalid').addClass('is-valid');
@@ -486,19 +508,19 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                         $('#slug').removeClass('is-valid').addClass('is-invalid');
                     }
                 })
-                .fail(function() {
+                .fail(function () {
                     $('#slugFeedback').html('<i class="fas fa-exclamation-triangle text-warning"></i> Error checking slug availability').removeClass('text-info text-success text-danger').addClass('text-warning');
                 });
         }
 
         // Use suggested slug
-        window.useSuggestedSlug = function(suggestedSlug) {
+        window.useSuggestedSlug = function (suggestedSlug) {
             $('#slug').val(suggestedSlug);
             checkSlugAvailability(suggestedSlug);
         };
 
         // Auto-generate slug from title
-        $('#title').on('input', function() {
+        $('#title').on('input', function () {
             const title = $(this).val();
             const slug = generateSlug(title);
             $('#slug').val(slug);
@@ -507,26 +529,26 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             clearTimeout(slugCheckTimeout);
 
             // Check slug availability after 500ms delay
-            slugCheckTimeout = setTimeout(function() {
+            slugCheckTimeout = setTimeout(function () {
                 checkSlugAvailability(slug);
             }, 500);
         });
 
         // Manual slug input
-        $('#slug').on('input', function() {
+        $('#slug').on('input', function () {
             const slug = $(this).val();
 
             // Clear previous timeout
             clearTimeout(slugCheckTimeout);
 
             // Check slug availability after 500ms delay
-            slugCheckTimeout = setTimeout(function() {
+            slugCheckTimeout = setTimeout(function () {
                 checkSlugAvailability(slug);
             }, 500);
         });
 
         // Generate slug button
-        $('#generateSlug').on('click', function() {
+        $('#generateSlug').on('click', function () {
             const title = $('#title').val();
             if (title) {
                 const slug = generateSlug(title);
@@ -538,7 +560,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         });
 
         // Image preview functionality
-        $('#featured_image').on('change', function() {
+        $('#featured_image').on('change', function () {
             const file = this.files[0];
             if (file) {
                 // Validate file size (5MB max)
@@ -557,7 +579,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                 }
 
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     $('#previewImg').attr('src', e.target.result);
                     $('#imagePreview').show();
                 };
@@ -566,7 +588,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         });
 
         // Remove image preview
-        $('#removeImage').on('click', function() {
+        $('#removeImage').on('click', function () {
             $('#featured_image').val('');
             $('#imagePreview').hide();
             $('#previewImg').attr('src', '');
@@ -634,16 +656,16 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             },
             errorElement: 'div',
             errorClass: 'invalid-feedback',
-            highlight: function(element) {
+            highlight: function (element) {
                 $(element).addClass('is-invalid').removeClass('is-valid');
             },
-            unhighlight: function(element) {
+            unhighlight: function (element) {
                 $(element).addClass('is-valid').removeClass('is-invalid');
             },
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.insertAfter(element);
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // Update TinyMCE content before submission
                 tinymce.triggerSave();
 
@@ -675,7 +697,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             const input = $('#' + inputId);
             const counter = $('#' + counterId);
 
-            input.on('input', function() {
+            input.on('input', function () {
                 const currentLength = $(this).val().length;
                 const remaining = maxLength - currentLength;
                 counter.text(remaining + ' characters remaining');
@@ -698,7 +720,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         updateCharCounter('meta_description', 'meta_description_counter', 160);
 
         // Auto-dismiss alerts
-        setTimeout(function() {
+        setTimeout(function () {
             $('.alert').fadeOut();
         }, 5000);
     });

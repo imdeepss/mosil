@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle image upload
     $imageName = '';
     if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../uploads/events/';
+        $uploadDir = '../assets/uploads/events/';
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }

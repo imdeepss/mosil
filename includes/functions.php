@@ -779,6 +779,12 @@ function getEventsWithPagination($page = 1, $limit = 6, $category = 'All')
     ];
 }
 
+function getLatestEvent()
+{
+    $sql = "SELECT * FROM event_posts WHERE status = 'Published' ORDER BY event_date DESC LIMIT 1";
+    return db_query_one($sql);
+}
+
 function getCaseStudiesWithPagination($page = 1, $limit = 6, $category = 'All')
 {
     $page = (int) $page;

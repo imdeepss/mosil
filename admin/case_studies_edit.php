@@ -9,7 +9,8 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
 
 require_once '../includes/config.php';
-require_once '../includes/functions.php';;
+require_once '../includes/functions.php';
+;
 
 
 
@@ -18,7 +19,7 @@ $error_message = '';
 $case_study = null;
 
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($id <= 0) {
     header('Location: case_studies_list.php');
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
         $status = sanitizeInput($_POST['status']);
 
 
-        if (empty($title) ||  empty($introduction)) {
+        if (empty($title) || empty($introduction)) {
             throw new Exception('Title,  and introduction are required fields.');
         }
 
@@ -87,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                 throw new Exception('Image file size must be less than 5MB.');
             }
 
-            $upload_dir = '../uploads/case_studies/';
+            $upload_dir = '../assets/uploads/case_studies/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -120,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                 throw new Exception('File size must be less than 10MB.');
             }
 
-            $upload_dir = '../uploads/case_studies/';
+            $upload_dir = '../assets/uploads/case_studies/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -201,7 +202,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
         <?php include 'includes/sidebar.php'; ?>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2"><i class="fas fa-edit me-2"></i>Edit Case Study</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <a href="case_studies" class="btn btn-outline-secondary me-2">
@@ -244,19 +246,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                             <!-- Basic Information -->
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0"><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
+                                    <h5 class="card-title mb-0"><i class="fas fa-info-circle me-2"></i>Basic Information
+                                    </h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
-                                        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $case_study['title']; ?>" required>
+                                        <label for="title" class="form-label">Title <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title"
+                                            value="<?php echo $case_study['title']; ?>" required>
                                         <div class="invalid-feedback">Please provide a valid title.</div>
                                     </div>
 
 
                                     <div class="mb-3">
-                                        <label for="introduction" class="form-label">Introduction <span class="text-danger">*</span></label>
-                                        <textarea class="form-control tinymce-editor" id="introduction" name="introduction" rows="4" required><?php echo $case_study['introduction']; ?></textarea>
+                                        <label for="introduction" class="form-label">Introduction <span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control tinymce-editor" id="introduction" name="introduction"
+                                            rows="4" required><?php echo $case_study['introduction']; ?></textarea>
                                         <div class="invalid-feedback">Please provide an introduction.</div>
                                     </div>
                                 </div>
@@ -265,37 +272,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                             <!-- Case Study Details -->
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0"><i class="fas fa-clipboard-list me-2"></i>Case Study Details</h5>
+                                    <h5 class="card-title mb-0"><i class="fas fa-clipboard-list me-2"></i>Case Study Details
+                                    </h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label for="challenge" class="form-label">Challenge</label>
-                                        <textarea class="form-control tinymce-editor" id="challenge" name="challenge" rows="4"><?php echo $case_study['challenge']; ?></textarea>
+                                        <textarea class="form-control tinymce-editor" id="challenge" name="challenge"
+                                            rows="4"><?php echo $case_study['challenge']; ?></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="expectation" class="form-label">Expectation</label>
-                                        <textarea class="form-control tinymce-editor" id="expectation" name="expectation" rows="4"><?php echo $case_study['expectation']; ?></textarea>
+                                        <textarea class="form-control tinymce-editor" id="expectation" name="expectation"
+                                            rows="4"><?php echo $case_study['expectation']; ?></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="solution" class="form-label">Solution</label>
-                                        <textarea class="form-control tinymce-editor" id="solution" name="solution" rows="4"><?php echo $case_study['solution']; ?></textarea>
+                                        <textarea class="form-control tinymce-editor" id="solution" name="solution"
+                                            rows="4"><?php echo $case_study['solution']; ?></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="result" class="form-label">Result</label>
-                                        <textarea class="form-control tinymce-editor" id="result" name="result" rows="4"><?php echo $case_study['result']; ?></textarea>
+                                        <textarea class="form-control tinymce-editor" id="result" name="result"
+                                            rows="4"><?php echo $case_study['result']; ?></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="recommendation" class="form-label">Recommendation</label>
-                                        <textarea class="form-control tinymce-editor" id="recommendation" name="recommendation" rows="4"><?php echo $case_study['recommendation']; ?></textarea>
+                                        <textarea class="form-control tinymce-editor" id="recommendation"
+                                            name="recommendation"
+                                            rows="4"><?php echo $case_study['recommendation']; ?></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="benefits" class="form-label">Benefits</label>
-                                        <textarea class="form-control tinymce-editor" id="benefits" name="benefits" rows="4"><?php echo $case_study['benefits']; ?></textarea>
+                                        <textarea class="form-control tinymce-editor" id="benefits" name="benefits"
+                                            rows="4"><?php echo $case_study['benefits']; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -313,13 +328,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                         <label class="form-label">Status</label>
                                         <div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="statusActive" value="Active" <?php echo $case_study['status'] === 'Active' ? 'checked' : ''; ?>>
+                                                <input class="form-check-input" type="radio" name="status" id="statusActive"
+                                                    value="Active" <?php echo $case_study['status'] === 'Active' ? 'checked' : ''; ?>>
                                                 <label class="form-check-label" for="statusActive">
                                                     <i class="fas fa-eye text-success me-1"></i>Active
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="statusInactive" value="Inactive" <?php echo $case_study['status'] === 'Inactive' ? 'checked' : ''; ?>>
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="statusInactive" value="Inactive" <?php echo $case_study['status'] === 'Inactive' ? 'checked' : ''; ?>>
                                                 <label class="form-check-label" for="statusInactive">
                                                     <i class="fas fa-eye-slash text-warning me-1"></i>Inactive
                                                 </label>
@@ -338,22 +355,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                             <!-- Industry & Equipment -->
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0"><i class="fas fa-industry me-2"></i>Industry & Equipment</h5>
+                                    <h5 class="card-title mb-0"><i class="fas fa-industry me-2"></i>Industry & Equipment
+                                    </h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label for="industry_segment" class="form-label">Industry Segment</label>
-                                        <input type="text" class="form-control" id="industry_segment" name="industry_segment" value="<?php echo $case_study['industry_segment']; ?>">
+                                        <input type="text" class="form-control" id="industry_segment"
+                                            name="industry_segment" value="<?php echo $case_study['industry_segment']; ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="equipment" class="form-label">Equipment</label>
-                                        <input type="text" class="form-control" id="equipment" name="equipment" value="<?php echo $case_study['equipment']; ?>">
+                                        <input type="text" class="form-control" id="equipment" name="equipment"
+                                            value="<?php echo $case_study['equipment']; ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="application" class="form-label">Application</label>
-                                        <input type="text" class="form-control" id="application" name="application" value="<?php echo $case_study['application']; ?>">
+                                        <input type="text" class="form-control" id="application" name="application"
+                                            value="<?php echo $case_study['application']; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -368,15 +389,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                         <label for="image" class="form-label">Featured Image</label>
                                         <?php if ($case_study['image']): ?>
                                             <div class="mb-2">
-                                                <img src="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['image']; ?>" alt="Current Image" class="img-thumbnail" style="max-width: 200px;">
+                                                <img src="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['image']; ?>"
+                                                    alt="Current Image" class="img-thumbnail" style="max-width: 200px;">
                                                 <div class="form-text">Current image</div>
                                             </div>
                                         <?php endif; ?>
                                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                                        <input type="hidden" class="existing_image" value="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['image']; ?>" />
+                                        <input type="hidden" class="existing_image"
+                                            value="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['image']; ?>" />
                                         <div class="form-text">Max size: 5MB. Formats: JPG, PNG, GIF, WebP</div>
                                         <div class="mt-2">
-                                            <img id="imagePreview" src="/placeholder.svg" alt="Preview" class="img-thumbnail" style="max-width: 200px; display: none;">
+                                            <img id="imagePreview" src="/placeholder.svg" alt="Preview"
+                                                class="img-thumbnail" style="max-width: 200px; display: none;">
                                         </div>
                                     </div>
 
@@ -384,13 +408,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                         <label for="case_study_file" class="form-label">Case Study File</label>
                                         <?php if ($case_study['case_study_file']): ?>
                                             <div class="mb-2">
-                                                <a href="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['case_study_file']; ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                <a href="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['case_study_file']; ?>"
+                                                    target="_blank" class="btn btn-sm btn-outline-primary">
                                                     <i class="fas fa-file-pdf me-1"></i>View Current File
                                                 </a>
                                             </div>
                                         <?php endif; ?>
-                                        <input type="file" class="form-control" id="case_study_file" name="case_study_file" accept=".pdf,.doc,.docx">
-                                         <input type="hidden" class="existing_image" value="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['case_study_file']; ?>" />
+                                        <input type="file" class="form-control" id="case_study_file" name="case_study_file"
+                                            accept=".pdf,.doc,.docx">
+                                        <input type="hidden" class="existing_image"
+                                            value="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['case_study_file']; ?>" />
                                         <div class="form-text">Max size: 10MB. Formats: PDF, DOC, DOCX</div>
                                     </div>
                                 </div>
@@ -408,7 +435,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
 <?php include 'includes/footer.php'; ?>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         tinymce.init({
             selector: '.tinymce-editor',
@@ -421,8 +448,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
             ],
             toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-            setup: function(editor) {
-                editor.on('change', function() {
+            setup: function (editor) {
+                editor.on('change', function () {
                     editor.save();
                 });
             }
@@ -430,11 +457,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
 
 
 
-        $('#image').on('change', function() {
+        $('#image').on('change', function () {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     $('#imagePreview').attr('src', e.target.result).show();
                 };
                 reader.readAsDataURL(file);
@@ -465,7 +492,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                     required: "Please enter an introduction"
                 }
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
 
                 tinymce.triggerSave();
 

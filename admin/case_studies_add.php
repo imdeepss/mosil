@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception('Image file size must be less than 5MB.');
             }
 
-            $upload_dir = '../uploads/case_studies/images';
+            $upload_dir = '../assets/uploads/case_studies/images';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_FILES['case_study_file']['size'] > 10 * 1024 * 1024) {
                 throw new Exception('File size must be less than 10MB.');
             }
-            $upload_dir = '../uploads/case_studies/files';
+            $upload_dir = '../assets/uploads/case_studies/files';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -150,7 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php include 'includes/sidebar.php'; ?>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2"><i class="fas fa-plus-circle me-2"></i>Add Case Study</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <a href="case_studies" class="btn btn-outline-secondary">
@@ -183,11 +184,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Basic Information -->
                         <div class="card mb-4">
                             <div class="card-header">
-                                <h5 class="card-title mb-0"><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
+                                <h5 class="card-title mb-0"><i class="fas fa-info-circle me-2"></i>Basic Information
+                                </h5>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                                    <label for="title" class="form-label">Title <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="title" name="title" required>
                                     <div class="invalid-feedback">Please provide a valid title.</div>
                                 </div>
@@ -195,8 +198,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                                 <div class="mb-3">
-                                    <label for="introduction" class="form-label">Introduction <span class="text-danger">*</span></label>
-                                    <textarea class="form-control tinymce-editor" id="introduction" name="introduction" rows="4" required></textarea>
+                                    <label for="introduction" class="form-label">Introduction <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control tinymce-editor" id="introduction" name="introduction"
+                                        rows="4" required></textarea>
                                     <div class="invalid-feedback">Please provide an introduction.</div>
                                 </div>
                             </div>
@@ -205,37 +210,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Case Study Details -->
                         <div class="card mb-4">
                             <div class="card-header">
-                                <h5 class="card-title mb-0"><i class="fas fa-clipboard-list me-2"></i>Case Study Details</h5>
+                                <h5 class="card-title mb-0"><i class="fas fa-clipboard-list me-2"></i>Case Study Details
+                                </h5>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="challenge" class="form-label">Challenge</label>
-                                    <textarea class="form-control tinymce-editor" id="challenge" name="challenge" rows="4"></textarea>
+                                    <textarea class="form-control tinymce-editor" id="challenge" name="challenge"
+                                        rows="4"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="expectation" class="form-label">Expectation</label>
-                                    <textarea class="form-control tinymce-editor" id="expectation" name="expectation" rows="4"></textarea>
+                                    <textarea class="form-control tinymce-editor" id="expectation" name="expectation"
+                                        rows="4"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="solution" class="form-label">Solution</label>
-                                    <textarea class="form-control tinymce-editor" id="solution" name="solution" rows="4"></textarea>
+                                    <textarea class="form-control tinymce-editor" id="solution" name="solution"
+                                        rows="4"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="result" class="form-label">Result</label>
-                                    <textarea class="form-control tinymce-editor" id="result" name="result" rows="4"></textarea>
+                                    <textarea class="form-control tinymce-editor" id="result" name="result"
+                                        rows="4"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="recommendation" class="form-label">Recommendation</label>
-                                    <textarea class="form-control tinymce-editor" id="recommendation" name="recommendation" rows="4"></textarea>
+                                    <textarea class="form-control tinymce-editor" id="recommendation"
+                                        name="recommendation" rows="4"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="benefits" class="form-label">Benefits</label>
-                                    <textarea class="form-control tinymce-editor" id="benefits" name="benefits" rows="4"></textarea>
+                                    <textarea class="form-control tinymce-editor" id="benefits" name="benefits"
+                                        rows="4"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -253,13 +265,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <label class="form-label">Status</label>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="status" id="statusActive" value="Active" checked>
+                                            <input class="form-check-input" type="radio" name="status" id="statusActive"
+                                                value="Active" checked>
                                             <label class="form-check-label" for="statusActive">
                                                 <i class="fas fa-eye text-success me-1"></i>Active
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="status" id="statusInactive" value="Inactive">
+                                            <input class="form-check-input" type="radio" name="status"
+                                                id="statusInactive" value="Inactive">
                                             <label class="form-check-label" for="statusInactive">
                                                 <i class="fas fa-eye-slash text-warning me-1"></i>Inactive
                                             </label>
@@ -278,12 +292,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Industry & Equipment -->
                         <div class="card mb-4">
                             <div class="card-header">
-                                <h5 class="card-title mb-0"><i class="fas fa-industry me-2"></i>Industry & Equipment</h5>
+                                <h5 class="card-title mb-0"><i class="fas fa-industry me-2"></i>Industry & Equipment
+                                </h5>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="industry_segment" class="form-label">Industry Segment</label>
-                                    <input type="text" class="form-control" id="industry_segment" name="industry_segment">
+                                    <input type="text" class="form-control" id="industry_segment"
+                                        name="industry_segment">
                                 </div>
 
                                 <div class="mb-3">
@@ -309,13 +325,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                     <div class="form-text">Max size: 5MB. Formats: JPG, PNG, GIF, WebP</div>
                                     <div class="mt-2">
-                                        <img id="imagePreview" src="/placeholder.svg" alt="Preview" class="img-thumbnail" style="max-width: 200px; display: none;">
+                                        <img id="imagePreview" src="/placeholder.svg" alt="Preview"
+                                            class="img-thumbnail" style="max-width: 200px; display: none;">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="case_study_file" class="form-label">Case Study File</label>
-                                    <input type="file" class="form-control" id="case_study_file" name="case_study_file" accept=".pdf,.doc,.docx">
+                                    <input type="file" class="form-control" id="case_study_file" name="case_study_file"
+                                        accept=".pdf,.doc,.docx">
                                     <div class="form-text">Max size: 10MB. Formats: PDF, DOC, DOCX</div>
                                 </div>
                             </div>
@@ -331,7 +349,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'includes/footer.php'; ?>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         tinymce.init({
             selector: '.tinymce-editor',
@@ -344,8 +362,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ],
             toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-            setup: function(editor) {
-                editor.on('change', function() {
+            setup: function (editor) {
+                editor.on('change', function () {
                     editor.save();
                 });
             }
@@ -353,11 +371,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-        $('#image').on('change', function() {
+        $('#image').on('change', function () {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     $('#imagePreview').attr('src', e.target.result).show();
                 };
                 reader.readAsDataURL(file);
@@ -387,7 +405,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     required: "Please enter an introduction"
                 }
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
 
                 tinymce.triggerSave();
 

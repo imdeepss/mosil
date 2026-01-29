@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle image upload
     $imageName = $post['image']; // Keep existing image by default
     if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../uploads/events/';
+        $uploadDir = '../assets/uploads/events/';
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
@@ -284,7 +284,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 <div class="mb-3">
                                     <label class="form-label">Current Image</label>
                                     <div>
-                                        <img src="../uploads/events/<?php echo htmlspecialchars($post['image']); ?>"
+                                        <img src="../assets/uploads/events/<?php echo htmlspecialchars($post['image']); ?>"
                                             alt="Current featured image" class="img-fluid rounded"
                                             style="max-height: 200px;">
                                     </div>
@@ -296,7 +296,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 <input type="file" class="form-control" id="featured_image" name="featured_image"
                                     accept="image/*">
                                 <input type="hidden" class="existing_image"
-                                    value="../uploads/events/<?php echo htmlspecialchars($post['image']); ?>" />
+                                    value="../assets/uploads/events/<?php echo htmlspecialchars($post['image']); ?>" />
                                 <div class="form-text">Leave empty to keep current image. Recommended size: 1200x630px.
                                     Max file size: 5MB.</div>
                             </div>

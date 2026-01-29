@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($action === 'add' || $action === 'edit') {
             // Get form data
-            $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+            $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
             $productName = sanitizeInput($_POST['product_name'] ?? '');
             $productSlug = sanitizeInput($_POST['product_slug'] ?? '');
 
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Process product image upload
             if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = '../uploads/products-image/';
+                $uploadDir = '../assets/uploads/products-image/';
                 if (!file_exists($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Process TDS file upload
             if (isset($_FILES['tds_file']) && $_FILES['tds_file']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = '../uploads/products-image/';
+                $uploadDir = '../assets/uploads/products-image/';
                 if (!file_exists($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
@@ -328,7 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } elseif ($action === 'delete') {
-            $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
+            $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
 
             // Get product details before deletion for logging
             $getProductSql = "SELECT name, image, tds_file FROM products WHERE id = ?";
@@ -469,8 +469,8 @@ if (isset($_GET['success'])) {
             $messageType = "success";
             break;
         case 'imported':
-            $importCount = isset($_GET['count']) ? (int)$_GET['count'] : 0;
-            $errorCount = isset($_GET['errors']) ? (int)$_GET['errors'] : 0;
+            $importCount = isset($_GET['count']) ? (int) $_GET['count'] : 0;
+            $errorCount = isset($_GET['errors']) ? (int) $_GET['errors'] : 0;
             $message = "Import completed: $importCount products imported successfully, $errorCount errors.";
             $messageType = "success";
             break;
@@ -485,18 +485,21 @@ if (isset($_GET['success'])) {
         <?php include 'includes/sidebar.php'; ?>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Products</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary" id="exportBtn">
                             <i class="fas fa-download me-1"></i> Export
                         </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                            data-bs-target="#importModal">
                             <i class="fas fa-upload me-1"></i> Import
                         </button>
                     </div>
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#addProductModal">
                         <i class="fas fa-plus me-1"></i> Add New Product
                     </button>
                 </div>
@@ -540,10 +543,13 @@ if (isset($_GET['success'])) {
                                             </td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal<?php echo $product['id']; ?>">
+                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#editProductModal<?php echo $product['id']; ?>">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $product['id']; ?>" data-name="<?php echo htmlspecialchars($product['name']); ?>">
+                                                    <button type="button" class="btn btn-sm btn-danger delete-btn"
+                                                        data-id="<?php echo $product['id']; ?>"
+                                                        data-name="<?php echo htmlspecialchars($product['name']); ?>">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -551,65 +557,136 @@ if (isset($_GET['success'])) {
                                         </tr>
 
                                         <!-- Edit Product Modal -->
-                                        <div class="modal fade" id="editProductModal<?php echo $product['id']; ?>" tabindex="-1" aria-labelledby="editProductModalLabel<?php echo $product['id']; ?>" aria-hidden="true">
+                                        <div class="modal fade" id="editProductModal<?php echo $product['id']; ?>" tabindex="-1"
+                                            aria-labelledby="editProductModalLabel<?php echo $product['id']; ?>"
+                                            aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="editProductModalLabel<?php echo $product['id']; ?>">Edit Product</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <h5 class="modal-title"
+                                                            id="editProductModalLabel<?php echo $product['id']; ?>">Edit Product
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
-                                                    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" enctype="multipart/form-data" id="editProductForm<?php echo $product['id']; ?>">
+                                                    <form method="post"
+                                                        action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                                                        class="needs-validation" enctype="multipart/form-data"
+                                                        id="editProductForm<?php echo $product['id']; ?>">
                                                         <div class="modal-body">
                                                             <input type="hidden" name="action" value="edit">
-                                                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                                            <input type="hidden" name="product_id"
+                                                                value="<?php echo $product['id']; ?>">
 
-                                                            <ul class="nav nav-tabs" id="productTab<?php echo $product['id']; ?>" role="tablist">
+                                                            <ul class="nav nav-tabs"
+                                                                id="productTab<?php echo $product['id']; ?>" role="tablist">
                                                                 <li class="nav-item" role="presentation">
-                                                                    <button class="nav-link active" id="basic-tab<?php echo $product['id']; ?>" data-bs-toggle="tab" data-bs-target="#basic<?php echo $product['id']; ?>" type="button" role="tab" aria-controls="basic<?php echo $product['id']; ?>" aria-selected="true">Basic Information</button>
+                                                                    <button class="nav-link active"
+                                                                        id="basic-tab<?php echo $product['id']; ?>"
+                                                                        data-bs-toggle="tab"
+                                                                        data-bs-target="#basic<?php echo $product['id']; ?>"
+                                                                        type="button" role="tab"
+                                                                        aria-controls="basic<?php echo $product['id']; ?>"
+                                                                        aria-selected="true">Basic Information</button>
                                                                 </li>
                                                                 <li class="nav-item" role="presentation">
-                                                                    <button class="nav-link" id="categories-tab<?php echo $product['id']; ?>" data-bs-toggle="tab" data-bs-target="#categories<?php echo $product['id']; ?>" type="button" role="tab" aria-controls="categories<?php echo $product['id']; ?>" aria-selected="false">Categories</button>
+                                                                    <button class="nav-link"
+                                                                        id="categories-tab<?php echo $product['id']; ?>"
+                                                                        data-bs-toggle="tab"
+                                                                        data-bs-target="#categories<?php echo $product['id']; ?>"
+                                                                        type="button" role="tab"
+                                                                        aria-controls="categories<?php echo $product['id']; ?>"
+                                                                        aria-selected="false">Categories</button>
                                                                 </li>
                                                                 <li class="nav-item" role="presentation">
-                                                                    <button class="nav-link" id="attributes-tab<?php echo $product['id']; ?>" data-bs-toggle="tab" data-bs-target="#attributes<?php echo $product['id']; ?>" type="button" role="tab" aria-controls="attributes<?php echo $product['id']; ?>" aria-selected="false">Attributes</button>
+                                                                    <button class="nav-link"
+                                                                        id="attributes-tab<?php echo $product['id']; ?>"
+                                                                        data-bs-toggle="tab"
+                                                                        data-bs-target="#attributes<?php echo $product['id']; ?>"
+                                                                        type="button" role="tab"
+                                                                        aria-controls="attributes<?php echo $product['id']; ?>"
+                                                                        aria-selected="false">Attributes</button>
                                                                 </li>
                                                                 <li class="nav-item" role="presentation">
-                                                                    <button class="nav-link" id="details-tab<?php echo $product['id']; ?>" data-bs-toggle="tab" data-bs-target="#details<?php echo $product['id']; ?>" type="button" role="tab" aria-controls="details<?php echo $product['id']; ?>" aria-selected="false">Product Details</button>
+                                                                    <button class="nav-link"
+                                                                        id="details-tab<?php echo $product['id']; ?>"
+                                                                        data-bs-toggle="tab"
+                                                                        data-bs-target="#details<?php echo $product['id']; ?>"
+                                                                        type="button" role="tab"
+                                                                        aria-controls="details<?php echo $product['id']; ?>"
+                                                                        aria-selected="false">Product Details</button>
                                                                 </li>
                                                                 <li class="nav-item" role="presentation">
-                                                                    <button class="nav-link" id="media-tab<?php echo $product['id']; ?>" data-bs-toggle="tab" data-bs-target="#media<?php echo $product['id']; ?>" type="button" role="tab" aria-controls="media<?php echo $product['id']; ?>" aria-selected="false">Media</button>
+                                                                    <button class="nav-link"
+                                                                        id="media-tab<?php echo $product['id']; ?>"
+                                                                        data-bs-toggle="tab"
+                                                                        data-bs-target="#media<?php echo $product['id']; ?>"
+                                                                        type="button" role="tab"
+                                                                        aria-controls="media<?php echo $product['id']; ?>"
+                                                                        aria-selected="false">Media</button>
                                                                 </li>
                                                                 <li class="nav-item" role="presentation">
-                                                                    <button class="nav-link" id="seo-tab<?php echo $product['id']; ?>" data-bs-toggle="tab" data-bs-target="#seo<?php echo $product['id']; ?>" type="button" role="tab" aria-controls="seo<?php echo $product['id']; ?>" aria-selected="false">SEO</button>
+                                                                    <button class="nav-link"
+                                                                        id="seo-tab<?php echo $product['id']; ?>"
+                                                                        data-bs-toggle="tab"
+                                                                        data-bs-target="#seo<?php echo $product['id']; ?>"
+                                                                        type="button" role="tab"
+                                                                        aria-controls="seo<?php echo $product['id']; ?>"
+                                                                        aria-selected="false">SEO</button>
                                                                 </li>
                                                             </ul>
 
-                                                            <div class="tab-content p-3 border border-top-0" id="productTabContent<?php echo $product['id']; ?>">
+                                                            <div class="tab-content p-3 border border-top-0"
+                                                                id="productTabContent<?php echo $product['id']; ?>">
                                                                 <!-- Basic Information Tab -->
-                                                                <div class="tab-pane fade show active" id="basic<?php echo $product['id']; ?>" role="tabpanel" aria-labelledby="basic-tab<?php echo $product['id']; ?>">
+                                                                <div class="tab-pane fade show active"
+                                                                    id="basic<?php echo $product['id']; ?>" role="tabpanel"
+                                                                    aria-labelledby="basic-tab<?php echo $product['id']; ?>">
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="mb-3">
-                                                                                <label for="product_name<?php echo $product['id']; ?>" class="form-label">Product Name <span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" id="product_name<?php echo $product['id']; ?>" name="product_name" value="<?php echo htmlspecialchars($product['name']); ?>" required>
+                                                                                <label
+                                                                                    for="product_name<?php echo $product['id']; ?>"
+                                                                                    class="form-label">Product Name <span
+                                                                                        class="text-danger">*</span></label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="product_name<?php echo $product['id']; ?>"
+                                                                                    name="product_name"
+                                                                                    value="<?php echo htmlspecialchars($product['name']); ?>"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="mb-3">
-                                                                                <label for="product_slug<?php echo $product['id']; ?>" class="form-label">Product Slug <span class="text-danger">*</span></label>
-                                                                                <input type="text" class="form-control" id="product_slug<?php echo $product['id']; ?>" name="product_slug" value="<?php echo htmlspecialchars($product['slug']); ?>" required>
+                                                                                <label
+                                                                                    for="product_slug<?php echo $product['id']; ?>"
+                                                                                    class="form-label">Product Slug <span
+                                                                                        class="text-danger">*</span></label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="product_slug<?php echo $product['id']; ?>"
+                                                                                    name="product_slug"
+                                                                                    value="<?php echo htmlspecialchars($product['slug']); ?>"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="short_description<?php echo $product['id']; ?>" class="form-label">Short Description</label>
-                                                                        <textarea class="form-control" id="short_description<?php echo $product['id']; ?>" name="short_description" rows="3"><?php echo htmlspecialchars($product['short_description'] ?? ''); ?></textarea>
+                                                                        <label
+                                                                            for="short_description<?php echo $product['id']; ?>"
+                                                                            class="form-label">Short Description</label>
+                                                                        <textarea class="form-control"
+                                                                            id="short_description<?php echo $product['id']; ?>"
+                                                                            name="short_description"
+                                                                            rows="3"><?php echo htmlspecialchars($product['short_description'] ?? ''); ?></textarea>
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="status<?php echo $product['id']; ?>" class="form-label">Status</label>
-                                                                        <select class="form-select" id="status<?php echo $product['id']; ?>" name="status">
+                                                                        <label for="status<?php echo $product['id']; ?>"
+                                                                            class="form-label">Status</label>
+                                                                        <select class="form-select"
+                                                                            id="status<?php echo $product['id']; ?>"
+                                                                            name="status">
                                                                             <option value="Active" <?php echo ($product['status'] === 'Active') ? 'selected' : ''; ?>>Active</option>
                                                                             <option value="Inactive" <?php echo ($product['status'] === 'Inactive') ? 'selected' : ''; ?>>Inactive</option>
                                                                         </select>
@@ -617,16 +694,24 @@ if (isset($_GET['success'])) {
                                                                 </div>
 
                                                                 <!-- Categories Tab -->
-                                                                <div class="tab-pane fade" id="categories<?php echo $product['id']; ?>" role="tabpanel" aria-labelledby="categories-tab<?php echo $product['id']; ?>">
+                                                                <div class="tab-pane fade"
+                                                                    id="categories<?php echo $product['id']; ?>" role="tabpanel"
+                                                                    aria-labelledby="categories-tab<?php echo $product['id']; ?>">
                                                                     <div class="mb-3">
-                                                                        <label for="parent_cat<?php echo $product['id']; ?>" class="form-label">Parent Category <span class="text-danger">*</span></label>
-                                                                        <select class="form-select select2" id="parent_cat<?php echo $product['id']; ?>" name="parent_cat[]" multiple required>
+                                                                        <label for="parent_cat<?php echo $product['id']; ?>"
+                                                                            class="form-label">Parent Category <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <select class="form-select select2"
+                                                                            id="parent_cat<?php echo $product['id']; ?>"
+                                                                            name="parent_cat[]" multiple required>
                                                                             <option value="">Select Parent Category</option>
                                                                             <?php
                                                                             $selectedParentCats = explode(',', $product['parent_cat'] ?? '');
                                                                             foreach ($parentCategories as $parentCat):
-                                                                            ?>
-                                                                                <option value="<?php echo htmlspecialchars($parentCat['id']); ?>" <?php echo in_array($parentCat['id'], $selectedParentCats) ? 'selected' : ''; ?>>
+                                                                                ?>
+                                                                                <option
+                                                                                    value="<?php echo htmlspecialchars($parentCat['id']); ?>"
+                                                                                    <?php echo in_array($parentCat['id'], $selectedParentCats) ? 'selected' : ''; ?>>
                                                                                     <?php echo htmlspecialchars($parentCat['name']); ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
@@ -634,14 +719,19 @@ if (isset($_GET['success'])) {
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="main_cat<?php echo $product['id']; ?>" class="form-label">Main Category</label>
-                                                                        <select class="form-select select2" id="main_cat<?php echo $product['id']; ?>" name="main_cat[]" multiple>
+                                                                        <label for="main_cat<?php echo $product['id']; ?>"
+                                                                            class="form-label">Main Category</label>
+                                                                        <select class="form-select select2"
+                                                                            id="main_cat<?php echo $product['id']; ?>"
+                                                                            name="main_cat[]" multiple>
                                                                             <option value="">Select Main Category</option>
                                                                             <?php
                                                                             $selectedMainCats = explode(',', $product['main_cat'] ?? '');
                                                                             foreach ($mainCategories as $mainCat):
-                                                                            ?>
-                                                                                <option value="<?php echo htmlspecialchars($mainCat['id']); ?>" <?php echo in_array($mainCat['id'], $selectedMainCats) ? 'selected' : ''; ?>>
+                                                                                ?>
+                                                                                <option
+                                                                                    value="<?php echo htmlspecialchars($mainCat['id']); ?>"
+                                                                                    <?php echo in_array($mainCat['id'], $selectedMainCats) ? 'selected' : ''; ?>>
                                                                                     <?php echo htmlspecialchars($mainCat['mcat_name']); ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
@@ -649,14 +739,19 @@ if (isset($_GET['success'])) {
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="sub_cat<?php echo $product['id']; ?>" class="form-label">Sub Category</label>
-                                                                        <select class="form-select select2" id="sub_cat<?php echo $product['id']; ?>" name="sub_cat[]" multiple>
+                                                                        <label for="sub_cat<?php echo $product['id']; ?>"
+                                                                            class="form-label">Sub Category</label>
+                                                                        <select class="form-select select2"
+                                                                            id="sub_cat<?php echo $product['id']; ?>"
+                                                                            name="sub_cat[]" multiple>
                                                                             <option value="">Select Sub Category</option>
                                                                             <?php
                                                                             $selectedSubCats = explode(',', $product['sub_cat'] ?? '');
                                                                             foreach ($subCategories as $subCat):
-                                                                            ?>
-                                                                                <option value="<?php echo htmlspecialchars($subCat['id']); ?>" <?php echo in_array($subCat['id'], $selectedSubCats) ? 'selected' : ''; ?>>
+                                                                                ?>
+                                                                                <option
+                                                                                    value="<?php echo htmlspecialchars($subCat['id']); ?>"
+                                                                                    <?php echo in_array($subCat['id'], $selectedSubCats) ? 'selected' : ''; ?>>
                                                                                     <?php echo htmlspecialchars($subCat['scat_name']); ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
@@ -666,16 +761,24 @@ if (isset($_GET['success'])) {
                                                                 </div>
 
                                                                 <!-- Attributes Tab -->
-                                                                <div class="tab-pane fade" id="attributes<?php echo $product['id']; ?>" role="tabpanel" aria-labelledby="attributes-tab<?php echo $product['id']; ?>">
+                                                                <div class="tab-pane fade"
+                                                                    id="attributes<?php echo $product['id']; ?>" role="tabpanel"
+                                                                    aria-labelledby="attributes-tab<?php echo $product['id']; ?>">
                                                                     <div class="mb-3">
-                                                                        <label for="parent_attribute<?php echo $product['id']; ?>" class="form-label">Parent Attribute</label>
-                                                                        <select class="form-select select2" id="parent_attribute<?php echo $product['id']; ?>" name="parent_attribute[]" multiple>
+                                                                        <label
+                                                                            for="parent_attribute<?php echo $product['id']; ?>"
+                                                                            class="form-label">Parent Attribute</label>
+                                                                        <select class="form-select select2"
+                                                                            id="parent_attribute<?php echo $product['id']; ?>"
+                                                                            name="parent_attribute[]" multiple>
                                                                             <option value="">Select Parent Attribute</option>
                                                                             <?php
                                                                             $selectedMainAttrs = explode(',', $product['attribute'] ?? '');
                                                                             foreach ($parentAttributes as $parentAttr):
-                                                                            ?>
-                                                                                <option value="<?php echo htmlspecialchars($parentAttr['id']); ?>" <?php echo in_array($parentAttr['id'], $selectedMainAttrs) ? 'selected' : ''; ?>>
+                                                                                ?>
+                                                                                <option
+                                                                                    value="<?php echo htmlspecialchars($parentAttr['id']); ?>"
+                                                                                    <?php echo in_array($parentAttr['id'], $selectedMainAttrs) ? 'selected' : ''; ?>>
                                                                                     <?php echo htmlspecialchars($parentAttr['parent_attr_name']); ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
@@ -684,14 +787,19 @@ if (isset($_GET['success'])) {
 
 
                                                                     <div class="mb-3">
-                                                                        <label for="main_attribute<?php echo $product['id']; ?>" class="form-label">Main Attribute</label>
-                                                                        <select class="form-select select2" id="main_attribute<?php echo $product['id']; ?>" name="main_attribute[]" multiple>
+                                                                        <label for="main_attribute<?php echo $product['id']; ?>"
+                                                                            class="form-label">Main Attribute</label>
+                                                                        <select class="form-select select2"
+                                                                            id="main_attribute<?php echo $product['id']; ?>"
+                                                                            name="main_attribute[]" multiple>
                                                                             <option value="">Select Main Attribute</option>
                                                                             <?php
                                                                             $selectedMainAttrs = explode(',', $product['main_attribute'] ?? '');
                                                                             foreach ($mainAttributes as $mainAttr):
-                                                                            ?>
-                                                                                <option value="<?php echo htmlspecialchars($mainAttr['id']); ?>" <?php echo in_array($mainAttr['id'], $selectedMainAttrs) ? 'selected' : ''; ?>>
+                                                                                ?>
+                                                                                <option
+                                                                                    value="<?php echo htmlspecialchars($mainAttr['id']); ?>"
+                                                                                    <?php echo in_array($mainAttr['id'], $selectedMainAttrs) ? 'selected' : ''; ?>>
                                                                                     <?php echo htmlspecialchars($mainAttr['main_attr_name']); ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
@@ -699,14 +807,19 @@ if (isset($_GET['success'])) {
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="sub_attribute<?php echo $product['id']; ?>" class="form-label">Sub Attribute</label>
-                                                                        <select class="form-select select2" id="sub_attribute<?php echo $product['id']; ?>" name="sub_attribute[]" multiple>
+                                                                        <label for="sub_attribute<?php echo $product['id']; ?>"
+                                                                            class="form-label">Sub Attribute</label>
+                                                                        <select class="form-select select2"
+                                                                            id="sub_attribute<?php echo $product['id']; ?>"
+                                                                            name="sub_attribute[]" multiple>
                                                                             <option value="">Select Sub Attribute</option>
                                                                             <?php
                                                                             $selectedSubAttrs = explode(',', $product['sub_attribute'] ?? '');
                                                                             foreach ($subAttributes as $subAttr):
-                                                                            ?>
-                                                                                <option value="<?php echo htmlspecialchars($subAttr['id']); ?>" <?php echo in_array($subAttr['id'], $selectedSubAttrs) ? 'selected' : ''; ?>>
+                                                                                ?>
+                                                                                <option
+                                                                                    value="<?php echo htmlspecialchars($subAttr['id']); ?>"
+                                                                                    <?php echo in_array($subAttr['id'], $selectedSubAttrs) ? 'selected' : ''; ?>>
                                                                                     <?php echo htmlspecialchars($subAttr['sub_attr_name']); ?>
                                                                                 </option>
                                                                             <?php endforeach; ?>
@@ -715,82 +828,139 @@ if (isset($_GET['success'])) {
                                                                 </div>
 
                                                                 <!-- Product Details Tab -->
-                                                                <div class="tab-pane fade" id="details<?php echo $product['id']; ?>" role="tabpanel" aria-labelledby="details-tab<?php echo $product['id']; ?>">
+                                                                <div class="tab-pane fade"
+                                                                    id="details<?php echo $product['id']; ?>" role="tabpanel"
+                                                                    aria-labelledby="details-tab<?php echo $product['id']; ?>">
                                                                     <div class="mb-3">
-                                                                        <label for="area_of_application<?php echo $product['id']; ?>" class="form-label">Area of Application</label>
-                                                                        <textarea class="form-control rich-editor" id="area_of_application<?php echo $product['id']; ?>" name="area_of_application" rows="5"><?php echo htmlspecialchars($product['area_of_application'] ?? ''); ?></textarea>
+                                                                        <label
+                                                                            for="area_of_application<?php echo $product['id']; ?>"
+                                                                            class="form-label">Area of Application</label>
+                                                                        <textarea class="form-control rich-editor"
+                                                                            id="area_of_application<?php echo $product['id']; ?>"
+                                                                            name="area_of_application"
+                                                                            rows="5"><?php echo htmlspecialchars($product['area_of_application'] ?? ''); ?></textarea>
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="benifits<?php echo $product['id']; ?>" class="form-label">Benefits</label>
-                                                                        <textarea class="form-control rich-editor" id="benifits<?php echo $product['id']; ?>" name="benifits" rows="5"><?php echo htmlspecialchars($product['benifits'] ?? ''); ?></textarea>
+                                                                        <label for="benifits<?php echo $product['id']; ?>"
+                                                                            class="form-label">Benefits</label>
+                                                                        <textarea class="form-control rich-editor"
+                                                                            id="benifits<?php echo $product['id']; ?>"
+                                                                            name="benifits"
+                                                                            rows="5"><?php echo htmlspecialchars($product['benifits'] ?? ''); ?></textarea>
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="characteristics<?php echo $product['id']; ?>" class="form-label">Characteristics</label>
-                                                                        <textarea class="form-control rich-editor" id="characteristics<?php echo $product['id']; ?>" name="characteristics" rows="5"><?php echo htmlspecialchars($product['characteristics'] ?? ''); ?></textarea>
+                                                                        <label
+                                                                            for="characteristics<?php echo $product['id']; ?>"
+                                                                            class="form-label">Characteristics</label>
+                                                                        <textarea class="form-control rich-editor"
+                                                                            id="characteristics<?php echo $product['id']; ?>"
+                                                                            name="characteristics"
+                                                                            rows="5"><?php echo htmlspecialchars($product['characteristics'] ?? ''); ?></textarea>
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="packing<?php echo $product['id']; ?>" class="form-label">Packing</label>
-                                                                        <textarea class="form-control" id="packing<?php echo $product['id']; ?>" name="packing" rows="3"><?php echo htmlspecialchars($product['packing'] ?? ''); ?></textarea>
+                                                                        <label for="packing<?php echo $product['id']; ?>"
+                                                                            class="form-label">Packing</label>
+                                                                        <textarea class="form-control"
+                                                                            id="packing<?php echo $product['id']; ?>"
+                                                                            name="packing"
+                                                                            rows="3"><?php echo htmlspecialchars($product['packing'] ?? ''); ?></textarea>
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- Media Tab -->
-                                                                <div class="tab-pane fade" id="media<?php echo $product['id']; ?>" role="tabpanel" aria-labelledby="media-tab<?php echo $product['id']; ?>">
+                                                                <div class="tab-pane fade"
+                                                                    id="media<?php echo $product['id']; ?>" role="tabpanel"
+                                                                    aria-labelledby="media-tab<?php echo $product['id']; ?>">
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="mb-3">
-                                                                                <label for="product_image<?php echo $product['id']; ?>" class="form-label">Product Image</label>
+                                                                                <label
+                                                                                    for="product_image<?php echo $product['id']; ?>"
+                                                                                    class="form-label">Product Image</label>
                                                                                 <?php if (!empty($product['image'])): ?>
                                                                                     <div class="mb-2">
-                                                                                        <img src="../uploads/products-image/<?php echo htmlspecialchars($product['image']); ?>" alt="Current Product Image" class="img-thumbnail" style="max-height: 150px;">
+                                                                                        <img src="../assets/uploads/products-image/<?php echo htmlspecialchars($product['image']); ?>"
+                                                                                            alt="Current Product Image"
+                                                                                            class="img-thumbnail"
+                                                                                            style="max-height: 150px;">
                                                                                     </div>
                                                                                 <?php endif; ?>
-                                                                                <input type="file" class="form-control" id="product_image<?php echo $product['id']; ?>" name="product_image" accept="image/*">
-                                                                                <div class="form-text">Leave empty to keep the current image. Accepted formats: JPG, JPEG, PNG, GIF.</div>
+                                                                                <input type="file" class="form-control"
+                                                                                    id="product_image<?php echo $product['id']; ?>"
+                                                                                    name="product_image" accept="image/*">
+                                                                                <div class="form-text">Leave empty to keep the
+                                                                                    current image. Accepted formats: JPG, JPEG,
+                                                                                    PNG, GIF.</div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="mb-3">
-                                                                                <label for="tds_file<?php echo $product['id']; ?>" class="form-label">TDS File</label>
+                                                                                <label
+                                                                                    for="tds_file<?php echo $product['id']; ?>"
+                                                                                    class="form-label">TDS File</label>
                                                                                 <?php if (!empty($product['tds_file'])): ?>
                                                                                     <div class="mb-2">
-                                                                                        <a href="Uploads/tds/<?php echo htmlspecialchars($product['tds_file']); ?>" target="_blank" class="btn btn-sm btn-outline-primary">
-                                                                                            <i class="fas fa-file-pdf me-1"></i> View Current TDS File
+                                                                                        <a href="Uploads/tds/<?php echo htmlspecialchars($product['tds_file']); ?>"
+                                                                                            target="_blank"
+                                                                                            class="btn btn-sm btn-outline-primary">
+                                                                                            <i class="fas fa-file-pdf me-1"></i>
+                                                                                            View Current TDS File
                                                                                         </a>
                                                                                     </div>
                                                                                 <?php endif; ?>
-                                                                                <input type="file" class="form-control" id="tds_file<?php echo $product['id']; ?>" name="tds_file" accept=".pdf,.doc,.docx">
-                                                                                <div class="form-text">Leave empty to keep the current file. Accepted formats: PDF, DOC, DOCX.</div>
+                                                                                <input type="file" class="form-control"
+                                                                                    id="tds_file<?php echo $product['id']; ?>"
+                                                                                    name="tds_file" accept=".pdf,.doc,.docx">
+                                                                                <div class="form-text">Leave empty to keep the
+                                                                                    current file. Accepted formats: PDF, DOC,
+                                                                                    DOCX.</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- SEO Tab -->
-                                                                <div class="tab-pane fade" id="seo<?php echo $product['id']; ?>" role="tabpanel" aria-labelledby="seo-tab<?php echo $product['id']; ?>">
+                                                                <div class="tab-pane fade" id="seo<?php echo $product['id']; ?>"
+                                                                    role="tabpanel"
+                                                                    aria-labelledby="seo-tab<?php echo $product['id']; ?>">
                                                                     <div class="mb-3">
-                                                                        <label for="meta_title<?php echo $product['id']; ?>" class="form-label">Meta Title</label>
-                                                                        <input type="text" class="form-control" id="meta_title<?php echo $product['id']; ?>" name="meta_title" value="<?php echo htmlspecialchars($product['meta_title'] ?? ''); ?>">
+                                                                        <label for="meta_title<?php echo $product['id']; ?>"
+                                                                            class="form-label">Meta Title</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="meta_title<?php echo $product['id']; ?>"
+                                                                            name="meta_title"
+                                                                            value="<?php echo htmlspecialchars($product['meta_title'] ?? ''); ?>">
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="meta_description<?php echo $product['id']; ?>" class="form-label">Meta Description</label>
-                                                                        <textarea class="form-control" id="meta_description<?php echo $product['id']; ?>" name="meta_description" rows="3"><?php echo htmlspecialchars($product['meta_description'] ?? ''); ?></textarea>
+                                                                        <label
+                                                                            for="meta_description<?php echo $product['id']; ?>"
+                                                                            class="form-label">Meta Description</label>
+                                                                        <textarea class="form-control"
+                                                                            id="meta_description<?php echo $product['id']; ?>"
+                                                                            name="meta_description"
+                                                                            rows="3"><?php echo htmlspecialchars($product['meta_description'] ?? ''); ?></textarea>
                                                                     </div>
 
                                                                     <div class="mb-3">
-                                                                        <label for="meta_keywords<?php echo $product['id']; ?>" class="form-label">Meta Keywords</label>
-                                                                        <input type="text" class="form-control" id="meta_keywords<?php echo $product['id']; ?>" name="meta_keywords" value="<?php echo htmlspecialchars($product['meta_keywords'] ?? ''); ?>">
-                                                                        <div class="form-text">Separate keywords with commas.</div>
+                                                                        <label for="meta_keywords<?php echo $product['id']; ?>"
+                                                                            class="form-label">Meta Keywords</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="meta_keywords<?php echo $product['id']; ?>"
+                                                                            name="meta_keywords"
+                                                                            value="<?php echo htmlspecialchars($product['meta_keywords'] ?? ''); ?>">
+                                                                        <div class="form-text">Separate keywords with commas.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancel</button>
                                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                                         </div>
                                                     </form>
@@ -816,28 +986,39 @@ if (isset($_GET['success'])) {
                 <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" enctype="multipart/form-data" id="addProductForm">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation"
+                enctype="multipart/form-data" id="addProductForm">
                 <div class="modal-body">
                     <input type="hidden" name="action" value="add">
 
                     <ul class="nav nav-tabs" id="productTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-controls="basic" aria-selected="true">Basic Information</button>
+                            <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
+                                type="button" role="tab" aria-controls="basic" aria-selected="true">Basic
+                                Information</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories" type="button" role="tab" aria-controls="categories" aria-selected="false">Categories</button>
+                            <button class="nav-link" id="categories-tab" data-bs-toggle="tab"
+                                data-bs-target="#categories" type="button" role="tab" aria-controls="categories"
+                                aria-selected="false">Categories</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="attributes-tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes" aria-selected="false">Attributes</button>
+                            <button class="nav-link" id="attributes-tab" data-bs-toggle="tab"
+                                data-bs-target="#attributes" type="button" role="tab" aria-controls="attributes"
+                                aria-selected="false">Attributes</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">Product Details</button>
+                            <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details"
+                                type="button" role="tab" aria-controls="details" aria-selected="false">Product
+                                Details</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="media-tab" data-bs-toggle="tab" data-bs-target="#media" type="button" role="tab" aria-controls="media" aria-selected="false">Media</button>
+                            <button class="nav-link" id="media-tab" data-bs-toggle="tab" data-bs-target="#media"
+                                type="button" role="tab" aria-controls="media" aria-selected="false">Media</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button" role="tab" aria-controls="seo" aria-selected="false">SEO</button>
+                            <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo"
+                                type="button" role="tab" aria-controls="seo" aria-selected="false">SEO</button>
                         </li>
                     </ul>
 
@@ -847,21 +1028,26 @@ if (isset($_GET['success'])) {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="product_name" class="form-label">Product Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="product_name" name="product_name" required>
+                                        <label for="product_name" class="form-label">Product Name <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="product_name" name="product_name"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="product_slug" class="form-label">Product Slug <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="product_slug" name="product_slug" required>
+                                        <label for="product_slug" class="form-label">Product Slug <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="product_slug" name="product_slug"
+                                            required>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="short_description" class="form-label">Short Description</label>
-                                <textarea class="form-control" id="short_description" name="short_description" rows="3"></textarea>
+                                <textarea class="form-control" id="short_description" name="short_description"
+                                    rows="3"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -876,8 +1062,10 @@ if (isset($_GET['success'])) {
                         <!-- Categories Tab -->
                         <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
                             <div class="mb-3">
-                                <label for="parent_cat" class="form-label">Parent Category <span class="text-danger">*</span></label>
-                                <select class="form-select select2" id="parent_cat" name="parent_cat[]" multiple required>
+                                <label for="parent_cat" class="form-label">Parent Category <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select select2" id="parent_cat" name="parent_cat[]" multiple
+                                    required>
                                     <option value="">Select Parent Category</option>
                                     <?php foreach ($parentCategories as $parentCat): ?>
                                         <option value="<?php echo htmlspecialchars($parentCat['id']); ?>">
@@ -904,7 +1092,8 @@ if (isset($_GET['success'])) {
                                 <select class="form-select select2" id="sub_cat" name="sub_cat[]" multiple>
                                     <option value="">Select Sub Category</option>
                                     <?php foreach ($subCategories as $subCat): ?>
-                                        <option value="<?php echo htmlspecialchars($subCat['id']); ?>" data-main-cat="<?php echo htmlspecialchars($subCat['m_cat']); ?>">
+                                        <option value="<?php echo htmlspecialchars($subCat['id']); ?>"
+                                            data-main-cat="<?php echo htmlspecialchars($subCat['m_cat']); ?>">
                                             <?php echo htmlspecialchars($subCat['scat_name']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -916,7 +1105,8 @@ if (isset($_GET['success'])) {
                         <div class="tab-pane fade" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
                             <div class="mb-3">
                                 <label for="parent_attribute" class="form-label">Parent Attribute</label>
-                                <select class="form-select select2" id="parent_attribute" name="parent_attribute[]" multiple>
+                                <select class="form-select select2" id="parent_attribute" name="parent_attribute[]"
+                                    multiple>
                                     <option value="">Select Main Attribute</option>
                                     <?php foreach ($parentAttributes as $parentAttr): ?>
                                         <option value="<?php echo htmlspecialchars($parentAttr['id']); ?>">
@@ -928,7 +1118,8 @@ if (isset($_GET['success'])) {
 
                             <div class="mb-3">
                                 <label for="main_attribute" class="form-label">Main Attribute</label>
-                                <select class="form-select select2" id="main_attribute" name="main_attribute[]" multiple>
+                                <select class="form-select select2" id="main_attribute" name="main_attribute[]"
+                                    multiple>
                                     <option value="">Select Main Attribute</option>
                                     <?php foreach ($mainAttributes as $mainAttr): ?>
                                         <option value="<?php echo htmlspecialchars($mainAttr['id']); ?>">
@@ -955,17 +1146,20 @@ if (isset($_GET['success'])) {
                         <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
                             <div class="mb-3">
                                 <label for="area_of_application" class="form-label">Area of Application</label>
-                                <textarea class="form-control rich-editor" id="area_of_application" name="area_of_application" rows="5"></textarea>
+                                <textarea class="form-control rich-editor" id="area_of_application"
+                                    name="area_of_application" rows="5"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="benifits" class="form-label">Benefits</label>
-                                <textarea class="form-control rich-editor" id="benifits" name="benifits" rows="5"></textarea>
+                                <textarea class="form-control rich-editor" id="benifits" name="benifits"
+                                    rows="5"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="characteristics" class="form-label">Characteristics</label>
-                                <textarea class="form-control rich-editor" id="characteristics" name="characteristics" rows="5"></textarea>
+                                <textarea class="form-control rich-editor" id="characteristics" name="characteristics"
+                                    rows="5"></textarea>
                                 <div class="form-text">Add rows in a table as per your requirement.</div>
                             </div>
 
@@ -981,14 +1175,16 @@ if (isset($_GET['success'])) {
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="product_image" class="form-label">Product Image</label>
-                                        <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*">
+                                        <input type="file" class="form-control" id="product_image" name="product_image"
+                                            accept="image/*">
                                         <div class="form-text">Accepted formats: JPG, JPEG, PNG, GIF.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="tds_file" class="form-label">TDS File</label>
-                                        <input type="file" class="form-control" id="tds_file" name="tds_file" accept=".pdf,.doc,.docx">
+                                        <input type="file" class="form-control" id="tds_file" name="tds_file"
+                                            accept=".pdf,.doc,.docx">
                                         <div class="form-text">Accepted formats: PDF, DOC, DOCX.</div>
                                     </div>
                                 </div>
@@ -1004,7 +1200,8 @@ if (isset($_GET['success'])) {
 
                             <div class="mb-3">
                                 <label for="meta_description" class="form-label">Meta Description</label>
-                                <textarea class="form-control" id="meta_description" name="meta_description" rows="3"></textarea>
+                                <textarea class="form-control" id="meta_description" name="meta_description"
+                                    rows="3"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -1032,13 +1229,16 @@ if (isset($_GET['success'])) {
                 <h5 class="modal-title" id="importModalLabel">Import Products</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" class="needs-validation">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+                enctype="multipart/form-data" class="needs-validation">
                 <div class="modal-body">
                     <input type="hidden" name="action" value="import">
                     <div class="mb-3">
                         <label for="import_file" class="form-label">CSV File</label>
-                        <input type="file" class="form-control" id="import_file" name="import_file" accept=".csv" required>
-                        <div class="form-text">Please upload a CSV file with the required columns: Name, Slug, Status (optional).</div>
+                        <input type="file" class="form-control" id="import_file" name="import_file" accept=".csv"
+                            required>
+                        <div class="form-text">Please upload a CSV file with the required columns: Name, Slug, Status
+                            (optional).</div>
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
@@ -1049,7 +1249,8 @@ if (isset($_GET['success'])) {
                         </div>
                     </div>
                     <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i> The CSV file should have at least the following columns: Product Name, Product Slug. Additional columns will be ignored.
+                        <i class="fas fa-info-circle me-2"></i> The CSV file should have at least the following columns:
+                        Product Name, Product Slug. Additional columns will be ignored.
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1062,7 +1263,8 @@ if (isset($_GET['success'])) {
 </div>
 
 <!-- Delete Confirmation Form (Hidden) -->
-<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" style="display: none;">
+<form id="deleteForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
+    style="display: none;">
     <input type="hidden" name="action" value="delete">
     <input type="hidden" id="delete_product_id" name="product_id" value="">
 </form>
@@ -1084,7 +1286,9 @@ if (isset($_GET['success'])) {
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- Include TinyMCE for Rich Text Editing -->
-<script src="https://uploads/products-image.cloud/1/l0fm44htgn6ktukigemg0o9h6w031qyuz0jev5gqo64jckzv/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script
+    src="https://uploads/products-image.cloud/1/l0fm44htgn6ktukigemg0o9h6w031qyuz0jev5gqo64jckzv/tinymce/7/tinymce.min.js"
+    referrerpolicy="origin"></script>
 
 <!-- Include SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -1093,7 +1297,7 @@ if (isset($_GET['success'])) {
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize Select2
         $('#editProductModal .select2').select2({
             placeholder: "Select options",
@@ -1107,21 +1311,21 @@ if (isset($_GET['success'])) {
             responsive: true,
             dom: 'Bfrtip',
             buttons: [{
-                    extend: 'excel',
-                    text: 'Export to Excel',
-                    className: 'btn btn-sm btn-success',
-                    exportOptions: {
-                        columns: [0, 2, 3, 4, 5]
-                    }
-                },
-                {
-                    extend: 'csv',
-                    text: 'Export to CSV',
-                    className: 'btn btn-sm btn-info',
-                    exportOptions: {
-                        columns: [0, 2, 3, 4, 5]
-                    }
+                extend: 'excel',
+                text: 'Export to Excel',
+                className: 'btn btn-sm btn-success',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5]
                 }
+            },
+            {
+                extend: 'csv',
+                text: 'Export to CSV',
+                className: 'btn btn-sm btn-info',
+                exportOptions: {
+                    columns: [0, 2, 3, 4, 5]
+                }
+            }
             ],
             // pageLength: 25,
             language: {
@@ -1134,7 +1338,7 @@ if (isset($_GET['success'])) {
         $('.dt-buttons').hide();
 
         // Custom export button
-        $('#exportBtn').on('click', function() {
+        $('#exportBtn').on('click', function () {
             $('.buttons-excel').click();
         });
 
@@ -1153,15 +1357,15 @@ if (isset($_GET['success'])) {
                 'removeformat | table | help',
             menubar: 'file edit view insert format tools table help',
             content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }',
-            setup: function(editor) {
-                editor.on('change', function() {
+            setup: function (editor) {
+                editor.on('change', function () {
                     editor.save();
                 });
             }
         });
 
         // Auto-generate slug from product name
-        $('#product_name').on('keyup', function() {
+        $('#product_name').on('keyup', function () {
             var name = $(this).val();
             var slug = name.toLowerCase()
                 .replace(/[^\w\s-]/g, '') // Remove special characters
@@ -1172,9 +1376,9 @@ if (isset($_GET['success'])) {
         });
 
         // Apply the same for edit forms
-        $('[id^="product_name"]').each(function() {
+        $('[id^="product_name"]').each(function () {
             var id = $(this).attr('id').replace('product_name', '');
-            $(this).on('keyup', function() {
+            $(this).on('keyup', function () {
                 var name = $(this).val();
                 var slug = name.toLowerCase()
                     .replace(/[^\w\s-]/g, '')
@@ -1186,14 +1390,14 @@ if (isset($_GET['success'])) {
         });
 
         // Dependent dropdowns for categories
-        $('#main_cat').on('change', function() {
+        $('#main_cat').on('change', function () {
             filterSubCategories();
         });
 
         function filterSubCategories() {
             var selectedMainCats = $('#main_cat').val() || [];
 
-            $('#sub_cat option').each(function() {
+            $('#sub_cat option').each(function () {
                 var mainCatId = $(this).data('main-cat');
                 if (selectedMainCats.length === 0 || selectedMainCats.includes(mainCatId) || $(this).val() === '') {
                     $(this).show();
@@ -1204,7 +1408,7 @@ if (isset($_GET['success'])) {
         }
 
         // Delete confirmation
-        $('.delete-btn').on('click', function() {
+        $('.delete-btn').on('click', function () {
             var productId = $(this).data('id');
             var productName = $(this).data('name');
 
@@ -1260,13 +1464,13 @@ if (isset($_GET['success'])) {
             },
             errorElement: "div",
             errorClass: "invalid-feedback",
-            highlight: function(element) {
+            highlight: function (element) {
                 $(element).addClass("is-invalid").removeClass("is-valid");
             },
-            unhighlight: function(element) {
+            unhighlight: function (element) {
                 $(element).addClass("is-valid").removeClass("is-invalid");
             },
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 if (element.hasClass("select2") || element.hasClass("select2-hidden-accessible")) {
                     error.insertAfter(element.next(".select2-container"));
                 } else {
@@ -1276,7 +1480,7 @@ if (isset($_GET['success'])) {
         });
 
         // Validate Edit Product Forms
-        $("form[id^='editProductForm']").each(function() {
+        $("form[id^='editProductForm']").each(function () {
             $(this).validate({
                 rules: {
                     product_name: {
@@ -1312,13 +1516,13 @@ if (isset($_GET['success'])) {
                 },
                 errorElement: "div",
                 errorClass: "invalid-feedback",
-                highlight: function(element) {
+                highlight: function (element) {
                     $(element).addClass("is-invalid").removeClass("is-valid");
                 },
-                unhighlight: function(element) {
+                unhighlight: function (element) {
                     $(element).addClass("is-valid").removeClass("is-invalid");
                 },
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
                     if (element.hasClass("select2") || element.hasClass("select2-hidden-accessible")) {
                         error.insertAfter(element.next(".select2-container"));
                     } else {
@@ -1329,14 +1533,14 @@ if (isset($_GET['success'])) {
         });
 
         // Fix for Select2 inside Bootstrap modal
-        $('.modal').on('shown.bs.modal', function() {
+        $('.modal').on('shown.bs.modal', function () {
             $(this).find('.select2').select2({
                 dropdownParent: $(this)
             });
         });
 
         // Auto-dismiss alerts after 5 seconds
-        setTimeout(function() {
+        setTimeout(function () {
             $('.alert-dismissible').alert('close');
         }, 5000);
     });
