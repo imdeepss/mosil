@@ -63,9 +63,8 @@ $latestEvent = getLatestEvent();
                 class="filter-btn h-12 px-12 py-3 bg-[#F5F5F5] rounded text-[#A3A3A3] text-xl font-normal leading-7 tracking-tight transition-colors whitespace-nowrap"
                 data-category="Beyond Business">Beyond business</button>
         </div>
-        <div class="flex flex-col md:flex-row items-stretch overflow-hidden">
-
-            <?php if ($latestEvent): ?>
+        <?php if ($latestEvent): ?>
+            <div class="flex flex-col md:flex-row items-stretch overflow-hidden">
                 <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/events/<?php echo $latestEvent['image']; ?>"
                         alt="<?php echo htmlspecialchars($latestEvent['title']); ?>" class="w-full h-full object-cover" />
@@ -102,41 +101,9 @@ $latestEvent = getLatestEvent();
                         </button>
                     </div>
                 </div>
-            <?php else: ?>
-                <!-- Fallback if no event found -->
-                <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/ui/connect.jpg" alt="Stay connected"
-                        class="w-full h-full object-cover" />
-                </div>
 
-                <div class="md:p-[50px] p-[24px] bg-[#F5F5F5] flex flex-col justify-center flex-grow">
-
-                    <h2
-                        class="text-[#1A3B1B] font-base font-normal md:text-[32px] md:leading-[120%] text-[24px] font-normal leading-[135%] capitalize mb-4">
-                        Stay connected
-                    </h2>
-
-                    <p
-                        class="text-[#3B3B3B] font-base font-normal md:text-[16px] md:leading-[150%] text-[14px] leading-[150%] tracking-[0.015em] mb-6">
-                        Get MOSIL press releases & newsletters in your inbox, and reach our media relations team for
-                        interviews or info – stay connected to our experts worldwide.
-                    </p>
-
-                    <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
-                        <button type="button" onclick="openContactModal('Contact')"
-                            class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
-                            Contact the team
-                        </button>
-
-                        <button type="button" onclick="openRegisterModal()"
-                            class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
-                            Register
-                        </button>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-        </div>
+            </div>
+        <?php endif; ?>
         <div class="md:mt-8 mb-10 swiper newsSwiper">
             <!-- Blog Container -->
             <div id="blog-container"
