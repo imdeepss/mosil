@@ -19,6 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("bg-main-green", "text-white");
 
       currentCategory = this.dataset.category;
+
+      // Toggle Latest Event visibility
+      const latestEventBlock = document.getElementById("latest-event-block");
+      if (latestEventBlock) {
+        if (currentCategory === "All") {
+          latestEventBlock.style.display = "flex";
+        } else {
+          latestEventBlock.style.display = "none";
+        }
+      }
       currentPage = 1;
       fetchBlogs();
     });

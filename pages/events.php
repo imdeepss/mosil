@@ -8,6 +8,7 @@ $currentPage = $initialData['currentPage'];
 
 // Fetch latest event
 $latestEvent = getLatestEvent();
+$industries = getCategoryByParent("2"); // Fetch industries for the dropdown
 ?>
 
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
@@ -64,7 +65,7 @@ $latestEvent = getLatestEvent();
                 data-category="Beyond Business">Beyond business</button>
         </div>
         <?php if ($latestEvent): ?>
-            <div class="flex flex-col md:flex-row items-stretch overflow-hidden">
+            <div id="latest-event-block" class="flex flex-col md:flex-row items-stretch overflow-hidden">
                 <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/events/<?php echo $latestEvent['image']; ?>"
                         alt="<?php echo htmlspecialchars($latestEvent['title']); ?>" class="w-full h-full object-cover" />
@@ -254,8 +255,8 @@ $latestEvent = getLatestEvent();
 
     <!-- Modal Content -->
     <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-auto max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl p-6 md:p-8">
-        <div class="flex justify-between items-center mb-6">
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-auto max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl p-5">
+        <div class="flex justify-between items-center mb-5">
             <h2 class="text-[#1A3B1B] font-bold text-[24px] leading-tight">Get in Touch</h2>
             <button onclick="closeContactModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -330,8 +331,8 @@ $latestEvent = getLatestEvent();
 
     <!-- Modal Content -->
     <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-auto max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl p-6 md:p-8">
-        <div class="flex justify-between items-center mb-6">
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-auto max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow-xl p-5">
+        <div class="flex justify-between items-center mb-5">
             <h2 class="text-[#1A3B1B] font-bold text-[24px] leading-tight">Event Registration</h2>
             <button onclick="closeRegisterModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -342,41 +343,187 @@ $latestEvent = getLatestEvent();
             </button>
         </div>
 
-        <div class="mb-4">
-            <p class="text-sm text-gray-600">Registering for:</p>
+        <div class="mb-2 flex items-center gap-2">
+            <span class="text-sm text-gray-600">Registering for:</span>
             <h3 class="text-lg font-bold text-[#1A3B1B]" id="registerEventTitle"></h3>
         </div>
 
-        <form id="registerForm" method="POST" action="" class="space-y-4" novalidate>
+        <form id="registerForm" method="POST" action="" class="space-y-6" novalidate>
             <input type="hidden" name="event_title" id="formEventTitle">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- First Name -->
-                <div class="flex flex-col">
-                    <input type="text" name="first_name" required placeholder="First Name"
-                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
-                    <span class="error-text hidden text-xs text-red-500 mt-1">First Name is required</span>
-                </div>
+            <!-- Section 1: Attendee details -->
+            <div>
+                <h3 class="text-[#1A3B1B] font-bold text-lg mb-3 border-b pb-1">Attendee Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Full Name -->
+                    <div class="flex flex-col">
+                        <input type="text" name="full_name" required placeholder="Full Name"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Full Name is required</span>
+                    </div>
 
-                <!-- Last Name -->
-                <div class="flex flex-col">
-                    <input type="text" name="last_name" required placeholder="Last Name"
-                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
-                    <span class="error-text hidden text-xs text-red-500 mt-1">Last Name is required</span>
-                </div>
+                    <!-- Work Email -->
+                    <div class="flex flex-col">
+                        <input type="email" name="email" required placeholder="Work Email"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Valid Work Email is required</span>
+                    </div>
 
-                <!-- Email -->
-                <div class="flex flex-col">
-                    <input type="email" name="email" required placeholder="Email"
-                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
-                    <span class="error-text hidden text-xs text-red-500 mt-1">Valid email is required</span>
-                </div>
+                    <!-- Mobile Number -->
+                    <div class="flex flex-col">
+                        <input type="tel" name="mobile" required placeholder="Mobile Number"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Valid Mobile Number is required</span>
+                    </div>
 
-                <!-- Phone -->
-                <div class="flex flex-col">
-                    <input type="tel" name="mobile" required placeholder="Mobile Number"
-                        class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
-                    <span class="error-text hidden text-xs text-red-500 mt-1">Valid mobile number is required</span>
+                    <!-- Company Name -->
+                    <div class="flex flex-col">
+                        <input type="text" name="company_name" required placeholder="Company Name"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Company Name is required</span>
+                    </div>
+
+                    <!-- Job Title -->
+                    <div class="flex flex-col">
+                        <input type="text" name="job_title" required placeholder="Job Title / Designation"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Job Title is required</span>
+                    </div>
+
+                    <!-- City and State -->
+                    <div class="flex flex-col">
+                        <input type="text" name="city_state" required placeholder="City and State"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">City and State is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Company & relationship -->
+            <div>
+                <h3 class="text-[#1A3B1B] font-bold text-lg mb-3 border-b pb-1">Company & Relationship</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Industry / Segment -->
+                    <div class="flex flex-col">
+                        <select name="industry"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green transition-colors appearance-none bg-no-repeat bg-[right_1rem_center]"
+                            style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23333%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>');">
+                            <option value="">Select Industry / Segment</option>
+                            <?php foreach ($industries as $industryOption): ?>
+                                <option value="<?php echo htmlspecialchars($industryOption['mcat_name']); ?>">
+                                    <?php echo htmlspecialchars($industryOption['mcat_name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Company Size -->
+                    <div class="flex flex-col">
+                        <select name="company_size"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green transition-colors appearance-none bg-no-repeat bg-[right_1rem_center]"
+                            style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23333%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>');">
+                            <option value="">Select Company Size</option>
+                            <option value="1-50">1-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-500">201-500 employees</option>
+                            <option value="500+">500+ employees</option>
+                        </select>
+                    </div>
+
+                    <!-- Relationship -->
+                    <div class="flex flex-col md:col-span-2">
+                        <select name="relationship"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green transition-colors appearance-none bg-no-repeat bg-[right_1rem_center]"
+                            style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23333%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>');">
+                            <option value="">Relationship with MOSIL</option>
+                            <option value="Existing Customer">Existing Customer</option>
+                            <option value="New Customer">New Customer (First time)</option>
+                            <option value="Partner/Distributor">Partner / Distributor</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Event preferences -->
+            <div>
+                <h3 class="text-[#1A3B1B] font-bold text-lg mb-3 border-b pb-1">Event Preferences</h3>
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Number of attendees -->
+                    <div class="flex flex-col">
+                        <select name="attendees_count"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green transition-colors appearance-none bg-no-repeat bg-[right_1rem_center]"
+                            style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23333%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>');">
+                            <option value="1">Number of attendees: 1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5+">5+</option>
+                        </select>
+                    </div>
+
+                    <!-- Areas of interest (Multi-select checkbox) -->
+                    <div class="flex flex-col">
+                        <label class="text-sm font-medium text-gray-700 mb-2">Areas of interest *</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="areas_of_interest[]" value="Lubrication Solutions"
+                                    class="w-4 h-4 text-main-green border-gray-300 rounded focus:ring-main-green">
+                                <span class="text-sm text-gray-600">Lubrication Solutions</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="areas_of_interest[]" value="Industry Trends"
+                                    class="w-4 h-4 text-main-green border-gray-300 rounded focus:ring-main-green">
+                                <span class="text-sm text-gray-600">Industry Trends</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="areas_of_interest[]" value="Networking"
+                                    class="w-4 h-4 text-main-green border-gray-300 rounded focus:ring-main-green">
+                                <span class="text-sm text-gray-600">Networking</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="areas_of_interest[]" value="Product Knowledge"
+                                    class="w-4 h-4 text-main-green border-gray-300 rounded focus:ring-main-green">
+                                <span class="text-sm text-gray-600">Product Knowledge</span>
+                            </label>
+                        </div>
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Select at least one area</span>
+                    </div>
+
+                    <!-- How did you hear about this event -->
+                    <div class="flex flex-col">
+                        <select name="hear_about_source"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] text-[#757575] focus:outline-none focus:border-main-green transition-colors appearance-none bg-no-repeat bg-[right_1rem_center]"
+                            style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23333%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>');">
+                            <option value="">How did you hear about this event?</option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Email">Email Invite</option>
+                            <option value="Website">MOSIL Website</option>
+                            <option value="Colleague">Colleague / Friend</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Consent -->
+            <div class="pt-2">
+                <div class="flex flex-col gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" name="consent_terms" required
+                            class="w-4 h-4 text-main-green border-gray-300 rounded focus:ring-main-green shrink-0">
+                        <span class="text-xs text-gray-600">
+                            I agree to the Terms & Conditions and Privacy Policy. <span class="text-red-500">*</span>
+                        </span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" name="consent_updates"
+                            class="w-4 h-4 text-main-green border-gray-300 rounded focus:ring-main-green shrink-0">
+                        <span class="text-xs text-gray-600">
+                            I agree to receive event‑related updates and product communication.
+                        </span>
+                    </label>
                 </div>
             </div>
 
@@ -432,9 +579,21 @@ $latestEvent = getLatestEvent();
         // --- Register Form Logic ---
         const registerForm = document.getElementById('registerForm');
         if (registerForm) {
-            const registerInputs = registerForm.querySelectorAll('input');
+            // Select inputs that are required for real-time validation feedback
+            const registerInputs = registerForm.querySelectorAll('input[required], select[required]');
 
             const validateRegisterField = (input) => {
+                if (input.type === 'checkbox') {
+                    if (input.required && !input.checked) {
+                        // For checkboxes, maybe just visual cue if needed, but browser handles required attribute well.
+                        // But we want custom error logic potentially.
+                        // For now, let's skip strict "on blur" error for checkbox to avoid annoyance, 
+                        // but we check it on submit.
+                        return input.checked;
+                    }
+                    return true;
+                }
+
                 const type = input.name === 'email' ? 'email' : (input.name === 'mobile' ? 'tel' : 'default');
                 const validators = {
                     email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
@@ -442,9 +601,9 @@ $latestEvent = getLatestEvent();
                     default: (value) => value.trim().length > 0
                 };
 
-                const isValid = validators[type](input.value);
-                const wrapper = input.parentElement;
-                const errorMsg = wrapper.querySelector('.error-text');
+                const isValid = validators[type] ? validators[type](input.value) : validators['default'](input.value);
+                const wrapper = input.closest('.flex-col');
+                const errorMsg = wrapper ? wrapper.querySelector('.error-text') : null;
 
                 if (!isValid) {
                     input.classList.add('border-red-500', 'border-2');
@@ -457,15 +616,15 @@ $latestEvent = getLatestEvent();
             };
 
             registerInputs.forEach(input => {
-                if (input.type === 'hidden') return;
+                if (input.type === 'hidden' || input.type === 'checkbox') return;
                 input.addEventListener('blur', () => {
                     if (input.value.trim() !== '') validateRegisterField(input);
                 });
                 input.addEventListener('input', () => {
                     if (input.classList.contains('border-red-500')) {
                         input.classList.remove('border-red-500', 'border-2');
-                        const wrapper = input.parentElement;
-                        const errorMsg = wrapper.querySelector('.error-text');
+                        const wrapper = input.closest('.flex-col');
+                        const errorMsg = wrapper ? wrapper.querySelector('.error-text') : null;
                         if (errorMsg) errorMsg.classList.add('hidden');
                     }
                 });
@@ -474,12 +633,30 @@ $latestEvent = getLatestEvent();
             registerForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 let isFormValid = true;
+
+                // Validate all required inputs
                 registerInputs.forEach(input => {
-                    if (input.type === 'hidden') return;
-                    if (!validateRegisterField(input)) isFormValid = false;
+                    // Special check for checkbox
+                    if (input.type === 'checkbox' && input.required && !input.checked) {
+                        isFormValid = false;
+                        // Shake or highlight?
+                        const wrapper = input.closest('label');
+                        if (wrapper) wrapper.classList.add('text-red-500');
+                    } else if (input.type !== 'hidden' && input.type !== 'checkbox') {
+                        if (!validateRegisterField(input)) isFormValid = false;
+                    }
                 });
 
-                if (!isFormValid) return;
+                if (!isFormValid) {
+                    // Remove checkbox red error on click
+                    const checkboxes = registerForm.querySelectorAll('input[type="checkbox"][required]');
+                    checkboxes.forEach(cb => {
+                        cb.addEventListener('change', function () {
+                            if (this.checked) this.closest('label').classList.remove('text-red-500');
+                        }, { once: true });
+                    });
+                    return;
+                }
 
                 const btn = document.getElementById('registerSubmitBtn');
                 const responseDiv = document.getElementById('registerResponse');
@@ -504,6 +681,9 @@ $latestEvent = getLatestEvent();
                             document.getElementById('formEventTitle').value = latestEventTitle;
 
                             registerInputs.forEach(i => i.classList.remove('border-red-500', 'border-2'));
+                            document.querySelectorAll('.error-text').forEach(el => el.classList.add('hidden'));
+                            document.querySelectorAll('input[type="checkbox"][required]').forEach(cb => cb.closest('label').classList.remove('text-red-500'));
+
                             setTimeout(closeRegisterModal, 3000);
                         } else {
                             showRegisterResponse(data.message || 'Error registering. Please try again.', 'error');

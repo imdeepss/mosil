@@ -12,14 +12,41 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // 1. Sanitize & Validate Inputs
-$firstName = htmlspecialchars(trim($_POST['first_name'] ?? ''));
-$lastName = htmlspecialchars(trim($_POST['last_name'] ?? ''));
+$eventTitle = htmlspecialchars(trim($_POST['event_title'] ?? ''));
+$fullName = htmlspecialchars(trim($_POST['full_name'] ?? ''));
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
 $mobile = htmlspecialchars(trim($_POST['mobile'] ?? ''));
-$eventTitle = htmlspecialchars(trim($_POST['event_title'] ?? ''));
+$companyName = htmlspecialchars(trim($_POST['company_name'] ?? ''));
+$jobTitle = htmlspecialchars(trim($_POST['job_title'] ?? ''));
+$cityState = htmlspecialchars(trim($_POST['city_state'] ?? ''));
 
-if (empty($firstName) || empty($lastName) || !$email || empty($mobile)) {
-    echo json_encode(['success' => false, 'message' => 'Please provide First Name, Last Name, Valid Email, and Mobile Number.']);
+// Dropdowns & other fields
+$industry = htmlspecialchars(trim($_POST['industry'] ?? ''));
+$companySize = htmlspecialchars(trim($_POST['company_size'] ?? ''));
+$relationship = htmlspecialchars(trim($_POST['relationship'] ?? ''));
+$attendeesCount = htmlspecialchars(trim($_POST['attendees_count'] ?? ''));
+$hearAboutSource = htmlspecialchars(trim($_POST['hear_about_source'] ?? ''));
+
+// Multi-select (Arrays)
+$areasOfInterest = isset($_POST['areas_of_interest']) ? $_POST['areas_of_interest'] : [];
+if (is_array($areasOfInterest)) {
+    $areasOfInterestStr = implode(', ', array_map('htmlspecialchars', $areasOfInterest));
+} else {
+    $areasOfInterestStr = htmlspecialchars(trim($areasOfInterest));
+}
+
+// Consent
+$consentTerms = isset($_POST['consent_terms']) ? 1 : 0;
+$consentUpdates = isset($_POST['consent_updates']) ? 1 : 0;
+
+// Basic Validation
+if (empty($fullName) || !$email || empty($mobile) || empty($companyName) || empty($jobTitle) || empty($cityState)) {
+    echo json_encode(['success' => false, 'message' => 'Please fill in all required fields (Name, Email, Mobile, Company, Job Title, City/State).']);
+    exit;
+}
+
+if (!$consentTerms) {
+    echo json_encode(['success' => false, 'message' => 'You must agree to the Terms & Conditions and Privacy Policy.']);
     exit;
 }
 
@@ -27,28 +54,50 @@ if (empty($firstName) || empty($lastName) || !$email || empty($mobile)) {
 $status = 'Active';
 
 // 3. Database Execution
-$sql = "INSERT INTO event_registrations (event_title, first_name, last_name, email, mobile, status) 
-        VALUES (?, ?, ?, ?, ?, ?)";
-// $params = [$eventTitle, $firstName, $lastName, $email, $mobile, $status];
+$sql = "INSERT INTO event_registrations (
+            event_title, full_name, email, mobile, 
+            company_name, job_title, city_state, 
+            industry, company_size, relationship, 
+            attendees_count, areas_of_interest, hear_about_source, 
+            consent_terms, consent_updates, status
+        ) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 global $db;
 try {
     $stmt = $db->prepare($sql);
-    $result = $stmt->execute([$eventTitle, $firstName, $lastName, $email, $mobile, $status]);
+    $result = $stmt->execute([
+        $eventTitle,
+        $fullName,
+        $email,
+        $mobile,
+        $companyName,
+        $jobTitle,
+        $cityState,
+        $industry,
+        $companySize,
+        $relationship,
+        $attendeesCount,
+        $areasOfInterestStr,
+        $hearAboutSource,
+        $consentTerms,
+        $consentUpdates,
+        $status
+    ]);
 
     if ($result) {
 
         // --- EMAIL 1: User Confirmation ---
         $userSubject = "Registration Confirmation: " . $eventTitle;
         $userBody = "
-        <p>Dear " . htmlspecialchars($firstName) . " " . htmlspecialchars($lastName) . ",</p>
+        <p>Dear " . htmlspecialchars($fullName) . ",</p>
         <p>Thank you for registering for the event: <strong>" . htmlspecialchars($eventTitle) . "</strong>.</p>
         <p>We have successfully received your registration details.</p>
         <p>We look forward to seeing you there.</p>
         <p>Best regards,<br>Mosil Pvt. Ltd.</p>
     ";
 
-        $userMail = sendMail($email, $firstName . ' ' . $lastName, $userSubject, $userBody);
+        $userMail = sendMail($email, $fullName, $userSubject, $userBody);
 
         // --- EMAIL 2: Admin Notification ---
         $adminSubject = 'New Event Registration Received';
@@ -64,7 +113,7 @@ try {
             </tr>
             <tr>
                 <td style='border: 1px solid #eeeeee; font-weight: bold;'>Name</td>
-                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($firstName) . " " . htmlspecialchars($lastName) . "</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($fullName) . "</td>
             </tr>
             <tr style='background-color: #f9f9f9;'>
                 <td style='border: 1px solid #eeeeee; font-weight: bold;'>Email</td>
@@ -73,6 +122,26 @@ try {
             <tr>
                 <td style='border: 1px solid #eeeeee; font-weight: bold;'>Mobile</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($mobile) . "</td>
+            </tr>
+            <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Company</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($companyName) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Job Title</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($jobTitle) . "</td>
+            </tr>
+            <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>City/State</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($cityState) . "</td>
+            </tr>
+            <tr>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Industry</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($industry) . "</td>
+            </tr>
+             <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Interest Areas</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($areasOfInterestStr) . "</td>
             </tr>
         </table>
         
@@ -88,7 +157,8 @@ try {
             echo json_encode(['success' => true, 'message' => 'success']);
         } else {
             $errorMsg = ($userMail['status'] === 'error') ? $userMail['message'] : $adminMail['message'];
-            echo json_encode(['success' => true, 'message' => 'Registration submitted, but email delivery may be delayed.']);
+            // Still consider success as DB insert worked
+            echo json_encode(['success' => true, 'message' => 'success']);
         }
 
     } else {
