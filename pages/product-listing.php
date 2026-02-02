@@ -40,12 +40,20 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
         </h2>
     </div>
     <div class="absolute inset-0 z-0 w-full h-full">
-        <!-- Dynamic banner image could go here based on category -->
-        <img src="<?php echo SITE_URL; ?>/assets/images/banners/product-listing.png" alt="Product Listing Desktop"
-            class="hidden md:block w-full h-full object-cover object-[50%_75%]" fetchpriority="high">
+        <?php if ($type === 'product'): ?>
+            <img src="<?php echo SITE_URL; ?>/assets/images/banners/banner-v2-indu.png" alt="Product Finder Desktop"
+                class="hidden md:block w-full h-full object-cover object-[50%_75%]" fetchpriority="high">
 
-        <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-product-listing.png" alt="Product Listing Mobile"
-            class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
+            <img src="<?php echo SITE_URL; ?>/assets/images/banners/banner-v2-indu-mb.png" alt="Product Finder Mobile"
+                class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
+        <?php else: ?>
+            <!-- Dynamic banner image could go here based on category -->
+            <img src="<?php echo SITE_URL; ?>/assets/images/banners/product-listing.png" alt="Product Listing Desktop"
+                class="hidden md:block w-full h-full object-cover object-[50%_75%]" fetchpriority="high">
+
+            <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-product-listing.png" alt="Product Listing Mobile"
+                class="block md:hidden w-full h-full object-cover object-center" fetchpriority="high">
+        <?php endif; ?>
     </div>
 </section>
 
