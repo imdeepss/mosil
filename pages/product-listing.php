@@ -58,11 +58,11 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
 </section>
 
 <!-- Product Listing -->
-<section class="bg-white min-h-screen">
+<section class="bg-white">
     <div class="flex flex-col md:flex-row relative">
 
         <aside id="productCategorySidebar"
-            class="fixed inset-0 z-[60] w-full h-full -translate-x-full transition-transform duration-300 overflow-y-auto bg-[#F4C300] md:translate-x-0 md:static md:inset-auto md:z-auto md:w-[388px] md:h-auto md:min-h-screen md:overflow-visible shrink-0 text-left">
+            class="fixed inset-0 z-[60] w-full h-full -translate-x-full transition-transform duration-300 overflow-y-auto bg-[#F4C300] md:translate-x-0 md:static md:inset-auto md:z-auto md:w-[388px] md:h-[767px] md:min-h-0 md:overflow-visible shrink-0 text-left">
             <h2
                 class="text-main-green truncate font-base font-bold md:text-[24px] md:leading-[135%] text-[20px] leading-[140%] capitalize md:pt-9 pt-4 md:pb-6 pb-8 text-left md:px-[60px] px-4 flex items-center justify-between">
                 Categories
@@ -74,7 +74,8 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                 </button>
             </h2>
 
-            <nav class="flex flex-col">
+            <nav id="category-sidebar-nav"
+                class="flex flex-col md:max-h-[660px] md:overflow-y-auto pr-4 md:pr-0 md:ml-2 md:pl-2 md:[direction:rtl] [&::-webkit-scrollbar]:w-2.5 [&::-webkit-scrollbar-track]:bg-[#FAE696] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#F6CD2B] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:min-h-[32px] hover:[&::-webkit-scrollbar-thumb]:bg-[#F6CD2B]">
                 <?php
 
                 $filterItems = array_merge(
@@ -86,7 +87,7 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                     $isChecked = ($index === 0) ? 'checked' : '';
                     ?>
                     <label
-                        class="flex items-center justify-between py-4 md:px-[60px] px-4 border-b border-[#FAE696] cursor-pointer group gap-4">
+                        class="[direction:ltr] flex items-center justify-between py-4 md:px-[60px] px-4 border-b border-[#FAE696] cursor-pointer group gap-4">
                         <span class="text-main-green font-base font-normal text-[18px] leading-[140%] capitalize">
                             <?= $cat['name']; ?>
                         </span>
@@ -278,31 +279,44 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                 });
         }
 
-        // Smoothly scroll the parent (window) when the custom scrollbar reaches the end
-        productGrid.addEventListener('wheel', (e) => {
-            // Only apply on desktop where the fixed height/overflow exists (md breakpoint)
-            if (window.innerWidth >= 768) {
-                const {
-                    scrollTop,
-                    scrollHeight,
-                    clientHeight
-                } = productGrid;
+        // --- Smooth Parent Scroll (Scroll Chaining) Helper ---
+        function handleScrollChaining(element) {
+            element.addEventListener('wheel', (e) => {
+                // Only apply on desktop where the fixed height/overflow exists (md breakpoint)
+                if (window.innerWidth >= 768) {
+                    const {
+                        scrollTop,
+                        scrollHeight,
+                        clientHeight
+                    } = element;
 
-                // Check boundaries with 1px tolerance
-                const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-                const isAtTop = scrollTop <= 0;
+                    // Check boundaries with 1px tolerance
+                    const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+                    const isAtTop = scrollTop <= 0;
 
-                // Propagate scroll to window if at boundary
-                if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
-                    e.preventDefault();
-                    window.scrollBy({
-                        top: e.deltaY,
-                        behavior: 'smooth'
-                    });
+                    // Propagate scroll to window if at boundary and user is trying to scroll past it
+                    if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
+                        e.preventDefault();
+                        window.scrollBy({
+                            top: e.deltaY,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
-            }
-        }, {
-            passive: false
-        });
+            }, {
+                passive: false
+            });
+        }
+
+        // Apply to Product Grid
+        if (productGrid) {
+            handleScrollChaining(productGrid);
+        }
+
+        // Apply to Sidebar Nav
+        const sidebarNav = document.getElementById('category-sidebar-nav');
+        if (sidebarNav) {
+            handleScrollChaining(sidebarNav);
+        }
     });
 </script>
