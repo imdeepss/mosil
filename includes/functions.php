@@ -279,6 +279,24 @@ function getCategoryByParent($parentCatId, $limit = null)
     return db_query_all($sql);
 }
 
+/**
+ * Fetch specific categories by their IDs.
+ */
+function getSpecificIndustries()
+{
+    $ids = [26, 21, 16, 19];
+    $idString = implode(',', $ids);
+
+    // Using ORDER BY FIELD to preserve the specific order requested
+    $sql = "SELECT id, mcat_name, mcat_desc, slug, mcat_image, meta_description
+            FROM main_category
+            WHERE id IN ($idString)
+              AND status = 'Active'
+            ORDER BY FIELD(id, $idString)";
+
+    return db_query_all($sql);
+}
+
 
 /**
  * Fetch category details by parent category ID.

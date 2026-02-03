@@ -1,5 +1,5 @@
 <?php
-$industries = getCategoryByParent("2", "4");
+$industries = getSpecificIndustries();
 $products = getCategoryByParent("3", "4");
 $caseStudies = getCaseStudy("3");
 $blogs = getHomeFeaturedBlogs();
@@ -113,7 +113,7 @@ $blogs = getHomeFeaturedBlogs();
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry): ?>
                             <div
-                                class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-20 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
+                                class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
                                     class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>">
