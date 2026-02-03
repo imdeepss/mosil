@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     effect: "fade",
     fadeEffect: { crossFade: true },
     allowTouchMove: false,
-    speed: 600,
+    speed: 300,
     loop: true,
     slidesPerView: 1,
   });
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slidesPerView: "auto",
     spaceBetween: 20,
     loop: true,
-    speed: 800,
+    speed: 300,
     centeredSlides: false,
     grabCursor: true,
     navigation: {

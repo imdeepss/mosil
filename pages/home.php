@@ -53,7 +53,7 @@ $blogs = getHomeFeaturedBlogs();
                 </div>
 
                 <div
-                    class="swiper contentSwiper w-full h-full !m-0 pointer-events-none relative z-10 [&_.swiper-slide]:!opacity-0 [&_.swiper-slide]:transition-opacity [&_.swiper-slide]:duration-500 [&_.swiper-slide-active]:!opacity-100">
+                    class="swiper contentSwiper w-full h-full !m-0 pointer-events-none relative z-10 [&_.swiper-slide]:!opacity-0 [&_.swiper-slide]:transition-opacity [&_.swiper-slide]:duration-300 [&_.swiper-slide]:ease-out [&_.swiper-slide-active]:!opacity-100">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry): ?>
                             <div class="swiper-slide flex! flex-col items-start h-full bg-transparent gap-4">
@@ -113,9 +113,9 @@ $blogs = getHomeFeaturedBlogs();
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry): ?>
                             <div
-                                class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)] lg:!w-[270px] lg:!h-[480px] lg:!opacity-20 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
+                                class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-20 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                    class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-700"
+                                    class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>">
                                 <div class="lg:hidden h-[286px] p-4 flex! flex-col gap-4 bg-[#F5F5F5]">
                                     <div class="flex flex-col gap-4">
