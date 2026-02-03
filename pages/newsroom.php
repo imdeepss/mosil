@@ -431,12 +431,12 @@ $faqs = [
             <div class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-10">
                 <?php foreach ($blogs as $blog) { ?>
 
-                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
 
-                        <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
+                        <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
                                 alt="Hero Image"
-                                class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                                class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                                 loading="lazy">
 
                             <div

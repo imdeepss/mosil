@@ -191,7 +191,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
                             <div class="relative h-[240px] w-full overflow-hidden">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $item['image']; ?>"
                                     alt="<?php echo $item['title']; ?>"
-                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-120">
 
                                 <div
                                     class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] uppercase">

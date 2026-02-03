@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch(
         `${SITE_URL}/ajax/get_case_studies.php?page=${currentPage}&limit=${limit}&category=${encodeURIComponent(
-          currentCategory
-        )}`
+          currentCategory,
+        )}`,
       );
       const data = await response.json();
 
@@ -70,11 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const html = caseStudies
       .map(
         (study) => `
-            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                     <img src="${study.image_url}"
                         alt="Hero Image"
-                        class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                        class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                         loading="lazy">
 
                     <div class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </a>
 
             </div>
-        `
+        `,
       )
       .join("");
 

@@ -88,12 +88,12 @@ $currentPage = $initialData['currentPage'];
             <div class="grid grid-cols-2 md:grid-cols-3 md:gap-8 gap-4 [&>:last-child]:hidden! 
             md:[&>:last-child]:grid!">
                 <?php foreach ($subFeatured as $blog): ?>
-                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
 
                         <div class="relative md:h-[240px] h-[184px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
                                 alt="Hero Image"
-                                class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                                class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                                 loading="lazy">
 
                             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/10 to-black/100 pointer-events-none"
@@ -182,11 +182,11 @@ $currentPage = $initialData['currentPage'];
     <!-- Blog Grid (Paginated) -->
     <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-8 gap-4 md:mb-12 mb-10">
         <?php foreach ($blogs as $blog): ?>
-            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]!">
+            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
 
                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>" alt="Hero Image"
-                        class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
+                        class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                         loading="lazy">
 
                     <div

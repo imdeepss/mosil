@@ -121,9 +121,10 @@ $pageTitle = htmlspecialchars($event['title']);
 
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>"
                                     alt="<?php echo $item['title']; ?>"
-                                    class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                                    class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-120">
 
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60 pointer-events-none">
                                 </div>
 
                                 <span
