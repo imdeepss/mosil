@@ -318,7 +318,7 @@ $blogs = getHomeFeaturedBlogs();
                             ['num' => 50, 'label' => 'Years of expertise in the industry'],
                             ['num' => 60, 'label' => 'Strong channel partners network'],
                             ['num' => 2, 'label' => 'Smart manufacturing plants'],
-                            ['num' => 2, 'label' => 'In-house R&D facility'],
+                            ['num' => 2, 'label' => 'In-house R&D and performance testing facility'],
                             ['num' => 5, 'label' => 'Global continents covered'],
                             ['num' => 200, 'label' => 'Application solutions']
                         ];

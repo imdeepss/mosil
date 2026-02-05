@@ -720,20 +720,17 @@ $lubricant_features = [
                 </h2>
             </div>
             <div class="inline-flex flex-col items-start gap-6 w-full max-w-[718px]">
+                <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">50 years
+                    ago, MOSIL was born from a simple idea: industrial reliability should not be compromised by lack of
+                    access to quality lubrication. What began as a mission to solve on-ground maintenance problems has
+                    grown into a trusted partner to industries that demand precision, durability and performance.</p>
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
-                    Today,
-                    the industrial world is evolving rapidly, with more automation, higher loads,
-                    stringent
-                    regulations, and growing sustainability expectations. In this environment, lubrication is no longer
-                    a
-                    side function; it has become a strategic lever for uptime, efficiency and long-term value.</p>
-                <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
-                    MOSIL stands at the center of this shift. With a foundation rooted in tribology and a mindset shaped
-                    by
-                    real-world industry challenges, we engineer solutions - not just products. To ensure top performance
-                    for
-                    our customers, we invest in our employees as well as in state-of-the-art testing equipment, analysis
-                    tools and infrastructure that exceed performance requirements.</p>
+                    MOSIL Lubricants is a leading Indian manufacturer of specialty lubricants, greases, coatings, and
+                    aerosols serving demanding industrial applications across sectors. Backed by decades of tribology
+                    expertise and strong in house R&D, MOSIL develops solutions designed to perform under real operating
+                    stress. From automotive and cement to steel, food processing, and heavy industry, MOSIL products
+                    support reliability, efficiency, and long term operational performance that modern
+                    industry depends on.</p>
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
                     Our commitment remains unchanged: to keep industries moving, machines performing and our customers
                     ahead
