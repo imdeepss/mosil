@@ -701,15 +701,15 @@ $faqs = [
                     </button>
                 </div> -->
                 <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
-                    <button type="button"
+                    <a href="/contact"
                         class="h-[48px] px-6 flex items-center justify-center bg-[#1A3B1B] text-white font-base font-normal text-[16px] leading-none rounded-full border-2 border-[#1A3B1B] cursor-pointer button-hover-vertical box-border">
                         Contact the team
-                    </button>
+                    </a>
 
-                    <button type="button"
+                    <a href="/contact"
                         class="h-[48px] px-6 flex items-center justify-center text-[#1A3B1B] border-2 border-[#1A3B1B] font-base font-normal text-[16px] leading-none rounded-full cursor-pointer button-hover-vertical box-border">
                         Subscribe
-                    </button>
+                    </a>
                 </div>
             </div>
 
