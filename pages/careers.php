@@ -124,7 +124,7 @@ $positions = getCareerPosition();
 
                 <button type="submit" id="submitBtn"
                     class="md:col-span-2 bg-main-green text-white font-normal text-[16px] leading-[150%] tracking-[0.24px] md:font-bold md:text-[20px] md:leading-[135%] md:tracking-[0.2px] disabled:bg-main-green/50 disabled:cursor-not-allowed h-[60px] rounded-full text-center cursor-pointer btn-gradient-hover">
-                    Send Application
+                    Send
                 </button>
             </form>
         </div>
