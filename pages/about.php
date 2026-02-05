@@ -126,8 +126,10 @@ $lubricant_features = [
                     <p>
                         MOSIL Lubricants is a leading Indian manufacturer of specialty lubricants, greases, coatings,
                         and aerosols serving demanding industrial applications across sectors. Backed by decades of
-                        tribology expertise and strong in-house R&D, MOSIL develops solutions designed to perform under
-                        real operating stress.
+                        tribology expertise and strong in house R&D, MOSIL develops solutions designed to perform under
+                        real operating stress. From automotive and cement to steel, food processing, and heavy industry,
+                        MOSIL products support reliability, efficiency, and long term operational performance that
+                        modern industry depends on.
                     </p>
                 </div>
             </div>
@@ -585,7 +587,7 @@ $lubricant_features = [
             <div class="swiper-wrapper md:grid md:grid-cols-5">
                 <?php foreach ($lubricant_features as $feature): ?>
                     <div
-                        class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-4 !mt-4 cursor-pointer">
+                        class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-4 !mt-4 cursor-pointer">
 
                         <h6
                             class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
@@ -598,7 +600,7 @@ $lubricant_features = [
                         </p>
 
                         <div
-                            class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 z-20">
+                            class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-800 ease-out group-hover:scale-x-100 z-20">
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -725,12 +727,10 @@ $lubricant_features = [
                     access to quality lubrication. What began as a mission to solve on-ground maintenance problems has
                     grown into a trusted partner to industries that demand precision, durability and performance.</p>
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
-                    MOSIL Lubricants is a leading Indian manufacturer of specialty lubricants, greases, coatings, and
-                    aerosols serving demanding industrial applications across sectors. Backed by decades of tribology
-                    expertise and strong in house R&D, MOSIL develops solutions designed to perform under real operating
-                    stress. From automotive and cement to steel, food processing, and heavy industry, MOSIL products
-                    support reliability, efficiency, and long term operational performance that modern
-                    industry depends on.</p>
+                    MOSIL stands at the center of this shift. With a foundation rooted in tribology and a mindset shaped
+                    by real-world industry challenges, we engineer solutions - not just products. To ensure top
+                    performance for our customers, we invest in our employees as well as in state-of-the-art testing
+                    equipment, analysis tools and infrastructure that exceed performance requirements. </p>
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
                     Our commitment remains unchanged: to keep industries moving, machines performing and our customers
                     ahead
@@ -744,7 +744,7 @@ $lubricant_features = [
                         Abindra Mavani & Shail Abindra Mavani</p>
                     <p class="text-[#575757] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                         Directors,
-                        MOSIL lubricants</p>
+                        MOSIL Lubricants</p>
                 </div>
             </div>
         </div>
