@@ -287,12 +287,13 @@ $pageTitle = 'Contact Us';
                         <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/x.svg" alt="X"></a></li>
                         <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/facebook.svg"
                                     alt="Facebook"></a></li>
-                        <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/instagram.svg"
-                                    alt="Instagram"></a></li>
-                        <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/youtube.svg"
-                                    alt="YouTube"></a></li>
-                        <li><a href="#"><img src="<?php echo SITE_URL ?>/assets/icons/svg/linkedin.svg"
-                                    alt="LinkedIn"></a></li>
+                        <li><a href="https://www.instagram.com/mosil_lubricants/"><img
+                                    src="<?php echo SITE_URL ?>/assets/icons/svg/instagram.svg" alt="Instagram"></a>
+                        </li>
+                        <li><a href="https://www.youtube.com/channel/UCsF6u2xWg5B2ustpCDLB1yw"><img
+                                    src="<?php echo SITE_URL ?>/assets/icons/svg/youtube.svg" alt="YouTube"></a></li>
+                        <li><a href="https://www.linkedin.com/company/mosil-lubricants-private-limited/"><img
+                                    src="<?php echo SITE_URL ?>/assets/icons/svg/linkedin.svg" alt="LinkedIn"></a></li>
                     </ul>
                 </div>
             </div>
