@@ -271,7 +271,7 @@ $faqs = [
                     Latest events</h2>
                 <a href="<?php echo SITE_URL; ?>/events"
                     class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
-                    All</a>
+                    all</a>
             </div>
         </div>
         <div class="newsroom-events md:py-9.5 py-0">
@@ -441,7 +441,7 @@ $faqs = [
 
                             <div
                                 class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
-                                <h2><?php echo $blog['category_name']; ?></h2>
+                                <h2>Blog</h2>
                             </div>
                         </div>
 
@@ -458,13 +458,13 @@ $faqs = [
                                 ?>
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
-                                <?php echo $blog['category_name']; ?> |
+                                Blog |
                                 <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>"
                             class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
-                            Read <?php echo $blog['category_name']; ?>
+                            Read Blog
                             <span
                                 class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
@@ -672,7 +672,7 @@ $faqs = [
         <div class="flex flex-col md:flex-row items-stretch overflow-hidden">
 
             <div class="relative w-full md:w-[437px] md:h-[280px] h-[238px] shrink-0">
-                <img src="<?php echo SITE_URL; ?>/assets/images/ui/connect.jpg" alt="Stay connected"
+                <img src="<?php echo SITE_URL; ?>/assets/images/ui/stay-connected.png" alt="Stay connected"
                     class="w-full h-full object-cover" />
             </div>
 
