@@ -2,6 +2,11 @@
 $pageTitle = 'Industry Category';
 
 $industries = getCategoryByParent("2");
+
+// Sort industries alphabetically by mcat_name
+usort($industries, function ($a, $b) {
+    return strcasecmp($a['mcat_name'], $b['mcat_name']);
+});
 ?>
 
 <!-- Hero Section -->
