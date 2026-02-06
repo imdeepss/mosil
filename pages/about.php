@@ -212,7 +212,7 @@ $lubricant_features = [
                                         <?php echo $history['title']; ?>
                                     </p>
                                     <ul
-                                        class="list-disc list-inside flex flex-col gap-2 text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
+                                        class="custom-product-list flex flex-col gap-2 text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
                                         <?php foreach ($history['points'] as $point): ?>
                                             <li><?php echo $point; ?></li>
                                         <?php endforeach; ?>
