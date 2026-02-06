@@ -721,7 +721,7 @@ $lubricant_features = [
                     Great machines builds nation, great lubricants keep them alive
                 </h2>
             </div>
-            <div class="inline-flex flex-col items-start gap-6 w-full max-w-[718px]">
+            <div class="inline-flex flex-col items-start gap-6 w-full max-w-[718px] md:pr-2">
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">50 years
                     ago, MOSIL was born from a simple idea: industrial reliability should not be compromised by lack of
                     access to quality lubrication. What began as a mission to solve on-ground maintenance problems has
