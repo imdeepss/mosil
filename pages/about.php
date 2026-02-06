@@ -586,21 +586,23 @@ $lubricant_features = [
         <div class="swiper who-we-are-swiper !pt-8 md:block block" id="about-who-we-are-swiper">
             <div class="swiper-wrapper md:grid md:grid-cols-5">
                 <?php foreach ($lubricant_features as $feature): ?>
-                    <div
-                        class="swiper-slide group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-4 !mt-4 cursor-pointer">
-
-                        <h6
-                            class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
-                            <?php echo $feature['title']; ?>
-                        </h6>
-
-                        <p
-                            class="text-[#666666] font-base font-normal text-[14px] md:text-[12px] leading-[150%] md:leading-[150%] tracking-[0.015em] relative z-10">
-                            <?php echo $feature['desc']; ?>
-                        </p>
-
+                    <div class="swiper-slide !mt-4">
                         <div
-                            class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-800 ease-out group-hover:scale-x-100 z-20">
+                            class="w-full h-full transform group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg cursor-pointer">
+
+                            <h6
+                                class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
+                                <?php echo $feature['title']; ?>
+                            </h6>
+
+                            <p
+                                class="text-[#666666] font-base font-normal text-[14px] md:text-[12px] leading-[150%] md:leading-[150%] tracking-[0.015em] relative z-10">
+                                <?php echo $feature['desc']; ?>
+                            </p>
+
+                            <div
+                                class="absolute bottom-0 left-0 h-[3px] w-full bg-[#1A3B1B] origin-left scale-x-0 transition-transform duration-500 ease-in-out group-hover:scale-x-100 z-20">
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>

@@ -199,11 +199,22 @@ $pageTitle = 'Contact Us';
             </script>
         </div>
 
-        <div class="md:w-[526px] md:h-auto w-full h-[404px] shrink-0 overflow-hidden">
-            <img src="<?php echo SITE_URL ?>/assets/images/ui/get-it-touch-banner.png"
+        <div class="relative md:w-[526px] md:h-auto w-full h-[404px] shrink-0 overflow-hidden">
+            <img src="<?php echo SITE_URL ?>/assets/images/ui/contact-us-banner.png"
                 class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
                 alt="Get in touch" loading="lazy">
+
+
+            <div class="absolute bottom-0 left-0 z-10 px-8 py-6 w-full">
+                <h2 class="text-[48px] leading-[1.35] tracking-[0.01em] text-white font-normal mb-1">
+                    Get in touch
+                </h2>
+                <p class="text-lg text-white">
+                    Our expert team will support you in finding systems best suited for your needs.
+                </p>
+            </div>
         </div>
+
     </div>
 
 </section>
