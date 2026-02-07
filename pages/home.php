@@ -198,15 +198,17 @@ $blogs = getHomeFeaturedBlogs();
         <div class="mt-8 flex flex-col lg:flex-row items-stretch gap-0 w-full overflow-hidden">
             <?php foreach ($products as $product) { ?>
                 <div onclick="this.classList.toggle('active')"
-                    class="group relative flex-1 hover:flex-[1.4] [&.active]:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col justify-between cursor-pointer">
+                    class="group relative flex-1 hover:flex-[1.4] [&.active]:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col cursor-pointer">
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
                     </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
-
-                        <div class="relative overflow-hidden border-b border-white transition-colors duration-500">
+                        <div
+                            class="absolute inset-0 bg-[linear-gradient(to_bottom_right,rgba(0,0,0,0.5),transparent_50%)] -translate-x-full group-hover:translate-x-0 [.active_&]:translate-x-0 transition-transform duration-500 ease-in-out z-0">
+                        </div>
+                        <div class="relative overflow-hidden border-b border-white transition-colors duration-500 h-[70px]">
                             <div
                                 class="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 [.active_&]:translate-x-0 transition-transform duration-500 ease-in-out z-0">
                             </div>
@@ -232,9 +234,9 @@ $blogs = getHomeFeaturedBlogs();
                             </a>
                         </div>
 
-                        <div class="px-6 py-4">
+                        <div class="relative overflow-hidden w-full h-full">
                             <h6
-                                class="font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px]">
+                                class="relative z-10 px-6 py-4 font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px]">
                                 <?php echo $product['mcat_name']; ?>
                             </h6>
                         </div>
