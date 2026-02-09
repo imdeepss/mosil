@@ -72,8 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
         }
 
 
-        $image_path = $case_study['image'];
-        $case_study_file_path = $case_study['case_study_file'];
+        // Initialize with existing values to prevent overwriting with null if no new file is uploaded
+        $case_study_img = $case_study['image'];
+        $case_study_file = $case_study['case_study_file'];
 
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -93,9 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                 mkdir($upload_dir, 0755, true);
             }
 
-
-            if ($image_path && file_exists($image_path)) {
-                unlink($image_path);
+            // Remove old image if it exists
+            if ($case_study['image']) {
+                $old_image_path = $upload_dir . $case_study['image'];
+                if (file_exists($old_image_path)) {
+                    unlink($old_image_path);
+                }
             }
 
             $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
@@ -126,9 +130,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                 mkdir($upload_dir, 0755, true);
             }
 
-
-            if ($case_study_file_path && file_exists($case_study_file_path)) {
-                unlink($case_study_file_path);
+            // Remove old file if it exists
+            if ($case_study['case_study_file']) {
+                $old_file_path = $upload_dir . $case_study['case_study_file'];
+                if (file_exists($old_file_path)) {
+                    unlink($old_file_path);
+                }
             }
 
             $file_extension = pathinfo($_FILES['case_study_file']['name'], PATHINFO_EXTENSION);
