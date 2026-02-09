@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                 throw new Exception('Image file size must be less than 5MB.');
             }
 
-            $upload_dir = '../assets/uploads/case_studies/';
+            $upload_dir = '/assets/uploads/case_studies/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                 throw new Exception('File size must be less than 10MB.');
             }
 
-            $upload_dir = '../assets/uploads/case_studies/';
+            $upload_dir = '/assets/uploads/case_studies/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -389,14 +389,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                         <label for="image" class="form-label">Featured Image</label>
                                         <?php if ($case_study['image']): ?>
                                             <div class="mb-2">
-                                                <img src="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['image']; ?>"
+                                                <img src="<?php echo HOME_URL . "/assets/uploads/case_studies/" . $case_study['image']; ?>"
                                                     alt="Current Image" class="img-thumbnail" style="max-width: 200px;">
                                                 <div class="form-text">Current image</div>
                                             </div>
                                         <?php endif; ?>
                                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                         <input type="hidden" class="existing_image"
-                                            value="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['image']; ?>" />
+                                            value="<?php echo HOME_URL . "/assets/uploads/case_studies/" . $case_study['image']; ?>" />
                                         <div class="form-text">Max size: 5MB. Formats: JPG, PNG, GIF, WebP</div>
                                         <div class="mt-2">
                                             <img id="imagePreview" src="/placeholder.svg" alt="Preview"
@@ -408,7 +408,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                         <label for="case_study_file" class="form-label">Case Study File</label>
                                         <?php if ($case_study['case_study_file']): ?>
                                             <div class="mb-2">
-                                                <a href="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['case_study_file']; ?>"
+                                                <a href="<?php echo HOME_URL . "/assets/uploads/case_studies/" . $case_study['case_study_file']; ?>"
                                                     target="_blank" class="btn btn-sm btn-outline-primary">
                                                     <i class="fas fa-file-pdf me-1"></i>View Current File
                                                 </a>
@@ -417,7 +417,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                         <input type="file" class="form-control" id="case_study_file" name="case_study_file"
                                             accept=".pdf,.doc,.docx">
                                         <input type="hidden" class="existing_image"
-                                            value="<?php echo HOME_URL . "uploads/case_studies/" . $case_study['case_study_file']; ?>" />
+                                            value="<?php echo HOME_URL . "/assets/uploads/case_studies/" . $case_study['case_study_file']; ?>" />
                                         <div class="form-text">Max size: 10MB. Formats: PDF, DOC, DOCX</div>
                                     </div>
                                 </div>
