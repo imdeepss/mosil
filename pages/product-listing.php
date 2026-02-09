@@ -4,10 +4,16 @@
 $categorySlug = isset($_GET['category']) ? $_GET['category'] : '';
 $type = isset($_GET['type']) ? $_GET['type'] : 'industry'; // 'industry' or 'product'
 
-// Format category name for display (Convert slug back to title case roughly)
-$categoryName = ucwords(str_replace('-', ' ', $categorySlug));
-if (empty($categoryName)) {
-    $categoryName = 'All Products';
+// Fetch category name from database
+$categoryDetails = getCategoryDetailsBySlug($categorySlug);
+
+if ($categoryDetails) {
+    $categoryName = $categoryDetails['mcat_name'];
+} else {
+    $categoryName = ucwords(str_replace('-', ' ', $categorySlug));
+    if (empty($categoryName)) {
+        $categoryName = 'All Products';
+    }
 }
 
 $pageTitle = $categoryName . ' - Products';

@@ -75,10 +75,8 @@ usort($industries, function ($a, $b) {
             <div id="industry-grid" class="grid grid-cols-1 md:grid-cols-4 md:gap-10 gap-4">
                 <?php foreach ($industries as $industry): ?>
                     <div class="industry-item md:h-[260px] h-[224px] relative group overflow-hidden cursor-pointer">
-                        <?php
-                        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $industry['mcat_name'])));
-                        ?>
-                        <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $slug; ?>">
+                        <a
+                            href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>">
                             <div
                                 class="absolute inset-0 z-10 w-full h-full transition-colors duration-500 group-hover:bg-main-green/60 rounded-[4px]">
                             </div>
