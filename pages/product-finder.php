@@ -45,7 +45,7 @@ $categories = [
 <section class="bg-white font-base">
     <div class="container md:pt-18 pt-16 md:pb-20 pb-12 relative">
         <nav
-            class="absolute top-6 left-4 flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize">
+            class="absolute top-6 left-0 flex items-center breadcrumbs gap-1 text-[14px] md:text-[16px] leading-[150%] tracking-[0.015em] capitalize">
             <a href="<?php echo SITE_URL; ?>" class="text-[#A3A3A3] font-light">Home</a>
             <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"

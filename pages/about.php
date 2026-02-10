@@ -588,7 +588,7 @@ $lubricant_features = [
                 <?php foreach ($lubricant_features as $feature): ?>
                     <div class="swiper-slide !mt-4">
                         <div
-                            class="w-full h-full transform group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg cursor-pointer">
+                            class="w-full h-full transform group relative bg-y100 md:h-[204px] !h-[204px] p-3 transition-all duration-500 ease-in-out hover:-translate-y-2 cursor-pointer">
 
                             <h6
                                 class="text-[#3B3B3B] font-base font-normal text-[20px] leading-[140%] md:text-[18px] md:leading-[140%] mb-2 relative z-10">
