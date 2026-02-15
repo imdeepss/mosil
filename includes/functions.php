@@ -476,30 +476,29 @@ function getRelatedProducts($subCatString, $currentProductId)
 
 function searchProducts($searchQuery)
 {
-    $searchQueryLiked = "%" . $searchQuery . "%";
+    $term = "%" . strtolower(trim($searchQuery)) . "%";
+
+    // Standard broad search on text fields
     $sql = "SELECT name, slug 
             FROM products_v2 
             WHERE status = 'Active' AND (
-                REPLACE(LOWER(name), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(slug), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(sub_title), ' ', '') LIKE ? OR
-                REPLACE(LOWER(parent_cat), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(main_cat), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(sub_cat), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(attribute), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(main_attribute), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(sub_attribute), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(tds_file), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(image), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(short_description), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(area_of_application), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(benifits), ' - ', '') LIKE ? OR
-                REPLACE(LOWER(characteristics), ' - ', '') LIKE ?
+                LOWER(name) LIKE ? OR
+                LOWER(slug) LIKE ? OR
+                LOWER(sub_title) LIKE ? OR
+                LOWER(parent_cat) LIKE ? OR
+                LOWER(main_cat) LIKE ? OR
+                LOWER(sub_cat) LIKE ? OR
+                LOWER(attribute) LIKE ? OR
+                LOWER(main_attribute) LIKE ? OR
+                LOWER(sub_attribute) LIKE ? OR
+                LOWER(short_description) LIKE ? OR
+                LOWER(area_of_application) LIKE ? OR
+                LOWER(characteristics) LIKE ?
             )
             LIMIT 10";
 
-    // Create an array with the search query repeated 15 times
-    $params = array_fill(0, 15, $searchQueryLiked);
+    // 12 parameters
+    $params = array_fill(0, 12, $term);
 
     return db_query_all($sql, $params);
 }
@@ -543,6 +542,9 @@ function cleanText($text, $limit = null)
 
     // 6. Trim leading/trailing whitespace
     $text = trim($text);
+
+    // Remove specific AI artifact if present
+    $text = str_replace(' - ,and', '', $text);
 
     // 7. Ensure first letter is uppercase
     $text = ucfirst($text);
