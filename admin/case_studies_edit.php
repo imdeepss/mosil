@@ -394,38 +394,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label for="image" class="form-label">Featured Image</label>
-                                        <?php if ($case_study['image']): ?>
+                                        <?php if (!empty($case_study['image'])): ?>
                                             <div class="mb-2">
-                                                <img src="<?php echo HOME_URL . "assets/uploads/case_studies/" . $case_study['image']; ?>"
+                                                <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $case_study['image']; ?>"
                                                     alt="Current Image" class="img-thumbnail" style="max-width: 200px;">
-                                                <div class="form-text">Current image</div>
+                                                <div class="form-text text-success">
+                                                    <i class="fas fa-check-circle me-1"></i>Current image present
+                                                </div>
                                             </div>
+                                        <?php else: ?>
+                                            <div class="form-text text-muted mb-2">No image currently uploaded</div>
                                         <?php endif; ?>
+
                                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                                        <input type="hidden" class="existing_image"
-                                            value="<?php echo HOME_URL . "assets/uploads/case_studies/" . $case_study['image']; ?>" />
-                                        <div class="form-text">Max size: 5MB. Formats: JPG, PNG, GIF, WebP</div>
-                                        <div class="mt-2">
-                                            <img id="imagePreview" src="/placeholder.svg" alt="Preview"
-                                                class="img-thumbnail" style="max-width: 200px; display: none;">
+                                        <div class="form-text">Leave empty to keep current image. Max size: 5MB. Formats:
+                                            JPG, PNG, GIF, WebP</div>
+
+                                        <div class="mt-2 text-center" style="display:none;" id="previewContainer">
+                                            <p class="text-sm text-muted mb-1">New Image Preview:</p>
+                                            <img id="imagePreview" src="" alt="Preview" class="img-thumbnail"
+                                                style="max-width: 200px;">
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="case_study_file" class="form-label">Case Study File</label>
-                                        <?php if ($case_study['case_study_file']): ?>
+                                        <?php if (!empty($case_study['case_study_file'])): ?>
                                             <div class="mb-2">
-                                                <a href="<?php echo HOME_URL . "assets/uploads/case_studies/" . $case_study['case_study_file']; ?>"
+                                                <a href="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $case_study['case_study_file']; ?>"
                                                     target="_blank" class="btn btn-sm btn-outline-primary">
                                                     <i class="fas fa-file-pdf me-1"></i>View Current File
                                                 </a>
+                                                <div class="form-text text-success mt-1">
+                                                    <i class="fas fa-check-circle me-1"></i>Current file present
+                                                </div>
                                             </div>
+                                        <?php else: ?>
+                                            <div class="form-text text-muted mb-2">No file currently uploaded</div>
                                         <?php endif; ?>
+
                                         <input type="file" class="form-control" id="case_study_file" name="case_study_file"
                                             accept=".pdf,.doc,.docx">
-                                        <input type="hidden" class="existing_image"
-                                            value="<?php echo HOME_URL . "assets/uploads/case_studies/" . $case_study['case_study_file']; ?>" />
-                                        <div class="form-text">Max size: 10MB. Formats: PDF, DOC, DOCX</div>
+                                        <div class="form-text">Leave empty to keep current file. Max size: 10MB. Formats:
+                                            PDF, DOC, DOCX</div>
                                     </div>
                                 </div>
                             </div>
@@ -469,11 +480,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    $('#imagePreview').attr('src', e.target.result).show();
+                    $('#imagePreview').attr('src', e.target.result);
+                    $('#previewContainer').show();
                 };
                 reader.readAsDataURL(file);
             } else {
-                $('#imagePreview').hide();
+                $('#previewContainer').hide();
             }
         });
 
