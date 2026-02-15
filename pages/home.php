@@ -273,9 +273,9 @@ $blogs = getHomeFeaturedBlogs();
                                 alt="Case Study Image"
                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
                                 loading="lazy">
-                            <div
+                            <!-- <div
                                 class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full h-full">
-                            </div>
+                            </div> -->
                             <div class="absolute inset-0 flex flex-col justify-end text-white pb-22">
                                 <div class="md:p-8 p-4">
                                     <h3
