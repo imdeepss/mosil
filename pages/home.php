@@ -62,7 +62,7 @@ $blogs = getHomeFeaturedBlogs();
                                         class="text-[#1A3B1B] text-[28px] md:text-[32px] leading-[1.2] font-normal capitalize">
                                         <?php echo $industry['mcat_name']; ?>
                                     </h2>
-                                    <p class="text-[#575757] text-[13px] uppercase tracking-wider font-medium">
+                                    <p class="text-[#575757] text-[13px] captalize tracking-wider font-medium">
                                         <?php echo $industry['mcat_desc']; ?>
                                     </p>
 
@@ -396,6 +396,7 @@ $blogs = getHomeFeaturedBlogs();
                             With in-house NABL accredited tribology labs, pilot scale testing facilities and an expert
                             team of chemists and tribologists, we translate
                             formulation science into industrial reliability consistently, batch after batch.
+
                         </p>
                     </div>
                 </div>

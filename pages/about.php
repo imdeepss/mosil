@@ -165,7 +165,7 @@ $lubricant_features = [
                     "points" => [
                         "First batch of moly and graphite based specialty greases manufactured",
                         "Introduced products for the textile industry",
-                        "Introduced silicone greases in india"
+                        "Introduced silicone greases in India"
                     ]
                 ],
                 [
@@ -194,8 +194,28 @@ $lubricant_features = [
                         "Patented new anti-friction coating technology",
                         "Partnered with major automotive OEMs"
                     ]
+                ],
+                [
+                    "year" => "2011 - 2020",
+                    "title" => "Modernization Era",
+                    "points" => [
+                        "Received Govt recognition for in-house R&D by dept of science & technology",
+                        "Exports of products to USA",
+                        "New R&D facility started",
+                        "Awarded ISO 9001:2015"
+                    ]
+                ],
+                [
+                    "year" => "2021 - 2025",
+                    "title" => "Shaping The Future",
+                    "points" => [
+                        "Additional manufacturing facility established",
+                        "Exports expanded to 4 continents",
+                        "Awarded ISO 9001, ISO 14001 and ISO 45001"
+                    ]
                 ]
             ];
+
             ?>
             <div class="flex flex-col justify-center md:gap-3 gap-2 max-w-md order-2 md:order-1">
                 <div class="swiper our-history-swiper w-full">
@@ -724,15 +744,15 @@ $lubricant_features = [
                 </h2>
             </div>
             <div class="inline-flex flex-col items-start gap-6 w-full max-w-[718px] md:pr-2">
-                <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">50 years
-                    ago, MOSIL was born from a simple idea: industrial reliability should not be compromised by lack of
-                    access to quality lubrication. What began as a mission to solve on-ground maintenance problems has
-                    grown into a trusted partner to industries that demand precision, durability and performance.</p>
+                <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">Today, the
+                    industrial world is evolving rapidly, with more automation, higher loads, stringent regulations, and
+                    growing sustainability expectations. In this environment, lubrication is no longer a side function;
+                    it has become a strategic lever for uptime, efficiency and long-term value.</p>
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
                     MOSIL stands at the center of this shift. With a foundation rooted in tribology and a mindset shaped
                     by real-world industry challenges, we engineer solutions - not just products. To ensure top
                     performance for our customers, we invest in our employees as well as in state-of-the-art testing
-                    equipment, analysis tools and infrastructure that exceed performance requirements. </p>
+                    equipment, analysis tools and infrastructure that exceed performance requirements.</p>
                 <p class="text-[#757575] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em]">
                     Our commitment remains unchanged: to keep industries moving, machines performing and our customers
                     ahead
