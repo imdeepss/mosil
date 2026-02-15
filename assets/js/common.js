@@ -403,7 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const relevantProductsSwiper = new Swiper(".relevantProductsSwiper", {
     slidesPerView: 2,
     spaceBetween: 16,
-    loop: false,
+    loop: true,
     speed: 600,
     navigation: {
       nextEl: ".relevant-next",
@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const caseStudySwiper = new Swiper(".caseStudySwiper", {
     slidesPerView: 1,
     spaceBetween: 16,
-    loop: false,
+    loop: true,
     speed: 600,
     navigation: {
       nextEl: ".case-next",
@@ -443,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
     breakpoints: {
       768: {
         slidesPerView: "auto",
-        spaceBetween: 20,
+        spaceBetween: 40,
       },
     },
   });
