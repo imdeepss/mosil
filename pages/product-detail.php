@@ -191,7 +191,8 @@ function parseTableString($str)
 
             if ($productSlug) {
                 echo '<span>' . $chevronRight . '</span>';
-                echo '<span class="text-[#575757] font-bold">' . ucwords(str_replace('-', ' ', $productSlug)) . '</span>';
+                // echo '<span class="text-[#575757] font-bold capitalize">' . ucwords(str_replace('-', ' ', $productSlug)) . '</span>';
+                echo '<span class="text-[#575757] font-bold capitalize">' . $product['name'] . '</span>';
             }
             ?>
         </nav>
