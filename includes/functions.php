@@ -474,31 +474,94 @@ function getRelatedProducts($subCatString, $currentProductId)
 }
 
 
+
 function searchProducts($searchQuery)
 {
-    $term = "%" . strtolower(trim($searchQuery)) . "%";
+    $formattedQuery = trim(strtolower($searchQuery));
 
-    // Standard broad search on text fields
-    $sql = "SELECT name, slug 
-            FROM products_v2 
-            WHERE status = 'Active' AND (
-                LOWER(name) LIKE ? OR
-                LOWER(slug) LIKE ? OR
-                LOWER(sub_title) LIKE ? OR
-                LOWER(parent_cat) LIKE ? OR
-                LOWER(main_cat) LIKE ? OR
-                LOWER(sub_cat) LIKE ? OR
-                LOWER(attribute) LIKE ? OR
-                LOWER(main_attribute) LIKE ? OR
-                LOWER(sub_attribute) LIKE ? OR
-                LOWER(short_description) LIKE ? OR
-                LOWER(area_of_application) LIKE ? OR
-                LOWER(characteristics) LIKE ?
-            )
-            LIMIT 10";
+    if (strlen($formattedQuery) < 2) {
+        return [];
+    }
 
-    // 12 parameters
-    $params = array_fill(0, 12, $term);
+    $conditions = [];
+    $params = [];
+
+    // 1. Prepare match terms
+    // Broad match term
+    $originalTerm = "%" . $formattedQuery . "%";
+
+    // Clean match term (alphanumeric only)
+    $cleanQueryStr = preg_replace('/[^a-z0-9]/', '', $formattedQuery);
+    $cleanTerm = "%" . $cleanQueryStr . "%";
+
+    // Tokens (split by non-alphanumeric)
+    $tokens = preg_split('/[^a-z0-9]+/', $formattedQuery, -1, PREG_SPLIT_NO_EMPTY);
+    $tokens = array_slice($tokens, 0, 6); // Limit tokens
+
+    // 2. Build Query
+    // Priority: 
+    // - Stripped Name/Slug matches Stripped Query (e.g. "abc-123" matches "abc123")
+    // - Token Intersection (e.g. "abc - 123" matches "abc 123")
+    // - Legacy Broad Search
+
+    // Base SQL
+    $sql = "SELECT name, slug FROM products_v2 WHERE status = 'Active' AND (";
+
+    // A. Stripped Match (Name & Slug)
+    // Works for "abc123" -> found "abc-123"
+    // Works for "abc" -> found "abc-123"
+    if (!empty($cleanQueryStr)) {
+        // Strip common separators from DB columns for comparison
+        $dbCleanName = "REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LOWER(name), '-', ''), ' ', ''), '/', ''), '_', ''), ',', ''), '.', '')";
+        $dbCleanSlug = "REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LOWER(slug), '-', ''), ' ', ''), '/', ''), '_', ''), ',', ''), '.', '')";
+
+        $conditions[] = "$dbCleanName LIKE ?";
+        $params[] = $cleanTerm;
+
+        $conditions[] = "$dbCleanSlug LIKE ?";
+        $params[] = $cleanTerm;
+    }
+
+    // B. Token Intersection Match (Name Only - High Precision)
+    // Works for "abc 123" -> found "abc - 123"
+    if (count($tokens) > 1) {
+        $tokenWhere = [];
+        foreach ($tokens as $token) {
+            $tokenWhere[] = "LOWER(name) LIKE ?";
+            $params[] = "%$token%";
+        }
+        $conditions[] = "(" . implode(' AND ', $tokenWhere) . ")";
+    }
+
+    // C. Legacy Broad Search (All Fields - Fallback)
+    // Works for descriptions, categories, etc.
+    // Also covers single token broad matches
+    $fields = [
+        'name',
+        'slug',
+        'sub_title',
+        'parent_cat',
+        'main_cat',
+        'sub_cat',
+        'attribute',
+        'main_attribute',
+        'sub_attribute',
+        'short_description',
+        'area_of_application',
+        'characteristics'
+    ];
+
+    foreach ($fields as $field) {
+        $conditions[] = "LOWER($field) LIKE ?";
+        $params[] = $originalTerm;
+    }
+
+    $sql .= implode(' OR ', $conditions);
+    $sql .= ") ORDER BY CASE WHEN LOWER(name) LIKE ? THEN 1 WHEN LOWER(name) LIKE ? THEN 2 ELSE 3 END, name ASC LIMIT 15";
+
+    // Add params for ORDER BY
+    $params[] = $cleanTerm; // Priority match (starts with or contains clean term nicely)
+    $params[] = $originalTerm;
 
     return db_query_all($sql, $params);
 }
