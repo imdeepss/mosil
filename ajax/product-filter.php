@@ -32,9 +32,10 @@ if (!empty($products)):
         <div class="group cursor-pointer py-4 transition-all duration-500 ease-in-out hover:-translate-y-4 relative">
             <a href="<?php echo $detailLink; ?>">
                 <div
-                    class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-2.5 mb-2 md:border md:border-[#EBEBEB] md:py-5 md:px-22 md:h-[135px] h-[150px] w-full px-[34px] py-[30px]">
+                    class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-2.5 mb-2 md:border md:border-[#EBEBEB] md:py-2 md:px-5 md:h-[135px] h-[150px] w-full px-[34px] py-[30px]">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $productImage; ?>"
-                        alt="<?php echo htmlspecialchars($productName); ?>" class="w-full h-full object-contain">
+                        alt="<?php echo htmlspecialchars($productName); ?>"
+                        class="w-full h-full object-contain mix-blend-darken">
                 </div>
 
                 <h3

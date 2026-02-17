@@ -168,7 +168,7 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                         <a
                             href="<?php echo SITE_URL; ?>/product-finder/<?php echo $categorySlug ? $categorySlug : 'all'; ?>/<?php echo $productSlug; ?>">
                             <div
-                                class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-2.5 mb-2 md:border md:border-[#EBEBEB] md:py-5 md:px-22 md:h-[135px] h-[150px] w-full px-[34px] py-[30px]">
+                                class="bg-[#FAFAFA] aspect-[4/3] flex items-center justify-center overflow-hidden md:mb-2.5 mb-2 md:border md:border-[#EBEBEB] md:py-2 md:px-5 md:h-[135px] h-[150px] w-full px-[34px] py-[30px]">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image']; ?>"
                                     alt="<?php echo $productName; ?>"
                                     class="w-full h-full object-contain mix-blend-multiply">
