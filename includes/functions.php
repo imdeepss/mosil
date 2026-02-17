@@ -446,18 +446,20 @@ function getProductsBySubCategoryID($id, $slug)
 
 function getRelatedProducts($subCatString, $currentProductId)
 {
+    // Clean and validate IDs: Remove empty strings and ensure numeric values
+    $ids = array_filter(explode(',', $subCatString), function ($val) {
+        return is_numeric(trim($val));
+    });
 
-    $ids = explode(',', $subCatString);
-    if (empty($ids))
+    if (empty($ids)) {
         return [];
-
+    }
 
     $conditions = [];
     foreach ($ids as $id) {
         $conditions[] = "FIND_IN_SET(?, p.sub_cat)";
     }
     $whereClause = implode(' OR ', $conditions);
-
 
     $sql = "SELECT p.id, p.name, p.slug, p.image, p.sub_title, p.short_description 
             FROM products_v2 p 
@@ -466,7 +468,6 @@ function getRelatedProducts($subCatString, $currentProductId)
               AND p.status = 'Active' 
             ORDER BY p.id DESC 
             LIMIT 10";
-
 
     $params = array_merge($ids, [$currentProductId]);
 
