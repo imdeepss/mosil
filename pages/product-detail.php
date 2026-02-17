@@ -557,7 +557,7 @@ function parseTableString($str)
 
                                     <p
                                         class="text-[#757575] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-3">
-                                        <?php echo $product['short_description']; ?>
+                                        <?php echo $product['sub_title']; ?>
                                     </p>
                                 </a>
 
