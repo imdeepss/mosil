@@ -180,7 +180,7 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                             </h3>
                             <p
                                 class="text-[#757575] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] line-clamp-4">
-                                <?php echo $product['short_description']; ?>
+                                <?php echo $product['sub_title']; ?>
                             </p>
                         </a>
                         <div

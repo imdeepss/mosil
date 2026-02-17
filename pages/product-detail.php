@@ -254,10 +254,10 @@ function parseTableString($str)
                 </div>
 
                 <div class="flex items-center gap-2 justify-start pt-4">
-                    <button type="button"
+                    <!-- <button type="button"
                         class="openEnquiryModal h-[48px] px-10 bg-main-green text-white text-center font-normal text-[16px] leading-[150%] rounded-full border-2 border-main-green transition-colors cursor-pointer button-hover-vertical">
                         Enquire Now
-                    </button>
+                    </button> -->
                     <button type="button"
                         class="openEnquiryModal h-[48px] px-10 text-main-green bg-white border-2 border-main-green text-center font-normal text-[16px] leading-[150%] rounded-full transition-colors cursor-pointer button-hover-vertical">
                         Get TDS
