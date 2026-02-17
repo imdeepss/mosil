@@ -24,7 +24,7 @@ if (!empty($products)):
         $productName = isset($product['name']) ? $product['name'] : '';
         $productSlug = isset($product['slug']) ? $product['slug'] : '';
         $productImage = isset($product['image']) ? $product['image'] : 'dummy.png';
-        $shortDesc = isset($product['short_description']) ? $product['short_description'] : '';
+        $shortDesc = isset($product['sub_title']) ? $product['sub_title'] : '';
 
         // Construct Detail Link
         $detailLink = SITE_URL . '/product-finder/' . ($categorySlug ? $categorySlug : 'all') . '/' . $productSlug;
