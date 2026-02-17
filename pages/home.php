@@ -559,7 +559,7 @@ $lubricationItems = [
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                 <?php echo $blog['category_name']; ?> |
-                                <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
+                                <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/blog/<?= $blog["slug"] ?? '' ?>"

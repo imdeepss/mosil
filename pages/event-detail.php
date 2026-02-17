@@ -67,7 +67,7 @@ $pageTitle = htmlspecialchars($event['title']);
                 </h1>
 
                 <p class="not-prose text-[#575A56] font-normal text-[16px] leading-[135%] tracking-[0.01em] mb-6">
-                    <?php echo date('d F Y', strtotime($event['created_at'])); ?>
+                    <?php echo formatDateWithCurrentYear($event['created_at'], 'F d'); ?>
                 </p>
 
                 <!-- Cleaned Content -->
@@ -147,7 +147,7 @@ $pageTitle = htmlspecialchars($event['title']);
                                 <p
                                     class="text-[#A3A3A3] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                                     <?php echo !empty($item['category_name']) ? $item['category_name'] : 'Blog'; ?>
-                                    | <?php echo date('d F Y', strtotime($item['created_at'])); ?>
+                                    | <?php echo formatDateWithCurrentYear($item['created_at'], 'F d'); ?>
                                 </p>
                             </div>
                             <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>" class="group/btn

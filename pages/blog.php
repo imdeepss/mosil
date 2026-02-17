@@ -77,7 +77,7 @@ $currentPage = $initialData['currentPage'];
 
                         <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#ffffff] mt-auto">
                             Blog |
-                            <?php echo date('F d, Y', strtotime($mainFeatured['created_at'])); ?>
+                            <?php echo formatDateWithCurrentYear($mainFeatured['created_at'], 'F d'); ?>
                         </p>
                     </div>
                 </a>
@@ -126,7 +126,7 @@ $currentPage = $initialData['currentPage'];
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                 Blog |
-                                <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
+                                <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>" class="group/btn
@@ -210,7 +210,7 @@ $currentPage = $initialData['currentPage'];
                     </p>
                     <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                         Blog |
-                        <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
+                        <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
                     </p>
                 </div>
                 <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>" class="group/btn relative

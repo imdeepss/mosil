@@ -206,7 +206,7 @@ $lubricant_features = [
                     ]
                 ],
                 [
-                    "year" => "2021 - 2025",
+                    "year" => "2021 - " . date('Y'),
                     "title" => "Shaping The Future",
                     "points" => [
                         "Additional manufacturing facility established",

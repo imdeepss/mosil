@@ -35,7 +35,7 @@ try {
         $blog['excerpt'] = mb_substr($plainText, 0, 150) . (mb_strlen($plainText) > 150 ? '...' : '');
 
         // Format date
-        $blog['formatted_date'] = date('F d, Y', strtotime($blog['created_at']));
+        $blog['formatted_date'] = formatDateWithCurrentYear($blog['created_at'], 'F d');
 
         // Add full image URL
         $blog['image_url'] = SITE_URL . '/assets/uploads/blog/' . $blog['image'];

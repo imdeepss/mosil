@@ -318,7 +318,7 @@ $faqs = [
 
                             <?php if (isset($item['created_at']) && $item['is_featured']): ?>
                                 <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[135%] tracking-[0.01em]">
-                                    <?php echo date('F d, Y', strtotime($item['created_at'])); ?>
+                                    <?php echo formatDateWithCurrentYear($item['created_at'], 'F d'); ?>
                                 </p>
                             <?php endif; ?>
                         </div>
@@ -386,7 +386,7 @@ $faqs = [
                                 </h3>
                                 <span
                                     class="text-[#3B3B3B] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] opacity-80">
-                                    <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
+                                    <?php echo formatDateWithCurrentYear($study['created_at'], 'F d'); ?>
                                 </span>
                                 <p
                                     class="text-[#3B3B3B] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] line-clamp-2">
@@ -459,7 +459,7 @@ $faqs = [
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                 Blog |
-                                <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
+                                <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/blog/<?php echo $blog['slug']; ?>"

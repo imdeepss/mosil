@@ -8,7 +8,7 @@
             </div>
             <p
                 class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] md:block hidden">
-                © 2025 MOSIL Lubricants All Rights Reserved</p>
+                © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved</p>
         </div>
 
         <div class="grid flex-1 gap-12 grid-cols-2 md:grid-cols-[97px_88px_320px] md:gap-[97px]">
@@ -58,7 +58,7 @@
                     <a href="mailto:enquiry@mosil.com" class="inline-block my-[34px] mb-[68px]">enquiry@mosil.com</a>
                     <p
                         class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] md:hidden block">
-                        © 2025 MOSIL Lubricants All Rights Reserved</p>
+                        © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved</p>
                 </div>
             </div>
 

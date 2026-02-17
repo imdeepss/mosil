@@ -62,7 +62,7 @@ $pageTitle = htmlspecialchars($blog['title']);
             </h1>
 
             <p class="not-prose text-[#575A56] font-normal text-[16px] leading-[135%] tracking-[0.01em] mb-4">
-                <?php echo date('d F Y', strtotime($blog['created_at'])); ?>
+                <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
             </p>
 
             <div id="dynamic-blog-content" class="blog-content prose max-w-none">
@@ -133,7 +133,7 @@ $pageTitle = htmlspecialchars($blog['title']);
                                 </p>
                                 <div class="mt-auto">
                                     <p class="text-[#A3A3A3] text-[14px] mb-3">
-                                        <?php echo date('F d, Y', strtotime($item['created_at'])); ?>
+                                        <?php echo formatDateWithCurrentYear($item['created_at'], 'F d'); ?>
                                     </p>
                                     <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>"
                                         class="inline-block text-[#1A3B1B] font-bold text-[18px] border-b-2 border-transparent hover:border-primary transition-all">

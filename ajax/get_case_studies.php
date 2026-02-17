@@ -30,7 +30,7 @@ try {
         $study['excerpt'] = mb_strlen($intro) > 150 ? substr($intro, 0, 150) . '...' : $intro;
 
         // Format date
-        $study['formatted_date'] = date('F d, Y', strtotime($study['created_at']));
+        $study['formatted_date'] = formatDateWithCurrentYear($study['created_at'], 'F d');
 
         // Add full image URL
         $study['image_url'] = SITE_URL . '/assets/uploads/case_studies/' . $study['image'];

@@ -88,7 +88,7 @@ $industries = getCategoryByParent("2"); // Fetch industries for the dropdown
                     </div>
                     <p
                         class="text-[#3B3B3B] font-base font-normal md:text-[16px] md:leading-[150%] text-[14px] leading-[150%] tracking-[0.015em] mb-6">
-                        Date: <?php echo date('d/m/Y', strtotime($latestEvent['event_date'])); ?>
+                        Date: <?php echo formatDateWithCurrentYear($latestEvent['event_date'], 'F d'); ?>
                     </p>
                     <div class="flex flex-wrap items-center md:gap-4 gap-2 justify-start">
                         <button type="button" onclick="openContactModal('Contact')"
@@ -140,7 +140,7 @@ $industries = getCategoryByParent("2"); // Fetch industries for the dropdown
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                 <?php echo $blog['category_name'] ?: 'General'; ?> |
-                                <?php echo date('F d, Y', strtotime($blog['created_at'])); ?>
+                                <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/events/<?= $blog["slug"] ?? '' ?>" class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit

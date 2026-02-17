@@ -77,7 +77,7 @@ $currentPage = $initialData['currentPage'];
 
                         <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#ffffff] mt-auto">
                             Case study |
-                            <?php echo date('F d, Y', strtotime($mainFeatured['created_at'])); ?>
+                            <?php echo formatDateWithCurrentYear($mainFeatured['created_at'], 'F d'); ?>
                         </p>
                     </div>
                 </a>
@@ -126,7 +126,7 @@ $currentPage = $initialData['currentPage'];
                             </p>
                             <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                                 Case study |
-                                <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
+                                <?php echo formatDateWithCurrentYear($study['created_at'], 'F d'); ?>
                             </p>
                         </div>
                         <a href="<?php echo SITE_URL; ?>/case-studies/<?= $study["slug"] ?? '' ?>" class="group/btn
@@ -211,7 +211,7 @@ $currentPage = $initialData['currentPage'];
                     </p>
                     <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
                         Case Study |
-                        <?php echo date('F d, Y', strtotime($study['created_at'])); ?>
+                        <?php echo formatDateWithCurrentYear($study['created_at'], 'F d'); ?>
                     </p>
                 </div>
                 <a href="<?php echo SITE_URL; ?>/case-studies/<?= $study["slug"] ?? '' ?>" class="group/btn relative

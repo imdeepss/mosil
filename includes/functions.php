@@ -1035,4 +1035,29 @@ function getHomeFeaturedBlogs()
     return db_query_all($sql);
 }
 
+
+/**
+ * Format a date string to always use the current year.
+ * 
+ * @param string $dateString The date string to format (e.g., from database)
+ * @param string $format The format for the day and month (default: 'M j')
+ * @return string The formatted date with the current year
+ */
+function formatDateWithCurrentYear($dateString, $format = 'M j')
+{
+    if (empty($dateString)) {
+        return '';
+    }
+
+    $timestamp = strtotime($dateString);
+    if (!$timestamp) {
+        return $dateString; // Return original if parsing fails
+    }
+
+    // Default format 'M j' results in "Jan 1"
+    $dayMonth = date($format, $timestamp);
+    $currentYear = date('Y') - 1;
+
+    return $dayMonth . ', ' . $currentYear;
+}
 ?>
