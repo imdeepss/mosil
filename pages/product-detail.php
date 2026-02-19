@@ -11,7 +11,7 @@ $productSlug = isset($_GET['product']) ? $_GET['product'] : '';
 
 $product = getProductBySlug($productSlug);
 $blogs = getBlogs(10);
-$relatedProducts = getRelatedProducts($product['sub_cat'] ?? '', $product['id'] ?? 0);
+$relatedProducts = getRelatedProducts($product['sub_cat'] ?? '', $product['id'] ?? 0, $product['main_cat'] ?? '');
 
 $packingImageMap = [
     "Spray500ML" => SITE_URL . "/assets/icons/svg/spray.svg",

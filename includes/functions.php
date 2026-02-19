@@ -444,34 +444,69 @@ function getProductsBySubCategoryID($id, $slug)
 }
 
 
-function getRelatedProducts($subCatString, $currentProductId)
+function getRelatedProducts($subCatString, $currentProductId, $mainCatString = '')
 {
-    // Clean and validate IDs: Remove empty strings and ensure numeric values
-    $ids = array_filter(explode(',', $subCatString), function ($val) {
-        return is_numeric(trim($val));
-    });
+    // Helper to extract numeric IDs
+    $parseIds = function ($str) {
+        return array_filter(explode(',', $str), function ($val) {
+            return is_numeric(trim($val));
+        });
+    };
 
-    if (empty($ids)) {
-        return [];
+    $subCatIds = $parseIds($subCatString);
+    $products = [];
+
+    // 1. Try fetching by Sub Category (Most Relevant)
+    if (!empty($subCatIds)) {
+        $conditions = [];
+        $params = [];
+        foreach ($subCatIds as $id) {
+            $conditions[] = "FIND_IN_SET(?, p.sub_cat)";
+            $params[] = $id;
+        }
+        $whereClause = implode(' OR ', $conditions);
+
+        // Exclude current product
+        $params[] = $currentProductId;
+
+        $sql = "SELECT p.id, p.name, p.slug, p.image, p.sub_title, p.short_description 
+                FROM products_v2 p 
+                WHERE ($whereClause) 
+                  AND p.id != ? 
+                  AND p.status = 'Active' 
+                ORDER BY RAND() 
+                LIMIT 10";
+
+        $products = db_query_all($sql, $params);
     }
 
-    $conditions = [];
-    foreach ($ids as $id) {
-        $conditions[] = "FIND_IN_SET(?, p.sub_cat)";
+    // 2. Fallback: If no sub-category matches (or no sub-cats), try Main Category
+    if (empty($products) && !empty($mainCatString)) {
+        $mainCatIds = $parseIds($mainCatString);
+        if (!empty($mainCatIds)) {
+            $conditions = [];
+            $params = [];
+            foreach ($mainCatIds as $id) {
+                $conditions[] = "FIND_IN_SET(?, p.main_cat)";
+                $params[] = $id;
+            }
+            $whereClause = implode(' OR ', $conditions);
+
+            $params[] = $currentProductId;
+
+            $sql = "SELECT p.id, p.name, p.slug, p.image, p.sub_title, p.short_description 
+                    FROM products_v2 p 
+                    WHERE ($whereClause) 
+                      AND p.id != ? 
+                      AND p.status = 'Active' 
+                    ORDER BY RAND() 
+                    LIMIT 10";
+
+            $products = db_query_all($sql, $params);
+        }
     }
-    $whereClause = implode(' OR ', $conditions);
 
-    $sql = "SELECT p.id, p.name, p.slug, p.image, p.sub_title, p.short_description 
-            FROM products_v2 p 
-            WHERE ($whereClause) 
-              AND p.id != ? 
-              AND p.status = 'Active' 
-            ORDER BY p.id DESC 
-            LIMIT 10";
-
-    $params = array_merge($ids, [$currentProductId]);
-
-    return db_query_all($sql, $params);
+    return $products;
 }
 
 

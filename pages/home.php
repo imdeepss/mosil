@@ -393,10 +393,9 @@ $blogs = getHomeFeaturedBlogs();
                             Warehouse
                         </h3>
                         <p class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#575757]">
-                            With in-house NABL accredited tribology labs, pilot scale testing facilities and an expert
-                            team of chemists and tribologists, we translate
-                            formulation science into industrial reliability consistently, batch after batch.
-
+                            MOSIL warehouse ensures seamless inventory management with precision tracking and real-time
+                            optimization.Efficiently stocked and strategically organized, we deliver lubricants and
+                            greases right when you need them with reliability.
                         </p>
                     </div>
                 </div>
