@@ -14,14 +14,14 @@ $blogs = getBlogs(10);
 $relatedProducts = getRelatedProducts($product['sub_cat'] ?? '', $product['id'] ?? 0);
 
 $packingImageMap = [
-    "Spray500ML" => SITE_URL . "/assets/icons/svg/packet.svg",
-    "Spray700ML" => SITE_URL . "/assets/icons/svg/packet.svg",
+    "Spray500ML" => SITE_URL . "/assets/icons/svg/spray.svg",
+    "Spray700ML" => SITE_URL . "/assets/icons/svg/spray.svg",
     "1kg" => SITE_URL . "/assets/icons/svg/container.svg",
     "5kg" => SITE_URL . "/assets/icons/svg/container.svg",
     "5ltr" => SITE_URL . "/assets/icons/svg/container.svg",
     "20kg" => SITE_URL . "/assets/icons/svg/container.svg",
     "20ltr" => SITE_URL . "/assets/icons/svg/container.svg",
-    "180kg" => SITE_URL . "/assets/icons/svg/packet.svg",
+    "180kg" => SITE_URL . "/assets/icons/svg/barrel.svg",
     "180ltr" => SITE_URL . "/assets/icons/svg/barrel.svg",
     "210kg" => SITE_URL . "/assets/icons/svg/barrel.svg",
     "210ltr" => SITE_URL . "/assets/icons/svg/barrel.svg",
