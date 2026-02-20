@@ -527,4 +527,159 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
   });
+
+  // Global Contact Modal Logic
+  const globalModal = document.getElementById("globalContactModal");
+  const openGlobalBtns = document.querySelectorAll(
+    ".open-global-contact-modal",
+  );
+  const closeGlobalBtn = document.getElementById("closeGlobalContactModal");
+  const globalBackdrop = document.getElementById("globalContactBackdrop");
+  const stickyBtn = document.querySelector(".mosil-contact-sticky");
+  const globalForm = document.getElementById("globalContactForm");
+
+  function toggleGlobalModal(show) {
+    if (!globalModal) return;
+
+    if (show) {
+      globalModal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      if (stickyBtn) stickyBtn.style.display = "none";
+    } else {
+      globalModal.classList.add("hidden");
+      document.body.style.overflow = "";
+      if (stickyBtn) stickyBtn.style.display = ""; // Restore default display
+    }
+  }
+
+  if (openGlobalBtns) {
+    openGlobalBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleGlobalModal(true);
+      });
+    });
+  }
+
+  if (closeGlobalBtn) {
+    closeGlobalBtn.addEventListener("click", () => toggleGlobalModal(false));
+  }
+
+  if (globalBackdrop) {
+    globalBackdrop.addEventListener("click", () => toggleGlobalModal(false));
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      globalModal &&
+      !globalModal.classList.contains("hidden")
+    ) {
+      toggleGlobalModal(false);
+    }
+  });
+
+  // Global Contact Form Submission
+  if (globalForm) {
+    // Validation Setup (Reusable from contact page logic)
+    const validators = {
+      email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      tel: (value) => /^[0-9+\-\s]{10,}$/.test(value),
+      default: (value) => value.trim().length > 0,
+    };
+
+    const validateField = (input) => {
+      let type = "default";
+      if (input.name === "email") type = "email";
+      if (input.name === "contact") type = "tel";
+
+      const isValid = validators[type](input.value);
+      const wrapper = input.parentElement;
+      const errorMsg = wrapper.querySelector(".error-text");
+
+      if (!isValid) {
+        input.classList.add("input-error");
+        if (errorMsg) errorMsg.classList.remove("hidden");
+      } else {
+        input.classList.remove("input-error");
+        if (errorMsg) errorMsg.classList.add("hidden");
+      }
+      return isValid;
+    };
+
+    // Live validation
+    const inputs = globalForm.querySelectorAll("input, textarea");
+    inputs.forEach((input) => {
+      input.addEventListener("blur", () => {
+        if (input.value.trim() !== "") validateField(input);
+      });
+      input.addEventListener("input", () => {
+        if (input.classList.contains("input-error")) {
+          input.classList.remove("input-error");
+          const wrapper = input.parentElement;
+          const errorMsg = wrapper.querySelector(".error-text");
+          if (errorMsg) errorMsg.classList.add("hidden");
+        }
+      });
+    });
+
+    globalForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let isFormValid = true;
+      inputs.forEach((input) => {
+        if (!validateField(input)) isFormValid = false;
+      });
+
+      if (!isFormValid) return;
+
+      const btn = document.getElementById("globalSubmitBtn");
+      const responseDiv = document.getElementById("globalContactResponse");
+      const formData = new FormData(globalForm);
+
+      // Disable UI
+      const originalText = btn.innerText;
+      btn.disabled = true;
+      btn.innerText = "Sending...";
+      responseDiv.classList.add("hidden");
+
+      fetch(`${SITE_URL}/ajax/contact.php`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            responseDiv.innerText =
+              data.message === "success"
+                ? "Thank you! Your message has been sent successfully."
+                : data.message;
+            responseDiv.className =
+              "mb-4 p-2 rounded text-center text-sm font-medium bg-green-100 text-green-700";
+            responseDiv.classList.remove("hidden");
+            globalForm.reset();
+            inputs.forEach((i) => i.classList.remove("input-error"));
+            // Auto close after success
+            setTimeout(() => {
+              toggleGlobalModal(false);
+              responseDiv.classList.add("hidden");
+            }, 3000);
+          } else {
+            throw new Error(data.message || "Something went wrong.");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          responseDiv.innerText =
+            err.message || "An unexpected error occurred. Please try again.";
+          responseDiv.className =
+            "mb-4 p-2 rounded text-center text-sm font-medium bg-red-100 text-red-700";
+          responseDiv.classList.remove("hidden");
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.innerText = originalText;
+        });
+    });
+  }
 });

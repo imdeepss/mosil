@@ -89,7 +89,83 @@ if (file_exists($pageJs)) {
 
 
 <!-- Sticky Contact Button -->
-<a href="<?php echo SITE_URL; ?>/contact" id="mosil-contact-us-button" class="mosil-contact-sticky">Contact Us</a>
+<?php if (isset($page) && $page !== 'contact'): ?>
+    <a href="#" id="mosil-contact-us-button" class="mosil-contact-sticky open-global-contact-modal">Contact Us</a>
+<?php endif; ?>
+
+<!-- Global Contact Modal -->
+<div id="globalContactModal" class="fixed inset-0 z-[9999] hidden overflow-y-auto" aria-labelledby="modal-title"
+    role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-black/50 transition-opacity" aria-hidden="true" id="globalContactBackdrop">
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div
+            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full w-full relative">
+            <div class="absolute top-4 right-4 cursor-pointer" id="closeGlobalContactModal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 hover:text-gray-700" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </div>
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="mb-6">
+                    <span
+                        class="text-[#666666] font-base font-normal text-[12px] tracking-[0.015em] uppercase block mb-1">
+                        Contact Us
+                    </span>
+                    <h3 class="text-[#1A3B1B] font-base font-bold text-[24px] leading-[135%] capitalize">
+                        Get in touch
+                    </h3>
+                </div>
+
+                <form id="globalContactForm" novalidate>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="flex flex-col">
+                            <input type="text" name="name" required placeholder="Name"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Name is required</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <input type="email" name="email" required placeholder="Email"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Valid email is required</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <input type="tel" name="contact" required placeholder="+91 Phone"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Valid phone number is
+                                required</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <input type="text" name="company_name" required placeholder="Company Name"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Company name is required</span>
+                        </div>
+                        <div class="md:col-span-2 flex flex-col">
+                            <input type="text" name="subject" required placeholder="Subject"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Subject is required</span>
+                        </div>
+                        <div class="md:col-span-2 flex flex-col">
+                            <textarea name="message" required placeholder="Write your message here" rows="4"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors"></textarea>
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Message is required</span>
+                        </div>
+                    </div>
+                    <div id="globalContactResponse" class="hidden mb-4 p-2 rounded text-center text-sm font-medium">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" id="globalSubmitBtn"
+                            class="bg-main-green text-white font-bold text-[18px] w-full py-3 rounded-full cursor-pointer hover:bg-[#142e15] transition-colors disabled:opacity-70 disabled:cursor-not-allowed">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- WhatsApp Floating Icon -->
 <a href="https://wa.me/917715805243" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
