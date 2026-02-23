@@ -490,39 +490,13 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
 <?php include 'includes/footer.php'; ?>
 
-<!-- Include TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/r5jlbs90sue98amwj0ur2zlo39grg8cbd8g0dypglitvqd3e/tinymce/7/tinymce.min.js"
-    referrerpolicy="origin"></script>
-
-<!-- Include jQuery Validation -->
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-
 <script>
     $(document).ready(function () {
         let slugCheckTimeout;
         const postId = <?php echo $postId; ?>;
 
         // Initialize TinyMCE
-        tinymce.init({
-            selector: '#content',
-            height: 400,
-            plugins: [
-                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'help', 'wordcount'
-            ],
-            toolbar: 'undo redo | blocks | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-            content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px }',
-            setup: function (editor) {
-                editor.on('change', function () {
-                    editor.save();
-                    $('#content').trigger('blur'); // Trigger validation
-                });
-            }
-        });
+        initTinyMCE('#content');
 
         // Auto-generate slug from title
         function generateSlug(text) {
