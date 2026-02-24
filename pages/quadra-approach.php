@@ -20,7 +20,7 @@ $pageTitle = 'Quadra Approach';
             <div class="border-b-2 border-primary pb-1">
                 <h2
                     class="text-main-green font-normal text-[24px] leading-[135%] md:text-[40px] md:leading-[120%] tracking-normal capitalize">
-                    Quadra thinking risk off, performance on!
+                    Quadra thinking <br class="md:hidden block"> risk off, performance on!
                 </h2>
             </div>
         </div>

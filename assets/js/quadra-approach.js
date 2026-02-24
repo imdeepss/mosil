@@ -76,6 +76,13 @@
         if (isTarget) {
           tab.classList.add("border-b-2", "border-main-green", "font-bold");
           tab.classList.remove("font-normal");
+
+          // Scroll tab into view on mobile
+          tab.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
         } else {
           tab.classList.remove("border-b-2", "border-main-green", "font-bold");
           tab.classList.add("font-normal");

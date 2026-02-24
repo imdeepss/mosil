@@ -245,7 +245,7 @@ function parseTableString($str)
                                         class="w-6 h-6 object-contain">
                                     <span
                                         class="text-[#575757] font-normal text-[14px] md:text-[16px] leading-[135%] tracking-[0.01em]">
-                                        <?= $packing ?>
+                                        <?php echo str_ireplace(['spray', 'ML'], ['', 'ml'], $packing); ?>
                                     </span>
                                 </div>
                             <?php endforeach; ?>

@@ -269,25 +269,27 @@ $blogs = getHomeFeaturedBlogs();
                     <?php
                     foreach ($caseStudies as $study) { ?>
                         <div class="swiper-slide w-full relative md:min-h-[506px] min-h-[360px] group overflow-hidden">
-                            <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
-                                alt="Case Study Image"
-                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
-                                loading="lazy">
-                            <!-- <div
+                            <a href="<?php echo SITE_URL; ?>/case-studies/<?php echo $study['slug']; ?>" class="block">
+                                <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
+                                    alt="Case Study Image"
+                                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
+                                    loading="lazy">
+                                <!-- <div
                                 class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full h-full">
                             </div> -->
-                            <div class="absolute inset-0 flex flex-col justify-end text-white pb-22">
-                                <div class="md:p-8 p-4">
-                                    <h3
-                                        class="md:text-[20px] text-[16px] font-normal leading-[140%] tracking-[0.01em] md:mb-3.5 mb-2">
-                                        <?php echo $study['title']; ?>
-                                    </h3>
-                                    <p
-                                        class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] text-white/90 line-clamp-4 max-w-xl">
-                                        <?php echo cleanText($study['solution']); ?>
-                                    </p>
+                                <div class="absolute inset-0 flex flex-col justify-end text-white pb-22">
+                                    <div class="md:p-8 p-4">
+                                        <h3
+                                            class="md:text-[20px] text-[16px] font-normal leading-[140%] tracking-[0.01em] md:mb-3.5 mb-2">
+                                            <?php echo $study['title']; ?>
+                                        </h3>
+                                        <p
+                                            class="md:text-[14px] text-[12px] font-normal leading-[150%] tracking-[0.015em] text-white/90 line-clamp-4 max-w-xl">
+                                            <?php echo cleanText($study['solution']); ?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     <?php } ?>
                 </div>
