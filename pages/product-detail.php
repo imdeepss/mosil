@@ -10,7 +10,9 @@ $categorySlug = isset($_GET['category']) ? $_GET['category'] : '';
 $productSlug = isset($_GET['product']) ? $_GET['product'] : '';
 
 $product = getProductBySlug($productSlug);
-$blogs = getBlogs(10);
+// $blogs = getBlogs(10);
+$caseStudiesData = getCaseStudiesWithPagination(1, 10, 'All');
+$caseStudies = $caseStudiesData['caseStudies'];
 $relatedProducts = getRelatedProducts($product['sub_cat'] ?? '', $product['id'] ?? 0, $product['main_cat'] ?? '');
 
 $packingImageMap = [
@@ -649,41 +651,41 @@ function parseTableString($str)
                 <!-- Swiper Container -->
                 <div class="caseStudySwiper swiper md:w-[calc(50vw+50%)] w-full mt-8 !overflow-visible">
                     <div class="swiper-wrapper ">
-                        <?php foreach ($blogs as $blog): ?>
+                        <?php foreach ($caseStudies as $study): ?>
                             <div class="swiper-slide md:!w-[400px] !grid !grid-rows-[auto_1fr_auto] ">
                                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
-                                    <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
+                                    <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
                                         alt="Hero Image"
                                         class="block h-full w-full object-center rounded-[4px] group-hover/img:scale-110 transition-transform duration-500"
                                         loading="lazy">
                                     <div
-                                        class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
-                                        <h2><?php echo $blog['category_name']; ?></h2>
+                                        class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                                        <h2>Case Study</h2>
                                     </div>
                                 </div>
                                 <div class="my-4 flex flex-col flex-1">
                                     <h2
                                         class="font-bold text-lg leading-[140%] tracking-[0.015em] capitalize text-[#3B3B3B] mb-3 line-clamp-2">
-                                        <?php echo $blog['title']; ?>
+                                        <?php echo $study['title']; ?>
                                     </h2>
                                     <p
                                         class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
                                         <?php
-                                        $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
-                                        echo substr($content, 0, 500);
+                                        $content = trim(preg_replace('/\s+/', ' ', strip_tags($study['introduction'])));
+                                        echo mb_strlen($content) > 150 ? mb_substr($content, 0, 150) . '...' : $content;
                                         ?>
                                     </p>
                                     <p
                                         class="font-normal text-[14px] leading-[150%] tracking-[0.015em] text-[#A3A3A3] mt-auto">
-                                        <?php echo $blog['category_name']; ?> |
-                                        <?php echo formatDateWithCurrentYear($blog['created_at'], 'F d'); ?>
+                                        Case Study |
+                                        <?php echo formatDateWithCurrentYear($study['created_at'], 'F d'); ?>
                                     </p>
                                 </div>
-                                <a href="<?php echo SITE_URL; ?>/blog/<?= $blog["slug"] ?? '' ?>"
+                                <a href="<?php echo SITE_URL; ?>/case-studies/<?= $study["slug"] ?? '' ?>"
                                     class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
-                                    Read <?php echo $blog['category_name']; ?>
+                                    Read Case Study
                                     <span
-                                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[#F9DC6B] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                                 </a>
                             </div>
                         <?php endforeach; ?>
