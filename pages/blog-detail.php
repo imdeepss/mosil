@@ -44,7 +44,7 @@ $pageTitle = htmlspecialchars($blog['title']);
                     <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg></span>
-            <span class="text-[#575757] font-bold line-clamp-1">
+            <span class="text-[#575757] font-bold">
                 <?php echo $blog['title']; ?>
             </span>
         </nav>
