@@ -92,7 +92,7 @@ if (db_execute($sql, $params)) {
     </div>
 ";
 
-    $adminMail = sendMail('nowtestmehere@gmail.com', 'Support Team', $adminSubject, $adminBody);
+    $adminMail = sendMail('enquiry@mosil.com', 'Support Team', $adminSubject, $adminBody);
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'success']);

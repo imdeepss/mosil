@@ -78,7 +78,7 @@ if (db_execute($sql, $params)) {
             <tr><td><strong>Message:</strong></td><td>" . nl2br($dbMessage) . "</td></tr>
         </table>";
 
-    $adminMail = sendMail('imdeepsv@gmail.com', 'Mosil Support', $adminSubject, $adminBody);
+    $adminMail = sendMail('enquiry@mosil.com', 'Mosil Support', $adminSubject, $adminBody);
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'Thank you! Your enquiry has been submitted and a confirmation email has been sent.']);

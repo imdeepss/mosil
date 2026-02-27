@@ -151,7 +151,7 @@ try {
     </div>
 ";
 
-        $adminMail = sendMail('nowtestmehere@gmail.com', 'Events Team', $adminSubject, $adminBody);
+        $adminMail = sendMail('enquiry@mosil.com', 'Events Team', $adminSubject, $adminBody);
 
         if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
             echo json_encode(['success' => true, 'message' => 'success']);

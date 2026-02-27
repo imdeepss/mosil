@@ -690,14 +690,14 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         // Credentials
-        $mail->Username = 'nowtestmehere@gmail.com';
-        $mail->Password = 'ptan mqmv utcu roya';
+        $mail->Username = 'website.mosil@gmail.com';
+        $mail->Password = 'efnn wrix irnt czpt';
         $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         $mail->CharSet = 'UTF-8';
 
         // Sender
-        $mail->setFrom('nowtestmehere@gmail.com', 'Mosil');
+        $mail->setFrom('website.mosil@gmail.com', 'Mosil');
 
         // Recipient
         $mail->addAddress($toEmail, $toName);
