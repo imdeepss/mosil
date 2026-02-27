@@ -10,7 +10,7 @@ require_once '../includes/config.php';
 require_once '../includes/functions.php';
 
 $page_title = "Career Enquiries";
-$active_menu = "career_enquiry";
+$active_menu = "enquiries_career";
 
 // Fetch enquiries
 $enquiries = [];
@@ -58,10 +58,11 @@ if ($result && $result->num_rows > 0) {
                                     <td><?= htmlspecialchars($enquiry['mobile']) ?></td>
                                     <td><?= htmlspecialchars($enquiry['city']) ?></td>
                                     <td><?= htmlspecialchars($enquiry['pincode']) ?></td>
-                                    
+
                                     <td>
                                         <?php if (!empty($enquiry['resume'])): ?>
-                                            <a href="<?= HOME_URL;?><?= htmlspecialchars($enquiry['resume']) ?>" target="_blank" class="badge bg-success">View</a>
+                                            <a href="<?= HOME_URL; ?><?= htmlspecialchars($enquiry['resume']) ?>" target="_blank"
+                                                class="badge bg-success">View</a>
                                         <?php else: ?>
                                             N/A
                                         <?php endif; ?>
