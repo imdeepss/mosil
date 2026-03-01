@@ -18,7 +18,7 @@ $contact = htmlspecialchars(trim($_POST['contact'] ?? ''));
 $companyName = htmlspecialchars(trim($_POST['company_name'] ?? ''));
 $subject = htmlspecialchars(trim($_POST['subject'] ?? ''));
 $message = htmlspecialchars(trim($_POST['message'] ?? ''));
-$pincode = htmlspecialchars(trim($_POST['pincode'] ?? ''));
+$pincode = '';
 
 if (empty($name) || !$email || empty($contact) || empty($message)) {
     echo json_encode(['success' => false, 'message' => 'Please provide Name, Valid Email, Contact Number, and Message.']);
@@ -76,10 +76,6 @@ if (db_execute($sql, $params)) {
                 <td style='border: 1px solid #eeeeee; font-weight: bold;'>Subject</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($subject) . "</td>
             </tr>
-            <tr>
-                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Pincode</td>
-                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($pincode) . "</td>
-            </tr>
             <tr style='background-color: #f9f9f9;'>
                 <td style='border: 1px solid #eeeeee; font-weight: bold; vertical-align: top;'>Message</td>
                 <td style='border: 1px solid #eeeeee; line-height: 1.5;'>" . nl2br(htmlspecialchars($message)) . "</td>
@@ -96,12 +92,14 @@ if (db_execute($sql, $params)) {
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'success']);
-    } else {
+    }
+    else {
         $errorMsg = ($userMail['status'] === 'error') ? $userMail['message'] : $adminMail['message'];
         echo json_encode(['success' => true, 'message' => 'Enquiry submitted, but email delivery may be delayed.']);
     }
 
-} else {
+}
+else {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Database error. Please try again later.']);
 }
