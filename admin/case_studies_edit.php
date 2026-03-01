@@ -147,7 +147,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
         }
 
 
-        $sql = "UPDATE case_studies SET title = ?, introduction = ?, image = ?, solution = ?, 
+        $slug = generateSlug($title);
+
+        $sql = "UPDATE case_studies SET title = ?, slug = ?, introduction = ?, image = ?, solution = ?, 
                 result = ?, case_study_file = ?, industry_segment = ?, equipment = ?, application = ?, 
                 challenge = ?, expectation = ?, recommendation = ?, benefits = ?, status = ?, 
                 updated_at = NOW() WHERE id = ?";
@@ -158,8 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
         }
 
         $stmt->bind_param(
-            "ssssssssssssssi",
+            "sssssssssssssssi",
             $title,
+            $slug,
             $introduction,
             $case_study_img,
             $solution,

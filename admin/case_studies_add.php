@@ -102,15 +102,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $case_study_file = $filename;
         }
 
-        $sql = "INSERT INTO case_studies (title,  introduction, image, solution, result, case_study_file, 
+        $slug = generateSlug($title);
+
+        $sql = "INSERT INTO case_studies (title, slug, introduction, image, solution, result, case_study_file, 
                 industry_segment, equipment, application, challenge, expectation, recommendation, benefits, 
                 status, created_at, updated_at) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(
-            "ssssssssssssss",
+            "sssssssssssssss",
             $title,
+            $slug,
             $introduction,
             $case_study_img,
             $solution,
