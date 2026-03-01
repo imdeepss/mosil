@@ -10,16 +10,13 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
 require_once '../includes/config.php';
 require_once '../includes/functions.php';
-;
-
-
 
 $success_message = '';
 $error_message = '';
 $case_study = null;
 
 
-$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 if ($id <= 0) {
     header('Location: case_studies_list.php');
@@ -44,7 +41,8 @@ try {
     }
 
     $stmt->close();
-} catch (Exception $e) {
+}
+catch (Exception $e) {
     $error_message = $e->getMessage();
 }
 
@@ -196,7 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
 
 
         logActivity('case_study_edit', "Updated case study: $title");
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
         $error_message = $e->getMessage();
     }
 }
@@ -227,7 +226,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                     <i class="fas fa-exclamation-circle me-2"></i><?php echo $error_message; ?>
                 </div>
                 <a href="case_studies_list.php" class="btn btn-primary">Back to List</a>
-            <?php elseif ($case_study): ?>
+            <?php
+elseif ($case_study): ?>
 
                 <!-- Alert Container -->
                 <div id="alertContainer"></div>
@@ -237,14 +237,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                         <i class="fas fa-check-circle me-2"></i><?php echo $success_message; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
-                <?php endif; ?>
+                <?php
+    endif; ?>
 
                 <?php if ($error_message): ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <i class="fas fa-exclamation-circle me-2"></i><?php echo $error_message; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
-                <?php endif; ?>
+                <?php
+    endif; ?>
 
                 <form id="caseStudyForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     <div class="row">
@@ -402,9 +404,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                                     <i class="fas fa-check-circle me-1"></i>Current image present
                                                 </div>
                                             </div>
-                                        <?php else: ?>
+                                        <?php
+    else: ?>
                                             <div class="form-text text-muted mb-2">No image currently uploaded</div>
-                                        <?php endif; ?>
+                                        <?php
+    endif; ?>
 
                                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                         <div class="form-text">Leave empty to keep current image. Max size: 5MB. Formats:
@@ -429,9 +433,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                                                     <i class="fas fa-check-circle me-1"></i>Current file present
                                                 </div>
                                             </div>
-                                        <?php else: ?>
+                                        <?php
+    else: ?>
                                             <div class="form-text text-muted mb-2">No file currently uploaded</div>
-                                        <?php endif; ?>
+                                        <?php
+    endif; ?>
 
                                         <input type="file" class="form-control" id="case_study_file" name="case_study_file"
                                             accept=".pdf,.doc,.docx">
@@ -444,7 +450,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $case_study) {
                     </div>
                 </form>
 
-            <?php endif; ?>
+            <?php
+endif; ?>
         </main>
     </div>
 </div>

@@ -49,13 +49,6 @@ if (isSessionTimedOut()) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo $active_menu === 'case_studies' ? 'active' : ''; ?>"
-                                href="case_studies">
-                                <i class="fas fa-briefcase me-2"></i>
-                                Case Studies
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link <?php echo $active_menu === 'cms_history' ? 'active' : ''; ?>"
                                 href="cms_history">
                                 <i class="fas fa-history me-2"></i>
@@ -79,6 +72,15 @@ if (isSessionTimedOut()) {
                     </ul>
                 </div>
             </li>
+
+            <!-- Case Studies Section -->
+            <li class="nav-item">
+                <a class="nav-link <?php echo $active_menu === 'case_studies' ? 'active' : ''; ?>" href="case_studies">
+                    <i class="fas fa-briefcase me-2"></i>
+                    Case Studies
+                </a>
+            </li>
+
             <!-- Blog Section -->
             <li class="nav-item">
                 <a class="nav-link <?php echo $active_menu === 'blog' ? 'active' : ''; ?>" data-bs-toggle="collapse"

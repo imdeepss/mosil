@@ -1,7 +1,7 @@
 <?php
 $industries = getSpecificIndustries();
 $products = getCategoryByParent("3", "4");
-$caseStudies = getCaseStudy("3");
+$caseStudies = getHomeFixedCaseStudies();
 $blogs = getHomeFeaturedBlogs();
 
 ?>

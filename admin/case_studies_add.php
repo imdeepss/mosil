@@ -32,19 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
 
         $title = updateSanitizeInput($_POST['title']);
-        $introduction = updateSanitizeInput($_POST['introduction']);
-        $solution = updateSanitizeInput($_POST['solution']);
-        $result = updateSanitizeInput($_POST['result']);
+        $introduction = updateSanitizeInput($_POST['introduction'], true);
+        $solution = updateSanitizeInput($_POST['solution'], true);
+        $result = updateSanitizeInput($_POST['result'], true);
         $industry_segment = updateSanitizeInput($_POST['industry_segment']);
         $equipment = updateSanitizeInput($_POST['equipment']);
         $application = updateSanitizeInput($_POST['application']);
-        $challenge = updateSanitizeInput($_POST['challenge']);
-        $expectation = updateSanitizeInput($_POST['expectation']);
-        $recommendation = updateSanitizeInput($_POST['recommendation']);
-        $benefits = updateSanitizeInput($_POST['benefits']);
+        $challenge = updateSanitizeInput($_POST['challenge'], true);
+        $expectation = updateSanitizeInput($_POST['expectation'], true);
+        $recommendation = updateSanitizeInput($_POST['recommendation'], true);
+        $benefits = updateSanitizeInput($_POST['benefits'], true);
         $status = updateSanitizeInput($_POST['status']);
-        $image_path = '';
-        $case_study_file_path = '';
+
+        $case_study_img = '';
+        $case_study_file = '';
 
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -59,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception('Image file size must be less than 5MB.');
             }
 
-            $upload_dir = '../assets/uploads/case_studies/images';
+            $upload_dir = '../assets/uploads/case_studies/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
 
             $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-            $filename = uniqid() . '_' . time() . '.' . $file_extension;
+            $filename = "case_studies_img_" . uniqid() . '_' . time() . '.' . $file_extension;
             $image_path = $upload_dir . $filename;
 
             if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
@@ -86,13 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_FILES['case_study_file']['size'] > 10 * 1024 * 1024) {
                 throw new Exception('File size must be less than 10MB.');
             }
-            $upload_dir = '../assets/uploads/case_studies/files';
+            $upload_dir = '../assets/uploads/case_studies/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
 
             $file_extension = pathinfo($_FILES['case_study_file']['name'], PATHINFO_EXTENSION);
-            $filename = uniqid() . '_' . time() . '.' . $file_extension;
+            $filename = "case_studies_file_" . uniqid() . '_' . time() . '.' . $file_extension;
             $case_study_file_path = $upload_dir . $filename;
 
             if (!move_uploaded_file($_FILES['case_study_file']['tmp_name'], $case_study_file_path)) {
@@ -128,15 +129,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->execute()) {
             $success_message = 'Case study added successfully!';
             logActivity('case_study_add', "Added case study: $title");
-        } else {
+        }
+        else {
             throw new Exception("Database error: " . $stmt->error);
         }
-
-        $success_message = 'Case study added successfully!';
-
-
-        logActivity('case_study_add', "Added case study: $title");
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
         $error_message = $e->getMessage();
     }
 }
@@ -168,14 +166,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <i class="fas fa-check-circle me-2"></i><?php echo $success_message; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
-            <?php endif; ?>
+            <?php
+endif; ?>
 
             <?php if ($error_message): ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fas fa-exclamation-circle me-2"></i><?php echo $error_message; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
-            <?php endif; ?>
+            <?php
+endif; ?>
 
             <form id="caseStudyForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="row">
