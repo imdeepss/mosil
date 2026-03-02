@@ -69,8 +69,15 @@ $pageTitle = 'Contact Us';
                         <span class="error-text hidden text-xs text-red-500 mt-1">Company name is required</span>
                     </div>
 
+                    <!-- Pin Code -->
+                    <div class="flex flex-col">
+                        <input type="text" name="pincode" required placeholder="Pin Code"
+                            class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                        <span class="error-text hidden text-xs text-red-500 mt-1">Valid Pin Code is required</span>
+                    </div>
+
                     <!-- Subject -->
-                    <div class="md:col-span-2 flex flex-col">
+                    <div class="flex flex-col">
                         <input type="text" name="subject" required placeholder="Subject"
                             value="<?= htmlspecialchars($product['name'] ?? '') ?>"
                             class="flex w-full px-4 py-3 items-center rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
@@ -102,11 +109,16 @@ $pageTitle = 'Contact Us';
                     const validators = {
                         email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
                         tel: (value) => /^[0-9+\-\s]{10,}$/.test(value),
+                        pincode: (value) => /^[0-9]{4,6}$/.test(value.trim()),
                         default: (value) => value.trim().length > 0
                     };
 
                     const validateField = (input) => {
-                        const type = input.name === 'email' ? 'email' : (input.name === 'contact' ? 'tel' : 'default');
+                        let type = 'default';
+                        if (input.name === 'email') type = 'email';
+                        else if (input.name === 'contact') type = 'tel';
+                        else if (input.name === 'pincode') type = 'pincode';
+                        
                         const isValid = validators[type](input.value);
                         const wrapper = input.parentElement;
                         const errorMsg = wrapper.querySelector('.error-text');

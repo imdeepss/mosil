@@ -18,10 +18,10 @@ $contact = htmlspecialchars(trim($_POST['contact'] ?? ''));
 $companyName = htmlspecialchars(trim($_POST['company_name'] ?? ''));
 $subject = htmlspecialchars(trim($_POST['subject'] ?? ''));
 $message = htmlspecialchars(trim($_POST['message'] ?? ''));
-$pincode = '';
+$pincode = htmlspecialchars(trim($_POST['pincode'] ?? ''));
 
-if (empty($name) || !$email || empty($contact) || empty($message)) {
-    echo json_encode(['success' => false, 'message' => 'Please provide Name, Valid Email, Contact Number, and Message.']);
+if (empty($name) || !$email || empty($contact) || empty($pincode) || empty($message)) {
+    echo json_encode(['success' => false, 'message' => 'Please provide Name, Valid Email, Contact Number, Pin Code, and Message.']);
     exit;
 }
 
@@ -73,6 +73,10 @@ if (db_execute($sql, $params)) {
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($companyName) . "</td>
             </tr>
             <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Pin Code</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($pincode) . "</td>
+            </tr>
+            <tr>
                 <td style='border: 1px solid #eeeeee; font-weight: bold;'>Subject</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($subject) . "</td>
             </tr>
