@@ -736,7 +736,7 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
         $mail->SMTPAuth = true;
         // Credentials
         $mail->Username = 'nowtestmehere@gmail.com';
-        $mail->Password = 'snqj dolf knal cchm';
+        $mail->Password = 'hpnr gvgc kdjy gdzz';
         $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         $mail->CharSet = 'UTF-8';

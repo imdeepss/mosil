@@ -24,6 +24,7 @@ $subject = htmlspecialchars(trim($_POST['subject'] ?? 'Product Enquiry'));
 $city = htmlspecialchars(trim($_POST['city'] ?? ''));
 $country = htmlspecialchars(trim($_POST['country'] ?? ''));
 $industry = htmlspecialchars(trim($_POST['industry'] ?? ''));
+$tdsFile = htmlspecialchars(trim($_POST['tds_file'] ?? ''));
 
 if (empty($fullName) || !$email || empty($contact)) {
     echo json_encode(['success' => false, 'message' => 'Please provide a valid Name, Email, and Contact Number.']);
@@ -62,7 +63,15 @@ if (db_execute($sql, $params)) {
             <p style='font-size: 12px; color: #777;'>Best Regards,<br><strong>Mosil Lubricants</strong></p>
         </div>";
 
-    $userMail = sendMail($email, $fullName, $userSubject, $userBody);
+    $attachments = [];
+    if (!empty($tdsFile)) {
+        $tdsFullPath = __DIR__ . '/../assets/uploads/tds/' . basename($tdsFile);
+        if (file_exists($tdsFullPath)) {
+            $attachments[$tdsFullPath] = basename($tdsFile);
+        }
+    }
+
+    $userMail = sendMail($email, $fullName, $userSubject, $userBody, $attachments);
 
     // --- EMAIL 2: Admin Notification ---
     $adminSubject = "New Website Enquiry - $fullName";

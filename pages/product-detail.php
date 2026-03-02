@@ -296,6 +296,8 @@ function parseTableString($str)
                         <input type="hidden" name="submit_enquiry" value="1">
                         <input type="hidden" name="subject"
                             value="<?= htmlspecialchars($product['name'] ?? 'Product Enquiry') ?>">
+                        <input type="hidden" name="tds_file"
+                            value="<?= htmlspecialchars($product['tds_file'] ?? '') ?>">
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <!-- First Name -->
