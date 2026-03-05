@@ -9,14 +9,14 @@ $blogs = getHomeFeaturedBlogs();
 <section class="relative h-[720px] w-full overflow-hidden">
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center md:block hidden"
         poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" fetchpriority="high">
-        <source src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.mp4" type="video/mp4">
+        <source src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.mp4" type="video/mp4" media="(min-width: 768px)">
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" alt="Hero Image"
             class="h-full w-full object-cover object-center">
     </video>
 
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center block md:hidden"
-        poster="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png" fetchpriority="high">
-        <source src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.mp4" type="video/mp4">
+        poster="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png">
+        <source src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.mp4" type="video/mp4" media="(max-width: 767px)">
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png" alt="Hero Image"
             class="h-full w-full object-cover object-center">
     </video>
@@ -116,7 +116,7 @@ $blogs = getHomeFeaturedBlogs();
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
                                     class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-300 ease-out"
-                                    alt="<?php echo $industry['mcat_name']; ?>">
+                                    alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
                                 <div class="lg:hidden h-[286px] p-4 flex! flex-col gap-4 bg-[#F5F5F5]">
                                     <div class="flex flex-col gap-4">
                                         <div>
