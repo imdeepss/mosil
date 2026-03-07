@@ -203,7 +203,7 @@ function parseTableString($str)
             <div
                 class="bg-[#F5F5F5] border border-[#EBEBEB] flex items-center justify-center h-[315px] md:h-auto md:mb-[64px]">
                 <div
-                    class="w-full max-w-[180px] md:max-w-[214.695px] md:h-[176.288px] aspect-[214.70/176.29] flex items-center justify-center overflow-hidden">
+                    class="w-full max-w-[180px] md:max-w-[214.695px] md:h-full aspect-[214.70/176.29] flex items-center justify-center overflow-hidden">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image'] ?>"
                         alt="<?= htmlspecialchars($product['name']) ?>"
                         class="w-full h-full object-contain mix-blend-multiply">
