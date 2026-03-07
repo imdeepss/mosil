@@ -201,12 +201,12 @@ function parseTableString($str)
 
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-10 pt-6 md:pb-[56px]">
             <div
-                class="bg-[#F5F5F5] border border-[#EBEBEB] flex items-center justify-center h-[315px] md:h-auto md:mb-[64px]">
+                class="bg-[#F5F5F5] border border-[#EBEBEB] relative h-[315px] md:h-auto md:mb-[64px]">
                 <div
-                    class="w-full max-w-[180px] md:max-w-[214.695px] md:h-full aspect-[214.70/176.29] flex items-center justify-center overflow-hidden">
+                    class="absolute inset-0 flex items-center justify-center overflow-hidden p-6 lg:p-10">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image'] ?>"
                         alt="<?= htmlspecialchars($product['name']) ?>"
-                        class="w-full h-full object-contain mix-blend-multiply">
+                        class="w-full h-full max-w-[280px] md:max-w-[450px] object-contain mix-blend-multiply hover:scale-105 transition-transform duration-500">
                 </div>
             </div>
 
