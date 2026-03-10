@@ -36,7 +36,7 @@ $params = [$name, $email, $contact, $companyName, $subject, $pincode, $message, 
 if (db_execute($sql, $params)) {
 
     // --- EMAIL 1: User Confirmation ---
-    $userSubject = "Thank you for contacting Mosil";
+    $userSubject = "Thank you for contacting Mosil Lubricants";
     $userBody = "
         <p>Dear " . htmlspecialchars($name) . ",</p>
         <p>Thank you for your enquiry regarding: <strong>" . htmlspecialchars($subject) . "</strong>.</p>
@@ -49,7 +49,7 @@ if (db_execute($sql, $params)) {
     $userMail = sendMail($email, $name, $userSubject, $userBody);
 
     // --- EMAIL 2: Admin Notification ---
-    $adminSubject = 'New Contact Enquiry Received';
+    $adminSubject = "[Contact] New Enquiry from " . $name . " - " . $subject;
     $adminBody = "
     <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 600px;'>
         <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New Enquiry Received</h2>

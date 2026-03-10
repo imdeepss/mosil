@@ -87,7 +87,7 @@ $params = [$name, $position, $email, $mobile, $city, $pincode, $resume_path, $st
 if (db_execute($sql, $params)) {
 
     // --- EMAIL 1: User Confirmation ---
-    $userSubject = 'Application Received: ' . $position . ' - Mosil';
+    $userSubject = 'Application Received: ' . $position . ' - Mosil Lubricants';
     $userBody = "
         <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Dear $name,</p>
         <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Thank you for applying for the position of <strong>$position</strong>.</p>
@@ -98,7 +98,7 @@ if (db_execute($sql, $params)) {
     $userMail = sendMail($email, $name, $userSubject, $userBody);
 
     // --- EMAIL 2: Admin Notification ---
-    $adminSubject = 'Resume Received';
+    $adminSubject = '[Career] New Application: ' . $position . ' - ' . $name;
     $adminBody = "
         <h2 style='font-family: Arial, sans-serif; font-size: 18px; color: #333;'>New Application Details</h2>
         <table style='border-collapse: collapse; width: 100%; max-width: 600px; font-family: Arial, sans-serif; font-size: 14px;'>

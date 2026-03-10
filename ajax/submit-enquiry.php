@@ -53,7 +53,7 @@ $params = [$fullName, $email, $contact, $companyName, $subject, $pincode, $dbMes
 if (db_execute($sql, $params)) {
 
     // --- EMAIL 1: User Confirmation ---
-    $userSubject = "Enquiry Received: $subject";
+    $userSubject = "Mosil: We have received your enquiry regarding $subject";
     $userBody = "
         <div style='font-family: Arial, sans-serif; color: #333;'>
             <p>Dear <strong>$fullName</strong>,</p>
@@ -74,9 +74,9 @@ if (db_execute($sql, $params)) {
     $userMail = sendMail($email, $fullName, $userSubject, $userBody, $attachments);
 
     // --- EMAIL 2: Admin Notification ---
-    $adminSubject = "New Website Enquiry - $fullName";
+    $adminSubject = "[TDS Request] $companyName - $fullName";
     $adminBody = "
-        <h2 style='color: #1A3B1B;'>New Lead Details</h2>
+        <h2 style='color: #1A3B1B;'>New TDS Enquiry Details</h2>
         <table cellpadding='5' cellspacing='0' style='width: 100%; border: 1px solid #eee;'>
             <tr style='background: #f9f9f9;'><td><strong>Name:</strong></td><td>$fullName</td></tr>
             <tr><td><strong>Email:</strong></td><td>$email</td></tr>

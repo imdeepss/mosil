@@ -88,7 +88,7 @@ try {
     if ($result) {
 
         // --- EMAIL 1: User Confirmation ---
-        $userSubject = "Registration Confirmation: " . $eventTitle;
+        $userSubject = "Registration Confirmed: " . $eventTitle . " - Mosil Lubricants";
         $userBody = "
         <p>Dear " . htmlspecialchars($fullName) . ",</p>
         <p>Thank you for registering for the event: <strong>" . htmlspecialchars($eventTitle) . "</strong>.</p>
@@ -100,7 +100,7 @@ try {
         $userMail = sendMail($email, $fullName, $userSubject, $userBody);
 
         // --- EMAIL 2: Admin Notification ---
-        $adminSubject = 'New Event Registration Received';
+        $adminSubject = "[Event] New Registration: " . $eventTitle . " - " . $fullName;
         $adminBody = "
     <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 600px;'>
         <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New Event Registration</h2>
