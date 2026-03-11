@@ -142,7 +142,12 @@ if (file_exists($pageJs)) {
                                 class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
                             <span class="error-text hidden text-xs text-red-500 mt-1">Company name is required</span>
                         </div>
-                        <div class="md:col-span-2 flex flex-col">
+                        <div class="flex flex-col">
+                            <input type="text" name="pincode" required placeholder="Pin Code"
+                                class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
+                            <span class="error-text hidden text-xs text-red-500 mt-1">Valid Pin Code is required</span>
+                        </div>
+                        <div class="flex flex-col">
                             <input type="text" name="subject" required placeholder="Subject"
                                 class="w-full px-4 py-3 rounded-[4px] border border-[#DEDEDE] bg-[#FFF] placeholder:text-[#757575] focus:outline-none focus:border-main-green transition-colors">
                             <span class="error-text hidden text-xs text-red-500 mt-1">Subject is required</span>

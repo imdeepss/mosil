@@ -31,19 +31,17 @@ if (empty($fullName) || !$email || empty($contact)) {
     exit;
 }
 
-// 2. Format Message Body for DB
-$extraDetails = [];
-if ($city)
-    $extraDetails[] = "City: $city";
-if ($country)
-    $extraDetails[] = "Country: $country";
-if ($industry)
-    $extraDetails[] = "Industry: $industry";
+// 2. Format Location
+$locParts = array_filter([$city, $country]);
+$location = implode(', ', $locParts);
+if (!empty($pincode)) {
+    $location .= $location ? " - $pincode" : $pincode;
+}
+if (empty($location)) {
+    $location = 'Not Provided';
+}
 
 $dbMessage = $message;
-if (!empty($extraDetails)) {
-    $dbMessage .= "\n\n--- Location & Industry Details ---\n" . implode("\n", $extraDetails);
-}
 
 // 3. Database Execution
 $sql = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status) 
@@ -82,7 +80,7 @@ if (db_execute($sql, $params)) {
             <tr><td><strong>Email:</strong></td><td>$email</td></tr>
             <tr style='background: #f9f9f9;'><td><strong>Phone:</strong></td><td>$contact</td></tr>
             <tr><td><strong>Company:</strong></td><td>$companyName</td></tr>
-            <tr style='background: #f9f9f9;'><td><strong>Location:</strong></td><td>$city, $country ($pincode)</td></tr>
+            <tr style='background: #f9f9f9;'><td><strong>Location:</strong></td><td>$location</td></tr>
             <tr><td><strong>Industry:</strong></td><td>$industry</td></tr>
             <tr><td><strong>Message:</strong></td><td>" . nl2br($dbMessage) . "</td></tr>
         </table>";

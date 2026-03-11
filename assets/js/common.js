@@ -585,13 +585,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const validators = {
       email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
       tel: (value) => /^[0-9+\-\s]{10,}$/.test(value),
+      pincode: (value) => /^[0-9]{4,6}$/.test(value.trim()),
       default: (value) => value.trim().length > 0,
     };
 
     const validateField = (input) => {
       let type = "default";
       if (input.name === "email") type = "email";
-      if (input.name === "contact") type = "tel";
+      else if (input.name === "contact") type = "tel";
+      else if (input.name === "pincode") type = "pincode";
 
       const isValid = validators[type](input.value);
       const wrapper = input.parentElement;
