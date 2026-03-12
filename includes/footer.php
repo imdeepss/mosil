@@ -91,7 +91,8 @@ if (file_exists($pageJs)) {
 <!-- Sticky Contact Button -->
 <?php if (isset($page) && $page !== 'contact'): ?>
     <a href="#" id="mosil-contact-us-button" class="mosil-contact-sticky open-global-contact-modal">Contact Us</a>
-<?php endif; ?>
+<?php
+endif; ?>
 
 <!-- Global Contact Modal -->
 <div id="globalContactModal" class="fixed inset-0 z-[9999] hidden overflow-y-auto" aria-labelledby="modal-title"
@@ -173,7 +174,7 @@ if (file_exists($pageJs)) {
 </div>
 
 <!-- WhatsApp Floating Icon -->
-<a href="https://wa.me/917715805243" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/919619234158" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="whatsapp-icon" fill="#ffffff">
         <path fill="#ffffff"
             d="M16.001 2.002c-7.731 0-14 6.269-14 14 0 2.472.645 4.898 1.867 7.03L2 30l6.958-1.832a13.91 13.91 0 0 0 7.043 1.834h.001c7.73 0 14-6.269 14-14s-6.27-14-14-14zm.001 25.327a11.28 11.28 0 0 1-5.772-1.57l-.414-.246-4.13 1.089 1.104-4.024-.27-.413a11.27 11.27 0 0 1-1.747-6.034c0-6.213 5.053-11.266 11.27-11.266 3.01 0 5.843 1.173 7.972 3.301a11.221 11.221 0 0 1 3.296 7.964c0 6.214-5.053 11.269-11.269 11.269z">

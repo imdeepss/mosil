@@ -295,8 +295,7 @@ $pageTitle = 'Contact Us';
                         </li>
                         <li class="flex gap-4 items-center">
                             <img src="<?php echo SITE_URL ?>/assets/icons/svg/contact.svg" alt="Phone">
-                            <a href="tel:+918942414355" class="hover:text-main-green transition-colors">+91 8942414355 |
-                                +91 7453423151</a>
+                            <a href="tel:+919619234158" class="hover:text-main-green transition-colors">+91 9619234158</a>
                         </li>
                         <li class="flex gap-4 items-center">
                             <img src="<?php echo SITE_URL ?>/assets/icons/svg/email.svg" alt="Email">
