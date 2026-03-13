@@ -347,7 +347,7 @@ function parseTableString($str)
                             </div>
                             <!-- Product Name (Readonly) -->
                             <div>
-                                <input type="text" value="<?= htmlspecialchars($product['name'] ?? '') ?>" disabled
+                                <input type="text" name="product_name" value="<?= htmlspecialchars($product['name'] ?? '') ?>" readonly
                                     class="w-full px-4 py-3 border border-gray-300 rounded-md bg-gray-50 text-gray-500">
                             </div>
                         </div>

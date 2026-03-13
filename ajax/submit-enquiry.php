@@ -25,6 +25,7 @@ $city = htmlspecialchars(trim($_POST['city'] ?? ''));
 $country = htmlspecialchars(trim($_POST['country'] ?? ''));
 $industry = htmlspecialchars(trim($_POST['industry'] ?? ''));
 $tdsFile = htmlspecialchars(trim($_POST['tds_file'] ?? ''));
+$productName = htmlspecialchars(trim($_POST['product_name'] ?? ''));
 
 if (empty($fullName) || !$email || empty($contact)) {
     echo json_encode(['success' => false, 'message' => 'Please provide a valid Name, Email, and Contact Number.']);
@@ -51,7 +52,7 @@ $params = [$fullName, $email, $contact, $companyName, $subject, $pincode, $dbMes
 if (db_execute($sql, $params)) {
 
     // --- EMAIL 1: User Confirmation ---
-    $userSubject = "Mosil: We have received your enquiry regarding $subject";
+    $userSubject = "Mosil: We have received your enquiry regarding $productName";
     $userBody = "
         <div style='font-family: Arial, sans-serif; color: #333;'>
             <p>Dear <strong>$fullName</strong>,</p>
@@ -72,12 +73,13 @@ if (db_execute($sql, $params)) {
     $userMail = sendMail($email, $fullName, $userSubject, $userBody, $attachments);
 
     // --- EMAIL 2: Admin Notification ---
-    $adminSubject = "[TDS Request] $companyName - $fullName";
+    $adminSubject = "[TDS Request] for: $productName";
     $adminBody = "
-        <h2 style='color: #1A3B1B;'>New TDS Enquiry Details</h2>
+        <h2 style='color: #1A3B1B;'>New TDS Enquiry Details for $productName</h2>
         <table cellpadding='5' cellspacing='0' style='width: 100%; border: 1px solid #eee;'>
             <tr style='background: #f9f9f9;'><td><strong>Name:</strong></td><td>$fullName</td></tr>
             <tr><td><strong>Email:</strong></td><td>$email</td></tr>
+            <tr style='background: #f9f9f9;'><td><strong>Product Name:</strong></td><td>$productName</td></tr>
             <tr style='background: #f9f9f9;'><td><strong>Phone:</strong></td><td>$contact</td></tr>
             <tr><td><strong>Company:</strong></td><td>$companyName</td></tr>
             <tr style='background: #f9f9f9;'><td><strong>Location:</strong></td><td>$location</td></tr>
@@ -89,13 +91,15 @@ if (db_execute($sql, $params)) {
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'Thank you! Your enquiry has been submitted and a confirmation email has been sent.']);
-    } else {
+    }
+    else {
         // Report error from either mail Attempt
         $errorMsg = ($userMail['status'] === 'error') ? $userMail['message'] : $adminMail['message'];
         echo json_encode(['success' => true, 'message' => 'Enquiry submitted successfully. Error: ' . $errorMsg]);
     }
 
-} else {
+}
+else {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Database error. Please try again later.']);
 }
