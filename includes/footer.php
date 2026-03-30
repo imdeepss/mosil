@@ -1,7 +1,7 @@
 <footer class="bg-[var(--color-main-green)] text-[var(--color-neutral)]">
     <div class="container flex flex-wrap justify-between py-16 md:flex-row flex-col gap-14 md:gap-0">
 
-        <div class="flex w-full flex-col items-start gap-[23px] font-normal lg:w-[544px]">
+        <div class="flex w-full flex-col items-start gap-[23px] font-normal lg:w-[320px] xl:w-[400px]">
             <div>
                 <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil-performances.png" alt="MOSIL Lubricants"
                     width="208" height="85" loading="lazy">
@@ -11,7 +11,8 @@
                 © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved</p>
         </div>
 
-        <div class="grid flex-1 gap-12 grid-cols-2 md:grid-cols-[97px_88px_320px] md:gap-[97px]">
+        <div
+            class="grid flex-1 gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-[80px_80px_220px_1fr] lg:gap-8 xl:grid-cols-[97px_88px_260px_1fr] xl:gap-[60px]">
 
             <div class="flex flex-col">
                 <h4
@@ -61,6 +62,30 @@
                         © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved</p>
                 </div>
             </div>
+            <div class="flex flex-col col-span-2 md:col-span-1 lg:col-span-1 mb-20 md:mb-0">
+                <h4
+                    class="mb-2 text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
+                    Join our email list to receive exclusive content and product updates
+                </h4>
+                <div class="text-[#FFFFFF] font-base font-normal w-full mt-4">
+                    <form id="footerSubscribeForm" novalidate
+                        class="flex items-center border-b border-[var(--color-primary)] pb-2 relative w-full group"
+                        autocomplete="off" aria-autocomplete="none">
+                        <input type="email" name="subscribe_email" placeholder="Email" required
+                            class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:bg-transparent! focus:border-none! focus:outline-none! focus:ring-0!" />
+                        <button type="submit"
+                            class="absolute right-0 text-[var(--color-primary)] text-[15px] font-semibold flex items-center gap-1 group-focus-within:text-[var(--color-primary)] hover:opacity-80 disabled:opacity-50 transition-opacity">
+                            Subscribe
+                            <svg width="14" height="14" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H2M11 1V10" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </form>
+                    <div id="footerSubscribeResponse" class="hidden text-xs mt-2 font-medium"></div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -91,7 +116,7 @@ if (file_exists($pageJs)) {
 <!-- Sticky Contact Button -->
 <?php if (isset($page) && $page !== 'contact'): ?>
     <a href="#" id="mosil-contact-us-button" class="mosil-contact-sticky open-global-contact-modal">Contact Us</a>
-<?php
+    <?php
 endif; ?>
 
 <!-- Global Contact Modal -->

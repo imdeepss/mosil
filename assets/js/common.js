@@ -684,4 +684,66 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
   }
+
+  // Footer Subscribe Form
+  const subscribeForm = document.getElementById("footerSubscribeForm");
+  if (subscribeForm) {
+    subscribeForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const emailInput = subscribeForm.querySelector('input[name="subscribe_email"]');
+      const responseDiv = document.getElementById("footerSubscribeResponse");
+      const btn = subscribeForm.querySelector("button[type='submit']");
+      const email = emailInput.value.trim();
+
+      // Simple email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        responseDiv.innerText = "Please enter a valid email address.";
+        responseDiv.className = "mt-2 text-xs font-medium text-red-500 hidden";
+        responseDiv.classList.remove("hidden");
+        return;
+      }
+
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerText = "Sending...";
+      responseDiv.classList.add("hidden");
+
+      const formData = new FormData();
+      formData.append("email", email);
+
+      fetch(`${SITE_URL}/ajax/subscribe.php`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            responseDiv.innerText = "Subscribed successfully!";
+            responseDiv.className = "mt-2 text-[14px] font-medium text-[var(--color-primary)]";
+            responseDiv.classList.remove("hidden");
+            subscribeForm.reset();
+            setTimeout(() => {
+              responseDiv.classList.add("hidden");
+            }, 5000);
+          } else {
+            throw new Error(data.message || "Something went wrong.");
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          responseDiv.innerText = err.message || "An unexpected error occurred.";
+          responseDiv.className = "mt-2 text-[14px] font-medium text-red-500";
+          responseDiv.classList.remove("hidden");
+          setTimeout(() => {
+            responseDiv.classList.add("hidden");
+          }, 5000);
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        });
+    });
+  }
 });

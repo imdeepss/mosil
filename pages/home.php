@@ -71,7 +71,7 @@ $blogs = getHomeFeaturedBlogs();
                                 </div>
                                 <div
                                     class="text-[#575757] font-base font-normal text-[12px] leading-[150%] tracking-[0.015em] md:text-[18px] md:leading-[140%] md:tracking-normal industry-desc min-h-[150px] overflow-hidden">
-                                    <?php echo $industry['meta_description']; ?>
+                                    <?php echo clean_content($industry['meta_description']); ?>
                                 </div>
                                 <div class="">
                                     <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>"
