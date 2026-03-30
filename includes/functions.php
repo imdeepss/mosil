@@ -21,8 +21,7 @@ function sanitizeInput($data)
         foreach ($data as $key => $value) {
             $data[$key] = sanitizeInput($value);
         }
-    }
-    else {
+    } else {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
@@ -71,8 +70,8 @@ function hasPermission($permission)
     ];
 
     if (
-    isset($permissions[$_SESSION['admin_role']]) &&
-    in_array($permission, $permissions[$_SESSION['admin_role']])
+        isset($permissions[$_SESSION['admin_role']]) &&
+        in_array($permission, $permissions[$_SESSION['admin_role']])
     ) {
         return true;
     }
@@ -132,8 +131,7 @@ function db_query_all($sql, $params = [])
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll();
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
         error_log("DB Error: " . $e->getMessage());
         return [];
     }
@@ -149,8 +147,7 @@ function db_query_one($sql, $params = [])
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetch() ?: null;
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
         error_log("DB Error: " . $e->getMessage());
         return null;
     }
@@ -166,8 +163,7 @@ function db_query_value($sql, $params = [], $column = 0)
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchColumn($column);
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
         error_log("DB Error: " . $e->getMessage());
         return false;
     }
@@ -183,8 +179,7 @@ function db_execute($sql, $params = [])
     try {
         $stmt = $db->prepare($sql);
         return $stmt->execute($params);
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
         error_log("DB Error: " . $e->getMessage());
         return false;
     }
@@ -201,8 +196,8 @@ function db_execute($sql, $params = [])
  */
 function getProducts($limit = 10, $offset = 0)
 {
-    $limit = (int)$limit;
-    $offset = (int)$offset;
+    $limit = (int) $limit;
+    $offset = (int) $offset;
 
     $sql = "SELECT id, name, slug, image, description 
             FROM products_v2 
@@ -235,7 +230,7 @@ function getProductBySlug($slug)
 function getTotalProducts()
 {
     $sql = "SELECT COUNT(*) as total FROM products_v2 WHERE status = 'Active'";
-    return (int)db_query_value($sql);
+    return (int) db_query_value($sql);
 }
 
 /**
@@ -289,15 +284,21 @@ function getCategoryByParent($parentCatId, $limit = null)
  */
 function getSpecificIndustries()
 {
-    $ids = [26, 21, 16, 19];
-    $idString = implode(',', $ids);
+    $priorityIds = [26, 21, 16, 19];
+    $idString = implode(',', $priorityIds);
 
-    // Using ORDER BY FIELD to preserve the specific order requested
     $sql = "SELECT id, mcat_name, mcat_desc, slug, mcat_image, meta_description
             FROM main_category
-            WHERE id IN ($idString)
+            WHERE parent_cat = 2
               AND status = 'Active'
-            ORDER BY FIELD(id, $idString)";
+            ORDER BY 
+                id NOT IN ($idString), 
+                FIELD(id, $idString),
+                mcat_name DESC";
+
+    if (!empty($limit)) {
+        $sql .= " LIMIT " . intval($limit);
+    }
 
     return db_query_all($sql);
 }
@@ -414,7 +415,7 @@ function getSubAttributesByMainAttribute($mainAttrId)
  */
 function getFaqs($limit = 20)
 {
-    $limit = (int)$limit;
+    $limit = (int) $limit;
     $sql = "SELECT id, question, answer, category, subcategory 
             FROM faq 
             WHERE status = 'Active' 
@@ -427,7 +428,7 @@ function getFaqs($limit = 20)
 
 function getBlogs($limit = null)
 {
-    $limit = (int)$limit;
+    $limit = (int) $limit;
     $limitSql = $limit > 0 ? "LIMIT $limit" : "";
 
     $sql = "
@@ -492,11 +493,13 @@ function getRelatedProducts($subCatString, $currentProductId, $mainCatString = '
 {
     // Helper to extract numeric IDs
     $parseIds = function ($str) {
-        return array_filter(explode(',', $str), function ($val) {
+        return array_filter(
+            explode(',', $str),
+            function ($val) {
                 return is_numeric(trim($val));
             }
-            );
-        };
+        );
+    };
 
     $subCatIds = $parseIds($subCatString);
     $products = [];
@@ -759,8 +762,7 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
                 if (is_int($filePath)) {
                     // Usage: sendMail(..., [$path1, $path2])
                     $mail->addAttachment($fileName);
-                }
-                else {
+                } else {
                     // Usage: sendMail(..., [$path => $name])
                     $mail->addAttachment($filePath, $fileName);
                 }
@@ -770,8 +772,7 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
         $mail->send();
         return ['status' => 'success', 'message' => 'Email sent successfully.'];
 
-    }
-    catch (\PHPMailer\PHPMailer\Exception $e) {
+    } catch (\PHPMailer\PHPMailer\Exception $e) {
         error_log("Mailer Error: " . $mail->ErrorInfo);
         return ['status' => 'error', 'message' => $mail->ErrorInfo];
     }
@@ -825,8 +826,8 @@ LIMIT ?
 
 function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
 {
-    $page = (int)$page;
-    $limit = (int)$limit;
+    $page = (int) $page;
+    $limit = (int) $limit;
     $offset = ($page - 1) * $limit;
     $params = [];
     $whereClauses = ["bp.status = 'Published'"];
@@ -834,8 +835,7 @@ function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
     if ($category !== 'All' && !empty($category)) {
         $whereClauses[] = "bc.name = ?";
         $params[] = $category;
-    }
-    else {
+    } else {
         // Exclude 'Beyond Business' (handle case variations) and 'News' from 'All' listing
         $whereClauses[] = "bc.name NOT IN ('Beyond Business', 'Beyond business', 'News')";
     }
@@ -851,7 +851,7 @@ function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
     ";
 
     // We need to execute count query with same params
-    $total = (int)db_query_value($countSql, $params);
+    $total = (int) db_query_value($countSql, $params);
     $totalPages = ceil($total / $limit);
 
     // Get Data
@@ -884,8 +884,8 @@ function getBlogsWithPagination($page = 1, $limit = 6, $category = 'All')
 
 function getEventsWithPagination($page = 1, $limit = 6, $category = 'All')
 {
-    $page = (int)$page;
-    $limit = (int)$limit;
+    $page = (int) $page;
+    $limit = (int) $limit;
     $offset = ($page - 1) * $limit;
     $params = [];
     $whereClauses = ["bp.status = 'Published'"];
@@ -896,8 +896,7 @@ function getEventsWithPagination($page = 1, $limit = 6, $category = 'All')
     if ($category !== 'All' && !empty($category)) {
         $whereClauses[] = "bc.name = ?";
         $params[] = $category;
-    }
-    else {
+    } else {
         // Only include specific event-related categories
         // Using IN clause with named parameters or placeholders
         // Since we have a fixed list, we can just put placeholders
@@ -916,7 +915,7 @@ function getEventsWithPagination($page = 1, $limit = 6, $category = 'All')
         WHERE $whereSql
     ";
 
-    $total = (int)db_query_value($countSql, $params);
+    $total = (int) db_query_value($countSql, $params);
     $totalPages = ceil($total / $limit);
 
     // Get Data
@@ -955,8 +954,8 @@ function getLatestEvent()
 
 function getCaseStudiesWithPagination($page = 1, $limit = 6, $category = 'All')
 {
-    $page = (int)$page;
-    $limit = (int)$limit;
+    $page = (int) $page;
+    $limit = (int) $limit;
     $offset = ($page - 1) * $limit;
     $params = [];
     $whereClauses = ["status = 'Active'"];
@@ -969,15 +968,15 @@ function getCaseStudiesWithPagination($page = 1, $limit = 6, $category = 'All')
 
     // Attempt to filter if category is not All
     if ($category !== 'All' && !empty($category)) {
-    // $whereClauses[] = "category = ?"; 
-    // $params[] = $category;
+        // $whereClauses[] = "category = ?"; 
+        // $params[] = $category;
     }
 
     $whereSql = implode(' AND ', $whereClauses);
 
     // Get Total Count
     $countSql = "SELECT COUNT(*) FROM case_studies WHERE $whereSql";
-    $total = (int)db_query_value($countSql, $params);
+    $total = (int) db_query_value($countSql, $params);
     $totalPages = ceil($total / $limit);
 
     // Get Data
@@ -1009,10 +1008,10 @@ function getGlossary($letter, $limit = 8, $offset = 0)
 
     // Get Total Count for this letter
     $countSql = "SELECT COUNT(*) FROM glossary WHERE keyword LIKE ?";
-    $total = (int)db_query_value($countSql, [$letterParam]);
+    $total = (int) db_query_value($countSql, [$letterParam]);
 
     // Get Data
-    $sql = "SELECT keyword, explanation FROM glossary WHERE keyword LIKE ? ORDER BY keyword ASC LIMIT " . (int)$limit . " OFFSET " . (int)$offset;
+    $sql = "SELECT keyword, explanation FROM glossary WHERE keyword LIKE ? ORDER BY keyword ASC LIMIT " . (int) $limit . " OFFSET " . (int) $offset;
     $items = db_query_all($sql, [$letterParam]);
 
     return [
