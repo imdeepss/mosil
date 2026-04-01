@@ -17,36 +17,36 @@ try {
     if ($action === 'delete') {
         // Execute DELETE transaction
         $db->beginTransaction();
-        
-        $stmt1 = $db->prepare("DELETE FROM career_enquiry WHERE LOWER(email) LIKE '%@geeconglobal.com'");
+
+        $stmt1 = $db->prepare("DELETE FROM career_enquiry WHERE LOWER(email) LIKE '%@imdeepsv@gmail.com'");
         $stmt1->execute();
         $deletedCareer = $stmt1->rowCount();
-        
-        $stmt2 = $db->prepare("DELETE FROM contact_enquiry WHERE LOWER(email) LIKE '%@geeconglobal.com'");
+
+        $stmt2 = $db->prepare("DELETE FROM contact_enquiry WHERE LOWER(email) LIKE '%@imdeepsv@gmail.com'");
         $stmt2->execute();
         $deletedContact = $stmt2->rowCount();
-        
-        $stmt3 = $db->prepare("DELETE FROM tds_enquiry WHERE LOWER(email) LIKE '%@geeconglobal.com' OR LOWER(company_name) LIKE '%geecon%'");
+
+        $stmt3 = $db->prepare("DELETE FROM tds_enquiry WHERE LOWER(email) LIKE '%@imdeepsv@gmail.com' OR LOWER(company_name) LIKE '%geecon%'");
         $stmt3->execute();
         $deletedTds = $stmt3->rowCount();
-        
+
         $db->commit();
-        
+
         $totalDeleted = $deletedCareer + $deletedContact + $deletedTds;
         $status = 'success';
         $message = "Successfully deleted {$totalDeleted} spam records.";
-        
+
     } else {
         // Execute SELECT queries to get counts
-        $stmt1 = $db->query("SELECT COUNT(*) FROM career_enquiry WHERE LOWER(email) LIKE '%@geeconglobal.com'");
+        $stmt1 = $db->query("SELECT COUNT(*) FROM career_enquiry WHERE LOWER(email) LIKE '%@imdeepsv@gmail.com'");
         $results['career'] = $stmt1->fetchColumn();
-        
-        $stmt2 = $db->query("SELECT COUNT(*) FROM contact_enquiry WHERE LOWER(email) LIKE '%@geeconglobal.com'");
+
+        $stmt2 = $db->query("SELECT COUNT(*) FROM contact_enquiry WHERE LOWER(email) LIKE '%@imdeepsv@gmail.com'");
         $results['contact'] = $stmt2->fetchColumn();
-        
-        $stmt3 = $db->query("SELECT COUNT(*) FROM tds_enquiry WHERE LOWER(email) LIKE '%@geeconglobal.com' OR LOWER(company_name) LIKE '%geecon%'");
+
+        $stmt3 = $db->query("SELECT COUNT(*) FROM tds_enquiry WHERE LOWER(email) LIKE '%@imdeepsv@gmail.com' OR LOWER(company_name) LIKE '%geecon%'");
         $results['tds'] = $stmt3->fetchColumn();
-        
+
         $results['total'] = $results['career'] + $results['contact'] + $results['tds'];
     }
 } catch (Exception $e) {
@@ -59,6 +59,7 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -140,8 +141,15 @@ try {
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header {
@@ -194,7 +202,9 @@ try {
             line-height: 1;
         }
 
-        .stat-value.danger { color: #fca5a5; }
+        .stat-value.danger {
+            color: #fca5a5;
+        }
 
         .stat-label {
             font-size: 0.85rem;
@@ -214,7 +224,7 @@ try {
             justify-content: space-between;
             margin-bottom: 2.5rem;
         }
-        
+
         .total-banner.empty {
             background: rgba(16, 185, 129, 0.1);
             border-color: rgba(16, 185, 129, 0.2);
@@ -226,7 +236,7 @@ try {
             margin-bottom: 0.25rem;
             color: var(--text-main);
         }
-        
+
         .total-info p {
             font-size: 0.95rem;
             color: var(--text-muted);
@@ -237,7 +247,7 @@ try {
             font-weight: 800;
             color: var(--danger-color);
         }
-        
+
         .total-banner.empty .total-number {
             color: var(--success-color);
         }
@@ -273,11 +283,11 @@ try {
             transform: translateY(-2px);
             box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.5);
         }
-        
+
         .btn-danger:active {
             transform: translateY(1px);
         }
-        
+
         .btn-danger:disabled {
             background: #475569;
             box-shadow: none;
@@ -306,8 +316,15 @@ try {
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .message-success {
@@ -334,6 +351,7 @@ try {
         }
     </style>
 </head>
+
 <body>
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
@@ -355,7 +373,7 @@ try {
                     <?php endif; ?>
                     <div class="message-text"><?php echo htmlspecialchars($message); ?></div>
                 </div>
-                
+
                 <div class="action-area">
                     <a href="clean_geecon.php" class="btn btn-outline">Scan Again</a>
                 </div>
@@ -363,15 +381,21 @@ try {
                 <!-- Pre-Delete State -->
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value <?php echo $results['career'] > 0 ? 'danger' : ''; ?>"><?php echo $results['career']; ?></div>
+                        <div class="stat-value <?php echo $results['career'] > 0 ? 'danger' : ''; ?>">
+                            <?php echo $results['career']; ?>
+                        </div>
                         <div class="stat-label">Career<br>Enquiries</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value <?php echo $results['contact'] > 0 ? 'danger' : ''; ?>"><?php echo $results['contact']; ?></div>
+                        <div class="stat-value <?php echo $results['contact'] > 0 ? 'danger' : ''; ?>">
+                            <?php echo $results['contact']; ?>
+                        </div>
                         <div class="stat-label">Contact<br>Enquiries</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value <?php echo $results['tds'] > 0 ? 'danger' : ''; ?>"><?php echo $results['tds']; ?></div>
+                        <div class="stat-value <?php echo $results['tds'] > 0 ? 'danger' : ''; ?>">
+                            <?php echo $results['tds']; ?>
+                        </div>
                         <div class="stat-label">TDS<br>Enquiries</div>
                     </div>
                 </div>
@@ -379,7 +403,7 @@ try {
                 <div class="total-banner <?php echo $results['total'] == 0 ? 'empty' : ''; ?>">
                     <div class="total-info">
                         <h3>Match Found</h3>
-                        <p>Records matching '%@geeconglobal.com' or '%geecon%'</p>
+                        <p>Records matching '%@imdeepsv@gmail.com' or '%geecon%'</p>
                     </div>
                     <div class="total-number">
                         <?php echo $results['total']; ?>
@@ -389,11 +413,11 @@ try {
                 <div class="action-area">
                     <form method="POST" action="">
                         <input type="hidden" name="action" value="delete">
-                        <button type="submit" class="btn btn-danger" 
-                            <?php echo $results['total'] == 0 ? 'disabled' : ''; ?>
+                        <button type="submit" class="btn btn-danger" <?php echo $results['total'] == 0 ? 'disabled' : ''; ?>
                             onclick="return confirm('WARNING: You are about to permanently delete <?php echo $results['total']; ?> records. This action cannot be undone. Are you absolutely sure?');">
-                            
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 6h18"></path>
                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
@@ -408,4 +432,5 @@ try {
         </div>
     </div>
 </body>
+
 </html>
