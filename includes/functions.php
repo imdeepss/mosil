@@ -1074,16 +1074,20 @@ function clean_content($content)
     }
 
     // 1. Remove inline 'style' attributes from any tag
-    // This regex looks for style="..." and removes it. 
-    // Uses 'i' modifier for case-insensitivity.
     $content = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content);
-
-    // Also handle single quotes style='...'
     $content = preg_replace('/(<[^>]+) style=\'.*?\'/i', '$1', $content);
 
-    // 2. Remove empty paragraphs including those with only whitespace or &nbsp;
-    // Matches <p>...content...</p> where content is only whitespace or &nbsp;
-    $content = preg_replace('/<p[^>]*>(?:\s|&nbsp;)*<\/p>/', '', $content);
+    // 2. Remove stray MS-Word comment tags like <!--[endif]-->
+    $content = str_replace('<!--[endif]-->', '', $content);
+
+    // 3. Remove leading and trailing whitespaces / &nbsp; inside <span>, <li>, and <p> tags
+    // This fixes cases where text is preceded by formatting spaces like <span lang="EN-US">&nbsp; &nbsp; Text</span>
+    $content = preg_replace('/(<(?:span|li|p)[^>]*>)(?:\s|&nbsp;|\xc2\xa0)+/i', '$1', $content);
+    $content = preg_replace('/(?:\s|&nbsp;|\xc2\xa0)+(<\/(?:span|li|p)>)/i', '$1', $content);
+
+    // 4. Remove empty <p>, <span> tags completely
+    $content = preg_replace('/<span[^>]*><\/span>/i', '', $content);
+    $content = preg_replace('/<p[^>]*><\/p>/i', '', $content);
 
     return $content;
 }
