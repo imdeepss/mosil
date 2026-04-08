@@ -55,33 +55,33 @@ if (db_execute($sql, $params)) {
         <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New Enquiry Received</h2>
         <p>You have received a new message from the website contact form.</p>
         
-        <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse;'>
+        <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse;font-family: Helvetica, Arial, sans-serif'>
             <tr style='background-color: #f9f9f9;'>
-                <td width='30%' style='border: 1px solid #eeeeee; font-weight: bold;'>Name</td>
+                <td width='30%' style='border: 1px solid #eeeeee;'>Name</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($name) . "</td>
             </tr>
             <tr>
-                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Email</td>
+                <td style='border: 1px solid #eeeeee;'>Email</td>
                 <td style='border: 1px solid #eeeeee;'><a href='mailto:" . htmlspecialchars($email) . "'>" . htmlspecialchars($email) . "</a></td>
             </tr>
             <tr style='background-color: #f9f9f9;'>
-                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Phone</td>
+                <td style='border: 1px solid #eeeeee;'>Phone</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($contact) . "</td>
             </tr>
             <tr>
-                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Company</td>
+                <td style='border: 1px solid #eeeeee;'>Company</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($companyName) . "</td>
             </tr>
             <tr style='background-color: #f9f9f9;'>
-                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Pin Code</td>
+                <td style='border: 1px solid #eeeeee;'>Pin Code</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($pincode) . "</td>
             </tr>
             <tr>
-                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Subject</td>
+                <td style='border: 1px solid #eeeeee;'>Subject</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($subject) . "</td>
             </tr>
             <tr style='background-color: #f9f9f9;'>
-                <td style='border: 1px solid #eeeeee; font-weight: bold; vertical-align: top;'>Message</td>
+                <td style='border: 1px solid #eeeeee; vertical-align: top;'>Message</td>
                 <td style='border: 1px solid #eeeeee; line-height: 1.5;'>" . nl2br(htmlspecialchars($message)) . "</td>
             </tr>
         </table>
@@ -96,14 +96,12 @@ if (db_execute($sql, $params)) {
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'success']);
-    }
-    else {
+    } else {
         $errorMsg = ($userMail['status'] === 'error') ? $userMail['message'] : $adminMail['message'];
         echo json_encode(['success' => true, 'message' => 'Enquiry submitted, but email delivery may be delayed.']);
     }
 
-}
-else {
+} else {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Database error. Please try again later.']);
 }
