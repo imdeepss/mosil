@@ -1139,12 +1139,13 @@ function formatDateWithCurrentYear($dateString, $format = 'M j')
 
     $timestamp = strtotime($dateString);
     if (!$timestamp) {
-        return $dateString; // Return original if parsing fails
+        return $dateString;
     }
 
-    // Default format 'M j' results in "Jan 1"
-    $dayMonth = date($format, $timestamp);
-    $currentYear = date('Y') - 1;
+    // Add year if not already in format
+    if (strpos($format, 'Y') === false) {
+        $format .= ' Y';
+    }
 
-    return $dayMonth . ', ' . $currentYear;
+    return date($format, $timestamp);
 }
