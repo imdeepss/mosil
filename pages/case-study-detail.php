@@ -121,7 +121,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
 
                 <!-- Benefits -->
                 <?php if (!empty($caseStudy['benefits'])): ?>
-                    <h2 class="text-[#1A3B1B] font-bold text-[18px] md:text-[20px] mb-2">Benefits</h2>
+                    <h2 class="text-[#1A3B1B] font-bold text-[18px] md:text-[20px] mb-2">Application Benefits</h2>
                     <div class="mb-6">
                         <?php echo clean_content($caseStudy['benefits']); ?>
                     </div>
