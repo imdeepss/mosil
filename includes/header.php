@@ -191,7 +191,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const searchInputs = document.querySelectorAll('.search-input');
+            const searchInputs = Array.from(document.querySelectorAll('.search-input'));
 
             // Debounce function
             function debounce(func, wait) {
@@ -205,7 +205,8 @@
 
             // Search Handler
             const handleSearch = debounce(function (e) {
-                const input = e.target;
+                // Use 'this' instead of e.target to prevent issues with event object recycling in some browsers
+                const input = this;
                 const val = input.value.trim();
 
                 // Find sibling or parent's sibling results container
@@ -227,10 +228,13 @@
                 }
 
                 fetch('<?php echo SITE_URL; ?>/ajax/search.php?q=' + encodeURIComponent(val))
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.json();
+                    })
                     .then(data => {
                         container.innerHTML = '';
-                        if (data.length > 0) {
+                        if (Array.isArray(data) && data.length > 0) {
                             data.forEach(item => {
                                 const link = document.createElement('a');
                                 link.href = item.url;
@@ -254,10 +258,11 @@
 
                 // Close on blur (delay to allow click)
                 input.addEventListener('blur', function (e) {
+                    const currentInput = this; // Capture reference synchronously
                     setTimeout(() => {
-                        let container = e.target.parentNode.querySelector('.search-results-container');
-                        if (!container && e.target.parentNode.parentNode) {
-                            container = e.target.parentNode.parentNode.querySelector('.search-results-container');
+                        let container = currentInput.parentNode.querySelector('.search-results-container');
+                        if (!container && currentInput.parentNode.parentNode) {
+                            container = currentInput.parentNode.parentNode.querySelector('.search-results-container');
                         }
                         if (container) {
                             // container.classList.add('hidden'); 
@@ -269,10 +274,13 @@
             });
 
             // Close results when clicking outside
-            document.addEventListener('click', function (e) {
-                if (!e.target.closest('.search-input') && !e.target.closest('.search-results-container')) {
-                    document.querySelectorAll('.search-results-container').forEach(el => el.classList.add('hidden'));
-                }
+            // Added touchstart for cross-browser support (specifically iOS Safari click delegation bug)
+            ['click', 'touchstart'].forEach(eventType => {
+                document.addEventListener(eventType, function (e) {
+                    if (e.target.closest && !e.target.closest('.search-input') && !e.target.closest('.search-results-container')) {
+                        Array.from(document.querySelectorAll('.search-results-container')).forEach(el => el.classList.add('hidden'));
+                    }
+                }, { passive: true });
             });
         });
     </script>
