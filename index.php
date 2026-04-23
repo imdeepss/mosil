@@ -47,15 +47,20 @@ if (!in_array($page, $allowed_pages)) {
 // Prepare content file path
 $contentFile = "pages/{$page}.php";
 
-// Load Header
-include 'includes/header.php';
-
-// Load Content
+// Load Content with output buffering
+ob_start();
 if (file_exists($contentFile)) {
     include $contentFile;
 } else {
     echo '<div class="container section-padding"><h2>Page Not Found</h2><p>The page you are looking for does not exist.</p></div>';
 }
+$pageContent = ob_get_clean();
+
+// Load Header
+include 'includes/header.php';
+
+// Output Content
+echo $pageContent;
 
 // Load Footer
 include 'includes/footer.php';

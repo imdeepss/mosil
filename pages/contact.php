@@ -1,6 +1,7 @@
 <?php
 // pages/contact.php
-$pageTitle = 'Contact Us';
+$pageTitle = 'Contact Us - Get in Touch with Our Experts | MOSIL';
+$metaDescription = 'Contact MOSIL for inquiries, support, or consultations regarding our custom lubrication solutions. Our experts are ready to assist you.';
 ?>
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
 
@@ -118,7 +119,7 @@ $pageTitle = 'Contact Us';
                         if (input.name === 'email') type = 'email';
                         else if (input.name === 'contact') type = 'tel';
                         else if (input.name === 'pincode') type = 'pincode';
-                        
+
                         const isValid = validators[type](input.value);
                         const wrapper = input.parentElement;
                         const errorMsg = wrapper.querySelector('.error-text');
@@ -295,7 +296,8 @@ $pageTitle = 'Contact Us';
                         </li>
                         <li class="flex gap-4 items-center">
                             <img src="<?php echo SITE_URL ?>/assets/icons/svg/contact.svg" alt="Phone">
-                            <a href="tel:+919619234158" class="hover:text-main-green transition-colors">+91 9619234158</a>
+                            <a href="tel:+919619234158" class="hover:text-main-green transition-colors">+91
+                                9619234158</a>
                         </li>
                         <li class="flex gap-4 items-center">
                             <img src="<?php echo SITE_URL ?>/assets/icons/svg/email.svg" alt="Email">

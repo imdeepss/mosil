@@ -1,5 +1,6 @@
 <?php
-$pageTitle = "MOSIL's Advantages";
+$pageTitle = 'MOSIL\'s Advantages - Why Choose Us | MOSIL';
+$metaDescription = 'Discover the unique advantages of choosing MOSIL for your specialty lubrication needs. We provide high-quality products, expert technical support, and innovative solutions.';
 ?>
 
 <!-- Hero Section -->

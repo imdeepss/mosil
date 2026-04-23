@@ -1,4 +1,6 @@
 <?php
+$pageTitle = 'Custom & Specialty Lubricants Manufacturer | MOSIL';
+$metaDescription = 'MOSIL provides high-performance custom and specialty lubricants, greases, and oils for various industrial applications. Discover our innovative lubrication solutions.';
 $industries = getSpecificIndustries();
 $products = getCategoryByParent("3", "4");
 $caseStudies = getHomeFixedCaseStudies();

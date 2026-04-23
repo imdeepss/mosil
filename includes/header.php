@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle . ' | ' . SITE_NAME : SITE_NAME; ?></title>
+    <title><?php echo isset($pageTitle) ? $pageTitle : SITE_NAME; ?></title>
+    <?php if (isset($metaDescription)): ?>
+    <meta name="description" content="<?php echo htmlspecialchars($metaDescription); ?>">
+    <?php endif; ?>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png">
+    <link rel="shortcut icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png">
 
     <!-- Core CSS -->
     <?php include 'tailwind-setup.php'; ?>

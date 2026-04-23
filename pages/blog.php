@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Blog';
+$pageTitle = 'Lubrication Blog - Insights & Best Practices | MOSIL';
+$metaDescription = 'Read the MOSIL blog for expert insights, tips, and best practices on industrial lubrication, equipment maintenance, and specialty grease applications.';
 // Initial load: Page 1, Limit 3, Category All
 $initialData = getBlogsWithPagination(1, 3, 'All');
 $blogs = $initialData['blogs'];

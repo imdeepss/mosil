@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Product Finder';
+$pageTitle = 'Product Finder - Find the Right Lubricant | MOSIL';
+$metaDescription = 'Use the MOSIL Product Finder to easily locate the perfect specialty lubricant, grease, or oil tailored for your specific industrial application and machinery.';
 ?>
 
 <!-- Hero Section -->

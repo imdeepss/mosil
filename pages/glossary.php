@@ -1,3 +1,7 @@
+<?php
+$pageTitle = 'Lubrication Glossary - Terms & Definitions | MOSIL';
+$metaDescription = 'Browse the MOSIL Lubrication Glossary to understand technical terms, definitions, and concepts related to specialty lubricants and industrial maintenance.';
+?>
 <section class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
     <div class="absolute inset-0 z-0 w-full h-full">
         <img src="<?php echo SITE_URL; ?>/assets/images/banners/about-us.png" alt="Career"

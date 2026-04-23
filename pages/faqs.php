@@ -1,5 +1,6 @@
 <?php
-
+$pageTitle = 'FAQs - Frequently Asked Questions | MOSIL';
+$metaDescription = 'Have questions about our products or services? Find answers to the most frequently asked questions about MOSIL\'s specialty lubricants and industrial solutions.';
 
 $faqs = [
     'Oils' => [

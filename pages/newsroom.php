@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Newsroom';
+$pageTitle = 'Newsroom - Latest Updates & Announcements | MOSIL';
+$metaDescription = 'Stay up to date with the latest news, announcements, and corporate updates from MOSIL, your partner in specialty lubrication solutions.';
 $blogs = getBlogs(3);
 $latestBlogs = getLatestBlogs(5);
 $glossary = getGlossary("A", $limit = 3, $offset = 0);

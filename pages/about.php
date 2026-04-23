@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'About Us';
+$pageTitle = 'About Us - Leading Specialty Lubricants Manufacturer | MOSIL';
+$metaDescription = 'Discover the history, mission, and vision of MOSIL. For decades, we have been a trusted leader in manufacturing high-performance specialty lubricants.';
 
 $mosil_matters = [
     [

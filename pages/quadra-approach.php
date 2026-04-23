@@ -1,6 +1,7 @@
 <?php
 // pages/quadra-approach.php
-$pageTitle = 'Quadra Approach';
+$pageTitle = 'The Quadra Approach - Our Methodology | MOSIL';
+$metaDescription = 'Learn about MOSIL\'s unique Quadra Approach to lubrication. We focus on diagnosis, design, delivery, and demonstration to solve your toughest friction challenges.';
 ?>
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
 

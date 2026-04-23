@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Case Studies';
+$pageTitle = 'Case Studies - Proven Lubrication Success | MOSIL';
+$metaDescription = 'Explore our case studies to see how MOSIL\'s specialty lubricants have successfully solved real-world industrial challenges and improved machinery efficiency.';
 // Initial load: Page 1, Limit 6, Category All
 $initialData = getCaseStudiesWithPagination(1, 3, 'All');
 $caseStudies = $initialData['caseStudies'];

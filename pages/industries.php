@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Industries We Serve';
+$pageTitle = 'Industries We Serve - Specialized Lubrication Solutions | MOSIL';
+$metaDescription = 'MOSIL provides advanced specialty lubricants for a wide range of industries including automotive, cement, steel, food processing, and general manufacturing.';
 $industries = getCategoryByParent("2");
 ?>
 

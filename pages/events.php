@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Events';
+$pageTitle = 'Events & Exhibitions | MOSIL';
+$metaDescription = 'Join MOSIL at upcoming industry events, trade shows, and exhibitions. Connect with our lubrication experts to discover innovative friction management solutions.';
 // Initial load: Page 1, Limit 6, Category All
 $initialData = getEventsWithPagination(1, 6, 'All');
 $blogs = $initialData['blogs'];

@@ -1,5 +1,6 @@
 <?php
-
+$pageTitle = 'Careers - Join Our Team | MOSIL';
+$metaDescription = 'Looking for a rewarding career in the specialty lubricants industry? Explore current job openings and career opportunities at MOSIL and join our growing team.';
 $positions = getCareerPosition();
 
 ?>
