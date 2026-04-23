@@ -12,7 +12,15 @@
     <!-- libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/common.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8BDPPXN66"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-J8BDPPXN66');
+    </script>
     <!-- Page Specific CSS -->
     <?php
     $pageCss = 'assets/css/' . $page . '.css';
