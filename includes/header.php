@@ -206,30 +206,67 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const searchInputs = Array.from(document.querySelectorAll('.search-input'));
+            var searchInputs = document.querySelectorAll('.search-input');
 
-            // Debounce function
+            // Debounce function (ES5 compatible)
             function debounce(func, wait) {
-                let timeout;
-                return function (...args) {
-                    const context = this;
+                var timeout;
+                return function () {
+                    var context = this;
+                    var args = arguments;
                     clearTimeout(timeout);
-                    timeout = setTimeout(() => func.apply(context, args), wait);
+                    timeout = setTimeout(function () {
+                        func.apply(context, args);
+                    }, wait);
                 };
             }
 
-            // Search Handler
-            const handleSearch = debounce(function (e) {
-                // Use 'this' instead of e.target to prevent issues with event object recycling in some browsers
-                const input = this;
-                const val = input.value.trim();
+            // Polyfill for Element.prototype.closest for older browsers
+            if (!Element.prototype.matches) {
+                Element.prototype.matches = Element.prototype.msMatchesSelector || 
+                                            Element.prototype.webkitMatchesSelector || 
+                                            function(s) {
+                                                var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+                                                    i = matches.length;
+                                                while (--i >= 0 && matches.item(i) !== this) {}
+                                                return i > -1;
+                                            };
+            }
+            if (!Element.prototype.closest) {
+                Element.prototype.closest = function(s) {
+                    var el = this;
+                    if (!document.documentElement.contains(el)) return null;
+                    do {
+                        if (el.matches(s)) return el;
+                        el = el.parentElement || el.parentNode;
+                    } while (el !== null && el.nodeType === 1);
+                    return null;
+                };
+            }
 
-                // Find sibling or parent's sibling results container
-                // Structure varies:
-                // Desktop: Sibling
-                // Mobile: Sibling
-                // Sidebar: Sibling (added)
-                let container = input.parentNode.querySelector('.search-results-container');
+            // Helper to handle class toggling safely
+            function addClass(el, className) {
+                if (el.classList) {
+                    el.classList.add(className);
+                } else if (el.className.indexOf(className) === -1) {
+                    el.className += ' ' + className;
+                }
+            }
+
+            function removeClass(el, className) {
+                if (el.classList) {
+                    el.classList.remove(className);
+                } else {
+                    el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                }
+            }
+
+            // Search Handler
+            var handleSearch = debounce(function (e) {
+                var input = this;
+                var val = input.value.trim();
+
+                var container = input.parentNode.querySelector('.search-results-container');
                 if (!container && input.parentNode.parentNode) {
                     container = input.parentNode.parentNode.querySelector('.search-results-container');
                 }
@@ -238,64 +275,88 @@
 
                 if (val.length < 2) {
                     container.innerHTML = '';
-                    container.classList.add('hidden');
+                    addClass(container, 'hidden');
                     return;
                 }
 
-                fetch('<?php echo SITE_URL; ?>/ajax/search.php?q=' + encodeURIComponent(val))
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        return response.json();
-                    })
-                    .then(data => {
-                        container.innerHTML = '';
-                        if (Array.isArray(data) && data.length > 0) {
-                            data.forEach(item => {
-                                const link = document.createElement('a');
-                                link.href = item.url;
-                                link.className = 'hover:text-main-green w-full block py-1 border-b border-gray-100 last:border-0';
-                                link.textContent = item.name;
-                                container.appendChild(link);
-                            });
-                            container.classList.remove('hidden');
+                // Use XMLHttpRequest for maximum compatibility (replaces fetch)
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '<?php echo SITE_URL; ?>/ajax/search.php?q=' + encodeURIComponent(val), true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            try {
+                                var data = JSON.parse(xhr.responseText);
+                                container.innerHTML = '';
+                                if (Object.prototype.toString.call(data) === '[object Array]' && data.length > 0) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        var item = data[i];
+                                        var link = document.createElement('a');
+                                        link.href = item.url;
+                                        link.className = 'hover:text-main-green w-full block py-1 border-b border-gray-100 last:border-0';
+                                        
+                                        if (typeof link.textContent !== 'undefined') {
+                                            link.textContent = item.name;
+                                        } else {
+                                            link.innerText = item.name;
+                                        }
+                                        
+                                        container.appendChild(link);
+                                    }
+                                    removeClass(container, 'hidden');
+                                } else {
+                                    container.innerHTML = '<span class="text-gray-500 p-2 block text-sm">No results found</span>';
+                                    removeClass(container, 'hidden');
+                                }
+                            } catch (err) {
+                                console.error('Search error:', err);
+                            }
                         } else {
-                            container.innerHTML = '<span class="text-gray-500 p-2 block text-sm">No results found</span>';
-                            container.classList.remove('hidden');
+                            console.error('Network response was not ok');
                         }
-                    })
-                    .catch(err => {
-                        console.error('Search error:', err);
-                    });
+                    }
+                };
+                xhr.send();
             }, 300);
 
-            searchInputs.forEach(input => {
+            for (var i = 0; i < searchInputs.length; i++) {
+                var input = searchInputs[i];
                 input.addEventListener('input', handleSearch);
 
                 // Close on blur (delay to allow click)
                 input.addEventListener('blur', function (e) {
-                    const currentInput = this; // Capture reference synchronously
-                    setTimeout(() => {
-                        let container = currentInput.parentNode.querySelector('.search-results-container');
+                    var currentInput = this;
+                    setTimeout(function () {
+                        var container = currentInput.parentNode.querySelector('.search-results-container');
                         if (!container && currentInput.parentNode.parentNode) {
                             container = currentInput.parentNode.parentNode.querySelector('.search-results-container');
                         }
-                        if (container) {
-                            // container.classList.add('hidden'); 
-                            // We rely on the document click listener to close it, 
-                            // so clicking on a result doesn't close it before navigation
-                        }
                     }, 200);
                 });
-            });
+            }
 
             // Close results when clicking outside
-            // Added touchstart for cross-browser support (specifically iOS Safari click delegation bug)
-            ['click', 'touchstart'].forEach(eventType => {
-                document.addEventListener(eventType, function (e) {
-                    if (e.target.closest && !e.target.closest('.search-input') && !e.target.closest('.search-results-container')) {
-                        Array.from(document.querySelectorAll('.search-results-container')).forEach(el => el.classList.add('hidden'));
+            var events = ['click', 'touchstart'];
+            for (var j = 0; j < events.length; j++) {
+                document.addEventListener(events[j], function (e) {
+                    var target = e.target || e.srcElement;
+                    
+                    // Safe check for closest
+                    var isSearchInput = false;
+                    var isSearchResults = false;
+                    
+                    if (target && typeof target.closest === 'function') {
+                        isSearchInput = target.closest('.search-input');
+                        isSearchResults = target.closest('.search-results-container');
                     }
-                }, { passive: true });
-            });
+                    
+                    if (!isSearchInput && !isSearchResults) {
+                        var containers = document.querySelectorAll('.search-results-container');
+                        for (var k = 0; k < containers.length; k++) {
+                            addClass(containers[k], 'hidden');
+                        }
+                    }
+                }, false); 
+            }
         });
     </script>
