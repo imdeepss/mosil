@@ -261,6 +261,9 @@
                 }
             }
 
+            // Store active XHR requests to abort them if needed (prevents race conditions)
+            var activeRequests = {};
+
             // Search Handler
             var handleSearch = debounce(function (e) {
                 var input = this;
@@ -278,10 +281,31 @@
                     addClass(container, 'hidden');
                     return;
                 }
+                
+                // Show loading state
+                container.innerHTML = '<span class="text-gray-500 p-2 block text-sm">Searching...</span>';
+                removeClass(container, 'hidden');
 
-                // Use XMLHttpRequest for maximum compatibility (replaces fetch)
+                // Abort previous request for this input
+                var inputId = input.id || input.name || Math.random().toString();
+                if (!input.getAttribute('data-search-id')) {
+                    input.setAttribute('data-search-id', inputId);
+                }
+                var searchId = input.getAttribute('data-search-id');
+                
+                if (activeRequests[searchId]) {
+                    activeRequests[searchId].abort();
+                }
+
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', '<?php echo SITE_URL; ?>/ajax/search.php?q=' + encodeURIComponent(val), true);
+                activeRequests[searchId] = xhr;
+                
+                // Append timestamp to prevent aggressive IE/Safari caching
+                var noCacheUrl = '<?php echo SITE_URL; ?>/ajax/search.php?q=' + encodeURIComponent(val) + '&_=' + new Date().getTime();
+                
+                xhr.open('GET', noCacheUrl, true);
+                xhr.setRequestHeader('Accept', 'application/json');
+                
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4) {
                         if (xhr.status >= 200 && xhr.status < 300) {
@@ -293,7 +317,8 @@
                                         var item = data[i];
                                         var link = document.createElement('a');
                                         link.href = item.url;
-                                        link.className = 'hover:text-main-green w-full block py-1 border-b border-gray-100 last:border-0';
+                                        // Added search-result-item class for keyboard navigation
+                                        link.className = 'search-result-item hover:text-main-green hover:bg-gray-50 focus:bg-gray-100 focus:outline-none w-full block py-2 px-2 border-b border-gray-100 last:border-0 transition-colors';
                                         
                                         if (typeof link.textContent !== 'undefined') {
                                             link.textContent = item.name;
@@ -305,14 +330,18 @@
                                     }
                                     removeClass(container, 'hidden');
                                 } else {
-                                    container.innerHTML = '<span class="text-gray-500 p-2 block text-sm">No results found</span>';
+                                    // Safe text injection
+                                    var safeVal = val.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                                    container.innerHTML = '<span class="text-gray-500 p-2 block text-sm">No results found for "' + safeVal + '"</span>';
                                     removeClass(container, 'hidden');
                                 }
                             } catch (err) {
-                                console.error('Search error:', err);
+                                console.error('Search parsing error:', err);
+                                container.innerHTML = '<span class="text-red-500 p-2 block text-sm">Error loading results</span>';
                             }
-                        } else {
-                            console.error('Network response was not ok');
+                        } else if (xhr.status !== 0) { // 0 means aborted, don't show error
+                            console.error('Search network error');
+                            container.innerHTML = '<span class="text-red-500 p-2 block text-sm">Network error occurred</span>';
                         }
                     }
                 };
@@ -321,24 +350,107 @@
 
             for (var i = 0; i < searchInputs.length; i++) {
                 var input = searchInputs[i];
+                input.setAttribute('autocomplete', 'off'); // Prevent browser autocomplete from overlapping
                 input.addEventListener('input', handleSearch);
 
-                // Close on blur (delay to allow click)
-                input.addEventListener('blur', function (e) {
-                    var currentInput = this;
-                    setTimeout(function () {
-                        var container = currentInput.parentNode.querySelector('.search-results-container');
-                        if (!container && currentInput.parentNode.parentNode) {
-                            container = currentInput.parentNode.parentNode.querySelector('.search-results-container');
+                // Keyboard Navigation (Accessibility & UX)
+                input.addEventListener('keydown', function(e) {
+                    var container = this.parentNode.querySelector('.search-results-container');
+                    if (!container && this.parentNode.parentNode) {
+                        container = this.parentNode.parentNode.querySelector('.search-results-container');
+                    }
+                    
+                    if (!container || container.className.indexOf('hidden') !== -1) {
+                        if (e.key === 'Enter' || e.keyCode === 13) {
+                            e.preventDefault();
+                            if (this.value.trim()) handleSearch.call(this);
                         }
-                    }, 200);
+                        return;
+                    }
+
+                    var items = container.querySelectorAll('.search-result-item');
+                    if (!items.length) {
+                        // If no items (like "No results found"), just allow Enter to do nothing or fallback
+                        if (e.key === 'Enter' || e.keyCode === 13) {
+                            e.preventDefault();
+                        }
+                        return;
+                    }
+
+                    var activeItem = container.querySelector('.search-result-item:focus') || document.activeElement;
+                    var currentIndex = Array.prototype.indexOf.call(items, activeItem);
+
+                    if (e.key === 'ArrowDown' || e.keyCode === 40) {
+                        e.preventDefault();
+                        var nextIndex = (currentIndex + 1) % items.length;
+                        items[nextIndex].focus();
+                    } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
+                        e.preventDefault();
+                        if (currentIndex === -1) {
+                            items[items.length - 1].focus(); // Loop to bottom
+                        } else {
+                            var prevIndex = (currentIndex - 1 + items.length) % items.length;
+                            items[prevIndex].focus();
+                        }
+                    } else if (e.key === 'Escape' || e.keyCode === 27) {
+                        addClass(container, 'hidden');
+                        this.focus();
+                    } else if (e.key === 'Enter' || e.keyCode === 13) {
+                        e.preventDefault();
+                        if (currentIndex > -1) {
+                            items[currentIndex].click();
+                        } else {
+                            items[0].click(); // Default to first result
+                        }
+                    }
                 });
             }
+
+            // Result Item Keyboard Navigation support
+            document.addEventListener('keydown', function(e) {
+                var target = e.target || e.srcElement;
+                if (!target || typeof target.className !== 'string' || target.className.indexOf('search-result-item') === -1) return;
+                
+                var container = target.closest ? target.closest('.search-results-container') : null;
+                if (!container) return;
+                
+                var items = container.querySelectorAll('.search-result-item');
+                var currentIndex = Array.prototype.indexOf.call(items, target);
+                
+                if (e.key === 'ArrowDown' || e.keyCode === 40) {
+                    e.preventDefault();
+                    var nextIndex = (currentIndex + 1) % items.length;
+                    items[nextIndex].focus();
+                } else if (e.key === 'ArrowUp' || e.keyCode === 38) {
+                    e.preventDefault();
+                    if (currentIndex === 0) {
+                        // Go back to input
+                        var input = container.parentNode.querySelector('.search-input');
+                        if (!input) input = container.parentNode.parentNode.querySelector('.search-input');
+                        if (input) {
+                            input.focus();
+                            // Move cursor to end of text
+                            var val = input.value;
+                            input.value = '';
+                            input.value = val;
+                        }
+                    } else {
+                        var prevIndex = (currentIndex - 1) % items.length;
+                        items[prevIndex].focus();
+                    }
+                } else if (e.key === 'Escape' || e.keyCode === 27) {
+                    addClass(container, 'hidden');
+                    var input = container.parentNode.querySelector('.search-input');
+                    if (!input) input = container.parentNode.parentNode.querySelector('.search-input');
+                    if (input) input.focus();
+                }
+            });
 
             // Click on search icon triggers search
             var searchIcons = document.querySelectorAll('.search-icon-trigger');
             for (var m = 0; m < searchIcons.length; m++) {
-                searchIcons[m].addEventListener('click', function () {
+                searchIcons[m].addEventListener('click', function (e) {
+                    e.stopPropagation(); // Prevent document click from closing it immediately
                     var container = this.parentNode;
                     var input = container.querySelector('.search-input');
                     if (input) {
@@ -354,16 +466,22 @@
                 document.addEventListener(events[j], function (e) {
                     var target = e.target || e.srcElement;
                     
-                    // Safe check for closest
+                    // Safari text node bug fix
+                    if (target && target.nodeType === 3) target = target.parentNode;
+                    
                     var isSearchInput = false;
                     var isSearchResults = false;
+                    var isSearchIcon = false;
                     
+                    // Check if click was inside search components
                     if (target && typeof target.closest === 'function') {
                         isSearchInput = target.closest('.search-input');
                         isSearchResults = target.closest('.search-results-container');
+                        isSearchIcon = target.closest('.search-icon-trigger');
                     }
                     
-                    if (!isSearchInput && !isSearchResults) {
+                    // Only close if we clicked completely outside of any search UI
+                    if (!isSearchInput && !isSearchResults && !isSearchIcon) {
                         var containers = document.querySelectorAll('.search-results-container');
                         for (var k = 0; k < containers.length; k++) {
                             addClass(containers[k], 'hidden');
