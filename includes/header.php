@@ -76,7 +76,7 @@
                     <input type="text" name="search" placeholder="Search"
                         class="search-input h-full w-full rounded-full  outline outline-1 outline-offset-[-0.50px] outline-white bg-zinc-400/30 px-4 text-sm text-white placeholder-white" />
                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/search.png" alt="Search"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4">
+                        class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 search-icon-trigger cursor-pointer">
                     <!-- Search Results Dropdown (Desktop) -->
                     <div
                         class="search-results-container absolute top-full left-0 mt-4 w-[300px] -ml-[41px] flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-50 rounded hidden">
@@ -97,7 +97,7 @@
                     class="absolute top-0 right-0 h-full z-40 bg-[#0e0e0e] flex items-center overflow-hidden transition-[width] duration-300 ease-in-out w-0 md:hidden">
                     <div class="flex items-center w-screen max-w-[100vw] text-white px-4">
                         <!-- Search Icon (Slides with the bar) -->
-                        <svg class="shrink-0 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        <svg class="shrink-0 mr-3 search-icon-trigger cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 32 32" fill="none">
                             <path
                                 d="M28 28L20 20M22.6667 13.3333C22.6667 18.488 18.488 22.6667 13.3333 22.6667C8.17868 22.6667 4 18.488 4 13.3333C4 8.17868 8.17868 4 13.3333 4C18.488 4 22.6667 8.17868 22.6667 13.3333Z"
@@ -129,7 +129,7 @@
                                     <input type="text" placeholder="Search"
                                         class="search-input h-full w-full rounded-full border border-white bg-white/35 px-5 text-sm text-white placeholder-neutral-300 outline-none focus:ring-1 focus:ring-white/50">
                                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/search.png" alt="Search"
-                                        class="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4" loading="lazy">
+                                        class="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 search-icon-trigger cursor-pointer" loading="lazy">
                                     <!-- Sidebar Search Results -->
                                     <div
                                         class="search-results-container absolute top-full left-0 mt-2 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-50 rounded hidden">
@@ -332,6 +332,19 @@
                             container = currentInput.parentNode.parentNode.querySelector('.search-results-container');
                         }
                     }, 200);
+                });
+            }
+
+            // Click on search icon triggers search
+            var searchIcons = document.querySelectorAll('.search-icon-trigger');
+            for (var m = 0; m < searchIcons.length; m++) {
+                searchIcons[m].addEventListener('click', function () {
+                    var container = this.parentNode;
+                    var input = container.querySelector('.search-input');
+                    if (input) {
+                        input.focus();
+                        handleSearch.call(input);
+                    }
                 });
             }
 
