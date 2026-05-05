@@ -34,11 +34,27 @@ $resume_path = '';
 $resume_full_path = '';
 $original_file_name = '';
 
-if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
+if (isset($_FILES['resume'])) {
+    // Handle specific upload errors
+    if ($_FILES['resume']['error'] !== UPLOAD_ERR_OK) {
+        $uploadErrors = [
+            UPLOAD_ERR_INI_SIZE => 'File size exceeds the server limit.',
+            UPLOAD_ERR_FORM_SIZE => 'File size exceeds the form limit.',
+            UPLOAD_ERR_PARTIAL => 'File was only partially uploaded.',
+            UPLOAD_ERR_NO_FILE => 'Resume upload is required.',
+            UPLOAD_ERR_NO_TMP_DIR => 'Missing a temporary folder.',
+            UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk.',
+            UPLOAD_ERR_EXTENSION => 'A PHP extension stopped the file upload.',
+        ];
+        $error_message = $uploadErrors[$_FILES['resume']['error']] ?? 'Unknown upload error.';
+        echo json_encode(['status' => 'error', 'message' => $error_message]);
+        exit;
+    }
+
     $uploadDir = '../assets/uploads/resumes/';
-    // Ensure directory exists
+    // Ensure directory exists securely
     if (!is_dir($uploadDir)) {
-        if (!mkdir($uploadDir, 0777, true)) {
+        if (!mkdir($uploadDir, 0755, true)) { // 0755 is more secure than 0777
             error_log("Failed to create directory: " . $uploadDir);
             echo json_encode(['status' => 'error', 'message' => 'Server error: Upload directory creation failed.']);
             exit;
@@ -46,21 +62,50 @@ if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
     }
 
     $fileTmp = $_FILES['resume']['tmp_name'];
+    // Prevent path traversal issues by strictly getting the basename
     $original_file_name = basename($_FILES['resume']['name']);
     $fileExt = strtolower(pathinfo($original_file_name, PATHINFO_EXTENSION));
-    $allowed = ['pdf', 'doc', 'docx'];
 
-    if (!in_array($fileExt, $allowed)) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid file type. Only PDF, DOC, DOCX are allowed.']);
+    // a. Strict extension check
+    $allowed_extensions = ['pdf', 'doc', 'docx'];
+    if (!in_array($fileExt, $allowed_extensions)) {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid file extension. Only PDF, DOC, and DOCX are allowed.']);
         exit;
     }
 
-    // 5MB Limit
+    // b. Verify file content (MIME type check)
+    $allowed_mimes = [
+        'application/pdf',
+        'application/x-pdf',
+        'application/msword',
+        'application/vnd.ms-office',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/zip', // DOCX is often detected as ZIP
+        'application/x-zip-compressed'
+    ];
+
+    $mime_type = false;
+    if (function_exists('finfo_open')) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime_type = finfo_file($finfo, $fileTmp);
+        finfo_close($finfo);
+    } elseif (function_exists('mime_content_type')) {
+        $mime_type = mime_content_type($fileTmp);
+    }
+
+    if ($mime_type && !in_array($mime_type, $allowed_mimes)) {
+        error_log("Upload failed: Mime type mismatch for {$original_file_name}. Detected MIME: {$mime_type}");
+        echo json_encode(['status' => 'error', 'message' => 'Invalid file content. Please upload a genuine PDF or Word document.']);
+        exit;
+    }
+
+    // c. 5MB Limit
     if ($_FILES['resume']['size'] > 5 * 1024 * 1024) {
-        echo json_encode(['status' => 'error', 'message' => 'File size exceeds 5MB.']);
+        echo json_encode(['status' => 'error', 'message' => 'File size exceeds 5MB limit.']);
         exit;
     }
 
+    // Generate secure unique filename
     $newFileName = uniqid('resume_', true) . '.' . $fileExt;
     $destination = $uploadDir . $newFileName;
 
@@ -68,7 +113,7 @@ if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
     $webPath = '/uploads/resumes/' . $newFileName;
 
     if (!move_uploaded_file($fileTmp, $destination)) {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to upload resume file.']);
+        echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded file.']);
         exit;
     }
 
