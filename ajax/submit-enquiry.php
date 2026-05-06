@@ -54,7 +54,7 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 1: User Confirmation ---
     $userSubject = "Mosil: We have received your enquiry regarding $productName";
     $userBody = "
-        <div style='font-family: Arial, sans-serif; color: #333;'>
+        <div style='font-family: Helvetica, Arial, sans-serif; color: #333;'>
             <p>Dear <strong>$fullName</strong>,</p>
             <p>Thank you for reaching out to Mosil. We have successfully received your enquiry regarding <strong>$subject</strong>.</p>
             <p>Our technical team will review your requirements and get back to you shortly.</p>

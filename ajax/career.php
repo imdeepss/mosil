@@ -134,10 +134,10 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 1: User Confirmation ---
     $userSubject = 'Application Received: ' . $position . ' - Mosil Lubricants';
     $userBody = "
-        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Dear $name,</p>
-        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Thank you for applying for the position of <strong>$position</strong>.</p>
-        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>We have received your application and will get back to you if shortlisted.</p>
-        <p style='font-family: Arial, sans-serif; font-size: 14px; color: #333;'>Best regards,<br>Mosil Pvt. Ltd.</p>
+        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>Dear $name,</p>
+        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>Thank you for applying for the position of <strong>$position</strong>.</p>
+        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>We have received your application and will get back to you if shortlisted.</p>
+        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>Best regards,<br>Mosil Pvt. Ltd.</p>
     ";
 
     $userMail = sendMail($email, $name, $userSubject, $userBody);
@@ -145,8 +145,8 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 2: Admin Notification ---
     $adminSubject = '[Career] New Application: ' . $position . ' - ' . $name;
     $adminBody = "
-        <h2 style='font-family: Arial, sans-serif; font-size: 18px; color: #333;'>New Application Details</h2>
-        <table style='border-collapse: collapse; width: 100%; max-width: 600px; font-family: Arial, sans-serif; font-size: 14px;'>
+        <h2 style='font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #333;'>New Application Details</h2>
+        <table style='border-collapse: collapse; width: 100%; max-width: 600px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;'>
             <tr style='background-color: #f2f2f2;'>
                 <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Field</th>
                 <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Details</th>
@@ -180,7 +180,7 @@ if (db_execute($sql, $params)) {
                 <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($status) . "</td>
             </tr>
         </table>
-        <p style='font-family: Arial, sans-serif; font-size: 14px; margin-top: 20px; color: #333;'>Please find the applicant's resume attached.</p>
+        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; margin-top: 20px; color: #333;'>Please find the applicant's resume attached.</p>
     ";
 
     $attachments = [];

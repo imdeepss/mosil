@@ -90,11 +90,13 @@ try {
         // --- EMAIL 1: User Confirmation ---
         $userSubject = "Registration Confirmed: " . $eventTitle . " - Mosil Lubricants";
         $userBody = "
-        <p>Dear " . htmlspecialchars($fullName) . ",</p>
-        <p>Thank you for registering for the event: <strong>" . htmlspecialchars($eventTitle) . "</strong>.</p>
-        <p>We have successfully received your registration details.</p>
-        <p>We look forward to seeing you there.</p>
-        <p>Best regards,<br>Mosil Pvt. Ltd.</p>
+        <div style='font-family: Helvetica, Arial, sans-serif; color: #333;'>
+            <p>Dear " . htmlspecialchars($fullName) . ",</p>
+            <p>Thank you for registering for the event: <strong>" . htmlspecialchars($eventTitle) . "</strong>.</p>
+            <p>We have successfully received your registration details.</p>
+            <p>We look forward to seeing you there.</p>
+            <p>Best regards,<br>Mosil Pvt. Ltd.</p>
+        </div>
     ";
 
         $userMail = sendMail($email, $fullName, $userSubject, $userBody);

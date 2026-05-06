@@ -38,12 +38,14 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 1: User Confirmation ---
     $userSubject = "Thank you for contacting Mosil Lubricants";
     $userBody = "
-        <p>Dear " . htmlspecialchars($name) . ",</p>
-        <p>Thank you for your enquiry regarding: <strong>" . htmlspecialchars($subject) . "</strong>.</p>
-        <p>We have received your message:</p>
-        <blockquote>" . nl2br(htmlspecialchars($message)) . "</blockquote>
-        <p>We will get back to you shortly.</p>
-        <p>Best regards,<br>Mosil Pvt. Ltd.</p>
+        <div style='font-family: Helvetica, Arial, sans-serif; color: #333;'>
+            <p>Dear " . htmlspecialchars($name) . ",</p>
+            <p>Thank you for your enquiry regarding: <strong>" . htmlspecialchars($subject) . "</strong>.</p>
+            <p>We have received your message:</p>
+            <blockquote>" . nl2br(htmlspecialchars($message)) . "</blockquote>
+            <p>We will get back to you shortly.</p>
+            <p>Best regards,<br>Mosil Pvt. Ltd.</p>
+        </div>
     ";
 
     $userMail = sendMail($email, $name, $userSubject, $userBody);
