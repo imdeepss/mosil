@@ -37,7 +37,8 @@ $allowed_pages = [
     'blog-detail',
     'case-study-detail',
     'event-detail',
-    'test'
+    'test',
+    'disclaimer'
 ];
 
 if (!in_array($page, $allowed_pages)) {
