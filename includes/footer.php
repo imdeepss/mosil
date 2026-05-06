@@ -28,6 +28,10 @@
                             class="hover:text-[var(--color-primary)] transition-colors">Products</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/case-studies"
                             class="hover:text-[var(--color-primary)] transition-colors">Case studies</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/disclaimer"
+                            class="hover:text-[var(--color-primary)] transition-colors">Disclaimer</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/privacy-policy"
+                            class="hover:text-[var(--color-primary)] transition-colors">Privacy Policy</a></li>
                 </ul>
             </div>
 
