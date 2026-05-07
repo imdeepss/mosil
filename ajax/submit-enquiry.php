@@ -89,7 +89,7 @@ if (db_execute($sql, $params)) {
         </table>
     </div>";
 
-    $adminMail = sendMail('enquiry@mosil.com', 'Mosil Support', $adminSubject, $adminBody);
+    $adminMail = sendMail(ADMIN_EMAIL, 'Mosil Support', $adminSubject, $adminBody);
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'Thank you! Your enquiry has been submitted and a confirmation email has been sent.']);

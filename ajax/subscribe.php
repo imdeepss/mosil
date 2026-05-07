@@ -38,7 +38,7 @@ $adminBody = "
 </div>
 ";
 
-$adminMail = sendMail('enquiry@mosil.com', 'Mosil Support', $adminSubject, $adminBody);
+$adminMail = sendMail(ADMIN_EMAIL, 'Mosil Support', $adminSubject, $adminBody);
 
 if ($adminMail['status'] === 'success') {
     echo json_encode(['success' => true, 'message' => 'success']);

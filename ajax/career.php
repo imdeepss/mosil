@@ -190,7 +190,7 @@ if (db_execute($sql, $params)) {
         $attachments[$resume_full_path] = $original_file_name;
     }
 
-    $adminMail = sendMail('resume@mosil.com', 'Recruitment Team', $adminSubject, $adminBody, $attachments);
+    $adminMail = sendMail(CAREER_EMAIL, 'Recruitment Team', $adminSubject, $adminBody, $attachments);
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['status' => 'success', 'message' => 'Application submitted successfully.']);

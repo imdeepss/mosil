@@ -1,9 +1,9 @@
 # Environment / server-specific files
 .htaccess
 php.ini
-.env
-.env.local
-.env.*
+# .env
+# .env.local
+# .env.*
 
 # Dependency folders
 /vendor/
@@ -19,7 +19,7 @@ Thumbs.db
 /assets/uploads/
 
 # config files
-/includes/config.php
+# /includes/config.php
 
 
 
