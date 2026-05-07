@@ -25,7 +25,7 @@ $adminBody = "
     <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New Newsletter Subscription</h2>
     <p>A new user has subscribed to the mailing list from the website footer.</p>
     
-    <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse;'>
+    <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse; font-family: Helvetica, Arial, sans-serif;'>
         <tr>
             <td width='30%' style='border: 1px solid #eeeeee; font-weight: bold;'>Email Address</td>
             <td style='border: 1px solid #eeeeee;'><a href='mailto:" . htmlspecialchars($email) . "'>" . htmlspecialchars($email) . "</a></td>

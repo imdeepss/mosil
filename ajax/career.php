@@ -134,10 +134,12 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 1: User Confirmation ---
     $userSubject = 'Application Received: ' . $position . ' - Mosil Lubricants';
     $userBody = "
-        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>Dear $name,</p>
-        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>Thank you for applying for the position of <strong>$position</strong>.</p>
-        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>We have received your application and will get back to you if shortlisted.</p>
-        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #333;'>Best regards,<br>Mosil Pvt. Ltd.</p>
+        <div style='font-family: Helvetica, Arial, sans-serif; color: #333;'>
+            <p>Dear " . htmlspecialchars($name) . ",</p>
+            <p>Thank you for applying for the position of <strong>" . htmlspecialchars($position) . "</strong>.</p>
+            <p>We have received your application and will get back to you if shortlisted.</p>
+            <p>Best regards,<br>Mosil Pvt. Ltd.</p>
+        </div>
     ";
 
     $userMail = sendMail($email, $name, $userSubject, $userBody);
@@ -145,42 +147,40 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 2: Admin Notification ---
     $adminSubject = '[Career] New Application: ' . $position . ' - ' . $name;
     $adminBody = "
-        <h2 style='font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #333;'>New Application Details</h2>
-        <table style='border-collapse: collapse; width: 100%; max-width: 600px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;'>
-            <tr style='background-color: #f2f2f2;'>
-                <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Field</th>
-                <th style='border: 1px solid #ddd; padding: 8px; text-align: left;'>Details</th>
+    <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 600px;'>
+        <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New Application Details</h2>
+        <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse; font-family: Helvetica, Arial, sans-serif;'>
+            <tr style='background-color: #f9f9f9;'>
+                <td width='30%' style='border: 1px solid #eeeeee; font-weight: bold;'>Name</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($name) . "</td>
             </tr>
             <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>Name</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($name) . "</td>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Email</td>
+                <td style='border: 1px solid #eeeeee;'><a href='mailto:" . htmlspecialchars($email) . "'>" . htmlspecialchars($email) . "</a></td>
+            </tr>
+            <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Phone</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($mobile) . "</td>
             </tr>
             <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>Email</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($email) . "</td>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>City</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($city) . "</td>
+            </tr>
+            <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Pincode</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($pincode) . "</td>
             </tr>
             <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>Phone</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($mobile) . "</td>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Position</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($position) . "</td>
             </tr>
-            <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>City</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($city) . "</td>
-            </tr>
-            <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>Pincode</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($pincode) . "</td>
-            </tr>
-            <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>Position</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($position) . "</td>
-            </tr>
-            <tr>
-                <td style='border: 1px solid #ddd; padding: 8px;'>Status</td>
-                <td style='border: 1px solid #ddd; padding: 8px;'>" . htmlspecialchars($status) . "</td>
+            <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Status</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($status) . "</td>
             </tr>
         </table>
-        <p style='font-family: Helvetica, Arial, sans-serif; font-size: 14px; margin-top: 20px; color: #333;'>Please find the applicant's resume attached.</p>
+        <p style='font-size: 14px; margin-top: 20px;'>Please find the applicant's resume attached.</p>
+    </div>
     ";
 
     $attachments = [];

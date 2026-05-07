@@ -75,31 +75,31 @@ if (db_execute($sql, $params)) {
     // --- EMAIL 2: Admin Notification ---
     $adminSubject = "[TDS Request] for: $productName";
     $adminBody = "
-        <h2 style='color: #1A3B1B;'>New TDS Enquiry Details for $productName</h2>
-        <table cellpadding='5' cellspacing='0' style='width: 100%; border: 1px solid #eee;'>
-            <tr style='background: #f9f9f9;'><td><strong>Name:</strong></td><td>$fullName</td></tr>
+    <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 600px;'>
+        <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New TDS Enquiry Details for $productName</h2>
+        <table cellpadding='5' cellspacing='0' style='width: 100%; border: 1px solid #eee; border-collapse: collapse; font-family: Helvetica, Arial, sans-serif;'>
+            <tr style='background: #f9f9f9;'><td width='30%'><strong>Name:</strong></td><td>$fullName</td></tr>
             <tr><td><strong>Email:</strong></td><td>$email</td></tr>
             <tr style='background: #f9f9f9;'><td><strong>Product Name:</strong></td><td>$productName</td></tr>
-            <tr style='background: #f9f9f9;'><td><strong>Phone:</strong></td><td>$contact</td></tr>
-            <tr><td><strong>Company:</strong></td><td>$companyName</td></tr>
-            <tr style='background: #f9f9f9;'><td><strong>Location:</strong></td><td>$location</td></tr>
-            <tr><td><strong>Industry:</strong></td><td>$industry</td></tr>
-            <tr><td><strong>Message:</strong></td><td>" . nl2br($dbMessage) . "</td></tr>
-        </table>";
+            <tr><td><strong>Phone:</strong></td><td>$contact</td></tr>
+            <tr style='background: #f9f9f9;'><td><strong>Company:</strong></td><td>$companyName</td></tr>
+            <tr><td><strong>Location:</strong></td><td>$location</td></tr>
+            <tr style='background: #f9f9f9;'><td><strong>Industry:</strong></td><td>$industry</td></tr>
+            <tr><td style='vertical-align: top;'><strong>Message:</strong></td><td>" . nl2br($dbMessage) . "</td></tr>
+        </table>
+    </div>";
 
     $adminMail = sendMail('enquiry@mosil.com', 'Mosil Support', $adminSubject, $adminBody);
 
     if ($userMail['status'] === 'success' && $adminMail['status'] === 'success') {
         echo json_encode(['success' => true, 'message' => 'Thank you! Your enquiry has been submitted and a confirmation email has been sent.']);
-    }
-    else {
+    } else {
         // Report error from either mail Attempt
         $errorMsg = ($userMail['status'] === 'error') ? $userMail['message'] : $adminMail['message'];
         echo json_encode(['success' => true, 'message' => 'Enquiry submitted successfully. Error: ' . $errorMsg]);
     }
 
-}
-else {
+} else {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Database error. Please try again later.']);
 }

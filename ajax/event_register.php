@@ -108,7 +108,7 @@ try {
         <h2 style='color: #1A3B1B; border-bottom: 2px solid #1A3B1B; padding-bottom: 10px;'>New Event Registration</h2>
         <p>A new user has registered for an event.</p>
         
-        <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse;'>
+        <table width='100%' cellpadding='10' cellspacing='0' style='border: 1px solid #eeeeee; border-collapse: collapse; font-family: Helvetica, Arial, sans-serif;'>
             <tr style='background-color: #f9f9f9;'>
                 <td width='30%' style='border: 1px solid #eeeeee; font-weight: bold;'>Event</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($eventTitle) . "</td>
