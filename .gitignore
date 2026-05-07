@@ -4,6 +4,7 @@ php.ini
 .env
 .env.local
 .env.*
+!.env.example
 
 # Dependency folders
 /vendor/
@@ -17,9 +18,3 @@ Thumbs.db
 
 # User Uploads
 /assets/uploads/
-
-# config files
-/includes/config.php
-
-
-
