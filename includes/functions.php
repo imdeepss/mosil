@@ -745,7 +745,8 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
         $mail->CharSet = 'UTF-8';
 
         // Sender
-        $mail->setFrom('website.mosil@gmail.com', 'Mosil');
+        $mail->setFrom('mosil.lubes@gmail.com', 'Mosil Website Enquiry');
+        $mail->addReplyTo('mosil.lubes@gmail.com', 'Mosil Website Enquiry');
 
         // Recipient
         $mail->addAddress($toEmail, $toName);
