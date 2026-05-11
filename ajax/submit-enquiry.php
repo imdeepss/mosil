@@ -66,7 +66,10 @@ if (db_execute($sql, $params)) {
     if (!empty($tdsFile)) {
         $tdsFullPath = __DIR__ . '/../assets/uploads/tds/' . basename($tdsFile);
         if (file_exists($tdsFullPath)) {
-            $attachments[$tdsFullPath] = basename($tdsFile);
+            $extension = pathinfo($tdsFullPath, PATHINFO_EXTENSION);
+            // Use the product name as the file name, fallback to original if empty
+            $attachmentName = !empty($productName) ? preg_replace('/[^a-zA-Z0-9_\- ]/', '_', $productName) . '.' . $extension : basename($tdsFile);
+            $attachments[$tdsFullPath] = $attachmentName;
         }
     }
 
