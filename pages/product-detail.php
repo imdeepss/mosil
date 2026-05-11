@@ -332,17 +332,17 @@ function parseTableString($str)
                             </div>
                             <!-- Country -->
                             <div>
-                                <input type="text" name="country" placeholder="Country"
+                                <input type="text" name="country" required placeholder="Country"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400">
                             </div>
                             <!-- City -->
                             <div>
-                                <input type="text" name="city" placeholder="City"
+                                <input type="text" name="city" required placeholder="City"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400">
                             </div>
                             <!-- Industry -->
                             <div>
-                                <input type="text" name="industry" placeholder="Industry"
+                                <input type="text" name="industry" required placeholder="Industry"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-main-green text-gray-700 placeholder-gray-400">
                             </div>
                             <!-- Product Name (Readonly) -->

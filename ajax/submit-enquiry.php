@@ -53,14 +53,35 @@ if (db_execute($sql, $params)) {
 
     // --- EMAIL 1: User Confirmation ---
     $userSubject = "Mosil: We have received your enquiry regarding $productName";
-    $userBody = "
-        <div style='font-family: Helvetica, Arial, sans-serif; color: #333;'>
-            <p>Dear <strong>$fullName</strong>,</p>
-            <p>Thank you for reaching out to Mosil. We have successfully received your enquiry regarding <strong>$subject</strong>.</p>
-            <p>Our technical team will review your requirements and get back to you shortly.</p>
-            <hr style='border:none; border-top:1px solid #eee;'>
-            <p style='font-size: 12px; color: #777;'>Best Regards,<br><strong>Mosil Lubricants</strong></p>
-        </div>";
+    $userBody = '
+                <div style="font-family: Helvetica, Arial, sans-serif; color: #333;">
+                    <p>Dear <strong>' . $fullName . '</strong>,</p>
+
+                    <p>
+                        Thank you for reaching out to Mosil. We have successfully received your enquiry regarding
+                        <strong>' . $subject . '</strong>.
+                    </p>
+
+                    <p>
+                        Our technical team will review your requirements and get back to you shortly.
+                    </p>
+
+                    <p style="font-size: 12px; color: #777;">
+                        Best Regards,<br><br>
+
+                        <strong>
+                            <a href="https://www.mosil.com" style="color: #333; text-decoration: none;">
+                                MOSIL Lubricants Private Limited
+                            </a>
+                        </strong><br>
+
+                        Mumbai – IN<br>
+
+                        <a href="mailto:enquiry@mosil.com" style="color: #333; text-decoration: none;">
+                            enquiry@mosil.com
+                        </a>
+                    </p>
+                </div>';
 
     $attachments = [];
     if (!empty($tdsFile)) {

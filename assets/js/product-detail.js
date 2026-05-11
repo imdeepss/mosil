@@ -49,8 +49,55 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (form) {
+    form.setAttribute("novalidate", "true");
+
+    const validateForm = () => {
+      let isValid = true;
+      const requiredInputs = form.querySelectorAll("[required]");
+      requiredInputs.forEach((input) => {
+        if (!input.value.trim()) {
+          isValid = false;
+          input.classList.remove("border-gray-300", "focus:ring-main-green");
+          input.classList.add("border-red-500", "focus:ring-red-500", "bg-red-50");
+          
+          let errorSpan = input.nextElementSibling;
+          if (!errorSpan || !errorSpan.classList.contains("error-msg")) {
+             errorSpan = document.createElement("span");
+             errorSpan.className = "error-msg text-red-500 text-sm mt-1 block";
+             errorSpan.innerText = "This field is required";
+             input.parentNode.appendChild(errorSpan);
+          }
+        } else {
+          input.classList.remove("border-red-500", "focus:ring-red-500", "bg-red-50");
+          input.classList.add("border-gray-300", "focus:ring-main-green");
+          let errorSpan = input.nextElementSibling;
+          if (errorSpan && errorSpan.classList.contains("error-msg")) {
+             errorSpan.remove();
+          }
+        }
+      });
+      return isValid;
+    };
+
+    form.addEventListener("input", (e) => {
+      if (e.target.hasAttribute("required")) {
+        if (e.target.value.trim()) {
+          e.target.classList.remove("border-red-500", "focus:ring-red-500", "bg-red-50");
+          e.target.classList.add("border-gray-300", "focus:ring-main-green");
+          let errorSpan = e.target.nextElementSibling;
+          if (errorSpan && errorSpan.classList.contains("error-msg")) {
+             errorSpan.remove();
+          }
+        }
+      }
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      if (!validateForm()) {
+        return;
+      }
 
       const originalBtnText = submitBtn.innerHTML;
       submitBtn.innerHTML = `Processing...`;
