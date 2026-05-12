@@ -218,6 +218,13 @@ if (isSessionTimedOut()) {
                                 Product
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo $active_menu === 'catalogue_missing_images' ? 'active' : ''; ?>"
+                                href="catalogue_missing_images">
+                                <i class="fas fa-image me-2"></i>
+                                Missing Images
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

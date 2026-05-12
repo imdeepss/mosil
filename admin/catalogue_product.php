@@ -1012,3 +1012,32 @@ if (isset($_GET['success'])) {
 <?php include 'includes/footer.php'; ?>
 
 <script defer src="assets/js/__product.js"></script>
+
+<?php if (isset($_GET['edit_id']) && is_numeric($_GET['edit_id'])): ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        var editId = <?php echo (int)$_GET['edit_id']; ?>;
+        var btn = document.querySelector('.btnEditModal[data-id="' + editId + '"]');
+        if (btn) {
+            btn.click();
+        } else {
+            // If button is not on the current page (e.g., due to pagination), trigger AJAX directly
+            $.ajax({
+              url: "./_ajax/getProductsDetails.php",
+              type: "POST",
+              data: {
+                id: editId,
+              },
+              dataType: "html",
+              success: function (data) {
+                $("#editProductModal").html(data).modal("show");
+                if (typeof initializeRichEditors === 'function') initializeRichEditors();
+                if (typeof prePopulateImage === 'function') prePopulateImage();
+              }
+            });
+        }
+    }, 500); // slight delay to ensure other scripts have initialized
+});
+</script>
+<?php endif; ?>
