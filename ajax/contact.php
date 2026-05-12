@@ -35,6 +35,22 @@ $params = [$name, $email, $contact, $companyName, $subject, $pincode, $message, 
 
 if (db_execute($sql, $params)) {
 
+    // --- SALESFORCE INTEGRATION ---
+    $nameParts = explode(' ', trim($name), 2);
+    $firstName = isset($nameParts[1]) ? $nameParts[0] : '';
+    $lastName = isset($nameParts[1]) ? $nameParts[1] : $nameParts[0];
+
+    sendToSalesforce([
+        'FirstName' => $firstName,
+        'LastName' => $lastName,
+        'Company' => $companyName,
+        'Email' => $email,
+        'Phone' => $contact,
+        'Description' => "Subject: " . $subject . "\nMessage: " . $message,
+        'LeadSource' => 'Website Enquiry',
+        'PostalCode' => $pincode
+    ]);
+
     // --- EMAIL 1: User Confirmation ---
     $userSubject = "Thank you for contacting Mosil Lubricants";
     $userBody = "

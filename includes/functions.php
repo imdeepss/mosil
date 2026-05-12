@@ -794,6 +794,78 @@ function getCategoryDetailsBySlug($slug)
 }
 
 
+/**
+ * Send lead data to Salesforce API
+ *
+ * @param array $data Expected keys: FirstName, LastName, Company, Email, Phone, Description, LeadSource, PostalCode (all optional, but should be mapped)
+ * @return array ['status' => 'success'|'error', 'message' => string]
+ */
+function sendToSalesforce($data)
+{
+    // --- SALESFORCE INTEGRATION ---
+    $sf_client_id = SF_CLIENT_ID;
+    $sf_client_secret = SF_CLIENT_SECRET;
+    $sf_token_url = SF_TOKEN_URL;
+    $sf_lead_url = SF_LEAD_URL;
+
+    // 1. Get Access Token
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $sf_token_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+        'grant_type' => 'client_credentials',
+        'client_id' => $sf_client_id,
+        'client_secret' => $sf_client_secret
+    ]));
+    // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Uncomment if SSL issues occur on local
+    $token_response = curl_exec($ch);
+    $token_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($token_http_code == 200 && $token_response) {
+        $token_data = json_decode($token_response, true);
+        if (isset($token_data['access_token'])) {
+            $access_token = $token_data['access_token'];
+
+            $leadData = [
+                "FirstName" => isset($data['FirstName']) && $data['FirstName'] !== '' ? $data['FirstName'] : '',
+                "LastName" => isset($data['LastName']) && $data['LastName'] !== '' ? $data['LastName'] : 'Unknown',
+                "Company" => !empty($data['Company']) ? $data['Company'] : 'Not Provided',
+                "Email" => $data['Email'] ?? '',
+                "Phone" => $data['Phone'] ?? '',
+                "MobilePhone" => $data['Phone'] ?? '',
+                "Description" => $data['Description'] ?? '',
+                "LeadSource" => $data['LeadSource'] ?? 'Website',
+                "Status" => "New",
+                "PostalCode" => $data['PostalCode'] ?? ''
+            ];
+
+            // 2. Create Lead
+            $ch2 = curl_init();
+            curl_setopt($ch2, CURLOPT_URL, $sf_lead_url);
+            curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch2, CURLOPT_POST, true);
+            curl_setopt($ch2, CURLOPT_POSTFIELDS, json_encode($leadData));
+            curl_setopt($ch2, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $access_token,
+                'Content-Type: application/json'
+            ]);
+            // curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+            $lead_response = curl_exec($ch2);
+            $lead_http_code = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
+            curl_close($ch2);
+
+            if ($lead_http_code >= 200 && $lead_http_code < 300) {
+                return ['status' => 'success', 'message' => 'Lead created in Salesforce.'];
+            } else {
+                return ['status' => 'error', 'message' => 'Failed to create lead in Salesforce: ' . $lead_response];
+            }
+        }
+    }
+    return ['status' => 'error', 'message' => 'Failed to get access token from Salesforce.'];
+}
+
 function getLatestBlogs($limit = 5)
 {
     $sql = "SELECT

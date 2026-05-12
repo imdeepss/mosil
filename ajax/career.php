@@ -131,6 +131,22 @@ $params = [$name, $position, $email, $mobile, $city, $pincode, $resume_path, $st
 
 if (db_execute($sql, $params)) {
 
+    // --- SALESFORCE INTEGRATION ---
+    $nameParts = explode(' ', trim($name), 2);
+    $firstName = isset($nameParts[1]) ? $nameParts[0] : '';
+    $lastName = isset($nameParts[1]) ? $nameParts[1] : $nameParts[0];
+
+    sendToSalesforce([
+        'FirstName' => $firstName,
+        'LastName' => $lastName,
+        'Company' => 'Applicant',
+        'Email' => $email,
+        'Phone' => $mobile,
+        'Description' => "Position Applied: " . $position . "\nCity: " . $city,
+        'LeadSource' => 'Career Application',
+        'PostalCode' => $pincode
+    ]);
+
     // --- EMAIL 1: User Confirmation ---
     $userSubject = 'Application Received: ' . $position . ' - Mosil Lubricants';
     $userBody = "

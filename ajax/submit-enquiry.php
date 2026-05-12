@@ -50,6 +50,18 @@ $sql = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject
 $params = [$fullName, $email, $contact, $companyName, $subject, $pincode, $dbMessage];
 
 if (db_execute($sql, $params)) {
+    
+    // --- SALESFORCE INTEGRATION ---
+    sendToSalesforce([
+        'FirstName' => $firstName,
+        'LastName' => $lastName,
+        'Company' => $companyName,
+        'Email' => $email,
+        'Phone' => $contact,
+        'Description' => "Product: " . $productName . "\nSubject: " . $subject . "\nMessage: " . $dbMessage . "\nIndustry: " . $industry,
+        'LeadSource' => 'Product Enquiry',
+        'PostalCode' => $pincode
+    ]);
 
     // --- EMAIL 1: User Confirmation ---
     $userSubject = "Mosil: We have received your enquiry regarding $productName";

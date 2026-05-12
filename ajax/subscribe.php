@@ -18,6 +18,13 @@ if (!$email) {
     exit;
 }
 
+// --- SALESFORCE INTEGRATION ---
+sendToSalesforce([
+    'Email' => $email,
+    'Description' => "Subscribed to Newsletter",
+    'LeadSource' => 'Newsletter Subscription'
+]);
+
 // --- EMAIL: Admin Notification ---
 $adminSubject = "[Newsletter] New Subscription from " . $email;
 $adminBody = "

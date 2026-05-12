@@ -87,6 +87,21 @@ try {
 
     if ($result) {
 
+        // --- SALESFORCE INTEGRATION ---
+        $nameParts = explode(' ', trim($fullName), 2);
+        $firstName = isset($nameParts[1]) ? $nameParts[0] : '';
+        $lastName = isset($nameParts[1]) ? $nameParts[1] : $nameParts[0];
+
+        sendToSalesforce([
+            'FirstName' => $firstName,
+            'LastName' => $lastName,
+            'Company' => $companyName,
+            'Email' => $email,
+            'Phone' => $mobile,
+            'Description' => "Event Title: " . $eventTitle . "\nJob Title: " . $jobTitle . "\nCity/State: " . $cityState . "\nIndustry: " . $industry . "\nCompany Size: " . $companySize . "\nRelationship: " . $relationship . "\nAttendees: " . $attendeesCount . "\nAreas of Interest: " . $areasOfInterestStr . "\nHeard About: " . $hearAboutSource,
+            'LeadSource' => 'Event Registration'
+        ]);
+
         // --- EMAIL 1: User Confirmation ---
         $userSubject = "Registration Confirmed: " . $eventTitle . " - Mosil Lubricants";
         $userBody = "
