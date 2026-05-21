@@ -9,6 +9,40 @@
     <meta name="description" content="<?php echo htmlspecialchars($metaDescription); ?>">
     <?php endif; ?>
 
+    <!-- Canonical URL -->
+    <?php
+    $siteUrl = rtrim(SITE_URL, '/');
+    $parsedSite = parse_url($siteUrl);
+    $sitePath = isset($parsedSite['path']) ? rtrim($parsedSite['path'], '/') : '';
+    $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+    if (!empty($sitePath) && strpos($requestPath, $sitePath) === 0) {
+        $cleanPath = substr($requestPath, strlen($sitePath));
+    } else {
+        $cleanPath = $requestPath;
+    }
+
+    $canonicalUrl = $siteUrl . $cleanPath;
+    ?>
+    <link rel="canonical" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Structured Data (Organization Schema) -->
+    <?php if (isset($page) && $page === 'home'): ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MOSIL Lubricants Pvt. Ltd.",
+      "url": "https://mosil.com",
+      "logo": "https://mosil.com/logo.png",
+      "description": "MOSIL Lubricants is a specialty industrial lubricant manufacturer providing greases, oils, coatings, and defence lubrication solutions.",
+      "email": "enquiry@mosil.com",
+      "telephone": "+91-9619234158",
+      "foundingDate": "1971"
+    }
+    </script>
+    <?php endif; ?>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png">
     <link rel="shortcut icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png">
