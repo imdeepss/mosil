@@ -439,7 +439,7 @@ function getBlogs($limit = null)
         LEFT JOIN blog_categories bc 
             ON bp.category_id = bc.id
         WHERE bp.status = 'Published'
-        ORDER BY bp.created_at ASC
+        ORDER BY bp.created_at DESC
         $limitSql
     ";
 
