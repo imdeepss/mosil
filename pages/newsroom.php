@@ -454,8 +454,8 @@ $faqs = [
                             <p
                                 class="font-normal text-[16px] leading-[150%] tracking-[0.015em] text-[#757575] mb-2 line-clamp-3">
                                 <?php
-                                $content = clean_content($blog['content']);
-                                // $content = trim(preg_replace('/\s+/', ' ', strip_tags($content)));
+                                $content = trim(preg_replace('/\s+/', ' ', strip_tags($blog['content'])));
+                                $content = clean_content($content);
                                 echo substr($content, 0, 500);
                                 ?>
                             </p>
