@@ -29,7 +29,31 @@ if ($result->num_rows > 0) {
         $posts[] = $row;
     }
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
+    $id = $_POST['category_id'];
+    
+    $stmt = $conn->prepare("SELECT image FROM news_posts WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    if ($post = $res->fetch_assoc()) {
+        if (!empty($post['image']) && file_exists('../assets/uploads/news/' . $post['image'])) {
+            unlink('../assets/uploads/news/' . $post['image']);
+        }
+    }
+    
+    $stmt = $conn->prepare("DELETE FROM news_posts WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
 
+    header("Location: " . $_SERVER['PHP_SELF'] . "?msg=deleted");
+    exit;
+}
+
+if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
+    $message = "News post deleted successfully.";
+    $messageType = "success";
+}
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -184,7 +208,7 @@ if ($result->num_rows > 0) {
         // === Delete Confirmation with SweetAlert2 ===
         $(document).on('click', '.delete-btn', function () {
             const categoryId = $(this).data('id');
-            const categoryName = $(this).data('name');
+            const categoryName = $(this).data('title');
             $('#delete_category_id').val(categoryId);
             Swal.fire({
                 title: 'Are you sure?',

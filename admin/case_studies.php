@@ -17,6 +17,36 @@ $result = $conn->query("SELECT id, title, introduction FROM case_studies ORDER B
 while ($row = $result->fetch_assoc()) {
     $case_studies[] = $row;
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
+    $id = $_POST['category_id'];
+    
+    // Fetch image and file
+    $stmt = $conn->prepare("SELECT image, case_study_file FROM case_studies WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    if ($post = $res->fetch_assoc()) {
+        if (!empty($post['image']) && file_exists('../assets/uploads/case_studies/' . $post['image'])) {
+            unlink('../assets/uploads/case_studies/' . $post['image']);
+        }
+        if (!empty($post['case_study_file']) && file_exists('../assets/uploads/case_studies/' . $post['case_study_file'])) {
+            unlink('../assets/uploads/case_studies/' . $post['case_study_file']);
+        }
+    }
+    
+    $stmt = $conn->prepare("DELETE FROM case_studies WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+    header("Location: " . $_SERVER['PHP_SELF'] . "?msg=deleted");
+    exit;
+}
+
+if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
+    $message = "Case study deleted successfully.";
+    $messageType = "success";
+}
 ?>
 
 <?php include 'includes/header.php'; ?>
