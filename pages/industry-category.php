@@ -59,7 +59,7 @@ usort($industries, function ($a, $b) {
         </div>
 
         <p
-            class="md:pr-32 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-[var(--color-b100)] hidden md:block mb-9">
+            class="md:pr-32 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-b100 hidden md:block mb-9">
             We have solution for a broad spectrum of industries.
             We solve complex tribology challenges all over the
             world with our lubrication solutions for demanding

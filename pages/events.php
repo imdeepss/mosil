@@ -120,7 +120,7 @@ $industries = getCategoryByParent("2"); // Fetch industries for the dropdown
                                 loading="lazy">
 
                             <div
-                                class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                                class="absolute bottom-2 left-2 px-2 py-1 bg-primary text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                                 <h2>
                                     <?php echo $blog['category_name'] ?: 'General'; ?>
                                 </h2>
@@ -149,7 +149,7 @@ $industries = getCategoryByParent("2"); // Fetch industries for the dropdown
                             Read
                             <?php echo $blog['category_name'] ?: 'Article'; ?>
                             <span
-                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-primary transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
 
                     </div>

@@ -13,16 +13,16 @@ $blogs = getHomeFeaturedBlogs();
         poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" fetchpriority="high">
         <source src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.mp4" type="video/mp4"
             media="(min-width: 768px)">
-        <img src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" alt="Hero Image"
-            class="h-full w-full object-cover object-center">
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png"
+            alt="Hero Image" class="h-full w-full object-cover object-center">
     </video>
 
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center block md:hidden"
         poster="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png">
         <source src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.mp4" type="video/mp4"
             media="(max-width: 767px)">
-        <img src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png" alt="Hero Image"
-            class="h-full w-full object-cover object-center">
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png"
+            alt="Hero Image" class="h-full w-full object-cover object-center">
     </video>
 </section>
 
@@ -52,8 +52,8 @@ $blogs = getHomeFeaturedBlogs();
                 class="hidden w-full lg:w-[433px] lg:h-[480px] bg-[#F5F5F5] rounded-[4px] relative lg:flex flex-col justify-between py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] z-20 shrink-0">
 
                 <div class="absolute inset-0 opacity-50 pointer-events-none select-none">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png" class="w-full h-full object-contain"
-                        alt="">
+                    <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png"
+                        class="w-full h-full object-contain" alt="">
                 </div>
 
                 <div
@@ -118,7 +118,8 @@ $blogs = getHomeFeaturedBlogs();
                         <?php foreach ($industries as $industry): ?>
                             <div
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
-                                <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
+                                <img decoding="async"
+                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
                                     class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
                                 <div class="lg:hidden h-[286px] p-4 flex! flex-col gap-4 bg-[#F5F5F5]">
@@ -183,7 +184,7 @@ $blogs = getHomeFeaturedBlogs();
 
 
 <!-- Products engineered for performance -->
-<section class="bg-[var(--color-b10)]">
+<section class="bg-b10">
     <div class="container relative py-6">
         <div class="py-3.5">
             <span
@@ -205,7 +206,8 @@ $blogs = getHomeFeaturedBlogs();
                     class="group relative flex-1 hover:flex-[1.4] [&.active]:flex-[1.4] transition-all duration-700 ease-in-out md:min-h-[480px] min-h-[300px] overflow-hidden flex flex-col cursor-pointer">
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
-                        <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
+                        <img decoding="async"
+                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
                     </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
@@ -274,7 +276,8 @@ $blogs = getHomeFeaturedBlogs();
                     foreach ($caseStudies as $study) { ?>
                         <div class="swiper-slide w-full relative md:min-h-[506px] min-h-[360px] group overflow-hidden">
                             <a href="<?php echo SITE_URL; ?>/case-studies/<?php echo $study['slug']; ?>" class="block">
-                                <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
+                                <img decoding="async"
+                                    src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
                                     alt="Case Study Image"
                                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-120"
                                     loading="lazy">
@@ -310,7 +313,7 @@ $blogs = getHomeFeaturedBlogs();
 
             <div
                 class="animate-slide-right w-full lg:w-[460px] bg-main-green text-white md:px-7 px-5 md:py-10 py-4 relative overflow-hidden">
-                <img src="<?php echo SITE_URL; ?>/assets/images/ui/mosil-adv-bg.png"
+                <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/mosil-adv-bg.png"
                     class="absolute inset-0 w-full h-full object-cover pointer-events-none" alt="Background pattern"
                     loading="lazy" />
 
@@ -368,7 +371,7 @@ $blogs = getHomeFeaturedBlogs();
         <div class="md:mt-8 mt-6 grid grid-cols-1 lg:grid-cols-2 md:gap-8 gap-5">
             <div class="flex flex-col bg-[#F5F5F5] overflow-hidden">
                 <div class="h-[153px] md:h-[256px] w-full overflow-hidden">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/ui/manufacturing-plant.png"
+                    <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/manufacturing-plant.png"
                         alt="Manufacturing Plant" class="w-full h-full object-cover transition-transform duration-700"
                         loading="lazy">
                 </div>
@@ -389,8 +392,9 @@ $blogs = getHomeFeaturedBlogs();
             <div class="flex flex-col md:gap-6 gap-5">
                 <div class="flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px]">
                     <div class="w-full sm:w-2/5 shrink-0 overflow-hidden h-[153px] md:h-[193px]">
-                        <img src="<?php echo SITE_URL; ?>/assets/images/ui/warehouse.png" alt="Warehouse"
-                            class="w-full h-full object-cover transition-transform duration-700" loading="lazy">
+                        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/warehouse.png"
+                            alt="Warehouse" class="w-full h-full object-cover transition-transform duration-700"
+                            loading="lazy">
                     </div>
                     <div
                         class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300">
@@ -408,8 +412,9 @@ $blogs = getHomeFeaturedBlogs();
 
                 <div class="flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px]">
                     <div class="w-full sm:w-2/5 shrink-0 overflow-hidden h-[153px] md:h-[193px]">
-                        <img src="<?php echo SITE_URL; ?>/assets/images/ui/resreach-development.png" alt="R&D Lab"
-                            class="w-full h-full object-cover transition-transform duration-700" loading="lazy">
+                        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/resreach-development.png"
+                            alt="R&D Lab" class="w-full h-full object-cover transition-transform duration-700"
+                            loading="lazy">
                     </div>
                     <div
                         class="p-6 flex flex-col justify-center border-l-0 sm:border-l-4 border-transparent transition-all duration-300">
@@ -455,10 +460,10 @@ $lubricationItems = [
 ];
 ?>
 
-<section class="bg-[var(--color-primary)] relative">
+<section class="bg-primary relative">
     <div class="absolute bottom-0 left-0">
-        <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.png" alt="lubrication decision"
-            class="block h-full w-full object-cover object-center" loading="lazy">
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.png"
+            alt="lubrication decision" class="block h-full w-full object-cover object-center" loading="lazy">
     </div>
     <div class="container relative z-10 md:pt-10.5 md:pb-13 pt-6 pb-6">
 
@@ -486,8 +491,9 @@ $lubricationItems = [
                 <div onclick="this.classList.toggle('active')"
                     class="group bg-y100 h-[208px] px-3 pt-2 md:pb-6 pb-3 relative flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2 [&.active]:-translate-y-2 cursor-pointer">
                     <div class="w-[72px] h-[72px] ml-auto relative z-10">
-                        <img src="<?php echo SITE_URL; ?><?php echo $item['image']; ?>" alt="<?php echo $item['title']; ?>"
-                            class="block h-full w-full object-cover object-center" loading="lazy">
+                        <img decoding="async" src="<?php echo SITE_URL; ?><?php echo $item['image']; ?>"
+                            alt="<?php echo $item['title']; ?>" class="block h-full w-full object-cover object-center"
+                            loading="lazy">
                     </div>
 
                     <div class="relative z-10">
@@ -509,8 +515,8 @@ $lubricationItems = [
 
     </div>
     <div class="absolute top-0 right-0 h-full">
-        <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.png" alt="lubrication decision"
-            class="block h-full w-full object-cover object-center" loading="lazy">
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.png"
+            alt="lubrication decision" class="block h-full w-full object-cover object-center" loading="lazy">
     </div>
 </section>
 
@@ -524,7 +530,7 @@ $lubricationItems = [
         </span>
         <div class="mb-3.5 border-b-2 border-primary pb-1 flex items-center justify-between">
             <h2
-                class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                 MOSIL Newsroom</h2>
             <a href="<?php echo SITE_URL; ?>/newsroom"
                 class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
@@ -538,13 +544,14 @@ $lubricationItems = [
                     <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
 
                         <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
-                            <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
+                            <img decoding="async"
+                                src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
                                 alt="Hero Image"
                                 class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                                 loading="lazy">
 
                             <div
-                                class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                                class="absolute bottom-2 left-2 px-2 py-1 bg-primary text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                                 <h2><?php echo $blog['category_name'] === "Discover" ? "Blog" : $blog['category_name']; ?>
                                 </h2>
                             </div>
@@ -571,7 +578,7 @@ $lubricationItems = [
                             class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
                             Read <?php echo $blog['category_name'] === "Discover" ? "Blog" : $blog['category_name']; ?>
                             <span
-                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-100 md:scale-x-0 md:group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-primary transform scale-x-100 md:scale-x-0 md:group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
 
                     </div>
@@ -605,7 +612,7 @@ $lubricationItems = [
         <div class="py-3.5">
             <div class="border-b-2 border-primary pb-1 ">
                 <h2
-                    class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Mobilise your profit
                     with MOSIL</h2>
 
@@ -634,8 +641,8 @@ $lubricationItems = [
                     <div class="swiper-slide !w-auto">
                         <div
                             class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
-                            <img src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo $brand; ?>" alt="Brand Logo"
-                                class="max-h-full max-w-full object-contain" loading="lazy">
+                            <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo $brand; ?>"
+                                alt="Brand Logo" class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
                     </div>
                 <?php } ?>

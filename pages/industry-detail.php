@@ -46,10 +46,10 @@ $caseStudies = getCaseStudy(3);
 <section class="py-16 md:py-24 bg-white">
     <div class="container flex flex-col md:flex-row gap-12 items-center">
         <div class="w-full md:w-1/2">
-            <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-main-green)] mb-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-main-green mb-6">
                 Specialized Solutions for <?php echo $industry['mcat_name']; ?>
             </h2>
-            <div class="text-[var(--color-neutral)] text-lg leading-relaxed flex flex-col gap-4">
+            <div class="text-neutral text-lg leading-relaxed flex flex-col gap-4">
                 <p>
                     <?php echo !empty($industry['meta_description']) ? $industry['meta_description'] : "In the fast-paced world of " . strtolower($industry['mcat_name']) . ", downtime is not an option. Mosil provides specialized lubrication solutions designed to withstand the unique challenges of your sector."; ?>
                 </p>
@@ -59,7 +59,7 @@ $caseStudies = getCaseStudy(3);
                 </p>
             </div>
             <a href="<?php echo SITE_URL; ?>/contact"
-                class="inline-flex items-center mt-8 text-[var(--color-main-green)] font-bold border-b-2 border-[var(--color-main-green)] pb-1 hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-all">
+                class="inline-flex items-center mt-8 text-main-green font-bold border-b-2 border-main-green pb-1 hover:text-primary hover:border-primary transition-all">
                 Speak to an Industry Expert
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -72,7 +72,7 @@ $caseStudies = getCaseStudy(3);
             <div class="relative rounded-lg overflow-hidden shadow-2xl">
                 <img src="<?php echo SITE_URL; ?>/assets/images/ui/manufacturing-plant.png" alt="Industry Application"
                     class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-[var(--color-main-green)]/10"></div>
+                <div class="absolute inset-0 bg-main-green/10"></div>
             </div>
         </div>
     </div>
@@ -82,9 +82,9 @@ $caseStudies = getCaseStudy(3);
 <section class="py-16 bg-[#F5F5F5]">
     <div class="container">
         <div class="flex items-center justify-between mb-10">
-            <h2 class="text-2xl md:text-4xl font-bold text-[var(--color-main-green)]">Featured Products</h2>
+            <h2 class="text-2xl md:text-4xl font-bold text-main-green">Featured Products</h2>
             <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $slug; ?>/all"
-                class="text-[var(--color-neutral)] hover:text-[var(--color-main-green)] font-semibold transition-colors">
+                class="text-neutral hover:text-main-green font-semibold transition-colors">
                 View All Products &rarr;
             </a>
         </div>
@@ -103,7 +103,7 @@ $caseStudies = getCaseStudy(3);
                                 class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-bold text-[var(--color-main-green)] mb-2 line-clamp-1">
+                            <h3 class="text-lg font-bold text-main-green mb-2 line-clamp-1">
                                 <?php echo $product['name']; ?></h3>
                             <p class="text-sm text-gray-500 line-clamp-2"><?php echo $product['short_description']; ?></p>
                         </div>
@@ -120,7 +120,7 @@ $caseStudies = getCaseStudy(3);
 <?php if (!empty($caseStudies)): ?>
     <section class="py-16 bg-white border-t border-gray-100">
         <div class="container">
-            <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-main-green)] mb-10 text-center">Success Stories</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-main-green mb-10 text-center">Success Stories</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <?php foreach ($caseStudies as $study): ?>
                     <div class="group relative overflow-hidden rounded-lg min-h-[300px]">
@@ -132,7 +132,7 @@ $caseStudies = getCaseStudy(3);
                             <h3 class="text-xl font-bold mb-2"><?php echo $study['title']; ?></h3>
                             <p class="text-sm line-clamp-2 opacity-90"><?php echo cleanText($study['solution']); ?></p>
                             <a href="<?php echo SITE_URL; ?>/case-studies"
-                                class="mt-4 text-[var(--color-primary)] text-sm font-bold uppercase tracking-wider inline-block">Read
+                                class="mt-4 text-primary text-sm font-bold uppercase tracking-wider inline-block">Read
                                 Case Study</a>
                         </div>
                     </div>

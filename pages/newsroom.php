@@ -268,7 +268,7 @@ $faqs = [
             </span>
             <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
-                    class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Latest events</h2>
                 <a href="<?php echo SITE_URL; ?>/events"
                     class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
@@ -441,7 +441,7 @@ $faqs = [
                                 loading="lazy">
 
                             <div
-                                class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                                class="absolute bottom-2 left-2 px-2 py-1 bg-primary text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                                 <h2>Blog</h2>
                             </div>
                         </div>
@@ -468,7 +468,7 @@ $faqs = [
                             class="group/btn relative font-bold text-[18px] text-[#415C42] pb-2 inline-block w-fit capitalize hover:text-main-green">
                             Read Blog
                             <span
-                                class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                class="absolute bottom-0 left-0 w-full h-[2px] bg-primary transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                         </a>
 
                     </div>

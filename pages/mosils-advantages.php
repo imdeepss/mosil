@@ -4,7 +4,7 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 ?>
 
 <!-- Hero Section -->
-<section class="relative h-[500px] flex items-center justify-center overflow-hidden bg-[var(--color-black)]">
+<section class="relative h-[500px] flex items-center justify-center overflow-hidden bg-black">
     <div class="absolute inset-0 z-0">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/high-performance.png"
             class="w-full h-full object-cover opacity-60" alt="Mosil Advantages"
@@ -22,21 +22,21 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 <section class="py-20 bg-white">
     <div class="container">
         <div class="text-center mb-16">
-            <span class="text-[var(--color-b200)] text-sm font-bold uppercase tracking-widest">The Mosil Edge</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-main-green)] mt-2">Driven by Excellence</h2>
+            <span class="text-b200 text-sm font-bold uppercase tracking-widest">The Mosil Edge</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-main-green mt-2">Driven by Excellence</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
             <!-- Expertise -->
             <div
-                class="group p-8 bg-gray-50 rounded-lg hover:bg-[var(--color-main-green)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+                class="group p-8 bg-gray-50 rounded-lg hover:bg-main-green hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
                 <div
-                    class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-[var(--color-main-green)]">
+                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-main-green">
                     50+
                 </div>
                 <h3 class="text-xl font-bold mb-4">Years of Expertise</h3>
-                <p class="text-[var(--color-neutral)] group-hover:text-white/90 leading-relaxed">
+                <p class="text-neutral group-hover:text-white/90 leading-relaxed">
                     With over half a decade of experience, we understand tribology better than anyone else, ensuring
                     precise solutions for your machinery.
                 </p>
@@ -44,9 +44,9 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 
             <!-- Global Reach -->
             <div
-                class="group p-8 bg-gray-50 rounded-lg hover:bg-[var(--color-main-green)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+                class="group p-8 bg-gray-50 rounded-lg hover:bg-main-green hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
                 <div
-                    class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-[var(--color-main-green)]">
+                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-main-green">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -54,7 +54,7 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
                     </svg>
                 </div>
                 <h3 class="text-xl font-bold mb-4">Global Network</h3>
-                <p class="text-[var(--color-neutral)] group-hover:text-white/90 leading-relaxed">
+                <p class="text-neutral group-hover:text-white/90 leading-relaxed">
                     Our strong channel partner network spans 5 continents, ensuring you get the right products wherever
                     you are.
                 </p>
@@ -62,9 +62,9 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 
             <!-- R&D -->
             <div
-                class="group p-8 bg-gray-50 rounded-lg hover:bg-[var(--color-main-green)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+                class="group p-8 bg-gray-50 rounded-lg hover:bg-main-green hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
                 <div
-                    class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-[var(--color-main-green)]">
+                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-main-green">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -72,7 +72,7 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
                     </svg>
                 </div>
                 <h3 class="text-xl font-bold mb-4">In-House R&D</h3>
-                <p class="text-[var(--color-neutral)] group-hover:text-white/90 leading-relaxed">
+                <p class="text-neutral group-hover:text-white/90 leading-relaxed">
                     Continuous innovation at our advanced R&D centers ensures we stay ahead of industry demands and
                     tribological challenges.
                 </p>
@@ -80,13 +80,13 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 
             <!-- Solutions -->
             <div
-                class="group p-8 bg-gray-50 rounded-lg hover:bg-[var(--color-main-green)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+                class="group p-8 bg-gray-50 rounded-lg hover:bg-main-green hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
                 <div
-                    class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-[var(--color-main-green)]">
+                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-main-green">
                     200+
                 </div>
                 <h3 class="text-xl font-bold mb-4">Application Solutions</h3>
-                <p class="text-[var(--color-neutral)] group-hover:text-white/90 leading-relaxed">
+                <p class="text-neutral group-hover:text-white/90 leading-relaxed">
                     A comprehensive portfolio covering everything from general-purpose lubricants to extreme-specialty
                     compounds.
                 </p>
@@ -94,9 +94,9 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 
             <!-- Manufacturing -->
             <div
-                class="group p-8 bg-gray-50 rounded-lg hover:bg-[var(--color-main-green)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+                class="group p-8 bg-gray-50 rounded-lg hover:bg-main-green hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
                 <div
-                    class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-[var(--color-main-green)]">
+                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-main-green">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -104,7 +104,7 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
                     </svg>
                 </div>
                 <h3 class="text-xl font-bold mb-4">Smart Manufacturing</h3>
-                <p class="text-[var(--color-neutral)] group-hover:text-white/90 leading-relaxed">
+                <p class="text-neutral group-hover:text-white/90 leading-relaxed">
                     Our state-of-the-art manufacturing plants ensure consistent quality and the ability to scale
                     production rapidly.
                 </p>
@@ -112,9 +112,9 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
 
             <!-- Quality -->
             <div
-                class="group p-8 bg-gray-50 rounded-lg hover:bg-[var(--color-main-green)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+                class="group p-8 bg-gray-50 rounded-lg hover:bg-main-green hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
                 <div
-                    class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-[var(--color-main-green)]">
+                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 group-hover:bg-white text-3xl font-bold text-main-green">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -122,7 +122,7 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
                     </svg>
                 </div>
                 <h3 class="text-xl font-bold mb-4">Quality Assurance</h3>
-                <p class="text-[var(--color-neutral)] group-hover:text-white/90 leading-relaxed">
+                <p class="text-neutral group-hover:text-white/90 leading-relaxed">
                     Rigorous testing protocols and ISO certifications guarantee that every drop meets the highest
                     standards of performance.
                 </p>
@@ -140,14 +140,14 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
                 class="w-full h-full object-cover transition-transform hover:scale-105 duration-700" alt="R&D">
         </div>
         <div class="w-full md:w-1/2 p-10 md:p-20 flex flex-col justify-center">
-            <h2 class="text-3xl font-bold text-[var(--color-main-green)] mb-6">Pioneering R&D</h2>
-            <p class="text-[var(--color-neutral)] mb-6 text-lg leading-relaxed">
+            <h2 class="text-3xl font-bold text-main-green mb-6">Pioneering R&D</h2>
+            <p class="text-neutral mb-6 text-lg leading-relaxed">
                 At MOSIL, R&D isn't just a department; it's the core of our business. Our tribologists and chemists work
                 tirelessly to develop lubricants that push the boundaries of what's possible, ensuring your equipment
                 operates at peak efficiency even in the harshest conditions.
             </p>
             <a href="<?php echo SITE_URL; ?>/contact"
-                class="text-[var(--color-main-green)] font-bold hover:text-[var(--color-primary)] transition-colors inline-flex items-center">
+                class="text-main-green font-bold hover:text-primary transition-colors inline-flex items-center">
                 Learn about our process
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -167,8 +167,8 @@ $metaDescription = 'Discover the unique advantages of choosing MOSIL for your sp
                 alt="Manufacturing">
         </div>
         <div class="w-full md:w-1/2 p-10 md:p-20 flex flex-col justify-center">
-            <h2 class="text-3xl font-bold text-[var(--color-main-green)] mb-6">Scalable Manufacturing</h2>
-            <p class="text-[var(--color-neutral)] mb-6 text-lg leading-relaxed">
+            <h2 class="text-3xl font-bold text-main-green mb-6">Scalable Manufacturing</h2>
+            <p class="text-neutral mb-6 text-lg leading-relaxed">
                 Our manufacturing plants in Navi Mumbai and Palghar are designed for flexibility. Whether you need a
                 small batch of specialized grease or bulk supply of industrial oil, our integrated production lines
                 deliver with speed and precision.

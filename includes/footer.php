@@ -1,4 +1,4 @@
-<footer class="bg-[var(--color-main-green)] text-[var(--color-neutral)]">
+<footer class="bg-main-green text-neutral">
     <div class="container flex flex-wrap justify-between py-16 md:flex-row flex-col gap-14 md:gap-0">
 
         <div class="flex w-full flex-col items-start gap-[23px] font-normal lg:w-[320px] xl:w-[400px]">
@@ -21,17 +21,17 @@
                     Links</h4>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                     <li><a href="<?php echo SITE_URL; ?>/blog"
-                            class="hover:text-[var(--color-primary)] transition-colors">Blog</a></li>
+                            class="hover:text-primary transition-colors">Blog</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/careers"
-                            class="hover:text-[var(--color-primary)] transition-colors">Careers</a></li>
+                            class="hover:text-primary transition-colors">Careers</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/product-finder"
-                            class="hover:text-[var(--color-primary)] transition-colors">Products</a></li>
+                            class="hover:text-primary transition-colors">Products</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/case-studies"
-                            class="hover:text-[var(--color-primary)] transition-colors">Case studies</a></li>
+                            class="hover:text-primary transition-colors">Case studies</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/disclaimer"
-                            class="hover:text-[var(--color-primary)] transition-colors">Disclaimer</a></li>
+                            class="hover:text-primary transition-colors">Disclaimer</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/privacy-policy"
-                            class="hover:text-[var(--color-primary)] transition-colors">Privacy Policy</a></li>
+                            class="hover:text-primary transition-colors">Privacy Policy</a></li>
                 </ul>
             </div>
 
@@ -42,13 +42,13 @@
                     us on</h4>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                     <li><a href="https://www.linkedin.com/company/mosil-lubricants/"
-                            class="hover:text-[var(--color-primary)] transition-colors">LinkedIn</a></li>
+                            class="hover:text-primary transition-colors">LinkedIn</a></li>
                     <li><a href="https://twitter.com/mosil_lubricants"
-                            class="hover:text-[var(--color-primary)] transition-colors">Twitter</a></li>
+                            class="hover:text-primary transition-colors">Twitter</a></li>
                     <li><a href="https://www.facebook.com/mosil.lubricants"
-                            class="hover:text-[var(--color-primary)] transition-colors">Facebook</a></li>
+                            class="hover:text-primary transition-colors">Facebook</a></li>
                     <li><a href="https://www.instagram.com/mosil_lubricants/"
-                            class="hover:text-[var(--color-primary)] transition-colors">Instagram</a></li>
+                            class="hover:text-primary transition-colors">Instagram</a></li>
                 </ul>
             </div>
 
@@ -73,12 +73,12 @@
                 </h4>
                 <div class="text-[#FFFFFF] font-base font-normal w-full mt-4">
                     <form id="footerSubscribeForm" novalidate
-                        class="flex items-center border-b border-[var(--color-primary)] pb-2 relative w-full group"
+                        class="flex items-center border-b border-primary pb-2 relative w-full group"
                         autocomplete="off" aria-autocomplete="none">
                         <input type="email" name="subscribe_email" placeholder="Email" required
                             class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:bg-transparent! focus:border-none! focus:outline-none! focus:ring-0!" />
                         <button type="submit"
-                            class="absolute right-0 text-[var(--color-primary)] text-[15px] font-semibold flex items-center gap-1 group-focus-within:text-[var(--color-primary)] hover:opacity-80 disabled:opacity-50 transition-opacity">
+                            class="absolute right-0 text-primary text-[15px] font-semibold flex items-center gap-1 group-focus-within:text-primary hover:opacity-80 disabled:opacity-50 transition-opacity">
                             Subscribe
                             <svg width="14" height="14" viewBox="0 0 12 12" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -100,11 +100,11 @@
 <script>
     const SITE_URL = "<?php echo SITE_URL; ?>";
 </script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
 <!-- Core JS -->
-<script src="<?php echo SITE_URL; ?>/assets/js/load-more.js"></script>
-<script src="<?php echo SITE_URL; ?>/assets/js/common.js"></script>
+<script src="<?php echo SITE_URL; ?>/assets/js/load-more.js" defer></script>
+<script src="<?php echo SITE_URL; ?>/assets/js/common.js" defer></script>
 
 
 
@@ -112,7 +112,7 @@
 <?php
 $pageJs = 'assets/js/' . $page . '.js';
 if (file_exists($pageJs)) {
-    echo '<script src="' . SITE_URL . '/' . $pageJs . '"></script>';
+    echo '<script src="' . SITE_URL . '/' . $pageJs . '" defer></script>';
 }
 ?>
 

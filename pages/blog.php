@@ -67,7 +67,7 @@ $currentPage = $initialData['currentPage'];
                     </div>
                     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent md:p-7.5 p-4">
                         <div
-                            class="px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] inline-block mb-2">
+                            class="px-2 py-1 bg-[#F9DC6B] text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em] inline-block mb-2">
                             <h2>
                                 Blog
                             </h2>
@@ -103,7 +103,7 @@ $currentPage = $initialData['currentPage'];
 
                             <div class="absolute bottom-2 left-2">
                                 <div
-                                    class="px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] inline-block mb-2">
+                                    class="px-2 py-1 bg-[#F9DC6B] text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em] inline-block mb-2">
                                     <h2>Blog</h2>
                                 </div>
                                 <h3
@@ -191,7 +191,7 @@ $currentPage = $initialData['currentPage'];
                         loading="lazy">
 
                     <div
-                        class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                        class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                         <h2>
                             Blog
                         </h2>

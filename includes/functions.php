@@ -9,6 +9,39 @@
 
 
 
+
+/**
+ * CSRF Token Handling
+ */
+function generateCsrfToken() {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function validateCsrfToken($token) {
+    if (empty($_SESSION['csrf_token']) || empty($token)) return false;
+    return hash_equals($_SESSION['csrf_token'], $token);
+}
+
+/**
+ * Simple file-based caching mechanism.
+ */
+function cache_get($key, $ttl = 3600) {
+    $cacheFile = sys_get_temp_dir() . '/mosil_cache_' . md5($key) . '.json';
+    if (file_exists($cacheFile) && (time() - filemtime($cacheFile) < $ttl)) {
+        $data = file_get_contents($cacheFile);
+        return json_decode($data, true);
+    }
+    return false;
+}
+
+function cache_set($key, $data) {
+    $cacheFile = sys_get_temp_dir() . '/mosil_cache_' . md5($key) . '.json';
+    file_put_contents($cacheFile, json_encode($data));
+}
+
 /**
  * Sanitize input data to prevent XSS and SQL injection.
  * 
@@ -266,17 +299,25 @@ function getProductsCategory()
  */
 function getCategoryByParent($parentCatId, $limit = null)
 {
+    $cacheKey = 'cat_by_parent_' . $parentCatId . '_' . ($limit ?: 'all');
+    $cached = cache_get($cacheKey, 86400);
+    if ($cached !== false) return $cached;
+
     $sql = "SELECT id, mcat_name, mcat_desc, slug, mcat_image,meta_description
             FROM main_category
-            WHERE parent_cat = " . intval($parentCatId) . "
+            WHERE parent_cat = ?
               AND status = 'Active'
             ORDER BY mcat_name DESC";
+
+    $params = [intval($parentCatId)];
 
     if (!empty($limit)) {
         $sql .= " LIMIT " . intval($limit);
     }
 
-    return db_query_all($sql);
+    $result = db_query_all($sql, $params);
+    if (!empty($result)) cache_set($cacheKey, $result);
+    return $result;
 }
 
 /**
@@ -284,6 +325,10 @@ function getCategoryByParent($parentCatId, $limit = null)
  */
 function getSpecificIndustries()
 {
+    $cacheKey = 'specific_industries';
+    $cached = cache_get($cacheKey, 86400); // cache for 1 day
+    if ($cached !== false) return $cached;
+
     $priorityIds = [26, 21, 16, 19];
     $idString = implode(',', $priorityIds);
 
@@ -296,11 +341,9 @@ function getSpecificIndustries()
                 FIELD(id, $idString),
                 mcat_name DESC";
 
-    if (!empty($limit)) {
-        $sql .= " LIMIT " . intval($limit);
-    }
-
-    return db_query_all($sql);
+    $result = db_query_all($sql);
+    if (!empty($result)) cache_set($cacheKey, $result);
+    return $result;
 }
 
 
@@ -353,7 +396,7 @@ function getHomeFixedCaseStudies()
     $ids = [13, 14, 15];
     $idString = implode(',', $ids);
 
-    $sql = "SELECT * FROM case_studies 
+    $sql = "SELECT id, title, slug, solution, image FROM case_studies 
             WHERE status = 'Active' AND id IN ($idString) 
             ORDER BY FIELD(id, $idString)";
 

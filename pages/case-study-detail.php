@@ -156,7 +156,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
 
             <div class="border-b-2 border-primary pb-1 flex md:items-center items-end justify-between">
                 <h2
-                    class="text-[var(--color-main-green)] font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+                    class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                     Explore Relevant Case Studies</h2>
                 <div class="hidden md:inline-flex justify-start items-center gap-4">
                     <button
@@ -194,7 +194,7 @@ $pageTitle = htmlspecialchars($caseStudy['title']);
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-120">
 
                                 <div
-                                    class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em] uppercase">
+                                    class="absolute bottom-2 left-2 px-2 py-1 bg-primary text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em] uppercase">
                                     Case Study
                                 </div>
                             </div>

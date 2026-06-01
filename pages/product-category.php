@@ -53,7 +53,7 @@ $products = getCategoryByParent("3");
         </div>
 
         <p
-            class="md:pr-32 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-[var(--color-b100)] hidden md:block mb-9">
+            class="md:pr-32 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-b100 hidden md:block mb-9">
             Mosil has developed a wide variety of high performance lubricants for critical applications across industry
             segments. From high temperature greases for Automotive components to Cement plants, we focus on delivering
             consistent process efficiency and support responsible performance through environmentally

@@ -43,18 +43,18 @@ $industries = getCategoryByParent("2");
                                 class="text-2xl text-white font-bold mb-1 translate-y-0 transition-transform duration-300 group-hover:-translate-y-1">
                                 <?php echo $industry['mcat_name']; ?>
                             </h3>
-                            <div class="h-1 w-12 bg-[var(--color-primary)] transition-all duration-300 group-hover:w-full">
+                            <div class="h-1 w-12 bg-primary transition-all duration-300 group-hover:w-full">
                             </div>
                         </div>
                     </div>
 
                     <!-- Content -->
                     <div class="p-6">
-                        <p class="text-[var(--color-neutral)] text-sm mb-4 line-clamp-3">
+                        <p class="text-neutral text-sm mb-4 line-clamp-3">
                             <?php echo $industry['mcat_desc']; ?>
                         </p>
                         <span
-                            class="inline-flex items-center text-[var(--color-main-green)] font-semibold group-hover:text-[var(--color-primary)] transition-colors">
+                            class="inline-flex items-center text-main-green font-semibold group-hover:text-primary transition-colors">
                             Explore Solutions
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="h-5 w-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none"
@@ -71,7 +71,7 @@ $industries = getCategoryByParent("2");
 </section>
 
 <!-- Call to Action -->
-<section class="bg-[var(--color-main-green)] text-white py-20">
+<section class="bg-main-green text-white py-20">
     <div class="container text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">Need a Custom Solution?</h2>
         <p class="max-w-2xl mx-auto mb-10 text-white/90">
@@ -79,11 +79,11 @@ $industries = getCategoryByParent("2");
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="<?php echo SITE_URL; ?>/contact"
-                class="inline-block bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold px-8 py-4 rounded-full hover:bg-white transition-colors">
+                class="inline-block bg-primary text-main-green font-bold px-8 py-4 rounded-full hover:bg-white transition-colors">
                 Contact Experts
             </a>
             <a href="<?php echo SITE_URL; ?>/product-finder"
-                class="inline-block border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-[var(--color-main-green)] transition-all">
+                class="inline-block border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-main-green transition-all">
                 Find Products
             </a>
         </div>

@@ -27,7 +27,7 @@ $metaDescription = 'Learn about MOSIL\'s unique Quadra Approach to lubrication. 
         </div>
 
         <p
-            class="md:pr-72 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-[var(--color-b100)] md:mb-9 mb-12">
+            class="md:pr-72 pr-0 font-light md:text-lg text-[12px] leading-[150%] leading-[140%] tracking-normal text-b100 md:mb-9 mb-12">
             Quadra thinking is our systematic four-stage approach: identify pain points, map expectations, apply
             TriboIntel for data-backed analysis, and deliver validated success. Our data-driven Quadra approach with
             TriboIntel intensive documentation reduces risk, build accurate, high-impact solutions.

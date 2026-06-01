@@ -1,10 +1,34 @@
+<?php
+// Security Headers
+header("X-Content-Type-Options: nosniff");
+header("X-Frame-Options: SAMEORIGIN");
+header("X-XSS-Protection: 1; mode=block");
+header("Strict-Transport-Security: max-age=31536000; includeSubDomains");
+header("Referrer-Policy: strict-origin-when-cross-origin");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+    <!-- Open Graph / Social Tags -->
+    <meta property="og:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : SITE_NAME; ?>">
+    <meta property="og:description" content="<?php echo isset($metaDescription) ? htmlspecialchars($metaDescription) : ''; ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl ?? SITE_URL, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="<?php echo SITE_NAME; ?>">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Preconnect & Resource Hints -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle : SITE_NAME; ?></title>
+    <?php if (isset($page) && $page === 'home'): ?>
+    <link rel="preload" as="image" href="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" fetchpriority="high">
+    <?php endif; ?>
     <?php if (isset($metaDescription)): ?>
     <meta name="description" content="<?php echo htmlspecialchars($metaDescription); ?>">
     <?php endif; ?>
@@ -182,7 +206,7 @@
                                         <div
                                             class="group flex items-center justify-between w-full px-6 py-2.5 border-[#EAEAEA] border-b">
                                             <a href="<?php echo SITE_URL . $item['url']; ?>"
-                                                class="transition-colors duration-300 group-hover:text-[var(--color-b70)]">
+                                                class="transition-colors duration-300 group-hover:text-b70">
                                                 <?php echo $item['label']; ?>
                                             </a>
                                             <span class="cursor-pointer submenu-toggle px-2">
@@ -209,7 +233,7 @@
                                                 <?php foreach ($item['submenu'] as $subItem): ?>
                                                     <li class="group">
                                                         <a href="<?php echo SITE_URL . $subItem['url']; ?>"
-                                                            class="block w-full transition-colors duration-300 group-hover:text-[var(--color-b70)]">
+                                                            class="block w-full transition-colors duration-300 group-hover:text-b70">
                                                             <?php echo $subItem['label']; ?>
                                                         </a>
                                                     </li>
@@ -220,7 +244,7 @@
                                 <?php else: ?>
                                     <li class="group transition-all duration-300 ease-in-out cursor-pointer">
                                         <a href="<?php echo SITE_URL . $item['url']; ?>"
-                                            class="inline-block w-full h-full transition-transform duration-300 group-hover:text-[var(--color-b70)]">
+                                            class="inline-block w-full h-full transition-transform duration-300 group-hover:text-b70">
                                             <?php echo $item['label']; ?>
                                         </a>
                                     </li>
