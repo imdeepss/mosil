@@ -29,8 +29,11 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <?php if (isset($page) && $page === 'home'): ?>
     <link rel="preload" as="image" href="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" fetchpriority="high">
     <?php endif; ?>
-    <?php if (isset($metaDescription)): ?>
+    <?php if (isset($metaDescription) && !empty($metaDescription)): ?>
     <meta name="description" content="<?php echo htmlspecialchars($metaDescription); ?>">
+    <?php endif; ?>
+    <?php if (isset($metaKeywords) && !empty($metaKeywords)): ?>
+    <meta name="keywords" content="<?php echo htmlspecialchars($metaKeywords); ?>">
     <?php endif; ?>
 
     <!-- Canonical URL -->

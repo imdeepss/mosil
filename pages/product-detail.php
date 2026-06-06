@@ -1,5 +1,4 @@
 <?php
-$pageTitle = 'Product Details';
 
 $chevronRight = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
     <path d="M7.5 4.16683L13.3333 10.0002L7.5 15.8335" stroke="#A3A3A3" stroke-width="2"
@@ -10,7 +9,19 @@ $categorySlug = isset($_GET['category']) ? $_GET['category'] : '';
 $productSlug = isset($_GET['product']) ? $_GET['product'] : '';
 
 $product = getProductBySlug($productSlug);
-// $blogs = getBlogs(10);
+
+if ($product) {
+    // SEO Data with clean, suitable defaults
+    $pageTitle = !empty($product['meta_title']) ? $product['meta_title'] : $product['name'] . ' - MOSIL Lubricants';
+    
+    $defaultDesc = !empty($product['sub_title']) ? strip_tags($product['sub_title']) : 'Discover ' . $product['name'] . ' by MOSIL. High-performance specialty industrial lubricants.';
+    $metaDescription = !empty($product['meta_description']) ? $product['meta_description'] : $defaultDesc;
+    
+    $defaultKeywords = $product['name'] . ', specialty lubricants, industrial lubricants, MOSIL';
+    $metaKeywords = !empty($product['meta_keywords']) ? $product['meta_keywords'] : $defaultKeywords;
+} else {
+    $pageTitle = 'Product Not Found - MOSIL Lubricants';
+}
 $caseStudiesData = getCaseStudiesWithPagination(1, 10, 'All');
 $caseStudies = $caseStudiesData['caseStudies'];
 $relatedProducts = getRelatedProducts($product['sub_cat'] ?? '', $product['id'] ?? 0, $product['main_cat'] ?? '');
