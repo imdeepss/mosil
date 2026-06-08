@@ -875,13 +875,20 @@ function sendToSalesforce($data)
                 "FirstName" => isset($data['FirstName']) && $data['FirstName'] !== '' ? $data['FirstName'] : '',
                 "LastName" => isset($data['LastName']) && $data['LastName'] !== '' ? $data['LastName'] : 'Unknown',
                 "Company" => !empty($data['Company']) ? $data['Company'] : 'Not Provided',
+                "Title" => $data['Title'] ?? '',
+                "Designation__c" => $data['Designation__c'] ?? '',
                 "Email" => $data['Email'] ?? '',
                 "Phone" => $data['Phone'] ?? '',
-                "MobilePhone" => $data['Phone'] ?? '',
+                "MobilePhone" => $data['MobilePhone'] ?? $data['Phone'] ?? '',
+                "Website" => $data['Website'] ?? '',
                 "Description" => $data['Description'] ?? '',
-                "LeadSource" => $data['LeadSource'] ?? 'Website',
-                "Status" => "New",
-                "PostalCode" => $data['PostalCode'] ?? ''
+                "LeadSource" => $data['LeadSource'] ?? 'Website Enquiry',
+                "Status" => $data['Status'] ?? 'New',
+                "Street" => $data['Street'] ?? '',
+                "City" => $data['City'] ?? '',
+                "State" => $data['State'] ?? '',
+                "PostalCode" => $data['PostalCode'] ?? '',
+                "Country" => $data['Country'] ?? ''
             ];
 
             // 2. Create Lead

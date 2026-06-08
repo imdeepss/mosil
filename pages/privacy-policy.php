@@ -34,92 +34,90 @@ $metaDescription = 'Privacy Policy for MOSIL Lubricants.';
 
         <div class="mx-auto flex flex-col gap-10">
 
-            <!-- Information We Collect -->
+            <!-- Intro -->
+            <div>
+                <div class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em] flex flex-col gap-4">
+                    <p>
+                        MOSIL Lubricants Private Limited, addressed as MOSIL hereinafter, is the owner of copyright of this website and its contents unless otherwise stated. We are committed to protecting the privacy of the users of this website.
+                    </p>
+                    <p>
+                        The content of this website is intended for general information purposes and is not a substitute for specialist advice. It does not constitute a guarantee or assurance of product properties, either express or implied. We strive to keep this site updated; however, we do not guarantee the completeness or accuracy of the data presented. We accept no liability for damages resulting from the use of information on this site.
+                    </p>
+                    <p>
+                        We provide hyperlinks to third-party websites in good faith. These external sites may have different privacy policies, and we recommend reviewing them. We accept no responsibility for their content or practices.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Data Collection -->
             <div>
                 <div class="py-2 mb-4">
                     <div class="border-b-2 border-[#F4C300] inline-block pb-1">
                         <h3
                             class="text-main-green font-base font-bold text-[24px] md:text-[32px] leading-[135%] tracking-[0.015em] capitalize">
-                            Information We Collect
+                            Data Collection
                         </h3>
                     </div>
                 </div>
                 <div
                     class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em] flex flex-col gap-4">
                     <p>
-                        This Privacy Policy describes how your personal information is collected, used, and shared when
-                        you visit our website.
+                        MOSIL collects only the personally identifiable information you voluntarily provide (such as name, company, telephone number, email address). Additionally, general usage data (e.g. pages visited, downloads) may be collected to improve user experience.
                     </p>
                     <p>
-                        We collect information from you when you register on our site, place an order, subscribe to our
-                        newsletter, respond to a survey or fill out a form. The types of personal information collected
-                        may include your name, email address, phone number, and company details.
+                        The data you provide will be used to respond to your inquiries and offer requested information. You also authorize us to send product information or newsletters. We do not sell or use your data for third-party direct marketing. However, we may share it with authorities if legally required.
                     </p>
                 </div>
             </div>
 
-            <!-- How We Use Your Information -->
+            <!-- Cookies -->
             <div>
                 <div class="py-2 mb-4">
                     <div class="border-b-2 border-[#F4C300] inline-block pb-1">
                         <h3
                             class="text-main-green font-base font-bold text-[24px] md:text-[32px] leading-[135%] tracking-[0.015em] capitalize">
-                            How We Use Your Information
-                        </h3>
-                    </div>
-                </div>
-                <div
-                    class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em] flex flex-col gap-4">
-                    <p>
-                        Any of the information we collect from you may be used in one of the following ways:
-                    </p>
-                    <ul class="list-disc pl-5 flex flex-col gap-2">
-                        <li>To personalize your experience and better respond to your individual needs</li>
-                        <li>To improve our website offerings based on your feedback</li>
-                        <li>To improve customer service and support needs</li>
-                        <li>To send periodic emails regarding updates, related product or service information</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Information Protection -->
-            <div>
-                <div class="py-2 mb-4">
-                    <div class="border-b-2 border-[#F4C300] inline-block pb-1">
-                        <h3
-                            class="text-main-green font-base font-bold text-[24px] md:text-[32px] leading-[135%] tracking-[0.015em] capitalize">
-                            Information Protection
+                            Cookies
                         </h3>
                     </div>
                 </div>
                 <div class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em]">
                     <p>
-                        We implement a variety of security measures to maintain the safety of your personal information
-                        when you enter, submit, or access your personal information.
+                        Cookies may be used to recognize returning users. You may disable cookies via your browser settings. By continuing to use our site, you consent to cookie usage.
                     </p>
                 </div>
             </div>
 
-            <!-- Contact Us -->
+            <!-- User Responsibility -->
             <div>
                 <div class="py-2 mb-4">
                     <div class="border-b-2 border-[#F4C300] inline-block pb-1">
                         <h3
                             class="text-main-green font-base font-bold text-[24px] md:text-[32px] leading-[135%] tracking-[0.015em] capitalize">
-                            Contact Us
+                            User Responsibility
                         </h3>
                     </div>
                 </div>
-                <div
-                    class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em] flex flex-col gap-4">
-                    <p>For more information about our privacy practices, if you have questions, or if you would like to
-                        make a complaint, please contact us by e-mail.</p>
-                    <div class="bg-[#F3F8F4] border border-[#C5D9C7] p-5 rounded-lg mt-2">
-                        <p>
-                            You can reach out to us directly at <a href="mailto:digital@mosil.com"
-                                class="text-main-green font-bold hover:text-[#F4C300] transition-colors">digital@mosil.com</a>.
-                        </p>
+                <div class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em]">
+                    <p>
+                        You are responsible for protecting your computer and data. Ensure that downloads from our site are virus-free. We do not assume responsibility for damage caused by malicious software.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Policy Updates -->
+            <div>
+                <div class="py-2 mb-4">
+                    <div class="border-b-2 border-[#F4C300] inline-block pb-1">
+                        <h3
+                            class="text-main-green font-base font-bold text-[24px] md:text-[32px] leading-[135%] tracking-[0.015em] capitalize">
+                            Policy Updates
+                        </h3>
                     </div>
+                </div>
+                <div class="text-[#575757] font-base font-normal text-[16px] leading-[160%] tracking-[0.015em]">
+                    <p>
+                        MOSIL reserves the right to modify this privacy policy at any time. Any changes will be posted on this page.
+                    </p>
                 </div>
             </div>
 
