@@ -40,6 +40,12 @@ define('DB_USER', env('DB_USER', 'root'));
 define('DB_PASS', env('DB_PASS', ''));
 define('DB_NAME', env('DB_NAME', 'u698941191_mosil'));
 
+// Salesforce Configuration
+define('SF_CLIENT_ID', env('SF_CLIENT_ID', ''));
+define('SF_CLIENT_SECRET', env('SF_CLIENT_SECRET', ''));
+define('SF_TOKEN_URL', env('SF_TOKEN_URL', 'https://mosil.my.salesforce.com/services/oauth2/token'));
+define('SF_LEAD_URL', env('SF_LEAD_URL', 'https://mosil.my.salesforce.com/services/data/v62.0/sobjects/Lead/'));
+
 // Error Reporting
 if (APP_DEBUG) {
     ini_set('display_errors', 1);
