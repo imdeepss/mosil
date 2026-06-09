@@ -50,9 +50,9 @@ $pageTitle = htmlspecialchars($blog['title']);
         </nav>
 
         <!-- Hero Image -->
-        <div class="w-full bg-[#f8f9fa] flex justify-center items-center rounded-[4px] overflow-hidden md:mb-8 mb-4">
+        <div class="w-full h-[180px] md:h-[443px] rounded-[4px] overflow-hidden md:mb-8 mb-4">
             <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
-                alt="<?php echo $blog['title']; ?>" class="max-w-full max-h-[600px] w-auto h-auto object-contain">
+                alt="<?php echo $blog['title']; ?>" class="w-full h-full object-cover">
         </div>
 
         <!-- Content -->
