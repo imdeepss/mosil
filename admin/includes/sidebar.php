@@ -219,6 +219,13 @@ if (isSessionTimedOut()) {
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link <?php echo $active_menu === 'catalogue_product_seo' ? 'active' : ''; ?>"
+                                href="catalogue_product_seo">
+                                <i class="fas fa-search me-2"></i>
+                                Product SEO
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <?php echo $active_menu === 'catalogue_missing_images' ? 'active' : ''; ?>"
                                 href="catalogue_missing_images">
                                 <i class="fas fa-image me-2"></i>
