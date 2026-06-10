@@ -289,8 +289,16 @@ $faqs = [
                     <a href="<?php echo SITE_URL; ?>/blog/<?php echo $item['slug']; ?>" class="relative group overflow-hidden block
        <?php echo $heightClass; ?>">
 
-                        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-115" style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), 
-            url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>') no-repeat center/cover;">
+                        <!-- Premium Aspect Ratio Handling (Blurred Background + Contained Foreground) -->
+                        <div class="absolute inset-0 bg-[#1A3B1B] overflow-hidden">
+                            <!-- 1. Blurred background filling the whole card -->
+                            <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-115" style="background: url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>') no-repeat center/cover; filter: blur(15px); transform: scale(1.1); opacity: 0.6;"></div>
+                            
+                            <!-- 2. The actual uncropped image -->
+                            <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background: url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $item['image']; ?>') no-repeat center/contain;"></div>
+                            
+                            <!-- 3. Gradient for text readability -->
+                            <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);"></div>
                         </div>
 
                         <div class="relative h-full flex flex-col justify-end z-10 gap-2
