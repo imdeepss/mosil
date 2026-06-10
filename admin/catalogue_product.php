@@ -124,6 +124,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $metaKeywords = sanitizeInput($_POST['meta_keywords'] ?? '');
             $status = sanitizeInput($_POST['status'] ?? 'Active');
 
+            // Handle FAQs
+            $faqsArray = [];
+            if (isset($_POST['faq_question']) && is_array($_POST['faq_question'])) {
+                foreach ($_POST['faq_question'] as $index => $question) {
+                    $q = sanitizeInput($question);
+                    $a = $_POST['faq_answer'][$index] ?? '';
+                    if (!empty($q) && !empty($a)) {
+                        $faqsArray[] = ['question' => $q, 'answer' => $a];
+                    }
+                }
+            }
+            $faqsJson = !empty($faqsArray) ? json_encode($faqsArray, JSON_UNESCAPED_UNICODE) : null;
+
             // Handle file uploads
             $productImage = '';
             $tdsFile = '';
@@ -210,14 +223,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             name, sub_title,slug, parent_cat, main_cat, sub_cat, attribute,
                             main_attribute, sub_attribute, short_description, 
                             area_of_application, benifits, characteristics, 
-                            packing, image, tds_file, meta_title, 
+                            packing, faqs, image, tds_file, meta_title, 
                             meta_description, meta_keywords, status, 
                             created_at, updated_at
-                        ) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        ) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                         $stmt = $conn->prepare($insertSql);
                         $stmt->bind_param(
-                            "ssssssssssssssssssssss",
+                            "sssssssssssssssssssssss",
                             $productName,
                             $sub_title,
                             $productSlug,
@@ -232,6 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $benifits,
                             $characteristics,
                             $packing,
+                            $faqsJson,
                             $productImage,
                             $tdsFile,
                             $metaTitle,
@@ -273,6 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             benifits = ?, 
                             characteristics = ?, 
                             packing = ?, 
+                            faqs = ?,
                             meta_title = ?, 
                             meta_description = ?, 
                             meta_keywords = ?, 
@@ -294,13 +309,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $benifits,
                             $characteristics,
                             $packing,
+                            $faqsJson,
                             $metaTitle,
                             $metaDescription,
                             $metaKeywords,
                             $status,
                             $currentTime
                         ];
-                        $types = "sssssssssssssssssss";
+                        $types = "ssssssssssssssssssss";
 
                         // Add image if uploaded
                         if (!empty($productImage)) {
@@ -699,6 +715,10 @@ if (isset($_GET['success'])) {
                             <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo"
                                 type="button" role="tab" aria-controls="seo" aria-selected="false">SEO</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs"
+                                type="button" role="tab" aria-controls="faqs" aria-selected="false">FAQs</button>
+                        </li>
                     </ul>
 
                     <div class="tab-content p-3 border border-top-0" id="productTabContent">
@@ -946,6 +966,29 @@ if (isset($_GET['success'])) {
                                 <div class="form-text">Separate keywords with commas.</div>
                             </div>
                         </div>
+
+                        <!-- FAQs Tab -->
+                        <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
+                            <div id="faq-container-add">
+                                <!-- FAQ items will be appended here -->
+                                <div class="faq-item border rounded p-3 mb-3 bg-light">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <h6>FAQ #1</h6>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Question</label>
+                                        <input type="text" class="form-control" name="faq_question[]" placeholder="e.g., What are the benefits?">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Answer</label>
+                                        <textarea class="form-control rich-editor" name="faq_answer[]" rows="2" placeholder="e.g., The benefits include..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addFaqRow('faq-container-add')">
+                                <i class="fas fa-plus"></i> Add Another FAQ
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1041,3 +1084,39 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php endif; ?>
+
+<script>
+function addFaqRow(containerId) {
+    var container = document.getElementById(containerId);
+    var count = container.querySelectorAll('.faq-item').length + 1;
+    
+    var html = `
+    <div class="faq-item border rounded p-3 mb-3 bg-light position-relative">
+        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2" onclick="removeFaqRow(this)">
+            <i class="fas fa-trash"></i>
+        </button>
+        <div class="d-flex justify-content-between mb-2">
+            <h6>FAQ #${count}</h6>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Question</label>
+            <input type="text" class="form-control" name="faq_question[]" placeholder="e.g., What are the benefits?">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Answer</label>
+            <textarea class="form-control rich-editor" name="faq_answer[]" rows="2" placeholder="e.g., The benefits include..."></textarea>
+        </div>
+    </div>`;
+    
+    container.insertAdjacentHTML('beforeend', html);
+    
+    if (typeof initializeRichEditors === 'function') {
+        initializeRichEditors();
+    }
+}
+
+function removeFaqRow(btn) {
+    btn.closest('.faq-item').remove();
+    // Optional: Re-index the FAQ # headers if needed
+}
+</script>

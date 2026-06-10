@@ -155,6 +155,11 @@ $cat_options = [
                                 data-bs-target="#seo<?php echo $id; ?>" type="button" role="tab"
                                 aria-controls="seo<?php echo $id; ?>" aria-selected="false">SEO</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faqs-tab<?php echo $id; ?>" data-bs-toggle="tab"
+                                data-bs-target="#faqs<?php echo $id; ?>" type="button" role="tab"
+                                aria-controls="faqs<?php echo $id; ?>" aria-selected="false">FAQs</button>
+                        </li>
                     </ul>
 
                     <div class="tab-content p-3 border border-top-0" id="productTabContent<?php echo $id; ?>">
@@ -435,6 +440,58 @@ $cat_options = [
                                     value="<?php echo htmlspecialchars($product['meta_keywords'] ?? ''); ?>">
                                 <div class="form-text">Separate keywords with commas.</div>
                             </div>
+                        </div>
+
+                        <!-- FAQs Tab -->
+                        <div class="tab-pane fade" id="faqs<?php echo $id; ?>" role="tabpanel"
+                            aria-labelledby="faqs-tab<?php echo $id; ?>">
+                            <div id="faq-container-edit<?php echo $id; ?>">
+                                <?php 
+                                $faqs = json_decode($product['faqs'] ?? '[]', true);
+                                if (!empty($faqs) && is_array($faqs)):
+                                    foreach ($faqs as $index => $faq):
+                                ?>
+                                <div class="faq-item border rounded p-3 mb-3 bg-light position-relative">
+                                    <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2" onclick="removeFaqRow(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <h6>FAQ #<?php echo $index + 1; ?></h6>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Question</label>
+                                        <input type="text" class="form-control" name="faq_question[]" value="<?php echo htmlspecialchars($faq['question']); ?>" placeholder="e.g., What are the benefits?">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Answer</label>
+                                        <textarea class="form-control rich-editor" name="faq_answer[]" rows="2" placeholder="e.g., The benefits include..."><?php echo htmlspecialchars($faq['answer']); ?></textarea>
+                                    </div>
+                                </div>
+                                <?php 
+                                    endforeach;
+                                else:
+                                ?>
+                                <div class="faq-item border rounded p-3 mb-3 bg-light position-relative">
+                                    <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2" onclick="removeFaqRow(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <h6>FAQ #1</h6>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Question</label>
+                                        <input type="text" class="form-control" name="faq_question[]" placeholder="e.g., What are the benefits?">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Answer</label>
+                                        <textarea class="form-control rich-editor" name="faq_answer[]" rows="2" placeholder="e.g., The benefits include..."></textarea>
+                                    </div>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="addFaqRow('faq-container-edit<?php echo $id; ?>')">
+                                <i class="fas fa-plus"></i> Add Another FAQ
+                            </button>
                         </div>
                     </div>
                 </div>

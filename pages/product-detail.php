@@ -402,6 +402,7 @@ function parseTableString($str)
                     $areaOfAppList = parseListString($product['area_of_application'] ?? '');
                     $benefitsList = parseListString($product['benifits'] ?? ($product['benefits'] ?? ''));
                     $characteristicsData = parseTableString($product['characteristics'] ?? '');
+                    $faqsData = json_decode($product['faqs'] ?? '[]', true);
 
                     $productInfo = [];
 
@@ -424,6 +425,13 @@ function parseTableString($str)
                             'type' => 'table',
                             'headers' => $characteristicsData['headers'],
                             'content' => $characteristicsData['rows']
+                        ];
+                    }
+
+                    if (!empty($faqsData) && is_array($faqsData)) {
+                        $productInfo['FAQs'] = [
+                            'type' => 'faqs',
+                            'content' => $faqsData
                         ];
                     }
                     ?>
@@ -492,6 +500,21 @@ function parseTableString($str)
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
+                                    </div>
+                                <?php elseif ($data['type'] === 'faqs'): ?>
+                                    <div class="flex flex-col gap-4 py-4 pb-6">
+                                        <?php foreach ($data['content'] as $faq): ?>
+                                            <div class="faq-item rounded-lg border border-[#EBEBEB] p-5 bg-[#FAFAFA] hover:shadow-sm transition-all">
+                                                <h4 class="text-[#3B3B3B] font-medium text-[16px] md:text-[18px] mb-3 flex items-start gap-2">
+                                                    <span class="text-main-green">Q.</span>
+                                                    <span><?php echo htmlspecialchars($faq['question']); ?></span>
+                                                </h4>
+                                                <div class="text-[#757575] text-[14px] md:text-[16px] leading-[160%] flex items-start gap-2">
+                                                    <span class="text-main-green font-medium pt-1">A.</span>
+                                                    <div class="flex-1 [&>p:last-child]:mb-0 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"><?php echo $faq['answer']; ?></div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
                             </div>
