@@ -13,10 +13,10 @@ $product = getProductBySlug($productSlug);
 if ($product) {
     // SEO Data with clean, suitable defaults
     $pageTitle = !empty($product['meta_title']) ? $product['meta_title'] : $product['name'] . ' - MOSIL Lubricants';
-    
+
     $defaultDesc = !empty($product['sub_title']) ? strip_tags($product['sub_title']) : 'Discover ' . $product['name'] . ' by MOSIL. High-performance specialty industrial lubricants.';
     $metaDescription = !empty($product['meta_description']) ? $product['meta_description'] : $defaultDesc;
-    
+
     $defaultKeywords = $product['name'] . ', specialty lubricants, industrial lubricants, MOSIL';
     $metaKeywords = !empty($product['meta_keywords']) ? $product['meta_keywords'] : $defaultKeywords;
 } else {
@@ -211,10 +211,8 @@ function parseTableString($str)
         </nav>
 
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-10 pt-6 md:pb-[56px]">
-            <div
-                class="bg-[#F5F5F5] border border-[#EBEBEB] relative h-[315px] md:h-auto md:mb-[64px]">
-                <div
-                    class="absolute inset-0 flex items-center justify-center overflow-hidden p-6 lg:p-10">
+            <div class="bg-[#F5F5F5] border border-[#EBEBEB] relative h-[315px] md:h-auto md:mb-[64px]">
+                <div class="absolute inset-0 flex items-center justify-center overflow-hidden p-6 lg:p-10">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/products-image/<?php echo $product['image'] ?>"
                         alt="<?= htmlspecialchars($product['name']) ?>"
                         class="w-full h-full max-w-[280px] md:max-w-[450px] object-contain mix-blend-multiply hover:scale-105 transition-transform duration-500">
@@ -358,7 +356,8 @@ function parseTableString($str)
                             </div>
                             <!-- Product Name (Readonly) -->
                             <div>
-                                <input type="text" name="product_name" value="<?= htmlspecialchars($product['name'] ?? '') ?>" readonly
+                                <input type="text" name="product_name"
+                                    value="<?= htmlspecialchars($product['name'] ?? '') ?>" readonly
                                     class="w-full px-4 py-3 border border-gray-300 rounded-md bg-gray-50 text-gray-500">
                             </div>
                         </div>
@@ -504,14 +503,19 @@ function parseTableString($str)
                                 <?php elseif ($data['type'] === 'faqs'): ?>
                                     <div class="flex flex-col gap-4 py-4 pb-6">
                                         <?php foreach ($data['content'] as $faq): ?>
-                                            <div class="faq-item rounded-lg border border-[#EBEBEB] p-5 bg-[#FAFAFA] hover:shadow-sm transition-all">
-                                                <h4 class="text-[#3B3B3B] font-medium text-[16px] md:text-[18px] mb-3 flex items-start gap-2">
+                                            <div
+                                                class="faq-item rounded-lg border border-[#EBEBEB] p-5 bg-[#FAFAFA] hover:shadow-sm transition-all">
+                                                <h4
+                                                    class="text-[#3B3B3B] font-medium text-[16px] md:text-[18px] mb-3 flex items-start gap-2">
                                                     <span class="text-main-green">Q.</span>
                                                     <span><?php echo htmlspecialchars($faq['question']); ?></span>
                                                 </h4>
-                                                <div class="text-[#757575] text-[14px] md:text-[16px] leading-[160%] flex items-start gap-2">
-                                                    <span class="text-main-green font-medium pt-1">A.</span>
-                                                    <div class="flex-1 [&>p:last-child]:mb-0 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4"><?php echo $faq['answer']; ?></div>
+                                                <div
+                                                    class="text-[#757575] text-[14px] md:text-[16px] leading-[160%] flex items-start gap-2">
+                                                    <span class="text-main-green font-medium">A.</span>
+                                                    <div
+                                                        class="flex-1 [&>p:last-child]:mb-0 [&>ul]:list-disc [&>ul]:pl-4 [&>ol]:list-decimal [&>ol]:pl-4">
+                                                        <?php echo $faq['answer']; ?></div>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
