@@ -92,14 +92,14 @@
         --color-bg-body-mid: var(--color-b20);
         --color-bg-body-low: var(--color-b40);
 
-        --font-sans: Helvetica;
+        --font-sans: "Helvetica";
 
         --spacing-header-height: 60px;
 
         --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
         --animate-slide-left: slideInLeft 0.8s ease-out forwards;
         --animate-slide-right: slideInRight 0.8s ease-out forwards;
-        --animate-reveal-up: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        --animate-reveal-up: revealUp 1s cubic-bezier(0.22,1,0.36,1) forwards;
     }
 
     @keyframes fadeInUp {
