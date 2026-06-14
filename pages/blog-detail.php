@@ -49,10 +49,13 @@ $pageTitle = htmlspecialchars($blog['title']);
             </span>
         </nav>
 
-        <!-- Hero Image -->
-        <div class="w-full bg-[#f8f9fa] flex justify-center items-center rounded-[4px] overflow-hidden md:mb-8 mb-4">
-            <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
-                alt="<?php echo $blog['title']; ?>" class="max-w-full max-h-[600px] w-auto h-auto object-contain">
+        <!-- Hero Image with Premium Aspect Ratio Handling -->
+        <div class="w-full relative h-[300px] md:h-[600px] bg-[#1A3B1B] rounded-[4px] overflow-hidden md:mb-8 mb-4 group">
+            <!-- 1. Blurred background filling the whole container -->
+            <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background: url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>') no-repeat center/cover; filter: blur(20px); transform: scale(1.1); opacity: 0.6;"></div>
+            
+            <!-- 2. The actual uncropped image -->
+            <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background: url('<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>') no-repeat center/contain;"></div>
         </div>
 
         <!-- Content -->
