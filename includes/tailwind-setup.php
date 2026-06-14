@@ -92,7 +92,7 @@
         --color-bg-body-mid: var(--color-b20);
         --color-bg-body-low: var(--color-b40);
 
-        --font-sans: "Helvetica";
+        --font-sans: Helvetica;
 
         --spacing-header-height: 60px;
 

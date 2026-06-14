@@ -81,7 +81,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 
     <!-- libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/common.css">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/common.css?v=<?php echo time(); ?>">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8BDPPXN66"></script>
     <script>
@@ -95,7 +95,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <?php
     $pageCss = 'assets/css/' . $page . '.css';
     if (file_exists($pageCss)) {
-        echo '<link rel="stylesheet" href="' . SITE_URL . '/' . $pageCss . '">';
+        echo '<link rel="stylesheet" href="' . SITE_URL . '/' . $pageCss . '?v=' . time() . '">';
     }
     ?>
     <?php
