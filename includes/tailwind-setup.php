@@ -136,7 +136,17 @@
 
     @layer utilities {
         .container {
-            @apply max-w-[var(--container-width)] mx-auto px-[var(--spacing-md)] lg:px-0; 
+            max-width: var(--container-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: var(--spacing-md);
+            padding-right: var(--spacing-md);
+        }
+        @media (min-width: 1024px) {
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
 
         .animate-card {
