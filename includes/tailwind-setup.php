@@ -92,14 +92,7 @@
         --color-bg-body-mid: #f5f5f5;
         --color-bg-body-low: #DEDEDE;
 
-        --font-sans: Helvetica, Arial, sans-serif;
-
         --spacing-header-height: 60px;
-
-        --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
-        --animate-slide-left: slideInLeft 0.8s ease-out forwards;
-        --animate-slide-right: slideInRight 0.8s ease-out forwards;
-        --animate-reveal-up: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     @keyframes fadeInUp {
@@ -130,7 +123,8 @@
         }
 
         html, body {
-            @apply overflow-x-hidden antialiased font-sans text-gray-900;
+            @apply overflow-x-hidden antialiased text-gray-900;
+            font-family: Helvetica, Arial, sans-serif;
         }
     }
 
@@ -150,7 +144,19 @@
         }
 
         .animate-card {
-            @apply animate-fade-in-up;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .animate-slide-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        .animate-slide-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        .animate-reveal-up {
+            animation: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
     }
 </style>
