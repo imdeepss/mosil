@@ -1,5 +1,5 @@
 * {
-    font-family: var(--font-sans) !important;
+    font-family: Helvetica, Arial, sans-serif !important;
 }
 
 @media (min-width: 1024px) {
