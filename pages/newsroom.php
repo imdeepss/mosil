@@ -440,7 +440,7 @@ $faqs = [
             <div class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-10">
                 <?php foreach ($blogs as $blog) { ?>
 
-                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
+                    <div class="swiper-slide !grid !grid-rows-[auto_1fr_auto] group">
 
                         <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
@@ -506,7 +506,7 @@ $faqs = [
 <section id="glossary" class="bg-main-green relative">
     <div class="absolute bottom-0 left-0">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.png" alt="lubrication decision"
-            class="block h-full w-full object-cover object-center opacity-9" loading="lazy">
+            class="block h-full w-full object-cover object-center opacity-90" loading="lazy">
     </div>
     <div class="container relative z-10 md:pt-[64px] md:pb-[86px] pt-6 pb-6">
 
@@ -527,7 +527,7 @@ $faqs = [
         </div>
         <div class="md:mt-8 mt-6 swiper glossarySwiper">
             <div class="swiper-wrapper md:!grid md:grid-cols-2 lg:grid-cols-4 md:gap-5">
-                <div class="swiper-slide md:h-[220px]! bg-[#415C42] p-4! flex flex-col h-[208px]!">
+                <div class="swiper-slide md:!h-[220px] bg-[#415C42] !p-4 !flex flex-col !h-[208px]">
                     <h6 class="text-[#FFFFFF] font-base font-normal text-[64px] leading-[120%]">
                         A
                     </h6>
@@ -546,7 +546,7 @@ $faqs = [
                 </div>
                 <?php foreach ($glossary['items'] as $index => $item) { ?>
                     <div
-                        class="swiper-slide glossary-card bg-[#415C42] px-4! py-6 rounded-[4px] flex! flex-col gap-4 justify-start items-start md:h-[220px]! h-[208px]! border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
+                        class="swiper-slide glossary-card bg-[#415C42] !px-4 py-6 rounded-[4px] !flex flex-col gap-4 justify-start items-start md:!h-[220px] !h-[208px] border border-transparent hover:bg-primary transition-all ease-in-out duration-300 group">
 
                         <h4
                             class="glossary-title text-[#FFFFFF] font-base font-bold text-[18px] leading-[140%] tracking-[0.015em] capitalize group-hover:text-main-green transition-colors">
@@ -589,7 +589,7 @@ $faqs = [
     </div>
     <div class="absolute top-0 right-0 h-full">
         <img src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.png" alt="lubrication decision"
-            class="block h-full w-full object-cover object-center opacity-9" loading="lazy">
+            class="block h-full w-full object-cover object-center opacity-90" loading="lazy">
     </div>
 </section>
 

@@ -76,7 +76,7 @@
                         class="flex items-center border-b border-primary pb-2 relative w-full group" autocomplete="off"
                         aria-autocomplete="none">
                         <input type="email" name="subscribe_email" placeholder="Email" required
-                            class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:bg-transparent! focus:border-none! focus:outline-none! focus:ring-0!" />
+                            class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:!bg-transparent focus:!border-none focus:!outline-none focus:!ring-0" />
                         <button type="submit"
                             class="absolute right-0 text-primary text-[15px] font-semibold flex items-center gap-1 group-focus-within:text-primary hover:opacity-80 disabled:opacity-50 transition-opacity">
                             Subscribe

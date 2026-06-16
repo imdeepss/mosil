@@ -60,7 +60,7 @@ $blogs = getHomeFeaturedBlogs();
                     class="swiper contentSwiper w-full h-full !m-0 pointer-events-none relative z-10 [&_.swiper-slide]:!opacity-0 [&_.swiper-slide]:transition-opacity [&_.swiper-slide]:duration-300 [&_.swiper-slide]:ease-out [&_.swiper-slide-active]:!opacity-100">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry): ?>
-                            <div class="swiper-slide flex! flex-col items-start h-full bg-transparent gap-4">
+                            <div class="swiper-slide !flex flex-col items-start h-full bg-transparent gap-4">
                                 <div>
                                     <h2
                                         class="text-[#1A3B1B] text-[28px] md:text-[32px] leading-[1.2] font-normal capitalize">
@@ -120,9 +120,9 @@ $blogs = getHomeFeaturedBlogs();
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img decoding="async"
                                     src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                    class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-300 ease-out"
+                                    class="w-full !h-[214px] md:!h-[480px] object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
-                                <div class="lg:hidden h-[286px] p-4 flex! flex-col gap-4 bg-[#F5F5F5]">
+                                <div class="lg:hidden h-[286px] p-4 !flex flex-col gap-4 bg-[#F5F5F5]">
                                     <div class="flex flex-col gap-4">
                                         <div>
                                             <h2 class="text-main-green font-base font-normal text-[18px] leading-[140%]">
@@ -302,7 +302,7 @@ $blogs = getHomeFeaturedBlogs();
                 </div>
                 <div class="absolute bottom-0 left-0 w-full z-20 flex flex-col">
                     <div class="swiper-pagination-custom relative md:p-8 p-4 flex">
-                        <div class="swiper-pagination inset-auto! relative! w-auto! flex"></div>
+                        <div class="swiper-pagination !inset-auto !relative !w-auto flex"></div>
                     </div>
                     <a href="<?php echo SITE_URL; ?>/case-studies"
                         class="text-white text-[#FFFFFF] font-base font-normal text-[16px] leading-[150%] tracking-[0.015em] md:text-[18px] md:leading-[140%] md:tracking-normal border-t-2 border-white block w-full text-center py-4 cursor-pointer">
@@ -541,7 +541,7 @@ $lubricationItems = [
             <div class="swiper-wrapper md:!grid md:grid-cols-3 md:gap-8">
                 <?php foreach ($blogs as $blog) { ?>
 
-                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
+                    <div class="swiper-slide !grid !grid-rows-[auto_1fr_auto] group">
 
                         <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
                             <img decoding="async"

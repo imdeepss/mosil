@@ -112,7 +112,7 @@ $pageTitle = htmlspecialchars($event['title']);
                 </div>
             </div>
 
-            <div class="swiper eventSuggestedSwiper md:py-6! py-4! w-full">
+            <div class="swiper eventSuggestedSwiper md:!py-6 !py-4 w-full">
                 <div class="swiper-wrapper flex md:flex-col md:gap-8">
                     <?php foreach ($suggestedBlogs as $item): ?>
                         <div class="swiper-slide flex flex-col group cursor-pointer h-auto">

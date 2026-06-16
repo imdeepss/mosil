@@ -24,7 +24,7 @@ $industries = getCategoryByParent("2");
                     class="swiper contentSwiper w-full h-full !m-0 pointer-events-none relative z-10 [&_.swiper-slide]:!opacity-0 [&_.swiper-slide]:transition-opacity [&_.swiper-slide]:duration-500 [&_.swiper-slide-active]:!opacity-100">
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry): ?>
-                            <div class="swiper-slide flex! flex-col items-start h-full bg-transparent gap-4">
+                            <div class="swiper-slide !flex flex-col items-start h-full bg-transparent gap-4">
                                 <div>
                                     <h2
                                         class="text-[#1A3B1B] text-[28px] md:text-[32px] leading-[1.2] font-normal capitalize">
@@ -88,10 +88,10 @@ $industries = getCategoryByParent("2");
                             <div
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)] lg:!w-[270px] lg:!h-[480px] lg:!opacity-20 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                    class="w-full h-[214px]! md:h-[480px]! object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                    class="w-full !h-[214px] md:!h-[480px] object-cover transform transition-transform duration-700 group-hover:scale-105"
                                     alt="<?php echo $industry['mcat_name']; ?>">
                                 <!-- Mobile Only Content -->
-                                <div class="lg:hidden h-[286px] p-4 flex! flex-col gap-4 bg-[#F5F5F5]">
+                                <div class="lg:hidden h-[286px] p-4 !flex flex-col gap-4 bg-[#F5F5F5]">
                                     <div class="flex flex-col gap-4">
                                         <div>
                                             <h2 class="text-main-green font-base font-normal text-[18px] leading-[140%]">
@@ -218,7 +218,7 @@ $industries = getCategoryByParent("2");
                             data-desc="<?php echo $industry['meta_description']; ?>"
                             data-link="<?php echo SITE_URL; ?>/product-finder/industry-categories/<?php echo $industry['slug']; ?>">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
-                                class="w-full h-[214px]! md:h-[480px]! object-cover shrink-0 rounded-[4px]"
+                                class="w-full !h-[214px] md:!h-[480px] object-cover shrink-0 rounded-[4px]"
                                 alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
 
                             <div class="lg:hidden h-[286px] p-4 flex flex-col gap-4">

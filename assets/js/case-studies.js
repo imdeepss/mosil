@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const html = caseStudies
       .map(
         (study) => `
-            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
+            <div class="swiper-slide !grid !grid-rows-[auto_1fr_auto] group">
                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                     <img src="${study.image_url}"
                         alt="Hero Image"

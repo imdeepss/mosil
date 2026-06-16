@@ -86,10 +86,10 @@ $currentPage = $initialData['currentPage'];
             </div>
 
             <!-- Sub Featured Items (Row of 3) -->
-            <div class="grid grid-cols-2 md:grid-cols-3 md:gap-8 gap-4 [&>:last-child]:hidden! 
-            md:[&>:last-child]:grid!">
+            <div class="grid grid-cols-2 md:grid-cols-3 md:gap-8 gap-4 ![&>:last-child]:hidden 
+            md:![&>:last-child]:grid">
                 <?php foreach ($subFeatured as $study): ?>
-                    <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
+                    <div class="swiper-slide !grid !grid-rows-[auto_1fr_auto] group">
 
                         <div class="relative md:h-[240px] h-[184px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                             <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
@@ -183,7 +183,7 @@ $currentPage = $initialData['currentPage'];
     <!-- Case Studies Grid (Paginated) -->
     <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-8 gap-4 md:mb-12 mb-10">
         <?php foreach ($caseStudies as $study): ?>
-            <div class="swiper-slide grid! grid-rows-[auto_1fr_auto]! group">
+            <div class="swiper-slide !grid !grid-rows-[auto_1fr_auto] group">
 
                 <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0 group/img">
                     <img src="<?php echo SITE_URL; ?>/assets/uploads/case_studies/<?php echo $study['image']; ?>"
