@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                         loading="lazy">
 
-                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[var(--color-primary)] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-primary text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                         <h2>
                             Case Study
                         </h2>
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 capitalize hover:text-main-green">
                     Read Case Study
                     <span
-                        class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-primary)] transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        class="absolute bottom-0 left-0 w-full h-[2px] bg-primary transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
 
             </div>

@@ -721,7 +721,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((data) => {
           if (data.success) {
             responseDiv.innerText = "Subscribed successfully!";
-            responseDiv.className = "mt-2 text-[14px] font-medium text-[var(--color-primary)]";
+            responseDiv.className = "mt-2 text-[14px] font-medium text-primary";
             responseDiv.classList.remove("hidden");
             subscribeForm.reset();
             setTimeout(() => {

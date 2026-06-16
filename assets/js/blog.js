@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                         loading="lazy">
 
-                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-[var(--color-main-green)] font-bold text-[10px] leading-[135%] tracking-[0.01em]">
+                    <div class="absolute bottom-2 left-2 px-2 py-1 bg-[#F9DC6B] text-main-green font-bold text-[10px] leading-[135%] tracking-[0.01em]">
                         <h2>
                             Blog
                         </h2>
