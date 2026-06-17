@@ -1,5 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
 <style>
     @font-face {
         font-family: 'Helvetica';
@@ -114,3 +112,4 @@
         }
     }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
