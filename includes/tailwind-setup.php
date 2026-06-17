@@ -47,53 +47,7 @@
 </style>
 
 <style type="text/tailwindcss">
-    @theme {
-        --color-y50: #FEF9E6;
-        --color-y75: #FAE696;
-        --color-y100: #F9DC6B;
-        --color-y300: #F4C300;
-        --color-g300: #30442C;
-        --color-g50: #EAECEA;
-        --color-g75: #AAB2A8;
-        --color-g100: #879385;
-        --color-b0: #FFFFFF;
-        --color-b10: #fafafa;
-        --color-b20: #f5f5f5;
-        --color-b40: #DEDEDE;
-        --color-b70: #A3A3A3;
-        --color-b100: #757575;
-        --color-b200: #666666;
-        --color-b600: #2E2E2E;
-        --color-b700: #1C1C1C;
-        --color-b900: #000000;
-        --color-main-green: #1A3B1B;
-
-        --color-primary: #F4C300;
-        --color-primary-high: #FEF9E6;
-        --color-primary-mid: #FAE696;
-        --color-primary-low: #F9DC6B;
-
-        --color-secondary: #30442C;
-        --color-secondary-high: #EAECEA;
-        --color-secondary-mid: #AAB2A8;
-        --color-secondary-low: #879385;
-
-        --color-neutral: #FFFFFF;
-
-        --color-heading-high: #000000;
-        --color-heading-mid: #1C1C1C;
-        --color-heading-low: #2E2E2E;
-
-        --color-subtext-high: #A3A3A3;
-        --color-subtext-mid: #757575;
-        --color-subtext-low: #666666;
-
-        --color-bg-body-high: #fafafa;
-        --color-bg-body-mid: #f5f5f5;
-        --color-bg-body-low: #DEDEDE;
-
-        --spacing-header-height: 60px;
-    }
+    @theme { --color-y50: #FEF9E6; --color-y75: #FAE696; --color-y100: #F9DC6B; --color-y300: #F4C300; --color-g300: #30442C; --color-g50: #EAECEA; --color-g75: #AAB2A8; --color-g100: #879385; --color-b0: #FFFFFF; --color-b10: #fafafa; --color-b20: #f5f5f5; --color-b40: #DEDEDE; --color-b70: #A3A3A3; --color-b100: #757575; --color-b200: #666666; --color-b600: #2E2E2E; --color-b700: #1C1C1C; --color-b900: #000000; --color-main-green: #1A3B1B; --color-primary: #F4C300; --color-primary-high: #FEF9E6; --color-primary-mid: #FAE696; --color-primary-low: #F9DC6B; --color-secondary: #30442C; --color-secondary-high: #EAECEA; --color-secondary-mid: #AAB2A8; --color-secondary-low: #879385; --color-neutral: #FFFFFF; --color-heading-high: #000000; --color-heading-mid: #1C1C1C; --color-heading-low: #2E2E2E; --color-subtext-high: #A3A3A3; --color-subtext-mid: #757575; --color-subtext-low: #666666; --color-bg-body-high: #fafafa; --color-bg-body-mid: #f5f5f5; --color-bg-body-low: #DEDEDE; --spacing-header-height: 60px; }
 
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(20px); }
