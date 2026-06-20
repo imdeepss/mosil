@@ -1,14 +1,11 @@
-<footer class="bg-main-green text-neutral">
-    <div class="container flex flex-wrap justify-between py-16 md:flex-row flex-col gap-14 md:gap-0">
+<footer class="bg-main-green text-neutral relative">
+    <div class="container flex flex-wrap justify-between pt-16 pb-12 md:flex-row flex-col gap-14 md:gap-0">
 
         <div class="flex w-full flex-col items-start gap-[23px] font-normal lg:w-[320px] xl:w-[400px]">
             <div>
                 <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil-performances.png" alt="MOSIL Lubricants"
                     width="208" height="85" loading="lazy">
             </div>
-            <p
-                class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] md:block hidden">
-                © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved</p>
         </div>
 
         <div
@@ -61,9 +58,6 @@
                         Kopar-Khairane, Navi Mumbai - 400710,<br>
                         Maharashtra, India.</p>
                     <a href="mailto:enquiry@mosil.com" class="inline-block my-[34px] mb-[68px]">enquiry@mosil.com</a>
-                    <p
-                        class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] md:hidden block">
-                        © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved</p>
                 </div>
             </div>
             <div class="flex flex-col col-span-2 md:col-span-1 lg:col-span-1 mb-20 md:mb-0">
@@ -91,6 +85,22 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/20">
+        <div class="container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-left">
+                © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved
+            </p>
+            <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-right flex items-center gap-1.5 flex-wrap justify-center">
+                Developed by <a href="https://techquestor.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors font-medium relative group flex items-center gap-1">
+                    Techquestor
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full group-hover:bg-white transition-all duration-300"></span>
+                </a>
+            </p>
         </div>
     </div>
 </footer>
