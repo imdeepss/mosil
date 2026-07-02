@@ -42,7 +42,8 @@ $allowed_pages = [
 ];
 
 if (!in_array($page, $allowed_pages)) {
-    $page = 'home'; // Default to home or show 404
+    http_response_code(404);
+    $page = '404'; // Default to show 404
 }
 
 // Prepare content file path
