@@ -11,18 +11,18 @@ $blogs = getHomeFeaturedBlogs();
 <h1 class="sr-only">Custom & Specialty Lubricants Manufacturer | MOSIL</h1>
 <section class="relative h-[720px] w-full overflow-hidden">
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center md:block hidden"
-        poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png" fetchpriority="high">
+        poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.webp" fetchpriority="high">
         <source src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.mp4" type="video/mp4"
             media="(min-width: 768px)">
-        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png"
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.webp"
             alt="Hero Image" class="h-full w-full object-cover object-center">
     </video>
 
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center block md:hidden"
-        poster="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png">
+        poster="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.webp">
         <source src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner.mp4" type="video/mp4"
             media="(max-width: 767px)">
-        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.png"
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.webp"
             alt="Hero Image" class="h-full w-full object-cover object-center">
     </video>
 </section>
@@ -120,7 +120,7 @@ $blogs = getHomeFeaturedBlogs();
                             <div
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img decoding="async"
-                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $industry['mcat_image']; ?>"
+                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $industry['mcat_image']); ?>"
                                     class="w-full !h-[214px] md:!h-[480px] object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
                                 <div class="lg:hidden h-[286px] p-4 !flex flex-col gap-4 bg-[#F5F5F5]">
@@ -208,7 +208,7 @@ $blogs = getHomeFeaturedBlogs();
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img decoding="async"
-                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo $product['mcat_image']; ?>"
+                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $product['mcat_image']); ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
                     </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
@@ -441,29 +441,29 @@ $lubricationItems = [
     [
         "title" => "Identify Painpoints",
         "desc" => "Understand deeply unique challenges",
-        "image" => "/assets/images/ui/IdentifyPainpoints.png"
+        "image" => "/assets/images/ui/IdentifyPainpoints.webp"
     ],
     [
         "title" => "Expectation Mapping",
         "desc" => "Actively validate not assume",
-        "image" => "/assets/images/ui/ExpectationMapping.png"
+        "image" => "/assets/images/ui/ExpectationMapping.webp"
     ],
     [
         "title" => "TriboIntel",
         "desc" => "Tribology based performance documentation",
-        "image" => "/assets/images/ui/TriboIntel.png"
+        "image" => "/assets/images/ui/TriboIntel.webp"
     ],
     [
         "title" => "Delivering Success",
         "desc" => "We don’t sell. We solve",
-        "image" => "/assets/images/ui/DeliveringSuccess.png"
+        "image" => "/assets/images/ui/DeliveringSuccess.webp"
     ]
 ];
 ?>
 
 <section class="bg-primary relative">
     <div class="absolute bottom-0 left-0">
-        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.png"
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_left_light.webp"
             alt="lubrication decision" class="block h-full w-full object-cover object-center" loading="lazy">
     </div>
     <div class="container relative z-10 md:pt-10.5 md:pb-13 pt-6 pb-6">
@@ -516,7 +516,7 @@ $lubricationItems = [
 
     </div>
     <div class="absolute top-0 right-0 h-full">
-        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.png"
+        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/bg_lubi_drop_right_light.webp"
             alt="lubrication decision" class="block h-full w-full object-cover object-center" loading="lazy">
     </div>
 </section>
@@ -546,7 +546,7 @@ $lubricationItems = [
 
                         <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
                             <img decoding="async"
-                                src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
+                                src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $blog['image']); ?>"
                                 alt="Hero Image"
                                 class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                                 loading="lazy">
@@ -642,7 +642,7 @@ $lubricationItems = [
                     <div class="swiper-slide !w-auto">
                         <div
                             class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
-                            <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo $brand; ?>"
+                            <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $brand); ?>"
                                 alt="Brand Logo" class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
                     </div>

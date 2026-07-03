@@ -28,7 +28,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle : SITE_NAME; ?></title>
     <?php if (isset($page) && $page === 'home'): ?>
-        <link rel="preload" as="image" href="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.png"
+        <link rel="preload" as="image" href="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.webp"
             fetchpriority="high">
     <?php endif; ?>
     <?php if (isset($metaDescription) && !empty($metaDescription)): ?>
@@ -73,8 +73,8 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <?php endif; ?>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png">
-    <link rel="shortcut icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png">
+    <link rel="icon" type="image/webp" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.webp">
+    <link rel="shortcut icon" type="image/webp" href="<?php echo SITE_URL; ?>/assets/images/logos/mosil.webp">
 
     <!-- Core CSS -->
     <?php include 'tailwind-setup.php'; ?>
@@ -131,7 +131,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
         <div class="container flex h-full items-center justify-between">
             <div class="shrink-0">
                 <a href="<?php echo SITE_URL; ?>">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil.png" alt="MOSIL" width="95" height="44"
+                    <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil.webp" alt="MOSIL" width="95" height="44"
                         class="block">
                 </a>
             </div>

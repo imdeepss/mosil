@@ -3,7 +3,7 @@
 
         <div class="flex w-full flex-col items-start gap-[23px] font-normal lg:w-[320px] xl:w-[400px]">
             <div>
-                <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil-performances.png" alt="MOSIL Lubricants"
+                <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil-performances.webp" alt="MOSIL Lubricants"
                     width="208" height="85" loading="lazy">
             </div>
         </div>
