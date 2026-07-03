@@ -67,8 +67,7 @@
                 </h2>
                 <div class="text-[#FFFFFF] font-base font-normal w-full mt-4">
                     <form id="footerSubscribeForm" novalidate
-                        class="flex items-center border-b border-primary pb-2 relative w-full group" autocomplete="off"
-                        aria-autocomplete="none">
+                        class="flex items-center border-b border-primary pb-2 relative w-full group" autocomplete="off">
                         <input type="email" name="subscribe_email" placeholder="Email" required aria-label="Email address for newsletter subscription"
                             class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:!bg-transparent focus:!border-none focus:!outline-none focus:!ring-0" />
                         <button type="submit" aria-label="Subscribe to newsletter"

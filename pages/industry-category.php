@@ -99,7 +99,7 @@ usort($industries, function ($a, $b) {
                                         class="text-white font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                                         <?php echo $industry['mcat_desc']; ?>
                                     </p>
-                                    <button
+                                    <button aria-label="View <?php echo htmlspecialchars($industry['mcat_name']); ?> details"
                                         class="inline-flex shrink-0 origin-center will-change-transform transition-all duration-500 ease-in-out text-white group-hover:-rotate-45">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"

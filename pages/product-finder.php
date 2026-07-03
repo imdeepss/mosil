@@ -88,7 +88,7 @@ $categories = [
                                 <span><?php echo $item['title_line2']; ?></span>
                             </h2>
 
-                            <button
+                            <button aria-label="View <?php echo htmlspecialchars(trim($item['title_line1'] . ' ' . $item['title_line2'])); ?> details"
                                 class="transition-all duration-500 transform group-hover:-rotate-45 shrink-0 text-main-green">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"
                                     class="w-5 h-5 md:w-10 md:h-10 transition-all duration-500">

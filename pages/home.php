@@ -227,7 +227,7 @@ $blogs = getHomeFeaturedBlogs();
                                         <?php echo $product['mcat_desc']; ?>
                                     </p>
 
-                                    <button
+                                    <button aria-label="View <?php echo htmlspecialchars($product['mcat_name']); ?> details"
                                         class="transition-all duration-500 transform group-hover:-rotate-45 [.active_&]:-rotate-45">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                             fill="none">
