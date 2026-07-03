@@ -91,6 +91,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 
         gtag('config', 'G-J8BDPPXN66');
     </script>
+
     <!-- Page Specific CSS -->
     <?php
     $pageCss = 'assets/css/' . $page . '.css';
@@ -149,7 +150,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                 </div>
                 <!-- Mobile Search Trigger -->
                 <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300"
-                    id="openMobileSearch">
+                    id="openMobileSearch" aria-label="Open mobile search" role="button" tabindex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path
                             d="M28 28L20 20M22.6667 13.3333C22.6667 18.488 18.488 22.6667 13.3333 22.6667C8.17868 22.6667 4 18.488 4 13.3333C4 8.17868 8.17868 4 13.3333 4C18.488 4 22.6667 8.17868 22.6667 13.3333Z"
@@ -201,7 +202,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                                         class="search-results-container absolute top-full left-0 mt-2 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-50 rounded hidden">
                                     </div>
                                 </div>
-                                <button id="closeSidebar"
+                                <button id="closeSidebar" aria-label="Close sidebar"
                                     class="p-2 hover:scale-95 transition-transform cursor-pointer">
                                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/x.png" alt="Close" width="24"
                                         height="24" loading="lazy">
@@ -261,7 +262,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                         </ul>
                     </div>
 
-                    <button type="button" id="openSidebar"
+                    <button type="button" id="openSidebar" aria-label="Open sidebar"
                         class="flex h-10 w-10 items-center justify-center bg-transparent p-2 transition-transform active:scale-95 cursor-pointer">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/png/menu.png" alt="Menu" width="40" height="40">
                     </button>

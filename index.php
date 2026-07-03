@@ -62,7 +62,9 @@ $pageContent = ob_get_clean();
 include 'includes/header.php';
 
 // Output Content
+echo '<main id="main-content" role="main">';
 echo $pageContent;
+echo '</main>';
 
 // Load Footer
 include 'includes/footer.php';

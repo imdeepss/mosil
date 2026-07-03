@@ -12,10 +12,10 @@
             class="grid flex-1 gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-[80px_80px_220px_1fr] lg:gap-8 xl:grid-cols-[97px_88px_260px_1fr] xl:gap-[60px]">
 
             <div class="flex flex-col">
-                <h4
+                <h2
                     class="mb-2 text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
                     Quick
-                    Links</h4>
+                    Links</h2>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                     <li><a href="<?php echo SITE_URL; ?>/blog" class="hover:text-primary transition-colors">Blog</a>
                     </li>
@@ -33,26 +33,26 @@
             </div>
 
             <div class="flex flex-col">
-                <h4
+                <h2
                     class="mb-2 text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
                     Find
-                    us on</h4>
+                    us on</h2>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                    <li><a href="https://www.linkedin.com/company/mosil-lubricants/"
+                    <li><a href="https://www.linkedin.com/company/mosil-lubricants/" aria-label="Visit our LinkedIn page"
                             class="hover:text-primary transition-colors">LinkedIn</a></li>
-                    <li><a href="https://twitter.com/mosil_lubricants"
+                    <li><a href="https://twitter.com/mosil_lubricants" aria-label="Visit our Twitter page"
                             class="hover:text-primary transition-colors">Twitter</a></li>
-                    <li><a href="https://www.facebook.com/mosil.lubricants"
+                    <li><a href="https://www.facebook.com/mosil.lubricants" aria-label="Visit our Facebook page"
                             class="hover:text-primary transition-colors">Facebook</a></li>
-                    <li><a href="https://www.instagram.com/mosil_lubricants/"
+                    <li><a href="https://www.instagram.com/mosil_lubricants/" aria-label="Visit our Instagram page"
                             class="hover:text-primary transition-colors">Instagram</a></li>
                 </ul>
             </div>
 
             <div class="flex flex-col col-span-2 md:col-span-1">
-                <h4
+                <h2
                     class="mb-2 text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
-                    Address</h4>
+                    Address</h2>
                 <div class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
                     <p>Mosil lubricants Pvt.Ltd. Plot no. A-791/3, MIDC,<br>
                         Kopar-Khairane, Navi Mumbai - 400710,<br>
@@ -61,17 +61,17 @@
                 </div>
             </div>
             <div class="flex flex-col col-span-2 md:col-span-1 lg:col-span-1 mb-20 md:mb-0">
-                <h4
+                <h2
                     class="mb-2 text-[#FFFFFF] font-base font-bold text-[16px] leading-[150%] tracking-[0.015em] capitalize">
                     Join our email list to receive exclusive content and product updates
-                </h4>
+                </h2>
                 <div class="text-[#FFFFFF] font-base font-normal w-full mt-4">
                     <form id="footerSubscribeForm" novalidate
                         class="flex items-center border-b border-primary pb-2 relative w-full group" autocomplete="off"
                         aria-autocomplete="none">
-                        <input type="email" name="subscribe_email" placeholder="Email" required
+                        <input type="email" name="subscribe_email" placeholder="Email" required aria-label="Email address for newsletter subscription"
                             class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:!bg-transparent focus:!border-none focus:!outline-none focus:!ring-0" />
-                        <button type="submit"
+                        <button type="submit" aria-label="Subscribe to newsletter"
                             class="absolute right-0 text-primary text-[15px] font-semibold flex items-center gap-1 group-focus-within:text-primary hover:opacity-80 disabled:opacity-50 transition-opacity">
                             Subscribe
                             <svg width="14" height="14" viewBox="0 0 12 12" fill="none"
@@ -248,11 +248,13 @@ endif; ?>
             })
         }
         const onLoad = function () {
-            const script = document.createElement("script");
-            script.src = "https://www.chatbase.co/embed.min.js";
-            script.id = "6MqeSpCR1QiEXI65v5iEk";
-            script.domain = "www.chatbase.co";
-            document.body.appendChild(script)
+            setTimeout(function() {
+                const script = document.createElement("script");
+                script.src = "https://www.chatbase.co/embed.min.js";
+                script.id = "6MqeSpCR1QiEXI65v5iEk";
+                script.domain = "www.chatbase.co";
+                document.body.appendChild(script);
+            }, 4000); // Delayed to improve page performance
         };
         if (document.readyState === "complete") {
             onLoad()
