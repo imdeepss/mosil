@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const ajaxEndpoint = "/mosil-new/ajax/career.php";
+    const ajaxEndpoint = "/ajax/career.php";
 
     // UI Feedback: Start Loading
     const originalBtnText = submitBtn.innerHTML;
