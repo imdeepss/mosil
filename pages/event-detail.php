@@ -16,6 +16,16 @@ if (!$event) {
 $suggestedData = getBlogsWithPagination(1, 2);
 $suggestedBlogs = $suggestedData['blogs'];
 
+// Define canonical URL based on category to prevent duplicate content across /blog/ and /events/
+$eventCategories = ['Exhibitions', 'Events', 'News', 'Beyond Business', 'Beyond business'];
+$isEvent = in_array(trim($event['category_name']), $eventCategories);
+
+if ($isEvent) {
+    $canonicalUrl = rtrim(SITE_URL, '/') . '/events/' . $slug;
+} else {
+    $canonicalUrl = rtrim(SITE_URL, '/') . '/blog/' . $slug;
+}
+
 // Set Page Title for SEO
 $pageTitle = htmlspecialchars($event['title']);
 ?>

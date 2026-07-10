@@ -23,7 +23,12 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
             $cleanPath = $requestPath;
         }
 
-        $canonicalUrl = $siteUrl . $cleanPath;
+        // Remove trailing slash for consistent canonical URLs
+        if ($cleanPath !== '/' && $cleanPath !== '') {
+            $cleanPath = rtrim($cleanPath, '/');
+        }
+
+        $canonicalUrl = rtrim($siteUrl, '/') . $cleanPath;
     }
     ?>
     <!-- Open Graph / Social Tags -->
