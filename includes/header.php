@@ -43,8 +43,12 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle : SITE_NAME; ?></title>
     <?php if (isset($page) && $page === 'home'): ?>
+        <!-- Preload desktop hero image -->
         <link rel="preload" as="image" href="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.webp"
-            fetchpriority="high">
+            media="(min-width: 768px)" fetchpriority="high">
+        <!-- Preload mobile hero image -->
+        <link rel="preload" as="image" href="<?php echo SITE_URL; ?>/assets/images/banners/mb-home-banner-poster.webp"
+            media="(max-width: 767px)" fetchpriority="high">
     <?php endif; ?>
     <?php if (isset($metaDescription) && !empty($metaDescription)): ?>
         <meta name="description" content="<?php echo htmlspecialchars($metaDescription); ?>">
