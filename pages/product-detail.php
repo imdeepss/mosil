@@ -19,6 +19,9 @@ if ($product) {
 
     $defaultKeywords = $product['name'] . ', specialty lubricants, industrial lubricants, MOSIL';
     $metaKeywords = !empty($product['meta_keywords']) ? $product['meta_keywords'] : $defaultKeywords;
+    
+    // Set canonical URL to avoid duplicate content when product is accessed through different categories
+    $canonicalUrl = rtrim(SITE_URL, '/') . '/product-finder/all/' . $productSlug;
 } else {
     $pageTitle = 'Product Not Found - MOSIL Lubricants';
 }

@@ -10,12 +10,27 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 <html lang="en">
 
 <head>
+    <?php
+    if (!isset($canonicalUrl)) {
+        $siteUrl = rtrim(SITE_URL, '/');
+        $parsedSite = parse_url($siteUrl);
+        $sitePath = isset($parsedSite['path']) ? rtrim($parsedSite['path'], '/') : '';
+        $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+        if (!empty($sitePath) && strpos($requestPath, $sitePath) === 0) {
+            $cleanPath = substr($requestPath, strlen($sitePath));
+        } else {
+            $cleanPath = $requestPath;
+        }
+
+        $canonicalUrl = $siteUrl . $cleanPath;
+    }
+    ?>
     <!-- Open Graph / Social Tags -->
     <meta property="og:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : SITE_NAME; ?>">
     <meta property="og:description"
         content="<?php echo isset($metaDescription) ? htmlspecialchars($metaDescription) : ''; ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl ?? SITE_URL, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="<?php echo SITE_NAME; ?>">
     <meta name="twitter:card" content="summary_large_image">
@@ -39,20 +54,6 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <?php endif; ?>
 
     <!-- Canonical URL -->
-    <?php
-    $siteUrl = rtrim(SITE_URL, '/');
-    $parsedSite = parse_url($siteUrl);
-    $sitePath = isset($parsedSite['path']) ? rtrim($parsedSite['path'], '/') : '';
-    $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-    if (!empty($sitePath) && strpos($requestPath, $sitePath) === 0) {
-        $cleanPath = substr($requestPath, strlen($sitePath));
-    } else {
-        $cleanPath = $requestPath;
-    }
-
-    $canonicalUrl = $siteUrl . $cleanPath;
-    ?>
     <link rel="canonical" href="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>">
 
     <!-- Structured Data (Organization Schema) -->
