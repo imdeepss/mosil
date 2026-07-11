@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Product Category';
+$pageTitle = 'Product Categories | MOSIL Specialty Lubricants';
+$metaDescription = 'Explore MOSIL’s wide range of specialty lubricant categories, including industrial lubricants, greases, anti-seize compounds, degreasers, and performance lubrication solutions.';
 
 $products = getCategoryByParent("3");
 ?>

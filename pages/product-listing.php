@@ -6,17 +6,19 @@ $type = isset($_GET['type']) ? $_GET['type'] : 'industry'; // 'industry' or 'pro
 
 // Fetch category name from database
 $categoryDetails = getCategoryDetailsBySlug($categorySlug);
-
+$metaDescription = '';
 if ($categoryDetails) {
     $categoryName = $categoryDetails['mcat_name'];
+    $pageTitle = !empty($categoryDetails['meta_title']) ? $categoryDetails['meta_title'] : $categoryName . ' - Products';
+    $metaDescription = !empty($categoryDetails['meta_description']) ? $categoryDetails['meta_description'] : '';
 } else {
     $categoryName = ucwords(str_replace('-', ' ', $categorySlug));
     if (empty($categoryName)) {
         $categoryName = 'All Products';
     }
+    $pageTitle = $categoryName . ' - Products';
 }
 
-$pageTitle = $categoryName . ' - Products';
 
 
 // Breadcrumb Logic

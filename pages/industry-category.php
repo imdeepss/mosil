@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Industry Category';
+$pageTitle = 'Industry Categories We Serve | MOSIL Specialty Lubricants';
+$metaDescription = 'Explore the industries served by MOSIL with advanced specialty lubrication solutions designed to improve equipment performance, reliability, and operational efficiency.';
 
 $industries = getCategoryByParent("2");
 

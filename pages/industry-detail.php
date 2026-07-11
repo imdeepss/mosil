@@ -13,8 +13,8 @@ if (!$industry) {
         'slug' => ''
     ];
 }
-
-$pageTitle = $industry['mcat_name'];
+$pageTitle = !empty($industry['meta_title']) ? $industry['meta_title'] : $industry['mcat_name'];
+$metaDescription = !empty($industry['meta_description']) ? $industry['meta_description'] : '';
 $productInfo = getProductsByCategorySlug($slug); // Reusing logic from listing
 // Fetch a few case studies - ideally would be filtered by industry, but using generic for now
 $caseStudies = getCaseStudy(3);
