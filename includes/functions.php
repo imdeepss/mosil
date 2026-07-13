@@ -73,7 +73,12 @@ function isSessionTimedOut()
         return true;
     }
 
-    if (time() - $_SESSION['admin_last_activity'] > SESSION_TIMEOUT) {
+    $timeout = SESSION_TIMEOUT;
+    if (isset($_SESSION['admin_remember_me']) && $_SESSION['admin_remember_me'] === true) {
+        $timeout = 7 * 24 * 60 * 60; // 1 week
+    }
+
+    if (time() - $_SESSION['admin_last_activity'] > $timeout) {
         return true;
     }
 

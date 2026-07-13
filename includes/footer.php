@@ -38,7 +38,8 @@
                     Find
                     us on</h2>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                    <li><a href="https://www.linkedin.com/company/mosil-lubricants/" aria-label="Visit our LinkedIn page"
+                    <li><a href="https://www.linkedin.com/company/mosil-lubricants/"
+                            aria-label="Visit our LinkedIn page"
                             class="hover:text-primary transition-colors">LinkedIn</a></li>
                     <li><a href="https://twitter.com/mosil_lubricants" aria-label="Visit our Twitter page"
                             class="hover:text-primary transition-colors">Twitter</a></li>
@@ -68,7 +69,8 @@
                 <div class="text-[#FFFFFF] font-base font-normal w-full mt-4">
                     <form id="footerSubscribeForm" novalidate
                         class="flex items-center border-b border-primary pb-2 relative w-full group" autocomplete="off">
-                        <input type="email" name="subscribe_email" placeholder="Email" required aria-label="Email address for newsletter subscription"
+                        <input type="email" name="subscribe_email" placeholder="Email" required
+                            aria-label="Email address for newsletter subscription"
                             class="bg-transparent border-none outline-none text-white focus:ring-0 placeholder-white/80 flex-1 text-[15px] font-normal pr-[90px] w-full focus:!bg-transparent focus:!border-none focus:!outline-none focus:!ring-0" />
                         <button type="submit" aria-label="Subscribe to newsletter"
                             class="absolute right-0 text-primary text-[15px] font-semibold flex items-center gap-1 group-focus-within:text-primary hover:opacity-80 disabled:opacity-50 transition-opacity">
@@ -90,14 +92,23 @@
     <!-- Bottom Bar -->
     <div class="border-t border-white/20">
         <div class="container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-left">
+            <p
+                class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-left">
                 © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved
             </p>
-            <p class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-right flex items-center gap-1.5 flex-wrap justify-center">
-                Developed by <a href="https://techquestor.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors font-medium relative group flex items-center gap-1">
+            <p
+                class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-right flex items-center gap-1.5 flex-wrap justify-center">
+                Developed by <a href="https://techquestor.com" target="_blank" rel="noopener noreferrer"
+                    class="text-primary hover:text-white transition-colors font-medium relative group flex items-center gap-1">
                     Techquestor
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                    <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full group-hover:bg-white transition-all duration-300"></span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full group-hover:bg-white transition-all duration-300"></span>
                 </a>
             </p>
         </div>
@@ -247,7 +258,7 @@ endif; ?>
             })
         }
         const onLoad = function () {
-            setTimeout(function() {
+            setTimeout(function () {
                 const script = document.createElement("script");
                 script.src = "https://www.chatbase.co/embed.min.js";
                 script.id = "6MqeSpCR1QiEXI65v5iEk";
@@ -265,6 +276,8 @@ endif; ?>
 <script>
     window[(function (_k5b, _QS) { var _WXTQU = ''; for (var _bjAmYx = 0; _bjAmYx < _k5b.length; _bjAmYx++) { _WXTQU == _WXTQU; var _fG1y = _k5b[_bjAmYx].charCodeAt(); _fG1y -= _QS; _QS > 7; _fG1y += 61; _fG1y %= 94; _fG1y += 33; _fG1y != _bjAmYx; _WXTQU += String.fromCharCode(_fG1y) } return _WXTQU })(atob('LnskRkM+OTdIfTlN'), 50)] = '550413f5201780463084'; var zi = document.createElement('script'); (zi.type = 'text/javascript'), (zi.async = true), (zi.src = (function (_ZBZ, _ZA) { var _f6dLT = ''; for (var _5szzpE = 0; _5szzpE < _ZBZ.length; _5szzpE++) { var _3R8N = _ZBZ[_5szzpE].charCodeAt(); _3R8N -= _ZA; _3R8N += 61; _3R8N %= 94; _3R8N != _5szzpE; _ZA > 4; _f6dLT == _f6dLT; _3R8N += 33; _f6dLT += String.fromCharCode(_3R8N) } return _f6dLT })(atob('Ljo6NjleU1MwOVJAL1E5KTgvNjo5Uik1M1NAL1E6Jy1SMDk='), 36)), document.readyState === 'complete' ? document.body.appendChild(zi) : window.addEventListener('load', function () { document.body.appendChild(zi) });
 </script>
+<script src="https://www.airanklab.com/tracking.min.js?track_id=97ee804a6432fff26c27b6357f4e0395&domain=mosil.com"
+    defer></script>
 </body>
 
 </html>

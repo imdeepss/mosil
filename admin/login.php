@@ -2,18 +2,41 @@
 // Start session
 session_start();
 
+// Include configuration and functions
+require_once '../includes/config.php';
+require_once '../includes/functions.php';
+
+// Auto-login from cookie if not already logged in
+if (empty($_SESSION['admin_logged_in']) && isset($_COOKIE['admin_remember'])) {
+    $cookieParts = explode(':', $_COOKIE['admin_remember']);
+    if (count($cookieParts) === 2) {
+        list($admin_id, $hash) = $cookieParts;
+        $sql = "SELECT * FROM admin_users WHERE id = ? LIMIT 1";
+        $admin = db_query_one($sql, [$admin_id]);
+        
+        if ($admin && hash('sha256', $admin['password_hash']) === $hash) {
+            $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_email'] = $admin['email'];
+            $_SESSION['admin_role'] = $admin['role'];
+            $_SESSION['admin_last_activity'] = time();
+            $_SESSION['admin_remember_me'] = true;
+
+            $update_sql = "UPDATE admin_users SET last_login_at = NOW() WHERE id = ?";
+            db_execute($update_sql, [$admin['id']]);
+        } else {
+            // Invalid cookie, clear it
+            setcookie('admin_remember', '', time() - 3600, '/');
+        }
+    }
+}
+
 // If already logged in, redirect to dashboard
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header("Location: index.php");
     exit;
 }
-// echo password_hash("123456", PASSWORD_DEFAULT);
-// Include configuration and functions
-require_once '../includes/config.php';
-require_once '../includes/functions.php';
 
 $error = '';
-// echo password_hash("123456", PASSWORD_DEFAULT);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
@@ -32,6 +55,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['admin_email'] = $admin['email'];
                 $_SESSION['admin_role'] = $admin['role'];
                 $_SESSION['admin_last_activity'] = time();
+
+                // Remember me for 1 week
+                if (isset($_POST['rememberMe'])) {
+                    $_SESSION['admin_remember_me'] = true;
+                    $token = $admin['id'] . ':' . hash('sha256', $admin['password_hash']);
+                    setcookie('admin_remember', $token, time() + (7 * 24 * 60 * 60), '/');
+                } else {
+                    $_SESSION['admin_remember_me'] = false;
+                    if (isset($_COOKIE['admin_remember'])) {
+                        setcookie('admin_remember', '', time() - 3600, '/');
+                    }
+                }
 
                 // Update last login time
                 $update_sql = "UPDATE admin_users SET last_login_at = NOW() WHERE id = ?";
