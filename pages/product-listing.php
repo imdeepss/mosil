@@ -99,18 +99,23 @@ $subCategories = getSubCategoriesByMainCategory($categorySlug);
                         <span class="text-main-green font-base font-normal text-[18px] leading-[140%] capitalize">
                             <?= $cat['name']; ?>
                         </span>
-                        <input type="checkbox" <?= $isChecked; ?> class="subcategory-filter w-5 h-5 border border-[#1A3B1B] rounded-[4px] bg-transparent cursor-pointer appearance-none 
+                        <input type="checkbox" <?= $isChecked; ?> class="subcategory-filter custom-checkbox w-5 h-5 border border-[#1A3B1B] rounded-[4px] bg-transparent cursor-pointer appearance-none 
                           relative flex items-center justify-center shrink-0 my-[2.5px]
                           checked:bg-[#1A3B1B] transition-all duration-200
                           checked:before:content-[''] 
                           checked:before:w-[14px] checked:before:h-[14px] 
-                          checked:before:bg-no-repeat checked:before:bg-center checked:before:bg-contain 
-                          checked:before:bg-[url('<?= SITE_URL; ?>/assets/icons/svg/check.svg')]"
+                          checked:before:bg-no-repeat checked:before:bg-center checked:before:bg-contain"
+                            style="--check-url: url('<?= SITE_URL; ?>/assets/icons/svg/check.svg');"
                             value="<?= $cat['id']; ?>">
                     </label>
                 <?php endforeach;
                 ?>
             </nav>
+            <style>
+                .custom-checkbox:checked::before {
+                    background-image: var(--check-url);
+                }
+            </style>
         </aside>
 
         <main class="flex-1 px-4 py-6 md:px-[54px] md:py-7 bg-white">
