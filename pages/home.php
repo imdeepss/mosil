@@ -1,6 +1,6 @@
 <?php
-$pageTitle = 'Custom & Specialty Lubricants Manufacturer | MOSIL';
-$metaDescription = 'MOSIL provides high-performance custom and specialty lubricants, greases, and oils for various industrial applications. Discover our innovative lubrication solutions.';
+$pageTitle = 'Custom & Specialty Lubricants Manufacturer | MOSIL Lubricants';
+$metaDescription = 'MOSIL Lubricants Pvt. Ltd. is a specialty industrial lubricant manufacturer focused on reducing friction and improving efficiency with custom greases, oils, and coatings.';
 $industries = getSpecificIndustries();
 $products = getCategoryByParent("3", "4");
 $caseStudies = getHomeFixedCaseStudies();
@@ -8,7 +8,7 @@ $blogs = getHomeFeaturedBlogs();
 
 ?>
 <!-- Hero Section -->
-<h1 class="sr-only">Custom & Specialty Lubricants Manufacturer | MOSIL</h1>
+<h1 class="sr-only">Custom & Specialty Lubricants Manufacturer | MOSIL Lubricants</h1>
 <section class="relative h-[720px] w-full overflow-hidden">
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center md:block hidden"
         poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.webp" fetchpriority="high">
@@ -42,7 +42,8 @@ $blogs = getHomeFeaturedBlogs();
                     Lubricant solutions for every industry
                 </h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/industry-categories/"
-                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0"
+                    aria-label="See all industries we serve">
                     See all
                 </a>
             </div>
@@ -54,7 +55,7 @@ $blogs = getHomeFeaturedBlogs();
 
                 <div class="absolute inset-0 opacity-50 pointer-events-none select-none">
                     <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png"
-                        class="w-full h-full object-contain" alt="">
+                        class="w-full h-full object-contain" alt="Decorative background pattern" role="presentation">
                 </div>
 
                 <div
@@ -197,7 +198,8 @@ $blogs = getHomeFeaturedBlogs();
                     class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
                     Products engineered for performance</h2>
                 <a href="<?php echo SITE_URL; ?>/product-finder/product-categories"
-                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
+                    class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0"
+                    aria-label="See all product categories">See
                     all</a>
             </div>
         </div>
@@ -534,7 +536,8 @@ $lubricationItems = [
                 class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                 MOSIL Newsroom</h2>
             <a href="<?php echo SITE_URL; ?>/newsroom"
-                class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0">See
+                class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0"
+                aria-label="See all MOSIL newsroom articles">See
                 all</a>
         </div>
 
@@ -587,14 +590,14 @@ $lubricationItems = [
             </div>
         </div>
         <div class="flex items-center gap-4 relative z-10 justify-end pt-4">
-            <button class="news-prev group cursor-pointer">
+            <button class="news-prev group cursor-pointer" aria-label="Previous News Slide">
                 <svg class="w-12 h-12 transition-transform group-active:scale-90" viewBox="0 0 48 48">
                     <circle cx="24" cy="24" r="23" stroke="#1A3B1B" stroke-width="2" fill="none" />
                     <path d="M34 24L14 24M14 24L20 18M14 24L20 30" stroke="#1A3B1B" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </button>
-            <button class="news-next group cursor-pointer">
+            <button class="news-next group cursor-pointer" aria-label="Next News Slide">
                 <svg class="w-12 h-12 transition-transform group-active:scale-90" viewBox="0 0 48 48">
                     <circle cx="24" cy="24" r="23" stroke="#1A3B1B" stroke-width="2" fill="none" />
                     <path d="M14 24L34 24M34 24L28 18M34 24L28 30" stroke="#1A3B1B" stroke-width="2"
@@ -842,3 +845,134 @@ $lubricationItems = [
 
         </div>
 </section>
+
+<!-- SEO & Knowledge Section -->
+<section class="bg-white">
+    <div class="container md:pb-20 pb-10">
+        <!-- Conversational Heading -->
+        <div class="py-3.5 mb-8">
+            <span class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
+                Knowledge & Resources
+            </span>
+            <div class="border-b-2 border-primary pb-1">
+                <h2 class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
+                    How we help you solve lubrication challenges
+                </h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-[#666666] text-[16px] leading-[150%]">
+            
+            <!-- Direct Answer / List Section -->
+            <div>
+                <h3 class="text-[#1A3B1B] text-[20px] font-bold mb-4">What is MOSIL Lubricants?</h3>
+                <p class="mb-4"><strong>MOSIL Lubricants Pvt. Ltd.</strong> is a specialty industrial lubricant manufacturer focused on reducing friction and improving efficiency. We offer a comprehensive range of solutions including:</p>
+                <ul class="list-disc pl-5 mb-6 space-y-2">
+                    <li>Synthetic &amp; Specialty Greases</li>
+                    <li>Performance Industrial Oils</li>
+                    <li>Anti-Friction Coatings (AFC)</li>
+                    <li>MRO (Maintenance, Repair, and Operations) Aerosols</li>
+                </ul>
+
+                <h3 class="text-[#1A3B1B] text-[20px] font-bold mb-4">How to choose the right lubricant?</h3>
+                <ol class="list-decimal pl-5 mb-6 space-y-2">
+                    <li><strong>Identify the application:</strong> Determine if you need a grease, oil, or coating based on the component.</li>
+                    <li><strong>Check operating conditions:</strong> Evaluate temperature, load, speed, and environment.</li>
+                    <li><strong>Consult our Product Finder:</strong> Use our advanced search tool to filter by industry or product category.</li>
+                    <li><strong>Contact our experts:</strong> Reach out for custom formulation requirements.</li>
+                </ol>
+            </div>
+
+            <!-- Table Section -->
+            <div>
+                <h3 class="text-[#1A3B1B] text-[20px] font-bold mb-4">MOSIL vs Conventional Lubricants</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse border border-[#E5E5E5]">
+                        <thead>
+                            <tr class="bg-[#F5F5F5] text-[#1A3B1B]">
+                                <th class="border border-[#E5E5E5] px-4 py-3 font-semibold">Feature</th>
+                                <th class="border border-[#E5E5E5] px-4 py-3 font-semibold">MOSIL Specialty Lubricants</th>
+                                <th class="border border-[#E5E5E5] px-4 py-3 font-semibold">Conventional Lubricants</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Operating Temperatures</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Extreme High/Low (-70°C to +1000°C)</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Standard (-20°C to +120°C)</td>
+                            </tr>
+                            <tr class="bg-[#FAFAFA]">
+                                <td class="border border-[#E5E5E5] px-4 py-3">Equipment Lifespan</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Significantly Extended</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Average</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Maintenance Frequency</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Reduced downtime</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Frequent re-lubrication</td>
+                            </tr>
+                            <tr class="bg-[#FAFAFA]">
+                                <td class="border border-[#E5E5E5] px-4 py-3">Application Focus</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">Tailor-made for specific challenges</td>
+                                <td class="border border-[#E5E5E5] px-4 py-3">General purpose</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- JSON-LD FAQ & HowTo Schemas -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is MOSIL Lubricants?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "MOSIL Lubricants Pvt. Ltd. is a specialty industrial lubricant manufacturer focused on reducing friction and improving efficiency. We offer a comprehensive range of solutions including Synthetic & Specialty Greases, Performance Industrial Oils, Anti-Friction Coatings (AFC), and MRO Aerosols."
+    }
+  }, {
+    "@type": "Question",
+    "name": "How to choose the right lubricant?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "To choose the right lubricant: 1. Identify the application. 2. Check operating conditions (temperature, load, speed). 3. Consult our Product Finder. 4. Contact our experts for custom formulations."
+    }
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to choose the right industrial lubricant",
+  "description": "A step-by-step guide to selecting the perfect specialty lubricant for your industrial application.",
+  "step": [{
+    "@type": "HowToStep",
+    "name": "Identify the application",
+    "text": "Determine if you need a grease, oil, or coating based on the component.",
+    "url": "https://mosil.com/product-finder"
+  },{
+    "@type": "HowToStep",
+    "name": "Check operating conditions",
+    "text": "Evaluate temperature, load, speed, and environment.",
+    "url": "https://mosil.com/product-finder"
+  },{
+    "@type": "HowToStep",
+    "name": "Consult our Product Finder",
+    "text": "Use our advanced search tool to filter by industry or product category.",
+    "url": "https://mosil.com/product-finder"
+  },{
+    "@type": "HowToStep",
+    "name": "Contact our experts",
+    "text": "Reach out for custom formulation requirements.",
+    "url": "https://mosil.com/contact"
+  }]
+}
+</script>

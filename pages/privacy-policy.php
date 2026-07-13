@@ -4,6 +4,7 @@ $metaDescription = 'Privacy Policy for MOSIL Lubricants.';
 ?>
 
 <!-- Hero Section -->
+<h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Privacy Policy'; ?></h1>
 <section class="relative w-full h-[300px] md:h-[400px] overflow-hidden bg-[#1A3B1B]">
     <div class="absolute inset-0 z-10 bg-[url('<?php echo SITE_URL; ?>/assets/images/ui/pattern.svg')] opacity-10">
     </div>

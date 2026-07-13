@@ -4,6 +4,7 @@ $metaDescription = 'Use the MOSIL Product Finder to easily locate the perfect sp
 ?>
 
 <!-- Hero Section -->
+<h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Product Finder'; ?></h1>
 <section class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
     <div class="container relative z-20 flex items-end justify-start w-full h-full pb-4 md:pb-10">
         <h2

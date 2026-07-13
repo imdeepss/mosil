@@ -94,7 +94,8 @@
         <div class="container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <p
                 class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-left">
-                © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved
+                © <?php echo date('Y'); ?> MOSIL Lubricants All Rights Reserved. <br class="md:hidden">
+                <span class="opacity-60 text-[12px] mt-1 md:mt-0 md:ml-2 inline-block">Adhering to <a href="https://www.nlgi.org/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors hover:opacity-100">NLGI</a> &amp; ISO Standards</span>
             </p>
             <p
                 class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em] opacity-80 text-center md:text-right flex items-center gap-1.5 flex-wrap justify-center">

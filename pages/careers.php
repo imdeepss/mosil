@@ -5,6 +5,7 @@ $positions = getCareerPosition();
 
 ?>
 <!-- Hero Section -->
+<h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Careers at MOSIL'; ?></h1>
 <section class="relative w-full h-[748px] md:h-[480px] overflow-hidden">
     <div class="container relative z-20 flex items-end justify-start w-full h-full pb-4 md:pb-10">
         <h2

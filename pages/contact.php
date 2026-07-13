@@ -3,6 +3,7 @@
 $pageTitle = 'Contact Us - Get in Touch with Our Experts | MOSIL';
 $metaDescription = 'Contact MOSIL for inquiries, support, or consultations regarding our custom lubrication solutions. Our experts are ready to assist you.';
 ?>
+<h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Contact Us'; ?></h1>
 <section class="h-[60px] sticky top-0 z-10 bg-white"></section>
 
 <section class="container">
@@ -22,7 +23,7 @@ $metaDescription = 'Contact MOSIL for inquiries, support, or consultations regar
             class="md:py-6 md:px-12 px-4 py-4 flex flex-col md:gap-6 gap-4 bg-[#F5F5F5] relative z-0 flex-1 md:pb-6 pb-7">
             <div class="absolute inset-0 opacity-50 pointer-events-none w-full h-full -z-10">
                 <img src="<?php echo SITE_URL ?>/assets/images/ui/Vector.png" class="w-full h-full object-contain"
-                    alt="" loading="lazy">
+                    alt="Decorative background pattern" role="presentation" loading="lazy">
             </div>
 
             <div class="py-3.5">
