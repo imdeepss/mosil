@@ -80,29 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imageName = $post['image']; // Keep existing image by default
     if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = '../assets/uploads/events/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-
-        $fileName = $_FILES['featured_image']['name'];
-        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-
-        if (in_array($fileExt, $allowedExtensions)) {
-            $newImageName = 'Event_' . time() . '_' . uniqid() . '.' . $fileExt;
-            $uploadPath = $uploadDir . $newImageName;
-
-            if (move_uploaded_file($_FILES['featured_image']['tmp_name'], $uploadPath)) {
-                // Delete old image if it exists
-                if (!empty($post['image']) && file_exists($uploadDir . $post['image'])) {
-                    unlink($uploadDir . $post['image']);
-                }
-                $imageName = $newImageName;
-            } else {
-                $errors[] = "Failed to upload image.";
+        $result = uploadAndConvertToWebp($_FILES['featured_image'], $uploadDir, 'Event');
+        
+        if ($result !== false) {
+            // Delete old image if it exists
+            if (!empty($post['image']) && file_exists($uploadDir . $post['image'])) {
+                unlink($uploadDir . $post['image']);
             }
+            $imageName = $result;
         } else {
-            $errors[] = "Invalid image format. Allowed: JPG, JPEG, PNG, GIF, WebP.";
+            $errors[] = "Failed to upload or convert image. Allowed: JPG, JPEG, PNG, GIF, WebP.";
         }
     }
 

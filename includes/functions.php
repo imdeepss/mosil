@@ -1277,3 +1277,83 @@ function formatDateWithCurrentYear($dateString, $format = 'M j')
 
     return date($format, $timestamp);
 }
+
+/**
+ * Uploads an image and automatically converts it to WEBP format.
+ * 
+ * @param array $file The $_FILES['input_name'] array
+ * @param string $uploadDir The directory to save the file in
+ * @param string $prefix Optional prefix for the generated filename
+ * @return string|false The final filename on success, false on failure
+ */
+function uploadAndConvertToWebp($file, $uploadDir, $prefix = 'img')
+{
+    if (!isset($file) || $file['error'] !== UPLOAD_ERR_OK) {
+        return false;
+    }
+
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $fileName = $file['name'];
+    $tmpName = $file['tmp_name'];
+    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    
+    // Validate image format
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    if (!in_array($fileExt, $allowedExtensions)) {
+        return false;
+    }
+
+    // Target filename (always .webp)
+    $imageName = $prefix . '_' . time() . '_' . uniqid() . '.webp';
+    $uploadPath = rtrim($uploadDir, '/') . '/' . $imageName;
+
+    // If it's already a webp, or GD isn't installed, just move it and hope for the best
+    if ($fileExt === 'webp' || !extension_loaded('gd')) {
+        // If GD isn't loaded but it's not webp, we still keep the original extension to avoid breaking files
+        if ($fileExt !== 'webp') {
+            $imageName = $prefix . '_' . time() . '_' . uniqid() . '.' . $fileExt;
+            $uploadPath = rtrim($uploadDir, '/') . '/' . $imageName;
+        }
+        if (move_uploaded_file($tmpName, $uploadPath)) {
+            return $imageName;
+        }
+        return false;
+    }
+
+    // Convert to webp using GD
+    $img = null;
+    if ($fileExt === 'png') {
+        $img = @imagecreatefrompng($tmpName);
+        if ($img) {
+            imagepalettetotruecolor($img);
+            imagealphablending($img, true);
+            imagesavealpha($img, true);
+        }
+    } elseif ($fileExt === 'gif') {
+        $img = @imagecreatefromgif($tmpName);
+    } else {
+        $img = @imagecreatefromjpeg($tmpName);
+    }
+
+    if ($img) {
+        // Save as webp with 80% quality
+        $success = imagewebp($img, $uploadPath, 80);
+        imagedestroy($img);
+        
+        if ($success) {
+            return $imageName;
+        }
+    }
+    
+    // Fallback to normal upload if conversion fails
+    $imageName = $prefix . '_' . time() . '_' . uniqid() . '.' . $fileExt;
+    $uploadPath = rtrim($uploadDir, '/') . '/' . $imageName;
+    if (move_uploaded_file($tmpName, $uploadPath)) {
+        return $imageName;
+    }
+    
+    return false;
+}

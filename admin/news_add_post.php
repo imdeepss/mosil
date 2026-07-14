@@ -160,24 +160,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imageName = '';
     if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = '../assets/uploads/news/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-
-        $fileName = $_FILES['featured_image']['name'];
-        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-
-        if (in_array($fileExt, $allowedExtensions)) {
-            $imageName = 'News_' . time() . '_' . uniqid() . '.' . $fileExt;
-            $uploadPath = $uploadDir . $imageName;
-
-            if (!move_uploaded_file($_FILES['featured_image']['tmp_name'], $uploadPath)) {
-                $errors[] = "Failed to upload image.";
-                $imageName = '';
-            }
+        $result = uploadAndConvertToWebp($_FILES['featured_image'], $uploadDir, 'News');
+        
+        if ($result !== false) {
+            $imageName = $result;
         } else {
-            $errors[] = "Invalid image format. Allowed: JPG, JPEG, PNG, GIF, WebP.";
+            $errors[] = "Failed to upload or convert image. Allowed: JPG, JPEG, PNG, GIF, WebP.";
         }
     }
 

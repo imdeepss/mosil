@@ -54,7 +54,7 @@ $blogs = getHomeFeaturedBlogs();
                 class="hidden w-full lg:w-[433px] lg:h-[480px] bg-[#F5F5F5] rounded-[4px] relative lg:flex flex-col justify-between py-16 px-8.5 flex-col gap-4 bg-[#F5F5F5] z-20 shrink-0">
 
                 <div class="absolute inset-0 opacity-50 pointer-events-none select-none">
-                    <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.png"
+                    <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/Vector.webp"
                         class="w-full h-full object-contain" alt="Decorative background pattern" role="presentation">
                 </div>
 
@@ -121,7 +121,7 @@ $blogs = getHomeFeaturedBlogs();
                             <div
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img decoding="async"
-                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $industry['mcat_image']); ?>"
+                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.webp', '.jpg', '.jpeg'], '.webp', $industry['mcat_image']); ?>"
                                     class="w-full !h-[214px] md:!h-[480px] object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
                                 <div class="lg:hidden h-[286px] p-4 !flex flex-col gap-4 bg-[#F5F5F5]">
@@ -210,7 +210,7 @@ $blogs = getHomeFeaturedBlogs();
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img decoding="async"
-                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $product['mcat_image']); ?>"
+                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.webp', '.jpg', '.jpeg'], '.webp', $product['mcat_image']); ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
                     </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
@@ -316,7 +316,7 @@ $blogs = getHomeFeaturedBlogs();
 
             <div
                 class="animate-slide-right w-full lg:w-[460px] bg-main-green text-white md:px-7 px-5 md:py-10 py-4 relative overflow-hidden">
-                <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/mosil-adv-bg.png"
+                <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/mosil-adv-bg.webp"
                     class="absolute inset-0 w-full h-full object-cover pointer-events-none" alt="Background pattern"
                     loading="lazy" />
 
@@ -374,7 +374,7 @@ $blogs = getHomeFeaturedBlogs();
         <div class="md:mt-8 mt-6 grid grid-cols-1 lg:grid-cols-2 md:gap-8 gap-5">
             <div class="flex flex-col bg-[#F5F5F5] overflow-hidden">
                 <div class="h-[153px] md:h-[256px] w-full overflow-hidden">
-                    <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/manufacturing-plant.png"
+                    <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/manufacturing-plant.webp"
                         alt="Manufacturing Plant" class="w-full h-full object-cover transition-transform duration-700"
                         loading="lazy">
                 </div>
@@ -395,7 +395,7 @@ $blogs = getHomeFeaturedBlogs();
             <div class="flex flex-col md:gap-6 gap-5">
                 <div class="flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px]">
                     <div class="w-full sm:w-2/5 shrink-0 overflow-hidden h-[153px] md:h-[193px]">
-                        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/warehouse.png"
+                        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/warehouse.webp"
                             alt="Warehouse" class="w-full h-full object-cover transition-transform duration-700"
                             loading="lazy">
                     </div>
@@ -415,7 +415,7 @@ $blogs = getHomeFeaturedBlogs();
 
                 <div class="flex flex-col sm:flex-row bg-[#F5F5F5] overflow-hidden min-h-[192px]">
                     <div class="w-full sm:w-2/5 shrink-0 overflow-hidden h-[153px] md:h-[193px]">
-                        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/resreach-development.png"
+                        <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/ui/resreach-development.webp"
                             alt="R&D Lab" class="w-full h-full object-cover transition-transform duration-700"
                             loading="lazy">
                     </div>
@@ -548,7 +548,7 @@ $lubricationItems = [
 
                         <div class="relative h-[240px] w-full rounded-[4px] overflow-hidden shrink-0">
                             <img decoding="async"
-                                src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $blog['image']); ?>"
+                                src="<?php echo SITE_URL; ?>/assets/uploads/blog/<?php echo $blog['image']; ?>"
                                 alt="Hero Image"
                                 class="block h-full w-full object-center rounded-[4px] group-hover:scale-120 transition-transform duration-500"
                                 loading="lazy">
@@ -626,18 +626,18 @@ $lubricationItems = [
             <div class="swiper-wrapper flex items-center" style="transition-timing-function: linear !important;">
                 <?php
                 $brands = [
-                    'Bonfiglioli.png',
-                    'Daikin.png',
-                    'Daimler Truck Asia.png',
-                    'Epiroc.png',
-                    'Funskool.png',
-                    "Haldiram's.png",
-                    'Hyundai.png',
-                    'ITC Limites.png',
-                    'Jindal Stainless.png',
-                    'Sail.png',
-                    'Suzuki.png',
-                    'Tata Steel.png',
+                    'Bonfiglioli.webp',
+                    'Daikin.webp',
+                    'Daimler Truck Asia.webp',
+                    'Epiroc.webp',
+                    'Funskool.webp',
+                    "Haldiram's.webp",
+                    'Hyundai.webp',
+                    'ITC Limites.webp',
+                    'Jindal Stainless.webp',
+                    'Sail.webp',
+                    'Suzuki.webp',
+                    'Tata Steel.webp',
                 ];
 
                 foreach ($brands as $brand) { ?>
@@ -645,7 +645,7 @@ $lubricationItems = [
                         <div
                             class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
                             <img decoding="async"
-                                src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $brand); ?>"
+                                src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.webp', '.jpg', '.jpeg'], '.webp', $brand); ?>"
                                 alt="Brand Logo" class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
                     </div>
