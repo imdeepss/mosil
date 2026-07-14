@@ -532,8 +532,7 @@ $lubricationItems = [
             In the Spotlight
         </span>
         <div class="mb-3.5 border-b-2 border-primary pb-1 flex items-center justify-between">
-            <h2
-                class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
+            <h2 class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
                 MOSIL Newsroom</h2>
             <a href="<?php echo SITE_URL; ?>/newsroom"
                 class="text-[#1A3B1B] font-base font-normal text-[18px] leading-[140%] md:text-[24px] md:font-bold md:leading-[120%] md:tracking-[0.01em] shrink-0"
@@ -645,7 +644,8 @@ $lubricationItems = [
                     <div class="swiper-slide !w-auto">
                         <div
                             class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
-                            <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $brand); ?>"
+                            <img decoding="async"
+                                src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $brand); ?>"
                                 alt="Brand Logo" class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
                     </div>
@@ -844,85 +844,6 @@ $lubricationItems = [
             </script>
 
         </div>
-</section>
-
-<!-- SEO & Knowledge Section -->
-<section class="bg-white">
-    <div class="container md:pb-20 pb-10">
-        <!-- Conversational Heading -->
-        <div class="py-3.5 mb-8">
-            <span class="text-[#666666] font-base font-normal text-[10px] leading-[120%] tracking-[0.015em] uppercase md:text-[12px] md:tracking-[0.015em] md:overflow-hidden md:text-ellipsis md:whitespace-nowrap mb-1">
-                Knowledge & Resources
-            </span>
-            <div class="border-b-2 border-primary pb-1">
-                <h2 class="text-[#1A3B1B] font-base font-normal text-[24px] leading-[135%] tracking-[0.015em] capitalize md:text-[40px] md:leading-[120%] md:tracking-normal md:overflow-hidden md:text-ellipsis md:whitespace-nowrap">
-                    How we help you solve lubrication challenges
-                </h2>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-[#666666] text-[16px] leading-[150%]">
-            
-            <!-- Direct Answer / List Section -->
-            <div>
-                <h3 class="text-[#1A3B1B] text-[20px] font-bold mb-4">What is MOSIL Lubricants?</h3>
-                <p class="mb-4"><strong>MOSIL Lubricants Pvt. Ltd.</strong> is a specialty industrial lubricant manufacturer focused on reducing friction and improving efficiency. We offer a comprehensive range of solutions including:</p>
-                <ul class="list-disc pl-5 mb-6 space-y-2">
-                    <li>Synthetic &amp; Specialty Greases</li>
-                    <li>Performance Industrial Oils</li>
-                    <li>Anti-Friction Coatings (AFC)</li>
-                    <li>MRO (Maintenance, Repair, and Operations) Aerosols</li>
-                </ul>
-
-                <h3 class="text-[#1A3B1B] text-[20px] font-bold mb-4">How to choose the right lubricant?</h3>
-                <ol class="list-decimal pl-5 mb-6 space-y-2">
-                    <li><strong>Identify the application:</strong> Determine if you need a grease, oil, or coating based on the component.</li>
-                    <li><strong>Check operating conditions:</strong> Evaluate temperature, load, speed, and environment.</li>
-                    <li><strong>Consult our Product Finder:</strong> Use our advanced search tool to filter by industry or product category.</li>
-                    <li><strong>Contact our experts:</strong> Reach out for custom formulation requirements.</li>
-                </ol>
-            </div>
-
-            <!-- Table Section -->
-            <div>
-                <h3 class="text-[#1A3B1B] text-[20px] font-bold mb-4">MOSIL vs Conventional Lubricants</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse border border-[#E5E5E5]">
-                        <thead>
-                            <tr class="bg-[#F5F5F5] text-[#1A3B1B]">
-                                <th class="border border-[#E5E5E5] px-4 py-3 font-semibold">Feature</th>
-                                <th class="border border-[#E5E5E5] px-4 py-3 font-semibold">MOSIL Specialty Lubricants</th>
-                                <th class="border border-[#E5E5E5] px-4 py-3 font-semibold">Conventional Lubricants</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Operating Temperatures</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Extreme High/Low (-70°C to +1000°C)</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Standard (-20°C to +120°C)</td>
-                            </tr>
-                            <tr class="bg-[#FAFAFA]">
-                                <td class="border border-[#E5E5E5] px-4 py-3">Equipment Lifespan</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Significantly Extended</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Average</td>
-                            </tr>
-                            <tr>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Maintenance Frequency</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Reduced downtime</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Frequent re-lubrication</td>
-                            </tr>
-                            <tr class="bg-[#FAFAFA]">
-                                <td class="border border-[#E5E5E5] px-4 py-3">Application Focus</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">Tailor-made for specific challenges</td>
-                                <td class="border border-[#E5E5E5] px-4 py-3">General purpose</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-        </div>
-    </div>
 </section>
 
 <!-- JSON-LD FAQ & HowTo Schemas -->
