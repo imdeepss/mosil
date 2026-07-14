@@ -121,7 +121,7 @@ $blogs = getHomeFeaturedBlogs();
                             <div
                                 class="swiper-slide industry-image-slide rounded-[4px] overflow-hidden relative group cursor-grab active:cursor-grabbing !w-[85vw] !h-[500px] shrink-0 !opacity-100 transition-[width,opacity,filter] duration-300 ease-out lg:!w-[270px] lg:!h-[480px] lg:!opacity-30 lg:[&.is-expanded]:!w-[426px] lg:[&.is-expanded]:!opacity-100 lg:[&.is-expanded]:z-10">
                                 <img decoding="async"
-                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.webp', '.jpg', '.jpeg'], '.webp', $industry['mcat_image']); ?>"
+                                    src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $industry['mcat_image']); ?>"
                                     class="w-full !h-[214px] md:!h-[480px] object-cover transform transition-transform duration-300 ease-out"
                                     alt="<?php echo $industry['mcat_name']; ?>" loading="lazy">
                                 <div class="lg:hidden h-[286px] p-4 !flex flex-col gap-4 bg-[#F5F5F5]">
@@ -210,7 +210,7 @@ $blogs = getHomeFeaturedBlogs();
 
                     <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
                         <img decoding="async"
-                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.webp', '.jpg', '.jpeg'], '.webp', $product['mcat_image']); ?>"
+                            src="<?php echo SITE_URL; ?>/assets/uploads/main-category/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $product['mcat_image']); ?>"
                             alt="Product Image" class="w-full h-full object-cover object-center" loading="lazy">
                     </div>
                     <div class="relative z-10 flex flex-col items-stretch h-full text-white">
@@ -645,7 +645,7 @@ $lubricationItems = [
                         <div
                             class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
                             <img decoding="async"
-                                src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.webp', '.jpg', '.jpeg'], '.webp', $brand); ?>"
+                                src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo str_replace(['.png', '.jpg', '.jpeg'], '.webp', $brand); ?>"
                                 alt="Brand Logo" class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
                     </div>

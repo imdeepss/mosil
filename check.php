@@ -1,16 +1,18 @@
 <?php
-$files = [
-    'assets/images/banners/home-banner-poster',
-    'assets/images/banners/mb-home-banner-poster'
-];
+$files = glob("assets/uploads/main-category/*.{jpg,jpeg,png}", GLOB_BRACE);
 foreach($files as $f) {
-    $png = $f . '.png';
-    $webp = $f . '.webp';
-    if(file_exists($png)) {
-        $img = imagecreatefrompng($png);
-        imagepalettetotruecolor($img);
-        imagealphablending($img, true);
-        imagesavealpha($img, true);
+    $info = pathinfo($f);
+    $webp = $info["dirname"] . "/" . $info["filename"] . ".webp";
+    if (!file_exists($webp)) {
+        $ext = strtolower($info["extension"]);
+        if ($ext === "png") {
+            $img = imagecreatefrompng($f);
+            imagepalettetotruecolor($img);
+            imagealphablending($img, true);
+            imagesavealpha($img, true);
+        } else {
+            $img = imagecreatefromjpeg($f);
+        }
         imagewebp($img, $webp, 80);
         imagedestroy($img);
         echo "Converted $webp\n";
