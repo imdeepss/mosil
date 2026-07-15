@@ -38,7 +38,8 @@ $allowed_pages = [
     'case-study-detail',
     'event-detail',
     'test',
-    'disclaimer'
+    'disclaimer',
+    'demo-ai-buttons'
 ];
 
 if (!in_array($page, $allowed_pages)) {
