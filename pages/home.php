@@ -616,8 +616,7 @@ $lubricationItems = [
             <div class="border-b-2 border-primary pb-1 ">
                 <h2
                     class="text-main-green font-normal text-2xl md:text-[40px] leading-[120%] tracking-normal capitalize">
-                    Mobilise your profit
-                    with MOSIL</h2>
+                    Proven Performance. Trusted Partnerships.</h2>
 
             </div>
         </div>
