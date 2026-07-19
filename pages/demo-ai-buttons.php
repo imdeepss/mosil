@@ -39,15 +39,16 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         <nav class="flex items-center md:gap-8 gap-4">
 
             <div class="relative hidden w-[520px] md:block group">
-                <button type="button" 
+                <button type="button"
                     class="cursor-pointer ai-trigger h-10 w-full rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-6 flex items-center justify-center gap-3 text-[13px] text-white/80 hover:text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
-                    <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png" alt="Search"
-                        class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                    <span class="truncate font-light tracking-wide">To choose the right lubricant & multiply performance? <strong class="font-medium text-white">Ask Sara.</strong></span>
+                    <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
+                        alt="Search" class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="truncate font-light tracking-wide">To choose the right lubricant & multiply
+                        performance? <strong class="font-medium text-white">Ask Sara.</strong></span>
                 </button>
             </div>
 
-            <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300"
+            <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300 ai-trigger"
                 id="openMobileSearch" aria-label="Open mobile search" role="button" tabindex="0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path
@@ -430,7 +431,8 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             <div
                 class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
                 <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">16. Zen Garden</span>
-                <div class="relative w-max cursor-pointer ai-trigger group flex flex-col items-center justify-center h-12">
+                <div
+                    class="relative w-max cursor-pointer ai-trigger group flex flex-col items-center justify-center h-12">
                     <span
                         class="text-white/60 group-hover:text-white font-light tracking-[0.3em] text-[11px] uppercase transition-colors duration-700 mb-2">Tap
                         for infinite IQ</span>
