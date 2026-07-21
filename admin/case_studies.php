@@ -11,11 +11,23 @@ require_once '../includes/functions.php';
 $page_title = "Case Studies";
 $active_menu = "case_studies";
 
-$case_studies = []; // Renamed from $categories to $case_studies for clarity
-
-$result = $conn->query("SELECT id, title, introduction FROM case_studies ORDER BY title ASC");
+$all_posts = [];
+$result = $conn->query("SELECT id, title, introduction, status FROM case_studies ORDER BY title ASC");
 while ($row = $result->fetch_assoc()) {
-    $case_studies[] = $row;
+    $all_posts[] = $row;
+}
+
+$active_posts = array_filter($all_posts, function($post) { return $post['status'] === 'Active'; });
+$inactive_posts = array_filter($all_posts, function($post) { return $post['status'] !== 'Active'; });
+
+$status_filter = isset($_GET['status']) ? strtolower($_GET['status']) : 'all';
+
+if ($status_filter === 'active') {
+    $case_studies = $active_posts;
+} elseif ($status_filter === 'inactive') {
+    $case_studies = $inactive_posts;
+} else {
+    $case_studies = $all_posts;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
@@ -69,6 +81,24 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                 </div>
             <?php endif; ?>
 
+            <ul class="nav nav-tabs mb-4">
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'all' ? 'active' : '' ?>" href="?status=all">
+                        All <span class="badge bg-<?= $status_filter == 'all' ? 'primary' : 'secondary' ?> rounded-pill ms-1"><?= count($all_posts) ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'active' ? 'active' : '' ?>" href="?status=active">
+                        Active <span class="badge bg-<?= $status_filter == 'active' ? 'success' : 'secondary' ?> rounded-pill ms-1"><?= count($active_posts) ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'inactive' ? 'active' : '' ?>" href="?status=inactive">
+                        Inactive <span class="badge bg-<?= $status_filter == 'inactive' ? 'warning text-dark' : 'secondary' ?> rounded-pill ms-1"><?= count($inactive_posts) ?></span>
+                    </a>
+                </li>
+            </ul>
+
             <!-- Case Study Table -->
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -77,6 +107,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                             <tr>
                                 <th>#ID</th>
                                 <th>Title</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -85,6 +116,13 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                                 <tr>
                                     <td><?= $post['id'] ?></td>
                                     <td><?= htmlspecialchars($post['title']) ?></td>
+                                    <td>
+                                        <?php if($post['status'] === 'Active'): ?>
+                                            <span class="badge bg-success">Active</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-secondary"><?= ucfirst(htmlspecialchars($post['status'])) ?></span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
                                             <a href="<?= BASE_URL ?>admin/case_studies_edit.php?id=<?= $post['id'] ?>"

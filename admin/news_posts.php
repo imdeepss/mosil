@@ -21,13 +21,26 @@ while ($row = $catResult->fetch_assoc()) {
 }
 
 // Fetch News Posts
-$posts = [];
+$all_posts = [];
 $sql = "SELECT p.*, c.name AS category_name FROM news_posts p JOIN news_categories c ON p.category_id = c.id ORDER BY p.id DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $posts[] = $row;
+        $all_posts[] = $row;
     }
+}
+
+$active_posts = array_filter($all_posts, function($post) { return strtolower($post['status']) === 'published'; });
+$inactive_posts = array_filter($all_posts, function($post) { return strtolower($post['status']) !== 'published'; });
+
+$status_filter = isset($_GET['status']) ? strtolower($_GET['status']) : 'all';
+
+if ($status_filter === 'published') {
+    $posts = $active_posts;
+} elseif ($status_filter === 'draft' || $status_filter === 'inactive') {
+    $posts = $inactive_posts;
+} else {
+    $posts = $all_posts;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
     $id = $_POST['category_id'];
@@ -82,7 +95,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                     <div class="card text-white bg-primary mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Total Newss</h5>
-                            <p class="card-text h2"><?php echo count($posts); ?></p>
+                            <p class="card-text h2"><?php echo count($all_posts); ?></p>
                         </div>
                     </div>
                 </div>
@@ -90,9 +103,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                     <div class="card text-white bg-success mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Active Newss</h5>
-                            <p class="card-text h2"><?php echo count(array_filter($posts, function ($post) {
-                                return strtolower($post['status']) === 'published';
-                            })); ?></p>
+                            <p class="card-text h2"><?php echo count($active_posts); ?></p>
                         </div>
                     </div>
                 </div>
@@ -100,9 +111,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                     <div class="card text-white bg-warning mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Inactive Newss</h5>
-                            <p class="card-text h2"><?php echo count(array_filter($posts, function ($post) {
-                                return strtolower($post['status']) !== 'published';
-                            })); ?></p>
+                            <p class="card-text h2"><?php echo count($inactive_posts); ?></p>
                         </div>
                     </div>
                 </div>
@@ -116,6 +125,24 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                 </div>
             </div>
 
+            <ul class="nav nav-tabs mb-4">
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'all' ? 'active' : '' ?>" href="?status=all">
+                        All <span class="badge bg-<?= $status_filter == 'all' ? 'primary' : 'secondary' ?> rounded-pill ms-1"><?= count($all_posts) ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'published' ? 'active' : '' ?>" href="?status=published">
+                        Published <span class="badge bg-<?= $status_filter == 'published' ? 'success' : 'secondary' ?> rounded-pill ms-1"><?= count($active_posts) ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($status_filter == 'draft' || $status_filter == 'inactive') ? 'active' : '' ?>" href="?status=draft">
+                        Draft / Inactive <span class="badge bg-<?= ($status_filter == 'draft' || $status_filter == 'inactive') ? 'warning text-dark' : 'secondary' ?> rounded-pill ms-1"><?= count($inactive_posts) ?></span>
+                    </a>
+                </li>
+            </ul>
+
             <div class="card shadow-sm">
                 <div class="card-body">
                     <table id="postsTable" class="table table-striped table-bordered">
@@ -125,6 +152,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                                 <th>Title</th>
                                 <th>Slug</th>
                                 <th>Category</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -135,6 +163,13 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'deleted') {
                                     <td><?= htmlspecialchars($post['title']) ?></td>
                                     <td><?= htmlspecialchars($post['slug']) ?></td>
                                     <td><?= htmlspecialchars($post['category_name']) ?></td>
+                                    <td>
+                                        <?php if(strtolower($post['status']) === 'published'): ?>
+                                            <span class="badge bg-success">Published</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-secondary"><?= ucfirst(htmlspecialchars($post['status'])) ?></span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
                                             <a href="<?= BASE_URL ?>admin/news_edit_post.php?id=<?= $post['id'] ?>"

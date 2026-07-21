@@ -21,13 +21,26 @@ $message = '';
 $messageType = '';
 
 
-$products = [];
+$all_posts = [];
 $productSql = "SELECT * FROM `products_v2` ORDER BY `id` ASC";
 $productResult = $conn->query($productSql);
 if ($productResult && $productResult->num_rows > 0) {
     while ($row = $productResult->fetch_assoc()) {
-        $products[] = $row;
+        $all_posts[] = $row;
     }
+}
+
+$active_posts = array_filter($all_posts, function($post) { return $post['status'] === 'Active'; });
+$inactive_posts = array_filter($all_posts, function($post) { return $post['status'] !== 'Active'; });
+
+$status_filter = isset($_GET['status']) ? strtolower($_GET['status']) : 'all';
+
+if ($status_filter === 'active') {
+    $products = $active_posts;
+} elseif ($status_filter === 'inactive') {
+    $products = $inactive_posts;
+} else {
+    $products = $all_posts;
 }
 
 
@@ -618,6 +631,24 @@ if (isset($_GET['success'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
+
+            <ul class="nav nav-tabs mb-4">
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'all' ? 'active' : '' ?>" href="?status=all">
+                        All <span class="badge bg-<?= $status_filter == 'all' ? 'primary' : 'secondary' ?> rounded-pill ms-1"><?= count($all_posts) ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'active' ? 'active' : '' ?>" href="?status=active">
+                        Active <span class="badge bg-<?= $status_filter == 'active' ? 'success' : 'secondary' ?> rounded-pill ms-1"><?= count($active_posts) ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $status_filter == 'inactive' ? 'active' : '' ?>" href="?status=inactive">
+                        Inactive <span class="badge bg-<?= $status_filter == 'inactive' ? 'warning text-dark' : 'secondary' ?> rounded-pill ms-1"><?= count($inactive_posts) ?></span>
+                    </a>
+                </li>
+            </ul>
 
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
