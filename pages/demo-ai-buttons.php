@@ -471,7 +471,9 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         chatHistory.push({ role: 'user', content: query });
 
         try {
-            const response = await fetch(`http://localhost/mosil-new/ajax/chatbase.php`, {
+            // Using a relative path to ensure it works on both localhost (subfolder) and production (root)
+            // even if the PHP SITE_URL constant is misconfigured on the live server.
+            const response = await fetch(`../ajax/chatbase.php`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
