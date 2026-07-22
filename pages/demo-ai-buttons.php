@@ -6,7 +6,16 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 <script>
     tailwind.config = {
         theme: {
-            extend: {}
+            extend: {
+                colors: {
+                    primary: '#F4C300',
+                    'primary-high': '#FEF9E6',
+                    'primary-mid': '#FAE696',
+                    'primary-low': '#F9DC6B',
+                    secondary: '#30442C',
+                    'main-green': '#1A3B1B',
+                }
+            }
         }
     }
 </script>
@@ -38,13 +47,33 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 
         <nav class="flex items-center md:gap-8 gap-4">
 
-            <div class="relative hidden w-[520px] md:block group">
-                <button type="button"
-                    class="cursor-pointer ai-trigger h-10 w-full rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-6 flex items-center justify-center gap-3 text-[13px] text-white/80 hover:text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]">
-                    <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
-                        alt="Search" class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                    <span class="truncate font-light tracking-wide">To choose the right lubricant & multiply
-                        performance? <strong class="font-medium text-white">Ask Sara.</strong></span>
+            <!-- Premium Header Search Button -->
+            <div class="relative hidden w-[340px] md:block group z-50">
+                <button type="button" onclick="openEvaModal()"
+                    class="group relative flex items-center bg-white hover:bg-gray-50 rounded-full px-2 py-1.5 pr-6 border border-transparent hover:border-primary hover:shadow-[0_4px_20px_rgba(244,195,0,0.3)] transition-all w-full text-left shadow-lg">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-[36px] h-[36px] rounded-full bg-primary-high flex items-center justify-center shrink-0 border border-primary-low overflow-hidden relative shadow-inner">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary to-primary-mid">
+                            </div>
+                            <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
+                                alt="Search" class="w-4 h-4 opacity-90 relative z-10 brightness-0">
+                        </div>
+                        <div class="flex flex-col">
+                            <span
+                                class="text-[9px] font-bold text-main-green tracking-widest leading-none uppercase">Ask</span>
+                            <span class="text-[14px] font-black text-main-green leading-none mt-0.5">SARA</span>
+                        </div>
+                    </div>
+                    <span class="ml-4 text-gray-400 font-light text-[13px] italic truncate">Search...</span>
+
+                    <div
+                        class="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
                 </button>
             </div>
 
@@ -165,515 +194,331 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 </header>
 <!-- END STATIC HEADER -->
 
-<div class="pt-[100px] pb-20 bg-[#070707] min-h-screen text-white font-sans selection:bg-white/20">
-    <div class="container mx-auto px-4 max-w-5xl">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-center text-white tracking-tight">Ultra-Premium AI
-            Triggers</h1>
-        <p class="text-white/40 text-center mb-16 text-lg max-w-2xl mx-auto font-light">Sophisticated, luxury-grade, and
-            highly creative designs. Hover to experience the micro-animations.</p>
+<div class="pt-[100px] pb-20 bg-[#f4f7f6] min-h-screen flex items-center justify-center">
+    <div class="text-center max-w-2xl px-4">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-800 tracking-tight">Search Integrated into Header
+        </h1>
+        <p class="text-slate-500 text-lg mx-auto font-light mb-8">The premium "Ask SARA" AI trigger button has been
+            successfully migrated to the main navigation header above.</p>
+        <button onclick="openEvaModal()"
+            class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-main-green bg-primary hover:bg-primary-mid shadow-md transition-colors">
+            Trigger Modal From Here Instead
+        </button>
+    </div>
+</div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+<!-- SARA Premium Search Modal -->
+<div id="evaModal"
+    class="fixed inset-0 z-[100] hidden flex-col items-center pt-[8vh] pb-4 px-4 bg-slate-900/40 backdrop-blur-xl opacity-0 transition-opacity duration-500">
+    <div class="relative w-full max-w-4xl bg-white/40 backdrop-blur-3xl rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.15),0_0_0_1px_rgba(255,255,255,0.4)] overflow-visible flex flex-col transform scale-95 transition-all duration-500"
+        id="evaModalContent">
 
-            <!-- 1. Obsidian Glass -->
+        <!-- Modal Header / Search input -->
+        <div
+            class="bg-white/95 backdrop-blur-2xl p-6 flex items-center gap-4 relative z-20 shadow-[0_4px_30px_rgba(0,0,0,0.03)] rounded-t-[32px] border-b border-white/40">
             <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">1. Obsidian
-                    Glass</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="absolute inset-0 bg-white/5 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#0a0a0a] border border-white/10 rounded-full flex items-center justify-center backdrop-blur-xl group-hover:border-white/30 transition-all duration-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                        <span
-                            class="text-white/70 group-hover:text-white font-light tracking-[0.15em] text-sm transition-colors duration-500">Sarah
-                            ko sara pata hai</span>
-                    </div>
-                </div>
+                class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(244,195,0,0.25)] bg-gradient-to-tr from-primary to-primary-mid">
+                <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png" alt="Search"
+                    class="w-6 h-6 relative z-10 brightness-0">
+            </div>
+            <div class="flex flex-col shrink-0 mr-2 border-r border-gray-100 pr-5">
+                <span
+                    class="text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1.5 opacity-90">Ask</span>
+                <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARA</span>
+            </div>
+            <input type="text" placeholder="What can I help you find today?"
+                class="flex-1 bg-transparent border-none outline-none text-main-green text-[22px] font-light placeholder:text-gray-400 px-2 w-full tracking-wide"
+                autofocus id="evaSearchInput" onkeydown="if(event.key === 'Enter') triggerChatbase(this.value)">
+            <button onclick="triggerChatbase(document.getElementById('evaSearchInput').value)"
+                class="w-14 h-14 flex items-center justify-center text-slate-300 hover:text-main-green hover:bg-gradient-to-r hover:from-primary hover:to-primary-mid hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] rounded-2xl transition-all duration-300 shrink-0 transform hover:scale-105 border border-transparent hover:border-primary/30 group">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 transform rotate-45 group-hover:rotate-0 transition-transform duration-300"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Close button (absolute top right of modal) -->
+        <button onclick="closeEvaModal()"
+            class="absolute -top-5 -right-5 w-11 h-11 bg-white/90 backdrop-blur-md border border-white/50 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.1)] flex items-center justify-center text-slate-400 hover:text-main-green hover:bg-primary hover:border-primary hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] transition-all duration-300 z-30 group transform hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Body / Trending Searches -->
+        <div id="trendingSearches"
+            class="p-10 bg-slate-50/90 relative rounded-b-[32px] transition-all duration-500 overflow-hidden">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-low/40 via-transparent to-transparent pointer-events-none">
             </div>
 
-            <!-- 2. Gold Foil -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37]/50 mb-2">2. Gold
-                    Foil</span>
-                <div class="relative w-max cursor-pointer ai-trigger group overflow-hidden rounded-full">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(212,175,55,0.4)] to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-[1.5s] ease-in-out">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#050505] border border-[#D4AF37]/30 rounded-full flex items-center justify-center group-hover:border-[#D4AF37] transition-colors duration-500">
-                        <span
-                            class="text-[#D4AF37] font-serif italic tracking-widest text-sm group-hover:brightness-125 transition-all duration-500">Why
-                            search? Chatbot knows all</span>
-                    </div>
+            <div class="flex items-center gap-3 mb-8 relative z-10">
+                <div class="w-8 h-8 rounded-full bg-primary-high flex items-center justify-center shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary animate-pulse"
+                        viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+                            clip-rule="evenodd" />
+                    </svg>
                 </div>
+                <h3 class="text-main-green font-bold text-[17px] tracking-tight">Trending searches</h3>
             </div>
 
-            <!-- 3. Frostbite -->
+            <div class="flex flex-wrap gap-3 relative z-10">
+                <?php
+                $trending = [
+                    "High Temperature Grease",
+                    "Food Grade Lubricants",
+                    "Silicone Grease",
+                    "Gear Oils",
+                    "Chain Lubricants",
+                    "Anti-Seize Compounds",
+                    "Compressor Oils",
+                    "Moly Paste",
+                    "Synthetic Oils",
+                    "Aerosol Sprays",
+                    "Corrosion Preventives",
+                    "Find MSDS",
+                    "Product Selector Tool",
+                    "Distributor Login",
+                    "Request a Sample",
+                    "O-Ring Compatibility",
+                    "Bearing Lubrication Guide"
+                ];
+                foreach ($trending as $tag):
+                    ?>
+                    <button onclick="triggerChatbase('<?= htmlspecialchars($tag, ENT_QUOTES) ?>')"
+                        class="px-5 py-2.5 bg-white border border-white/60 rounded-full text-[13.5px] text-slate-600 font-medium hover:border-transparent hover:text-main-green hover:bg-gradient-to-r hover:from-primary hover:to-primary-mid hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] active:scale-95 transform hover:-translate-y-0.5">
+                        <?= $tag ?>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <!-- Body / Chat Interface -->
+        <div id="chatInterface"
+            class="hidden flex-col h-[55vh] min-h-[400px] max-h-[600px] bg-slate-50/80 relative rounded-b-[32px] overflow-hidden transition-all duration-500 backdrop-blur-sm">
+            <!-- Hidden element to force Tailwind CDN to generate dynamic classes -->
             <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-2">3. Frostbite</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-white/5 border border-white/20 rounded-full flex items-center justify-center backdrop-blur-2xl group-hover:bg-white/10 transition-all duration-500 shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.1)]">
-                        <div
-                            class="w-1.5 h-1.5 rounded-full bg-white/50 group-hover:bg-white transition-colors duration-500 mr-3 shadow-[0_0_5px_rgba(255,255,255,0.8)]">
-                        </div>
-                        <span
-                            class="text-white/80 group-hover:text-white font-medium tracking-wider text-xs uppercase transition-colors duration-500">I
-                            know things</span>
-                    </div>
-                </div>
+                class="hidden bg-gradient-to-tr from-secondary to-main-green text-slate-800 animate-[slideInRight_0.4s_ease-out_forwards] animate-[slideInLeft_0.4s_ease-out_forwards] text-white">
             </div>
 
-            <!-- 4. Cyber-Titanium -->
+            <!-- Decorative ambient glows -->
             <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-500/50 mb-2">4.
-                    Cyber-Titanium</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-sm border border-[#333] flex items-center justify-center relative overflow-hidden group-hover:border-[#444] transition-colors duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
-                        <div
-                            class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <span
-                            class="text-[#aaa] group-hover:text-cyan-400 font-mono text-xs tracking-[0.2em] transition-colors duration-500 uppercase">ChatGPT's
-                            cooler cousin</span>
-                    </div>
-                </div>
+                class="absolute top-0 left-[-20%] w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[100px] opacity-10 pointer-events-none">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-main-green rounded-full mix-blend-multiply filter blur-[100px] opacity-10 pointer-events-none">
             </div>
 
-            <!-- 5. Midnight Velvet -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#a875d9]/50 mb-2">5. Midnight
-                    Velvet</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="absolute inset-0 bg-[#1e0a2d] rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-700">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#0f0518] border border-[#2a0d45] rounded-full flex items-center justify-center group-hover:border-[#4a157a] transition-colors duration-500 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
-                        <span
-                            class="text-[#a875d9] group-hover:text-[#d3a5ff] font-light tracking-[0.3em] text-xs uppercase transition-colors duration-500">Smarter
-                            than your boss</span>
-                    </div>
-                </div>
+            <div class="flex-1 overflow-y-auto p-8 flex flex-col scroll-smooth relative z-10" id="chatMessages">
+                <!-- Chat bubbles injected here -->
             </div>
-
-            <!-- 6. Aurora Borealis -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-500/50 mb-2">6. Aurora
-                    Borealis</span>
-                <div class="relative w-max cursor-pointer ai-trigger group rounded-full p-[1px] overflow-hidden">
-                    <div
-                        class="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent,theme(colors.emerald.500),theme(colors.purple.500),transparent)] opacity-20 group-hover:opacity-100 group-hover:animate-slow-spin transition-opacity duration-700">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#050505] rounded-full flex items-center justify-center group-hover:bg-black transition-colors duration-500">
-                        <span
-                            class="text-white/60 group-hover:text-white font-light tracking-widest text-sm transition-colors duration-500">Speak
-                            to the machine</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Phantom Outline -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">7. Phantom
-                    Outline</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="absolute inset-0 border border-white/0 group-hover:border-white/40 rounded-full transition-all duration-700 scale-95 group-hover:scale-100">
-                    </div>
-                    <div class="h-12 px-8 flex items-center justify-center">
-                        <span
-                            class="text-white/50 group-hover:text-white font-medium tracking-[0.2em] text-xs uppercase transition-colors duration-700">Omniscient
-                            AI</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Prismatic Crystal -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-rose-300/50 mb-2">8. Prismatic
-                    Crystal</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-center backdrop-blur-3xl group-hover:bg-white/[0.04] group-hover:border-white/20 transition-all duration-500 shadow-[0_0_15px_rgba(255,255,255,0.02)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] relative overflow-hidden">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-tr from-rose-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                        </div>
-                        <span
-                            class="text-slate-300 group-hover:text-white font-light tracking-wide text-sm relative z-10 transition-colors duration-500">Magic
-                            button of knowledge</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Onyx & Chrome -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 mb-2">9. Onyx &
-                    Chrome</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-black border border-[#222] rounded-full flex items-center justify-center relative overflow-hidden group-hover:border-[#555] transition-colors duration-500 shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
-                        <div
-                            class="absolute top-0 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent">
-                        </div>
-                        <span
-                            class="text-zinc-400 group-hover:text-zinc-100 font-bold tracking-[0.2em] text-xs uppercase transition-colors duration-500">Siri
-                            who?</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 10. The Monolith -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">10. The
-                    Monolith</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-[#111] border-l-2 border-white flex items-center justify-center group-hover:bg-white transition-colors duration-500 shadow-2xl">
-                        <span
-                            class="text-white group-hover:text-black font-semibold tracking-widest text-xs uppercase transition-colors duration-500">Your
-                            personal Einstein</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 11. Liquid Mercury -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-300/50 mb-2">11. Liquid
-                    Mercury</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-gradient-to-b from-zinc-700 to-zinc-900 border border-zinc-600 rounded-full flex items-center justify-center group-hover:from-zinc-300 group-hover:to-zinc-500 group-hover:border-white transition-all duration-700 shadow-[inset_0_2px_4px_rgba(255,255,255,0.1)]">
-                        <span
-                            class="text-zinc-300 group-hover:text-zinc-900 font-medium tracking-widest text-sm transition-colors duration-700">The
-                            Oracle is listening</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 12. Neon Noir -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-red-500/50 mb-2">12. Neon Noir</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="absolute inset-0 bg-red-600 rounded-full blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-700">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#050505] border border-transparent group-hover:border-red-600/50 rounded-full flex items-center justify-center transition-all duration-500">
-                        <span
-                            class="text-[#444] group-hover:text-red-500 font-mono tracking-widest text-xs uppercase transition-colors duration-500 drop-shadow-[0_0_5px_rgba(220,38,38,0)] group-hover:drop-shadow-[0_0_8px_rgba(220,38,38,0.8)]">Click
-                            for wisdom</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 13. Diamond Cut -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">13. Diamond Cut</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-[#0a0a0a] border-t border-l border-white/20 border-b border-r border-white/5 flex items-center justify-center group-hover:border-t-white/40 group-hover:border-l-white/40 transition-colors duration-500 shadow-[inset_1px_1px_0_rgba(255,255,255,0.1),_2px_2px_10px_rgba(0,0,0,0.8)]">
-                        <span
-                            class="text-white/80 group-hover:text-white font-medium tracking-[0.2em] text-xs uppercase transition-colors duration-500">I
-                            got 99 answers</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 14. Velvet Copper -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#b87333]/70 mb-2">14. Velvet
-                    Copper</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-[#030303] border-b-2 border-[#b87333]/40 rounded-t-sm flex items-center justify-center group-hover:border-[#b87333] transition-colors duration-700 shadow-[0_10px_20px_-10px_rgba(184,115,51,0)] group-hover:shadow-[0_10px_20px_-10px_rgba(184,115,51,0.4)]">
-                        <span
-                            class="text-[#b87333]/80 group-hover:text-[#b87333] font-serif italic tracking-[0.1em] text-sm transition-colors duration-500">Omniscient
-                            AI</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 15. Holographic Chrome -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-300/50 mb-2">15. Holographic
-                    Chrome</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-gradient-to-r from-zinc-800 via-zinc-400 to-zinc-800 rounded-full p-[1px] group-hover:from-red-400 group-hover:via-green-400 group-hover:to-blue-400 transition-colors duration-1000">
-                        <div class="h-full w-full bg-[#111] rounded-full flex items-center justify-center">
-                            <span
-                                class="text-zinc-400 group-hover:text-white font-medium tracking-[0.2em] text-xs uppercase transition-colors duration-500">Just
-                                ask already</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 16. Zen Garden -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">16. Zen Garden</span>
-                <div
-                    class="relative w-max cursor-pointer ai-trigger group flex flex-col items-center justify-center h-12">
-                    <span
-                        class="text-white/60 group-hover:text-white font-light tracking-[0.3em] text-[11px] uppercase transition-colors duration-700 mb-2">Tap
-                        for infinite IQ</span>
-                    <div class="w-1 h-1 bg-white rounded-full group-hover:w-full transition-all duration-700 ease-out">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 17. Abyss Glow -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-500/50 mb-2">17. Abyss
-                    Glow</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="absolute inset-0 bg-[#001020] rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#00050a] border border-[#001530] rounded-full flex items-center justify-center group-hover:border-[#003060] transition-colors duration-1000 shadow-[inset_0_0_15px_rgba(0,10,20,1)] group-hover:shadow-[inset_0_0_20px_rgba(0,40,80,0.5)]">
-                        <span
-                            class="text-[#306090] group-hover:text-[#60a0e0] font-medium tracking-[0.2em] text-xs uppercase transition-colors duration-1000">Stop
-                            typing, start asking</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 18. The Ghost -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/20 mb-2">18. The Ghost</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    </div>
-                    <div class="relative h-12 px-8 flex items-center justify-center">
-                        <span
-                            class="text-white/30 group-hover:text-white font-light tracking-[0.4em] text-xs uppercase transition-colors duration-700">Wisdom
-                            dispenser</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 19. Molten Amber -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-500/50 mb-2">19. Molten
-                    Amber</span>
-                <div class="relative w-max cursor-pointer ai-trigger group overflow-hidden rounded-full">
-                    <div
-                        class="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-amber-600/40 to-transparent group-hover:h-full transition-all duration-700 ease-out">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-[#0a0500] border border-amber-900/50 rounded-full flex items-center justify-center group-hover:border-amber-600/80 transition-colors duration-700">
-                        <span
-                            class="text-amber-700/80 group-hover:text-amber-400 font-serif italic tracking-[0.15em] text-sm transition-colors duration-700">I
-                            know your secrets</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 20. Ceramic White -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/80 mb-2">20. Ceramic
-                    White</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-[#f5f5f5] rounded-full flex items-center justify-center shadow-[inset_0_-2px_5px_rgba(0,0,0,0.1),_0_5px_15px_rgba(255,255,255,0.05)] group-hover:bg-white transition-colors duration-500">
-                        <span
-                            class="text-[#222] font-black tracking-widest text-xs uppercase opacity-80 group-hover:opacity-100 transition-opacity duration-500 shadow-sm"
-                            style="text-shadow: 0 1px 1px rgba(255,255,255,0.8);">Feed me questions</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 21. Laser Engraved -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-400/50 mb-2">21. Laser
-                    Engraved</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-[#111] rounded-sm flex items-center justify-center shadow-[inset_0_2px_4px_rgba(0,0,0,1)] border border-[#222] group-hover:border-[#333] transition-colors duration-500">
-                        <span
-                            class="text-[#050505] group-hover:text-cyan-400 font-mono tracking-[0.2em] text-[11px] uppercase transition-colors duration-[1.5s] ease-in-out"
-                            style="text-shadow: 0 -1px 1px rgba(255,255,255,0.1);">Google is so 2010</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 22. Crimson Silk -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-red-500/50 mb-2">22. Crimson
-                    Silk</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-black rounded-full flex items-center justify-center overflow-hidden border border-[#1a0505]">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-[2s] ease-in-out">
-                        </div>
-                        <span
-                            class="text-[#5a1a1a] group-hover:text-red-500 font-serif italic tracking-[0.2em] text-sm transition-colors duration-[2s]">The
-                            Oracle is listening</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 23. Stealth Bomber -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-2">23. Stealth
-                    Bomber</span>
-                <div class="relative w-max cursor-pointer ai-trigger group">
-                    <div
-                        class="h-12 px-8 bg-[#181818] border border-t-[#222] border-b-[#050505] border-x-[#111] flex items-center justify-center transform group-hover:scale-[0.98] transition-transform duration-300">
-                        <span
-                            class="text-[#444] group-hover:text-white font-bold tracking-[0.25em] text-[10px] uppercase transition-colors duration-300">Unleash
-                            the bot</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 24. Aura Glass -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-fuchsia-500/50 mb-2">24. Aura
-                    Glass</span>
-                <div class="relative w-max cursor-pointer ai-trigger group overflow-hidden rounded-full">
-                    <div
-                        class="absolute -inset-8 bg-gradient-to-r from-fuchsia-500 via-cyan-500 to-fuchsia-500 blur-xl opacity-0 group-hover:opacity-30 group-hover:animate-slow-spin transition-opacity duration-1000">
-                    </div>
-                    <div
-                        class="relative h-12 px-8 bg-white/5 border border-white/10 rounded-full flex items-center justify-center backdrop-blur-2xl">
-                        <span
-                            class="text-white/60 group-hover:text-white font-medium tracking-[0.15em] text-xs uppercase transition-colors duration-500">I'm
-                            literally a genius</span>
-                    </div>
-                </div>
-            </div>
-            <!-- 25. Liquid Morph (Classic) -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-teal-400 mb-2">25. Liquid
-                    Morph</span>
-                <div class="relative h-10 w-max px-6 cursor-pointer ai-trigger group flex items-center justify-center bg-teal-500 hover:bg-teal-400 transition-all duration-500 ease-in-out"
-                    style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;"
-                    onmouseover="this.style.borderRadius='30% 70% 70% 30% / 30% 30% 70% 70%'"
-                    onmouseout="this.style.borderRadius='60% 40% 30% 70% / 60% 30% 70% 40%'">
-                    <span class="text-white font-bold tracking-widest drop-shadow-md whitespace-nowrap text-sm">Ask the
-                        magic 8 ball</span>
-                </div>
-            </div>
-
-            <!-- 26. Bubble Gum (Classic) -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-pink-400 mb-2">26. Bubble Gum</span>
-                <div
-                    class="relative h-12 w-max px-8 cursor-pointer ai-trigger group bg-pink-500 hover:bg-pink-400 rounded-full flex items-center justify-center hover:-translate-y-2 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_5px_0_rgb(219,39,119)] hover:shadow-[0_8px_0_rgb(219,39,119),0_15px_20px_rgba(236,72,153,0.4)] active:shadow-[0_0px_0_rgb(219,39,119)] active:translate-y-1">
-                    <span class="text-white font-extrabold tracking-wider text-lg whitespace-nowrap">I got 99
-                        answers</span>
-                </div>
-            </div>
-
-            <!-- 27. Retro Arcade (Classic) -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-red-500 mb-2">27. Retro Arcade</span>
-                <div
-                    class="relative cursor-pointer ai-trigger group border-4 border-red-500 bg-black hover:bg-red-500 transition-colors duration-150 px-6 py-2 w-max">
-                    <span
-                        class="text-red-500 group-hover:text-black font-mono font-bold tracking-[0.3em] uppercase whitespace-nowrap">AI-cadabra!</span>
-                    <div
-                        class="absolute -inset-1 border-2 border-red-500/30 group-hover:animate-ping opacity-0 group-hover:opacity-100">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 28. Chat Bubble (Classic) -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-yellow-300 mb-2">28. Chat
-                    Bubble</span>
-                <div
-                    class="relative h-10 w-max px-6 cursor-pointer ai-trigger group hover:-translate-y-1 transition-transform duration-300">
-                    <div
-                        class="absolute -bottom-2 right-4 w-4 h-4 bg-yellow-400 rotate-45 group-hover:bg-yellow-300 transition-colors duration-300 shadow-[2px_2px_5px_rgba(250,204,21,0.5)]">
-                    </div>
-                    <div
-                        class="relative h-full w-full bg-gradient-to-r from-yellow-500 to-yellow-400 group-hover:from-yellow-400 group-hover:to-yellow-300 rounded-2xl shadow-[0_5px_15px_rgba(234,179,8,0.4)] flex items-center justify-center transition-colors duration-300">
-                        <svg class="w-4 h-4 text-yellow-900 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-sm font-bold text-yellow-900 whitespace-nowrap">ChatGPT's cooler cousin</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 29. Prismatic Rainbow (Classic) -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-pink-300 mb-2">29. Prismatic
-                    Rainbow</span>
-                <div
-                    class="relative h-10 w-max px-6 cursor-pointer ai-trigger group bg-zinc-900 rounded-full flex items-center justify-center border border-white/10 overflow-hidden hover:border-white/30 transition-colors">
-                    <div
-                        class="absolute inset-0 opacity-20 group-hover:opacity-100 bg-[linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet,red)] bg-[length:200%_100%] animate-[pan_3s_linear_infinite] transition-opacity duration-500">
-                    </div>
-                    <div class="absolute inset-[1px] bg-zinc-900 rounded-full"></div>
-                    <span
-                        class="relative z-10 font-bold tracking-widest text-transparent bg-clip-text bg-[linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet,red)] bg-[length:200%_100%] animate-[pan_3s_linear_infinite] group-hover:brightness-150 transition-all whitespace-nowrap text-xs">Stop
-                        typing, start asking</span>
-                </div>
-                <style>
-                    @keyframes pan {
-                        to {
-                            background-position: -200% center;
-                        }
-                    }
-                </style>
-            </div>
-
-            <!-- 30. Typewriter Tape (Classic) -->
-            <div
-                class="flex flex-col items-center gap-4 p-8 rounded-2xl bg-white/[0.01] border border-white/[0.03] hover:bg-white/[0.02] transition-colors">
-                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-2">30. Typewriter
-                    Tape</span>
-                <div
-                    class="relative cursor-pointer ai-trigger group bg-[#e8e8e8] px-6 py-1.5 rotate-[-2deg] hover:rotate-0 transition-transform duration-300 shadow-[2px_2px_4px_rgba(0,0,0,0.5)] w-max">
-                    <span
-                        class="text-black font-mono font-bold tracking-widest uppercase text-sm border-b border-black/30 pb-0.5 group-hover:border-black transition-colors whitespace-nowrap">Summons
-                        the AI</span>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
+
+<style>
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(30px) scale(0.98);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.98);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    /* Custom Scrollbar for Chat */
+    #chatMessages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #chatMessages::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    #chatMessages::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.3);
+        border-radius: 10px;
+    }
+
+    #chatMessages::-webkit-scrollbar-thumb:hover {
+        background: rgba(148, 163, 184, 0.5);
+    }
+</style>
+<script>
+    function openEvaModal() {
+        const modal = document.getElementById('evaModal');
+        const content = document.getElementById('evaModalContent');
+        const input = document.getElementById('evaSearchInput');
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Small delay to allow display:flex to apply before animating opacity
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+            input.focus();
+        }, 10);
+    }
+
+    function closeEvaModal() {
+        const modal = document.getElementById('evaModal');
+        const content = document.getElementById('evaModalContent');
+
+        modal.classList.add('opacity-0');
+        content.classList.remove('scale-100');
+        content.classList.add('scale-95');
+
+        // Wait for animation to finish before hiding
+        setTimeout(() => {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+    // Close on clicking outside
+    document.getElementById('evaModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeEvaModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !document.getElementById('evaModal').classList.contains('hidden')) {
+            closeEvaModal();
+        }
+    });
+
+    // Chatbase API Integration
+    let chatHistory = [];
+
+    async function triggerChatbase(query) {
+        if (!query || !query.trim()) return;
+
+        // Hide trending, show chat
+        const trendingEl = document.getElementById('trendingSearches');
+        if (!trendingEl.classList.contains('hidden')) {
+            trendingEl.classList.add('opacity-0');
+            setTimeout(() => {
+                trendingEl.classList.add('hidden');
+                const chatInterface = document.getElementById('chatInterface');
+                chatInterface.classList.remove('hidden');
+                chatInterface.classList.add('flex');
+            }, 300);
+        }
+
+        // Clear input
+        document.getElementById('evaSearchInput').value = '';
+
+        const chatContainer = document.getElementById('chatMessages');
+
+        // Add User Bubble with premium styling
+        chatContainer.insertAdjacentHTML('beforeend', `
+            <div class="flex justify-end mb-8 opacity-0 animate-[slideInRight_0.4s_ease-out_forwards]">
+                <div class="text-white rounded-[24px] rounded-tr-[6px] px-6 py-3.5 max-w-[80%] shadow-[0_8px_20px_rgba(26,59,27,0.25)] border border-white/10" style="background: linear-gradient(to top right, #30442C, #1A3B1B);">
+                    <p class="text-[15.5px] font-normal leading-relaxed tracking-wide">${query.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                </div>
+            </div>
+        `);
+
+        // Scroll to bottom immediately for user message
+        setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 50);
+
+        // Add Loading Bubble
+        const loaderId = 'loader_' + Date.now();
+        setTimeout(() => {
+            chatContainer.insertAdjacentHTML('beforeend', `
+                <div id="${loaderId}" class="flex justify-start mb-8 opacity-0 animate-[slideInLeft_0.4s_ease-out_forwards]">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 mr-4 shadow-[0_4px_15px_rgba(244,195,0,0.4)] relative" style="background: linear-gradient(to top right, #F4C300, #FAE696);">
+                        <span class="text-[#1A3B1B] text-[13px] font-black tracking-widest relative z-10">S</span>
+                        <div class="absolute inset-0 rounded-full bg-white opacity-20 animate-ping"></div>
+                    </div>
+                    <div class="bg-white/90 backdrop-blur-xl border border-white/60 rounded-[24px] rounded-tl-[6px] px-7 py-5 max-w-[80%] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: #F4C300;"></div>
+                        <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: #FAE696; animation-delay: 0.15s;"></div>
+                        <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: #F9DC6B; animation-delay: 0.3s;"></div>
+                    </div>
+                </div>
+            `);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, 300);
+
+        // Add to history
+        chatHistory.push({ role: 'user', content: query });
+
+        try {
+            const response = await fetch(`http://localhost/mosil-new/ajax/chatbase.php`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ messages: chatHistory })
+            });
+
+            const data = await response.json();
+
+            // Remove Loader
+            const loaderEl = document.getElementById(loaderId);
+            if (loaderEl) loaderEl.remove();
+
+            if (data.error) {
+                appendSaraResponse("Oops, I encountered an error: " + data.error);
+            } else {
+                appendSaraResponse(data.text);
+                chatHistory.push({ role: 'assistant', content: data.text });
+            }
+        } catch (e) {
+            const loaderEl = document.getElementById(loaderId);
+            if (loaderEl) loaderEl.remove();
+            appendSaraResponse("I am having trouble connecting to the server right now. Please check your network.");
+        }
+    }
+
+    function appendSaraResponse(text) {
+        // Convert basic markdown to HTML for demo purposes
+        let formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-800">$1</strong>')
+            .replace(/\n/g, '<br>')
+            .replace(/`(.*?)`/g, '<code class="bg-slate-100 text-pink-600 px-1.5 py-0.5 rounded text-[13px] font-mono">$1</code>');
+
+        const chatContainer = document.getElementById('chatMessages');
+        chatContainer.insertAdjacentHTML('beforeend', `
+            <div class="flex justify-start mb-8 opacity-0 animate-[slideInLeft_0.4s_ease-out_forwards]">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 mr-4 shadow-[0_4px_15px_rgba(244,195,0,0.4)] relative" style="background: linear-gradient(to top right, #F4C300, #FAE696);">
+                    <span class="text-[#1A3B1B] text-[13px] font-black tracking-widest relative z-10">S</span>
+                </div>
+                <div class="bg-white/95 backdrop-blur-xl border border-white/60 text-slate-700 rounded-[24px] rounded-tl-[6px] px-6 py-4 max-w-[82%] shadow-[0_8px_30px_rgba(0,0,0,0.06)] text-[15.5px] leading-relaxed font-light tracking-wide">
+                    ${formattedText}
+                </div>
+            </div>
+        `);
+        setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 50);
+    }
+</script>
 
 <!-- Chatbot Trigger Script -->
 <script>
