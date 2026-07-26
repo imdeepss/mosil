@@ -238,14 +238,20 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         <div
             class="relative z-20 flex items-center justify-between px-6 sm:px-8 py-5 sm:py-6 border-b border-slate-200/50 bg-white/40 backdrop-blur-md shrink-0">
             <div class="flex items-center gap-4">
-                <div class="relative">
-                    <div
-                        class="w-12 h-12 rounded-[16px] bg-gradient-to-tr from-primary to-[#facc15] flex items-center justify-center shadow-[0_8px_20px_rgba(244,195,0,0.3)] border border-white/50 relative z-10">
-                        <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
-                            alt="SARA" class="w-5 h-5 brightness-0 opacity-80 mix-blend-multiply">
-                    </div>
-                    <!-- Glow effect behind the logo -->
-                    <div class="absolute inset-0 bg-primary/40 filter blur-xl rounded-full scale-110 z-0 animate-pulse">
+                <div class="relative group cursor-default">
+                    <!-- Soft ambient glow -->
+                    <div class="absolute inset-0 bg-[#facc15]/30 filter blur-[12px] rounded-full scale-110 z-0 group-hover:bg-[#facc15]/40 transition-colors duration-500"></div>
+                    
+                    <!-- Premium Light Glass Container -->
+                    <div class="w-12 h-12 rounded-[16px] bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shadow-[0_8px_20px_rgba(250,204,21,0.15)] border border-white relative z-10 overflow-hidden">
+                        <!-- Elegant top highlight -->
+                        <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent rounded-t-[16px]"></div>
+
+                        <!-- Solid Golden AI Sparkles -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-primary drop-shadow-[0_2px_6px_rgba(244,195,0,0.4)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-20">
+                            <path d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
+                            <path d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
+                        </svg>
                     </div>
                 </div>
                 <div class="flex flex-col">
@@ -337,11 +343,12 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             <div id="chatBubblesContainer" class="hidden flex-col w-full max-w-4xl mx-auto p-6 sm:p-8 z-20 gap-6">
                 <!-- Initial Welcome Message -->
                 <div class="flex justify-start chat-bubble-enter w-full">
-                    <div
-                        class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-[#facc15] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_15px_rgba(244,195,0,0.3)] border border-white/60 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-white/20"></div>
-                        <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
-                            alt="SARA" class="w-4 h-4 brightness-0 opacity-75 mix-blend-multiply relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-primary drop-shadow-[0_2px_4px_rgba(244,195,0,0.3)] relative z-20">
+                            <path d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
+                            <path d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
+                        </svg>
                     </div>
                     <div
                         class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
@@ -580,9 +587,12 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         setTimeout(() => {
             chatBubbles.insertAdjacentHTML('beforeend', `
                 <div id="${loaderId}" class="flex justify-start chat-bubble-enter opacity-0 w-full">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-[#facc15] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_15px_rgba(244,195,0,0.3)] border border-white/60 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-white/20"></div>
-                        <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png" alt="SARA" class="w-4 h-4 brightness-0 opacity-75 mix-blend-multiply relative z-10">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-primary drop-shadow-[0_2px_4px_rgba(244,195,0,0.3)] relative z-20">
+                            <path d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
+                            <path d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
+                        </svg>
                     </div>
                     <div class="bg-white/95 backdrop-blur-xl border border-slate-100 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[85%] flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite]"></div>
@@ -625,6 +635,21 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 
     function appendSaraResponse(text) {
         let formattedText = text
+            // Parse Markdown Links first
+            .replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '%%LINK_START%%$2%%LINK_MID%%$1%%LINK_END%%')
+            // Parse Bare URLs (ignoring already parsed ones)
+            .replace(/(^|\s)(https?:\/\/[^\s<]+)/g, function(match, space, url) {
+                // Remove trailing punctuation from URL if any
+                let punctuation = '';
+                if (url.match(/[.,;:!?)\]]$/)) {
+                    punctuation = url.slice(-1);
+                    url = url.slice(0, -1);
+                }
+                return space + '%%LINK_START%%' + url + '%%LINK_MID%%' + url + '%%LINK_END%%' + punctuation;
+            })
+            // Convert placeholders to styled HTML anchor tags
+            .replace(/%%LINK_START%%(.*?)%%LINK_MID%%(.*?)%%LINK_END%%/g, '<a href="$1" target="_blank" class="inline-flex items-center gap-1.5 text-main-green font-bold hover:text-primary transition-colors underline underline-offset-4 decoration-primary/40 hover:decoration-primary break-all"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>$2</a>')
+            // Standard markdown
             .replace(/### (.*?)\n/g, '<h3 class="text-lg font-bold text-slate-800 mt-4 mb-2">$1</h3>')
             .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>')
             .replace(/\*(.*?)\*/g, '<em class="italic text-slate-800">$1</em>')
@@ -635,9 +660,12 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         const chatBubbles = document.getElementById('chatBubblesContainer');
         chatBubbles.insertAdjacentHTML('beforeend', `
             <div class="flex justify-start chat-bubble-enter opacity-0 w-full">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-[#facc15] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_15px_rgba(244,195,0,0.3)] border border-white/60 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-white/20"></div>
-                    <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png" alt="SARA" class="w-4 h-4 brightness-0 opacity-75 mix-blend-multiply relative z-10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-primary drop-shadow-[0_2px_4px_rgba(244,195,0,0.3)] relative z-20">
+                        <path d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
+                        <path d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
+                    </svg>
                 </div>
                 <div class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
                     ${formattedText}
