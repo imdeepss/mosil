@@ -19,7 +19,11 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         }
     }
 </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+    body {
+        font-family: 'Outfit', sans-serif;
+    }
     @keyframes slow-spin {
         from {
             transform: rotate(0deg);
@@ -207,10 +211,9 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
     </div>
 </div>
 
-<!-- SARA Premium Search Modal -->
 <div id="evaModal"
-    class="fixed inset-0 z-[100] hidden flex-col items-center pt-[8vh] pb-4 px-4 bg-slate-900/40 backdrop-blur-xl opacity-0 transition-opacity duration-500">
-    <div class="relative w-full max-w-4xl bg-white/40 backdrop-blur-3xl rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.15),0_0_0_1px_rgba(255,255,255,0.4)] overflow-visible flex flex-col transform scale-95 transition-all duration-500"
+    class="fixed inset-0 z-[100] hidden flex-col items-center pt-[8vh] pb-4 px-4 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-500">
+    <div class="relative w-full max-w-4xl bg-white/95 backdrop-blur-3xl rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.8)] overflow-visible flex flex-col transform scale-95 transition-all duration-500"
         id="evaModalContent">
 
         <!-- Modal Header / Search input -->
@@ -293,7 +296,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                 foreach ($trending as $tag):
                     ?>
                     <button onclick="triggerChatbase('<?= htmlspecialchars($tag, ENT_QUOTES) ?>')"
-                        class="px-5 py-2.5 bg-white border border-white/60 rounded-full text-[13.5px] text-slate-600 font-medium hover:border-transparent hover:text-main-green hover:bg-gradient-to-r hover:from-primary hover:to-primary-mid hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] active:scale-95 transform hover:-translate-y-0.5">
+                        class="px-5 py-2.5 bg-white border border-gray-200 rounded-full text-[13.5px] text-slate-600 font-medium hover:bg-main-green hover:text-primary hover:border-main-green hover:shadow-[0_10px_25px_rgba(26,59,27,0.3)] transition-all duration-300 shadow-sm active:scale-95 transform hover:-translate-y-1">
                         <?= $tag ?>
                     </button>
                 <?php endforeach; ?>
@@ -302,7 +305,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 
         <!-- Body / Chat Interface -->
         <div id="chatInterface"
-            class="hidden flex-col h-[55vh] min-h-[400px] max-h-[600px] bg-slate-50/80 relative rounded-b-[32px] overflow-hidden transition-all duration-500 backdrop-blur-sm">
+            class="hidden flex-col h-[60vh] min-h-[450px] max-h-[700px] bg-slate-50/90 relative rounded-b-[32px] overflow-hidden transition-all duration-500 backdrop-blur-md border-t border-gray-100">
             <!-- Hidden element to force Tailwind CDN to generate dynamic classes -->
             <div
                 class="hidden bg-gradient-to-tr from-secondary to-main-green text-slate-800 animate-[slideInRight_0.4s_ease-out_forwards] animate-[slideInLeft_0.4s_ease-out_forwards] text-white">
@@ -310,10 +313,10 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 
             <!-- Decorative ambient glows -->
             <div
-                class="absolute top-0 left-[-20%] w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[100px] opacity-10 pointer-events-none">
+                class="absolute top-0 left-[-20%] w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[100px] opacity-[0.15] pointer-events-none">
             </div>
             <div
-                class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-main-green rounded-full mix-blend-multiply filter blur-[100px] opacity-10 pointer-events-none">
+                class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-main-green rounded-full mix-blend-multiply filter blur-[100px] opacity-[0.15] pointer-events-none">
             </div>
 
             <div class="flex-1 overflow-y-auto p-8 flex flex-col scroll-smooth relative z-10" id="chatMessages">
@@ -414,12 +417,8 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
     });
 
     // Chatbase API Integration
-    let chatHistory = [];
-
-    async function triggerChatbase(query) {
-        if (!query || !query.trim()) return;
-
-        // Hide trending, show chat
+    function triggerChatbase(query) {
+        // Hide trending, show chat interface
         const trendingEl = document.getElementById('trendingSearches');
         if (!trendingEl.classList.contains('hidden')) {
             trendingEl.classList.add('opacity-0');
@@ -428,97 +427,29 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                 const chatInterface = document.getElementById('chatInterface');
                 chatInterface.classList.remove('hidden');
                 chatInterface.classList.add('flex');
+                
+                // Inject the Chatbase iframe securely (Free Plan Compatible)
+                if (!document.getElementById('chatbaseIframe')) {
+                    chatInterface.innerHTML = `
+                        <div class="w-full h-full relative">
+                            <iframe
+                                id="chatbaseIframe"
+                                src="https://www.chatbase.co/chatbot-iframe/6MqeSpCR1QiEXI65v5iEk"
+                                width="100%"
+                                height="100%"
+                                frameborder="0"
+                                class="absolute inset-0 w-full h-full rounded-b-[32px]"
+                            ></iframe>
+                        </div>
+                    `;
+                }
             }, 300);
+        } else {
+             // If iframe is already there, do nothing (we can't pass text to a cross-origin iframe easily)
         }
 
         // Clear input
         document.getElementById('evaSearchInput').value = '';
-
-        const chatContainer = document.getElementById('chatMessages');
-
-        // Add User Bubble with premium styling
-        chatContainer.insertAdjacentHTML('beforeend', `
-            <div class="flex justify-end mb-8 opacity-0 animate-[slideInRight_0.4s_ease-out_forwards]">
-                <div class="text-white rounded-[24px] rounded-tr-[6px] px-6 py-3.5 max-w-[80%] shadow-[0_8px_20px_rgba(26,59,27,0.25)] border border-white/10" style="background: linear-gradient(to top right, #30442C, #1A3B1B);">
-                    <p class="text-[15.5px] font-normal leading-relaxed tracking-wide">${query.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
-                </div>
-            </div>
-        `);
-
-        // Scroll to bottom immediately for user message
-        setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 50);
-
-        // Add Loading Bubble
-        const loaderId = 'loader_' + Date.now();
-        setTimeout(() => {
-            chatContainer.insertAdjacentHTML('beforeend', `
-                <div id="${loaderId}" class="flex justify-start mb-8 opacity-0 animate-[slideInLeft_0.4s_ease-out_forwards]">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 mr-4 shadow-[0_4px_15px_rgba(244,195,0,0.4)] relative" style="background: linear-gradient(to top right, #F4C300, #FAE696);">
-                        <span class="text-[#1A3B1B] text-[13px] font-black tracking-widest relative z-10">S</span>
-                        <div class="absolute inset-0 rounded-full bg-white opacity-20 animate-ping"></div>
-                    </div>
-                    <div class="bg-white/90 backdrop-blur-xl border border-white/60 rounded-[24px] rounded-tl-[6px] px-7 py-5 max-w-[80%] shadow-[0_8px_30px_rgba(0,0,0,0.06)] flex items-center gap-2">
-                        <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: #F4C300;"></div>
-                        <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: #FAE696; animation-delay: 0.15s;"></div>
-                        <div class="w-2 h-2 rounded-full animate-bounce" style="background-color: #F9DC6B; animation-delay: 0.3s;"></div>
-                    </div>
-                </div>
-            `);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }, 300);
-
-        // Add to history
-        chatHistory.push({ role: 'user', content: query });
-
-        try {
-            // Using a relative path to ensure it works on both localhost (subfolder) and production (root)
-            // even if the PHP SITE_URL constant is misconfigured on the live server.
-            const response = await fetch(`../ajax/chatbase.php`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ messages: chatHistory })
-            });
-
-            const data = await response.json();
-
-            // Remove Loader
-            const loaderEl = document.getElementById(loaderId);
-            if (loaderEl) loaderEl.remove();
-
-            if (data.error) {
-                appendSaraResponse("Oops, I encountered an error: " + data.error);
-            } else {
-                appendSaraResponse(data.text);
-                chatHistory.push({ role: 'assistant', content: data.text });
-            }
-        } catch (e) {
-            const loaderEl = document.getElementById(loaderId);
-            if (loaderEl) loaderEl.remove();
-            appendSaraResponse("I am having trouble connecting to the server right now. Please check your network.");
-        }
-    }
-
-    function appendSaraResponse(text) {
-        // Convert basic markdown to HTML for demo purposes
-        let formattedText = text
-            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-800">$1</strong>')
-            .replace(/\n/g, '<br>')
-            .replace(/`(.*?)`/g, '<code class="bg-slate-100 text-pink-600 px-1.5 py-0.5 rounded text-[13px] font-mono">$1</code>');
-
-        const chatContainer = document.getElementById('chatMessages');
-        chatContainer.insertAdjacentHTML('beforeend', `
-            <div class="flex justify-start mb-8 opacity-0 animate-[slideInLeft_0.4s_ease-out_forwards]">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 mr-4 shadow-[0_4px_15px_rgba(244,195,0,0.4)] relative" style="background: linear-gradient(to top right, #F4C300, #FAE696);">
-                    <span class="text-[#1A3B1B] text-[13px] font-black tracking-widest relative z-10">S</span>
-                </div>
-                <div class="bg-white/95 backdrop-blur-xl border border-white/60 text-slate-700 rounded-[24px] rounded-tl-[6px] px-6 py-4 max-w-[82%] shadow-[0_8px_30px_rgba(0,0,0,0.06)] text-[15.5px] leading-relaxed font-light tracking-wide">
-                    ${formattedText}
-                </div>
-            </div>
-        `);
-        setTimeout(() => chatContainer.scrollTop = chatContainer.scrollHeight, 50);
     }
 </script>
 
@@ -531,21 +462,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
         buttons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-
-                // Common logic to open Chatbase chatbot
-                const chatbaseBubble = document.getElementById('chatbase-bubble-button') || document.querySelector('.chatbase-bubble-button');
-
-                if (chatbaseBubble) {
-                    // Trigger click if the bubble is found in the DOM
-                    chatbaseBubble.click();
-                } else if (window.chatbase) {
-                    // Alternative: use Chatbase JS API if available
-                    window.chatbase('open');
-                } else {
-                    // Fallback for the demo page if Chatbase isn't embedded here yet
-                    console.log('Chatbase bot triggered!');
-                    alert('Chatbot triggered! (The Chatbase widget will open here once it is loaded on the live site)');
-                }
+                openEvaModal();
             });
         });
     });
