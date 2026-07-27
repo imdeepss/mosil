@@ -101,10 +101,12 @@ if ($msgRes['code'] !== 200 && $msgRes['code'] !== 201) {
     exit;
 }
 
+$botpressStartTime = strtotime($msgRes['data']['message']['createdAt']);
+
 // 4. Poll for the Bot's response (Botpress replies asynchronously)
 $botReply = "";
 $startTime = time();
-$maxWait = 12; // Wait up to 12 seconds for the bot to generate a response
+$maxWait = 15; // Wait up to 15 seconds for the bot to generate a response
 
 while (time() - $startTime < $maxWait) {
     sleep(1); // Poll every 1 second
@@ -118,7 +120,7 @@ while (time() - $startTime < $maxWait) {
             // Find messages from the bot (not from our userId) created after our request
             if (!isset($msg['userId']) || $msg['userId'] !== $userId) {
                 $msgTime = strtotime($msg['createdAt']);
-                if ($msgTime >= $startTime - 1) { // Account for slight server clock variance
+                if ($msgTime >= $botpressStartTime) { // Compare using Botpress's own clock
                     if (isset($msg['payload']['text'])) {
                         $botReply .= $msg['payload']['text'] . "\n\n";
                         $hasNewReply = true;
