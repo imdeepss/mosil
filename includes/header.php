@@ -69,50 +69,50 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <!-- Structured Data -->
     <?php if (isset($page) && $page === 'home'): ?>
         <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "MOSIL Lubricants Pvt. Ltd.",
-          "url": "https://mosil.com",
-          "logo": "https://mosil.com/logo.png",
-          "description": "MOSIL Lubricants is a specialty industrial lubricant manufacturer providing greases, oils, coatings, and defence lubrication solutions.",
-          "email": "enquiry@mosil.com",
-          "telephone": "+91-9619234158",
-          "foundingDate": "1971"
-        }
-        </script>
+                                                                    {
+                                                                      "@context": "https://schema.org",
+                                                                      "@type": "Organization",
+                                                                      "name": "MOSIL Lubricants Pvt. Ltd.",
+                                                                      "url": "https://mosil.com",
+                                                                      "logo": "https://mosil.com/logo.png",
+                                                                      "description": "MOSIL Lubricants is a specialty industrial lubricant manufacturer providing greases, oils, coatings, and defence lubrication solutions.",
+                                                                      "email": "enquiry@mosil.com",
+                                                                      "telephone": "+91-9619234158",
+                                                                      "foundingDate": "1971"
+                                                                    }
+                                                                    </script>
         <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "MOSIL Lubricants",
-          "url": "https://mosil.com",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://mosil.com/product-finder?search={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }
-        </script>
+                                                                    {
+                                                                      "@context": "https://schema.org",
+                                                                      "@type": "WebSite",
+                                                                      "name": "MOSIL Lubricants",
+                                                                      "url": "https://mosil.com",
+                                                                      "potentialAction": {
+                                                                        "@type": "SearchAction",
+                                                                        "target": "https://mosil.com/product-finder?search={search_term_string}",
+                                                                        "query-input": "required name=search_term_string"
+                                                                      }
+                                                                    }
+                                                                    </script>
         <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "MOSIL Lubricants Pvt. Ltd.",
-          "image": "https://mosil.com/logo.png",
-          "telephone": "+91-9619234158",
-          "email": "enquiry@mosil.com",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Plot no. A-791/3, MIDC, Kopar-Khairane",
-            "addressLocality": "Navi Mumbai",
-            "addressRegion": "Maharashtra",
-            "postalCode": "400710",
-            "addressCountry": "IN"
-          },
-          "url": "https://mosil.com"
-        }
-        </script>
+                                                                    {
+                                                                      "@context": "https://schema.org",
+                                                                      "@type": "LocalBusiness",
+                                                                      "name": "MOSIL Lubricants Pvt. Ltd.",
+                                                                      "image": "https://mosil.com/logo.png",
+                                                                      "telephone": "+91-9619234158",
+                                                                      "email": "enquiry@mosil.com",
+                                                                      "address": {
+                                                                        "@type": "PostalAddress",
+                                                                        "streetAddress": "Plot no. A-791/3, MIDC, Kopar-Khairane",
+                                                                        "addressLocality": "Navi Mumbai",
+                                                                        "addressRegion": "Maharashtra",
+                                                                        "postalCode": "400710",
+                                                                        "addressCountry": "IN"
+                                                                      },
+                                                                      "url": "https://mosil.com"
+                                                                    }
+                                                                    </script>
     <?php endif; ?>
 
     <!-- Favicon -->
@@ -125,6 +125,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <!-- libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/common.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/sara-modal.css?v=<?php echo time(); ?>">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8BDPPXN66"></script>
     <script>
@@ -181,25 +182,71 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 
             <nav class="flex items-center md:gap-8 gap-4">
 
-                <div class="relative hidden h-8 w-[218px] md:block">
-                    <input type="text" name="search" placeholder="Search"
-                        class="search-input h-full w-full rounded-full  outline outline-1 outline-offset-[-0.50px] outline-white bg-zinc-400/30 px-4 text-sm text-white placeholder-white" />
-                    <img src="<?php echo SITE_URL; ?>/assets/icons/png/search.png" alt="Search"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 search-icon-trigger cursor-pointer">
-                    <!-- Search Results Dropdown (Desktop) -->
-                    <div
-                        class="search-results-container absolute top-full left-0 mt-4 w-[300px] -ml-[41px] flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-50 rounded hidden">
-                    </div>
+                <!-- Premium Header Search Button -->
+                <div class="relative hidden w-[340px] md:block group z-50">
+                    <button type="button" onclick="openEvaModal()"
+                        class="group relative flex items-center justify-between bg-white hover:bg-slate-50/80 rounded-full p-1.5 border border-slate-200 hover:border-primary/60 hover:shadow-[0_8px_30px_rgba(244,195,0,0.12)] transition-all duration-300 w-full text-left shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-primary-mid flex items-center justify-center shrink-0 border border-primary-low relative overflow-hidden shadow-sm group-hover:scale-105 transition-transform duration-300">
+                                <svg class="w-6 h-6 relative z-10" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 64 64">
+                                    <path d="M 8 52 C 8 46, 12 44, 18 44 L 18 64 L 8 64 Z" fill="#CBD5E1" />
+                                    <path d="M 56 52 C 56 46, 52 44, 46 44 L 46 64 L 56 64 Z" fill="#CBD5E1" />
+                                    <path d="M 12 56 C 12 46, 18 42, 32 42 C 46 42, 52 46, 52 56 L 52 64 L 12 64 Z"
+                                        fill="#E2E8F0" />
+                                    <rect x="24" y="38" width="16" height="12" fill="#94A3B8" />
+                                    <path
+                                        d="M 14 30 C 14 16, 18 12, 32 12 C 46 12, 50 16, 50 30 C 50 42, 46 46, 32 46 C 18 46, 14 42, 14 30 Z"
+                                        fill="#F1F5F9" />
+                                    <path
+                                        d="M 14 30 C 14 42, 18 46, 32 46 C 46 46, 50 42, 50 30 L 50 34 C 50 46, 46 50, 32 50 C 18 50, 14 46, 14 34 Z"
+                                        fill="#E2E8F0" />
+                                    <path d="M 8 30 C 8 8, 20 4, 32 4 C 44 4, 56 8, 56 30" fill="none" stroke="#1E3A8A"
+                                        stroke-width="5" stroke-linecap="round" />
+                                    <rect x="24" y="1" width="16" height="6" rx="2" fill="#2563EB" />
+                                    <rect x="4" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
+                                    <rect x="52" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
+                                    <rect x="6" y="26" width="8" height="14" rx="2" fill="#2563EB" />
+                                    <rect x="50" y="26" width="8" height="14" rx="2" fill="#2563EB" />
+                                    <path
+                                        d="M 16 28 C 16 22, 18 21, 32 21 C 46 21, 48 22, 48 28 L 48 32 C 48 38, 46 39, 32 39 C 18 39, 16 38, 16 32 Z"
+                                        fill="#172554" />
+                                    <circle cx="25" cy="30" r="3" fill="#22D3EE" />
+                                    <circle cx="39" cy="30" r="3" fill="#22D3EE" />
+                                    <path d="M 54 36 L 54 48 C 54 52, 50 54, 46 54 L 40 54" fill="none" stroke="#94A3B8"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                    <rect x="34" y="51" width="8" height="6" rx="3" fill="#1E3A8A" />
+                                </svg>
+                            </div>
+                            <div class="flex items-baseline gap-1.5">
+                                <span
+                                    class="text-[11px] font-bold text-main-green/70 uppercase tracking-widest leading-none">Ask</span>
+                                <span
+                                    class="text-[16px] font-black text-main-green leading-none tracking-tight">SARA</span>
+                            </div>
+                            <div class="w-[1px] h-4 bg-slate-200 ml-1"></div>
+                            <span class="ml-2 text-[14px] text-slate-400 font-normal tracking-wide">Search...</span>
+                        </div>
+
+                        <div
+                            class="pr-3 text-slate-300 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </div>
+                    </button>
                 </div>
                 <!-- Mobile Search Trigger -->
-                <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300"
+                <!-- <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300"
                     id="openMobileSearch" aria-label="Open mobile search" role="button" tabindex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path
                             d="M28 28L20 20M22.6667 13.3333C22.6667 18.488 18.488 22.6667 13.3333 22.6667C8.17868 22.6667 4 18.488 4 13.3333C4 8.17868 8.17868 4 13.3333 4C18.488 4 22.6667 8.17868 22.6667 13.3333Z"
                             stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                </div>
+                </div> -->
 
                 <!-- In-Header Mobile Search Bar -->
                 <div id="mobileSearchBar"
@@ -234,16 +281,62 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                         <ul
                             class="text-white [&>li]:border-b [&>li]:border-[#EAEAEA] [&>li]:px-6 [&>li]:py-2.5 text-lg font-light leading-[140%] tracking-normal">
                             <li class="flex items-center justify-between">
-                                <div class="relative h-8 w-[200px]">
-                                    <input type="text" placeholder="Search"
-                                        class="search-input h-full w-full rounded-full border border-white bg-white/35 px-5 text-sm text-white placeholder-neutral-300 outline-none focus:ring-1 focus:ring-white/50">
-                                    <img src="<?php echo SITE_URL; ?>/assets/icons/png/search.png" alt="Search"
-                                        class="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 search-icon-trigger cursor-pointer"
-                                        loading="lazy">
-                                    <!-- Sidebar Search Results -->
-                                    <div
-                                        class="search-results-container absolute top-full left-0 mt-2 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-50 rounded hidden">
-                                    </div>
+                                <div class="relative w-full max-w-[280px]">
+                                    <button type="button"
+                                        onclick="openEvaModal(); document.getElementById('sidebar').classList.add('invisible'); document.getElementById('sidebar').classList.add('translate-x-full');"
+                                        class="group relative flex items-center justify-between bg-white hover:bg-slate-50/80 rounded-full p-1.5 border border-slate-200 hover:border-primary/60 hover:shadow-[0_8px_30px_rgba(244,195,0,0.12)] transition-all duration-300 w-full text-left shadow-sm">
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-primary-mid flex items-center justify-center shrink-0 border border-primary-low relative overflow-hidden shadow-sm group-hover:scale-105 transition-transform duration-300">
+                                                <svg class="w-5 h-5 relative z-10" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 64 64">
+                                                    <path d="M 8 52 C 8 46, 12 44, 18 44 L 18 64 L 8 64 Z"
+                                                        fill="#CBD5E1" />
+                                                    <path d="M 56 52 C 56 46, 52 44, 46 44 L 46 64 L 56 64 Z"
+                                                        fill="#CBD5E1" />
+                                                    <path
+                                                        d="M 12 56 C 12 46, 18 42, 32 42 C 46 42, 52 46, 52 56 L 52 64 L 12 64 Z"
+                                                        fill="#E2E8F0" />
+                                                    <rect x="24" y="38" width="16" height="12" fill="#94A3B8" />
+                                                    <path
+                                                        d="M 14 30 C 14 16, 18 12, 32 12 C 46 12, 50 16, 50 30 C 50 42, 46 46, 32 46 C 18 46, 14 42, 14 30 Z"
+                                                        fill="#F1F5F9" />
+                                                    <path
+                                                        d="M 14 30 C 14 42, 18 46, 32 46 C 46 46, 50 42, 50 30 L 50 34 C 50 46, 46 50, 32 50 C 18 50, 14 46, 14 34 Z"
+                                                        fill="#E2E8F0" />
+                                                    <path d="M 8 30 C 8 8, 20 4, 32 4 C 44 4, 56 8, 56 30" fill="none"
+                                                        stroke="#1E3A8A" stroke-width="5" stroke-linecap="round" />
+                                                    <rect x="24" y="1" width="16" height="6" rx="2" fill="#2563EB" />
+                                                    <rect x="4" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
+                                                    <rect x="52" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
+                                                    <rect x="6" y="26" width="8" height="14" rx="2" fill="#2563EB" />
+                                                    <rect x="50" y="26" width="8" height="14" rx="2" fill="#2563EB" />
+                                                    <path
+                                                        d="M 16 28 C 16 22, 18 21, 32 21 C 46 21, 48 22, 48 28 L 48 32 C 48 38, 46 39, 32 39 C 18 39, 16 38, 16 32 Z"
+                                                        fill="#172554" />
+                                                    <circle cx="25" cy="30" r="3" fill="#22D3EE" />
+                                                    <circle cx="39" cy="30" r="3" fill="#22D3EE" />
+                                                    <path d="M 54 36 L 54 48 C 54 52, 50 54, 46 54 L 40 54" fill="none"
+                                                        stroke="#94A3B8" stroke-width="3" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <rect x="34" y="51" width="8" height="6" rx="3" fill="#1E3A8A" />
+                                                </svg>
+                                            </div>
+                                            <div class="flex items-baseline gap-1.5">
+                                                <span
+                                                    class="text-[11px] font-bold text-main-green/70 uppercase tracking-widest leading-none">Ask</span>
+                                                <span
+                                                    class="text-[16px] font-black text-main-green leading-none tracking-tight">SARA</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="pr-3 text-slate-300 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
                                 </div>
                                 <button id="closeSidebar" aria-label="Close sidebar"
                                     class="p-2 hover:scale-95 transition-transform cursor-pointer">
@@ -601,3 +694,6 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
             }
         });
     </script>
+
+
+    <?php include 'sara-modal.php'; ?>
