@@ -1,11 +1,8 @@
 <?php
 
-
 require_once 'includes/config.php';
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
-
-
 
 // Simple Router
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
@@ -39,20 +36,32 @@ $allowed_pages = [
     'event-detail',
     'test',
     'disclaimer',
-    'demo-ai-buttons'
+    'demo-ai-buttons',
+    'landing'
 ];
 
-if (!in_array($page, $allowed_pages)) {
+// Dynamic Landing Page checking
+$landingDataFile = "data/landings/{$page}.json";
+$isLanding = file_exists($landingDataFile);
+
+if (!in_array($page, $allowed_pages) && !$isLanding) {
     http_response_code(404);
     $page = '404'; // Default to show 404
 }
 
 // Prepare content file path
+if ($isLanding) {
+    $landingSlug = $page;
+    $page = 'landing'; // Force template to use landing.php
+}
 $contentFile = "pages/{$page}.php";
 
 // Load Content with output buffering
 ob_start();
 if (file_exists($contentFile)) {
+    if ($isLanding) {
+        $landingData = json_decode(file_get_contents($landingDataFile), true);
+    }
     include $contentFile;
 } else {
     echo '<div class="container section-padding"><h2>Page Not Found</h2><p>The page you are looking for does not exist.</p></div>';

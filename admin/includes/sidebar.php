@@ -81,6 +81,14 @@ if (isSessionTimedOut()) {
                 </a>
             </li>
 
+            <!-- Landing Pages Section -->
+            <li class="nav-item">
+                <a class="nav-link <?php echo $active_menu === 'landings' ? 'active' : ''; ?>" href="landings">
+                    <i class="fas fa-bullhorn me-2"></i>
+                    Landing Pages
+                </a>
+            </li>
+
             <!-- Blog Section -->
             <li class="nav-item">
                 <a class="nav-link <?php echo $active_menu === 'blog' ? 'active' : ''; ?>" data-bs-toggle="collapse"
