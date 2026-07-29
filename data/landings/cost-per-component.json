@@ -1,0 +1,126 @@
+{
+    "id": "cost-per-component",
+    "seo": {
+        "title": "Cost Per Component Campaign | MOSIL Lubricants",
+        "description": "Evaluate and reduce assembly grease cost per component with MOSIL Lubricants' OEM specification matching and NABL-accredited TriboIntel laboratory testing.",
+        "noindex": true
+    },
+    "hero": {
+        "headline": "The grease you apply on the component is a line item in your cost per component. When did you last challenge it?",
+        "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component \u2014 without touching the specification approved by your OEM.",
+        "cta_text": "Start the CPC Check \u2014 5 minutes",
+        "micro_line": "Answer a short set of questions. MOSIL application engineers will revert with a tailored potential view.",
+        "image": "assets/uploads/campaigns/cpc_690f38b29e01.jpg",
+        "image_position": "right",
+        "image_alt": "Automotive Component Grease Application"
+    },
+    "levers": {
+        "intro_1": "Where the Grease Cost Actually Sits",
+        "formula": "Grease cost per component = (grams applied \u00d7 price per kg) / 1000",
+        "intro_2": "Which means there are only three places the money can be found \u2014 and only one of them is a price negotiation.",
+        "items": [
+            {
+                "title": "Price per kilogram",
+                "description": "Removing imported freight, duty, distributor margins, and currency risk by formulating and manufacturing in India to the exact approved specification."
+            },
+            {
+                "title": "Grams applied per component",
+                "description": "Reducing over-application through accurate dispensing guidance, rheology optimization, and correct grease placement at assembly."
+            },
+            {
+                "title": "Inventory and working capital",
+                "description": "Eliminating 2-to-4-month import lead times, reducing buffer stock requirements, and freeing working capital tied up in shop-floor drums."
+            }
+        ],
+        "closing": "MOSIL works on all three. Most suppliers only discuss the first."
+    },
+    "trust": {
+        "heading": "We do not offer look-alikes. We offer specification matches.",
+        "body_1": "MOSIL formulates greases against physical, chemical, and performance parameters specified by OEM design teams. We do not copy brand names or estimate equivalences.",
+        "body_2": "When you evaluate a MOSIL grease for cost reduction, you are evaluating a product built to meet or exceed the exact test parameters your component was approved under.",
+        "sub_line": "If the OEM specification has not been shared with you, that is the first thing we help you establish.",
+        "image": "",
+        "image_position": "right",
+        "image_alt": ""
+    },
+    "form": {
+        "heading": "The 5-minute Cost Per Component check",
+        "intro": "Answer what you can. Questions you cannot answer today are themselves useful information \u2014 leave them blank.",
+        "confidentiality": "Information shared here is used only to prepare your CPC assessment. It is not shared outside MOSIL and is never used in public references without written permission."
+    },
+    "approach": {
+        "intro": "Your diagnostic answers map directly onto how we run every enquiry.",
+        "stages": [
+            {
+                "number": 1,
+                "title": "Application Identification",
+                "description": "Component type, assembly stage, operating conditions, current grease specified, and OEM specification document if available."
+            },
+            {
+                "number": 2,
+                "title": "Problem Diagnosis",
+                "description": "Evaluating the gap between your current grease cost/lead time and what a domestic formulation built to your OEM spec can achieve."
+            },
+            {
+                "number": 3,
+                "title": "Solution Design",
+                "description": "Selecting or formulating the matching grease grade, establishing test parameters, and defining the validation path."
+            },
+            {
+                "number": 4,
+                "title": "Value Presentation",
+                "description": "Presenting the projected cost-per-component savings, working capital impact, and lead time commit before any changeover begins."
+            }
+        ]
+    },
+    "proof": {
+        "heading": "Proof: TriboIntel\u2122",
+        "body_1": "MOSIL operates an in-house, NABL-accredited tribology laboratory capable of full physical, chemical, and performance testing against international standards.",
+        "body_2": "When we propose a CPC reduction product, the test report from TriboIntel is shared directly with your team. We also support full testing at any independent third-party lab nominated by your OEM quality team.",
+        "badges": [
+            "Indian specialty lubricant manufacturer with 40+ years experience",
+            "In-house NABL-accredited TriboIntel\u2122 laboratory",
+            "Formulates against OEM physical, chemical, and performance specifications",
+            "No import lead times, no duty, no currency risk"
+        ],
+        "image": "",
+        "image_position": "right",
+        "image_alt": ""
+    },
+    "process": {
+        "heading": "What happens after you submit",
+        "steps": [
+            {
+                "description": "Your diagnostic answers reach MOSIL's application engineering team directly."
+            },
+            {
+                "description": "A MOSIL application engineer reviews your inputs against our formulation database and reverts within 2 working days."
+            },
+            {
+                "description": "If a viable CPC reduction path exists, we present a specific proposal with validation steps. If not, we tell you plainly."
+            }
+        ]
+    },
+    "faq": [
+        {
+            "q": "My component is already in production with an approved imported grease. Can we change it?",
+            "a": "Yes. Component OEMs routinely re-validate or multi-source greases when a domestic supplier demonstrates compliance with the original OEM specification sheet. MOSIL provides full technical data and test reports to support your internal and OEM re-validation process."
+        },
+        {
+            "q": "What if we don't have the full OEM grease specification sheet?",
+            "a": "That is common. MOSIL's TriboIntel laboratory can analyze your current grease sample to establish its base oil type, viscosity, thickener system, additive package, and key performance parameters."
+        },
+        {
+            "q": "Will changing grease affect our component warranty or OEM approval?",
+            "a": "Not if the change is executed correctly. Re-validation against the OEM spec ensures component performance remains within approved design limits. MOSIL does not recommend changeovers without proper specification matching and validation."
+        },
+        {
+            "q": "How long does a typical CPC reduction project take from diagnostic to line supply?",
+            "a": "Timing depends on the validation depth required. Lab matching and proposal: 1-2 weeks. Plant trialing and initial validation: 4-8 weeks. Full OEM sign-off (if required): varies by OEM process."
+        },
+        {
+            "q": "Is our component and volume information kept confidential?",
+            "a": "Yes. All diagnostic inputs are strictly confidential, handled only by MOSIL application engineers, and never shared externally or used in marketing without explicit written consent."
+        }
+    ]
+}
