@@ -18,6 +18,7 @@ Thumbs.db
 
 # User Uploads
 /assets/uploads/
+/assets/uploads/*
 
 # Landing Page JSON Files (Ignore new/test JSONs, but KEEP master seed landing page tracked)
 /data/landings/*
