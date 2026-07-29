@@ -1,6 +1,6 @@
 <?php
 /**
- * Master Dynamic Landing Page Template - MOSIL Official Brand Edition
+ * Master Dynamic Landing Page Template - MOSIL Brand Masterwork Edition
  * MOSIL Lubricants Pvt. Ltd. - Cost Per Component (CPC) Landing Page
  */
 
@@ -28,13 +28,14 @@ $isNoIndex = !empty($seo['noindex']);
     <meta name="robots" content="noindex, nofollow">
 <?php endif; ?>
 
-<!-- Tailwind CSS Engine Injector with MOSIL Official Brand Palette -->
+<!-- Tailwind CSS Engine Injector with Official MOSIL Brand System Tokens -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
+          mainGreen: '#1A3B1B',
           mosilGreen: '#1A3B1B',
           mosilGreenDark: '#0D2010',
           mosilGreenDeep: '#07140A',
@@ -44,8 +45,17 @@ $isNoIndex = !empty($seo['noindex']);
           mosilSecondary: '#30442C',
         },
         fontFamily: {
-          sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
           mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        },
+        keyframes: {
+          glowPulse: {
+            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+          }
+        },
+        animation: {
+          'glow-pulse': 'glowPulse 6s ease-in-out infinite',
         }
       }
     }
@@ -55,7 +65,53 @@ $isNoIndex = !empty($seo['noindex']);
 <div class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-mosilGold selection:text-mosilGreenDeep">
 
     <!-- ================================================== -->
-    <!-- SECTION 1: HERO / BANNER (MOSIL Deep Green Canvas) -->
+    <!-- STICKY GLASSMORPHIC HEADER NAVIGATION (MOSIL Brand)-->
+    <!-- ================================================== -->
+    <nav class="sticky top-0 z-50 backdrop-blur-xl bg-mosilGreenDeep/95 border-b border-mosilGreen/40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            
+            <!-- Brand Badge & Live NABL Indicator -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-xl bg-mosilGold text-mosilGreenDeep font-extrabold flex items-center justify-center text-sm shadow-md group-hover:scale-105 transition-transform">
+                    M
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-white text-sm tracking-tight leading-none group-hover:text-mosilGold transition-colors">MOSIL CPC</span>
+                    <span class="text-[10px] text-slate-400 font-mono tracking-wider">COST PER COMPONENT</span>
+                </div>
+            </a>
+
+            <!-- Center Navigation Anchor Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-8 text-xs font-semibold text-slate-300">
+                <a href="#cost-levers" class="hover:text-mosilGold transition-colors">Value Levers</a>
+                <a href="#spec-trust" class="hover:text-mosilGold transition-colors">OEM Specs</a>
+                <a href="#cpc-form" class="hover:text-mosilGold transition-colors">Diagnostic Check</a>
+                <a href="#approach" class="hover:text-mosilGold transition-colors">Methodology</a>
+                <a href="#proof-lab" class="hover:text-mosilGold transition-colors">TriboIntel™ Lab</a>
+                <a href="#faq-section" class="hover:text-mosilGold transition-colors">FAQ</a>
+            </div>
+
+            <!-- Right Live Pulse & CTA Button -->
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-mosilGreenDark border border-mosilGreen/60 text-[11px] font-mono text-slate-300">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span>NABL Accredited</span>
+                </div>
+
+                <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm shadow-lg shadow-mosilGold/20 hover:shadow-[0_0_30px_rgba(244,195,0,0.4)] hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5">
+                    <span>Start CPC Check</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================================================== -->
+    <!-- SECTION 1: HERO / BANNER — MOSIL Deep Green Canvas -->
     <!-- ================================================== -->
     <?php if (!empty($hero['headline'])): ?>
         <?php 
@@ -63,11 +119,12 @@ $isNoIndex = !empty($seo['noindex']);
             $heroAlt = !empty($hero['image_alt']) ? $hero['image_alt'] : 'Precision Automotive Component Grease Application';
             $heroPos = $hero['image_position'] ?? 'right';
         ?>
-    <header id="hero" class="bg-mosilGreenDeep text-white pt-24 pb-20 px-6 relative overflow-hidden border-b border-mosilGreen/40">
+    <header id="hero" class="bg-mosilGreenDeep text-white pt-20 pb-24 px-4 sm:px-6 relative overflow-hidden border-b border-mosilGreen/40">
         
-        <!-- Ambient Grid Background Pattern & Glow -->
+        <!-- Ambient Grid Background Pattern & Floating MOSIL Gold Light Blobs -->
         <div class="absolute inset-0 bg-[radial-gradient(#1A3B1B_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none"></div>
-        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-mosilGold/10 blur-[140px] rounded-full pointer-events-none"></div>
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-mosilGold/15 blur-[160px] rounded-full pointer-events-none animate-glow-pulse"></div>
+        <div class="absolute bottom-0 right-10 w-[500px] h-[300px] bg-mosilGreen/40 blur-[140px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto relative z-10">
             
@@ -75,17 +132,17 @@ $isNoIndex = !empty($seo['noindex']);
                 <!-- Hero Full Background Banner Layout -->
                 <div class="relative rounded-3xl overflow-hidden border border-white/10 p-8 sm:p-14 text-center max-w-4xl mx-auto bg-cover bg-center shadow-2xl" style="background-image: linear-gradient(to bottom, rgba(7,20,10,0.85), rgba(7,20,10,0.95)), url('<?php echo htmlspecialchars($heroImg); ?>');">
                     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-mosilGreen/80 border border-mosilGold/30 shadow-md mb-6">
-                        <span class="relative flex h-2.5 w-2.5">
+                        <span class="relative flex h-2 w-2">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mosilGold opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-mosilGold"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-mosilGold"></span>
                         </span>
                         <span class="font-mono text-xs font-bold uppercase tracking-widest text-mosilGold">
                             AUTOMOTIVE COMPONENT LUBRICATION
                         </span>
                     </div>
 
-                    <h1 class="text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
-                        <?php echo htmlspecialchars($hero['headline']); ?>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6">
+                        The grease you apply on the component is a line item in your cost per component. <span class="text-transparent bg-clip-text bg-gradient-to-r from-mosilGold via-amber-300 to-mosilGold">When did you last challenge it?</span>
                     </h1>
 
                     <?php if (!empty($hero['sub_headline'])): ?>
@@ -95,40 +152,38 @@ $isNoIndex = !empty($seo['noindex']);
                     <?php endif; ?>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-4 rounded-xl shadow-lg shadow-mosilGold/20 hover:-translate-y-0.5 transition-all flex items-center gap-3 text-base sm:text-lg group">
+                        <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-4 rounded-xl shadow-lg shadow-mosilGold/20 hover:shadow-[0_0_30px_rgba(244,195,0,0.4)] hover:-translate-y-0.5 transition-all flex items-center gap-3 text-base sm:text-lg group">
                             <span><?php echo htmlspecialchars($hero['cta_text'] ?? 'Start the CPC Check — 5 minutes'); ?></span>
-                            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
                     </div>
-                    <?php if (!empty($hero['micro_line'])): ?>
-                        <div class="text-xs sm:text-sm text-slate-400 flex items-center justify-center gap-2 pt-4">
-                            <svg class="w-4 h-4 text-mosilGold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span><?php echo htmlspecialchars($hero['micro_line']); ?></span>
-                        </div>
-                    <?php endif; ?>
+                    <div class="text-xs sm:text-sm text-slate-400 flex items-center justify-center gap-2 pt-4">
+                        <svg class="w-4 h-4 text-mosilGold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>5-min diagnostic • Engineer-led revert • Confidential assessment</span>
+                    </div>
                 </div>
 
             <?php else: ?>
                 <!-- Hero 2-Column Asymmetric Bento Grid (Right vs Left Image) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center <?php echo $heroPos === 'left' ? 'lg:flex-row-reverse' : ''; ?>">
                     
-                    <!-- Text Column -->
+                    <!-- Left Column: Text & CTAs -->
                     <div class="lg:col-span-7 space-y-6 text-left <?php echo $heroPos === 'left' ? 'lg:order-2' : ''; ?>">
                         
-                        <!-- Eyebrow Pill Tag -->
+                        <!-- Floating Pulsing Eyebrow Badge -->
                         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-mosilGreenDark border border-mosilGreen/60 shadow-md">
-                            <span class="relative flex h-2.5 w-2.5">
+                            <span class="relative flex h-2 w-2">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mosilGold opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-mosilGold"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-mosilGold"></span>
                             </span>
                             <span class="font-mono text-xs font-bold uppercase tracking-widest text-mosilGold">
                                 AUTOMOTIVE COMPONENT LUBRICATION
                             </span>
                         </div>
 
-                        <!-- Main Headline (H1) -->
-                        <h1 class="text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
-                            <?php echo htmlspecialchars($hero['headline']); ?>
+                        <!-- Kinetic Headline (H1) -->
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
+                            The grease you apply on the component is a line item in your cost per component. <span class="text-transparent bg-clip-text bg-gradient-to-r from-mosilGold via-amber-300 to-mosilGold">When did you last challenge it?</span>
                         </h1>
 
                         <!-- Subheadline -->
@@ -138,25 +193,23 @@ $isNoIndex = !empty($seo['noindex']);
                             </p>
                         <?php endif; ?>
 
-                        <!-- CTA Button Stack -->
+                        <!-- Primary Action CTA -->
                         <div class="pt-2 space-y-3">
                             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                                <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-4 rounded-xl shadow-lg shadow-mosilGold/20 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 text-base sm:text-lg group">
+                                <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-4 rounded-xl shadow-lg shadow-mosilGold/20 hover:shadow-[0_0_30px_rgba(244,195,0,0.4)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 text-base sm:text-lg group">
                                     <span><?php echo htmlspecialchars($hero['cta_text'] ?? 'Start the CPC Check — 5 minutes'); ?></span>
-                                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                 </a>
                             </div>
 
-                            <!-- Micro-line -->
-                            <?php if (!empty($hero['micro_line'])): ?>
-                                <div class="text-xs sm:text-sm text-slate-400 flex items-center gap-2 pt-1">
-                                    <svg class="w-4 h-4 text-mosilGold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                                    <span><?php echo htmlspecialchars($hero['micro_line']); ?></span>
-                                </div>
-                            <?php endif; ?>
+                            <!-- Micro-copy Badge Below CTA -->
+                            <div class="text-xs sm:text-sm text-slate-400 flex items-center gap-2 pt-1">
+                                <svg class="w-4 h-4 text-mosilGold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                <span>5-min diagnostic • Engineer-led revert • Confidential assessment</span>
+                            </div>
                         </div>
 
-                        <!-- KPI Bar -->
+                        <!-- KPI Bar (3 Metric Counters) -->
                         <div class="pt-6 border-t border-mosilGreen/50 grid grid-cols-3 gap-4 max-w-lg">
                             <div class="p-3.5 bg-mosilGreenDark/80 rounded-xl border border-mosilGreen/60 shadow">
                                 <div class="font-mono text-xl sm:text-2xl font-extrabold text-mosilGold">100%</div>
@@ -174,14 +227,14 @@ $isNoIndex = !empty($seo['noindex']);
 
                     </div>
 
-                    <!-- Image Column -->
+                    <!-- Right Column: Interactive 3D Card Viewport -->
                     <div class="lg:col-span-5 relative <?php echo $heroPos === 'left' ? 'lg:order-1' : ''; ?>">
-                        <div class="relative rounded-2xl overflow-hidden border border-mosilGreen/60 shadow-2xl bg-mosilGreenDark aspect-[4/3] group">
+                        <div class="relative rounded-3xl overflow-hidden border border-mosilGreen/60 shadow-2xl bg-mosilGreenDark aspect-[4/3] group">
                             <img src="<?php echo htmlspecialchars($heroImg); ?>" alt="<?php echo htmlspecialchars($heroAlt); ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-mosilGreenDeep via-mosilGreenDeep/40 to-transparent"></div>
 
-                            <!-- Floating Glassmorphic Overlay Badge -->
-                            <div class="absolute bottom-4 left-4 right-4 bg-mosilGreenDeep/90 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs text-slate-200 flex items-center gap-3.5 shadow-2xl">
+                            <!-- Floating Glassmorphic Badge overlaid at bottom corner -->
+                            <div class="absolute bottom-4 left-4 right-4 backdrop-blur-md bg-mosilGreenDeep/90 border border-white/10 p-4 rounded-2xl shadow-2xl text-xs text-slate-200 flex items-center gap-3.5">
                                 <div class="w-9 h-9 rounded-xl bg-mosilGold/20 border border-mosilGold/40 text-mosilGold flex items-center justify-center shrink-0">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
@@ -201,10 +254,10 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 2: COST LEVERS (MOSIL Light Surface)       -->
+    <!-- SECTION 2: COST LEVERS — Modern 3-Card Grid        -->
     <!-- ================================================== -->
     <?php if (!empty($levers['formula']) || (!empty($levers['items']) && count($levers['items']) > 0)): ?>
-    <section id="cost-levers" class="bg-slate-50 py-20 px-6 border-b border-slate-200/80">
+    <section id="cost-levers" class="bg-slate-50 py-20 px-4 sm:px-6 border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto">
             
             <div class="text-center max-w-3xl mx-auto mb-3">
@@ -219,11 +272,13 @@ $isNoIndex = !empty($seo['noindex']);
                 <?php endif; ?>
             </div>
 
-            <!-- Highlighted Formula Band -->
+            <!-- Dynamic Monospaced Formula Band Card -->
             <?php if (!empty($levers['formula'])): ?>
-            <div class="max-w-3xl mx-auto my-8 p-6 sm:p-8 bg-mosilGreenDeep rounded-2xl border-l-4 border-mosilGold shadow-xl text-mosilGold font-mono text-sm sm:text-base md:text-lg leading-relaxed text-center overflow-x-auto">
+            <div class="max-w-3xl mx-auto my-8 p-6 sm:p-8 bg-mosilGreenDeep rounded-2xl border-l-4 border-mosilGold border border-mosilGreen/40 shadow-2xl text-mosilGold font-mono text-sm sm:text-base md:text-lg leading-relaxed text-center overflow-x-auto relative group">
                 <span class="text-xs uppercase tracking-widest text-slate-400 font-sans block mb-2">Cost Per Component Equation</span>
-                <?php echo htmlspecialchars($levers['formula']); ?>
+                <div class="font-mono font-bold tracking-tight">
+                    <?php echo htmlspecialchars($levers['formula']); ?>
+                </div>
             </div>
             <?php endif; ?>
 
@@ -231,12 +286,23 @@ $isNoIndex = !empty($seo['noindex']);
             <?php if (!empty($levers['items']) && count($levers['items']) > 0): ?>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12 mt-8">
                 <?php foreach ($levers['items'] as $index => $item): ?>
-                <div class="bg-white p-6 sm:p-8 rounded-2xl border <?php echo $index === 1 ? 'border-2 border-mosilGold shadow-md' : 'border-slate-200/80 shadow-sm'; ?> hover:shadow-xl transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between">
+                <?php 
+                    $isGramsCard = ($index === 1);
+                ?>
+                <div class="bg-white p-6 sm:p-8 rounded-2xl border <?php echo $isGramsCard ? 'border-2 border-mosilGold shadow-xl' : 'border-slate-200/80 shadow-sm'; ?> hover:border-mosilGold/60 hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.01] transition-all duration-300 ease-out flex flex-col justify-between relative group">
+                    
+                    <?php if ($isGramsCard): ?>
+                        <!-- Highest Impact Badge for Card 2 (Grams Applied) -->
+                        <span class="bg-mosilGold text-mosilGreenDeep font-bold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded-full absolute -top-3 right-6 shadow-md">
+                            Highest Impact
+                        </span>
+                    <?php endif; ?>
+
                     <div>
-                        <div class="w-10 h-10 rounded-xl bg-mosilGreen/10 text-mosilGreen font-mono font-bold text-base flex items-center justify-center mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-mosilGreen/10 text-mosilGreen font-mono font-bold text-base flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                             0<?php echo $index + 1; ?>
                         </div>
-                        <h3 class="text-xl font-bold <?php echo $index === 1 ? 'text-mosilGreen' : 'text-slate-900'; ?> mb-3 uppercase tracking-wide">
+                        <h3 class="text-xl font-bold <?php echo $isGramsCard ? 'text-mosilGreen' : 'text-slate-900'; ?> mb-3 uppercase tracking-wide">
                             <?php echo htmlspecialchars($item['title']); ?>
                         </h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
@@ -262,7 +328,7 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 3: ON SPECIFICATIONS — TRUST BLOCK        -->
+    <!-- SECTION 3: TRUST BLOCK — Side-by-Side Matcher     -->
     <!-- ================================================== -->
     <?php if (!empty($trust['heading']) || !empty($trust['body_1'])): ?>
         <?php
@@ -270,11 +336,11 @@ $isNoIndex = !empty($seo['noindex']);
             $trustImg = $trust['image'] ?? '';
             $trustAlt = $trust['image_alt'] ?? 'MOSIL Specification Match';
         ?>
-    <section class="bg-white py-16 px-6 border-b border-slate-200/80">
+    <section id="spec-trust" class="bg-white py-16 px-4 sm:px-6 border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
-                <!-- Left Content -->
+                <!-- Left Column: Bold Narrative -->
                 <div class="lg:col-span-6 space-y-5 <?php echo $trustPos === 'left' ? 'lg:order-2' : ''; ?>">
                     <span class="font-mono text-xs font-semibold text-mosilGreen uppercase tracking-widest bg-mosilGreen/10 px-3 py-1 rounded-full border border-mosilGreen/20 inline-block">COMPLIANCE FIRST</span>
                     <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -290,15 +356,15 @@ $isNoIndex = !empty($seo['noindex']);
                         <?php endif; ?>
                     </div>
 
-                    <!-- Callout Box -->
+                    <!-- Soft Amber Callout Highlight Box -->
                     <?php if (!empty($trust['sub_line'])): ?>
-                    <div class="bg-mosilGoldLight border-l-4 border-mosilGold p-4 rounded-r-xl text-sm text-slate-900 font-semibold">
+                    <div class="bg-mosilGoldLight border-l-4 border-mosilGold p-4 rounded-r-xl text-sm text-slate-900 font-semibold shadow-sm">
                         <?php echo htmlspecialchars($trust['sub_line']); ?>
                     </div>
                     <?php endif; ?>
                 </div>
 
-                <!-- Right Side Image or Spec Matrix Card -->
+                <!-- Right Column: Interactive Parameter Matcher Card -->
                 <div class="lg:col-span-6 <?php echo $trustPos === 'left' ? 'lg:order-1' : ''; ?>">
                     <?php if (!empty($trustImg)): ?>
                         <div class="relative rounded-2xl overflow-hidden border border-slate-200/80 shadow-lg">
@@ -308,13 +374,13 @@ $isNoIndex = !empty($seo['noindex']);
                         <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-md">
                             <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
                                 <span class="font-mono text-xs font-bold uppercase text-slate-900">OEM Spec Match Matrix</span>
-                                <span class="font-mono text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">100% Parameter Match</span>
+                                <span class="font-mono text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">100% Parameter Match</span>
                             </div>
                             <div class="space-y-3 font-mono text-xs sm:text-sm">
                                 <div class="grid grid-cols-3 gap-2 bg-white p-3 rounded-lg border border-slate-200/80 font-bold text-slate-800">
                                     <span>Test Parameter</span>
                                     <span class="text-center">OEM Target</span>
-                                    <span class="text-right text-emerald-600">MOSIL Match</span>
+                                    <span class="text-right text-emerald-600">MOSIL Tested</span>
                                 </div>
                                 <div class="grid grid-cols-3 gap-2 bg-white p-3 rounded-lg border border-slate-100 text-slate-700">
                                     <span>Base Oil Viscosity</span>
@@ -342,7 +408,7 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 4: DIAGNOSTIC FORM WIZARD                 -->
+    <!-- SECTION 4: DIAGNOSTIC FORM — Modern Multi-Step    -->
     <!-- ================================================== -->
     <?php if (!empty($form['heading'])): ?>
     <section id="cpc-form" class="bg-slate-50 pt-20 pb-24 px-4 sm:px-6 border-b border-slate-200/80">
@@ -370,9 +436,9 @@ $isNoIndex = !empty($seo['noindex']);
             </div>
 
             <!-- Form Card Container (Master Wizard Container) -->
-            <div class="bg-white p-6 sm:p-10 lg:p-12 rounded-3xl border border-slate-200/80 shadow-xl relative">
+            <div class="bg-white p-8 lg:p-12 rounded-3xl border border-slate-200/80 shadow-2xl relative overflow-hidden">
                 
-                <!-- Stepper Progress Header Bar -->
+                <!-- Top Progress Stepper Bar: 3-Step Indicator -->
                 <div class="mb-10 pb-8 border-b border-slate-200/80" id="wizardStepper">
                     <div class="grid grid-cols-3 gap-2 relative">
                         
@@ -386,7 +452,6 @@ $isNoIndex = !empty($seo['noindex']);
                                 1
                             </div>
                             <span class="text-xs font-bold text-slate-950 tracking-tight" id="stepTitle-1">1. Direction & Contact</span>
-                            <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">Parts A & B</span>
                         </button>
 
                         <!-- Step 2 Tab -->
@@ -394,8 +459,7 @@ $isNoIndex = !empty($seo['noindex']);
                             <div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-300 text-slate-500 font-mono font-bold text-xs flex items-center justify-center transition-all group-hover:scale-110 mb-2" id="stepBadge-2">
                                 2
                             </div>
-                            <span class="text-xs font-semibold text-slate-500 tracking-tight" id="stepTitle-2">2. Technical & Spec</span>
-                            <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">Parts C & D</span>
+                            <span class="text-xs font-semibold text-slate-500 tracking-tight" id="stepTitle-2">2. Contact & Spec</span>
                         </button>
 
                         <!-- Step 3 Tab -->
@@ -403,8 +467,7 @@ $isNoIndex = !empty($seo['noindex']);
                             <div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-300 text-slate-500 font-mono font-bold text-xs flex items-center justify-center transition-all group-hover:scale-110 mb-2" id="stepBadge-3">
                                 3
                             </div>
-                            <span class="text-xs font-semibold text-slate-500 tracking-tight" id="stepTitle-3">3. Supply Chain & Future</span>
-                            <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">Parts E & F</span>
+                            <span class="text-xs font-semibold text-slate-500 tracking-tight" id="stepTitle-3">3. Route Details</span>
                         </button>
 
                     </div>
@@ -414,7 +477,7 @@ $isNoIndex = !empty($seo['noindex']);
                     <input type="hidden" name="landing_id" value="<?php echo htmlspecialchars($id); ?>">
                     
                     <!-- ========================================== -->
-                    <!-- STEP 1: PARTS A & B                        -->
+                    <!-- STEP 1: DIRECTION & PRIMARY ROUTE          -->
                     <!-- ========================================== -->
                     <div id="wizardStepContent-1" class="space-y-10">
                         
@@ -425,58 +488,58 @@ $isNoIndex = !empty($seo['noindex']);
                                 <h3 class="text-slate-900 font-extrabold text-lg">Direction & Primary Route</h3>
                             </div>
 
-                            <!-- Q1 -->
+                            <!-- Q1 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q1. Are you currently working on reducing your cost per component?</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="working_on_reduction" value="Yes" class="sr-only"> Yes
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="working_on_reduction" value="No" class="sr-only"> No
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="working_on_reduction" value="Not formally, but there is pressure to" class="sr-only"> Under pressure to reduce
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q2 -->
+                            <!-- Q2 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q2. What is your primary route to reducing CPC?</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="reduction_route" value="Grease cost" class="sr-only"> Grease Cost
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="reduction_route" value="Inventory and working capital" class="sr-only"> Inventory & Capital
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="reduction_route" value="Both" class="sr-only"> Both Routes
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold has-[:checked]:shadow-sm">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="reduction_route" value="Not decided yet" class="sr-only"> Not Decided Yet
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q3 -->
+                            <!-- Q3 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q3. Approximately what is your annual spend on assembly greases?</label>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="annual_spend" value="Under ₹10 lakh" class="sr-only"> Under ₹10L
                                     </label>
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="annual_spend" value="₹10–50 lakh" class="sr-only"> ₹10L – ₹50L
                                     </label>
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="annual_spend" value="₹50 lakh – ₹2 crore" class="sr-only"> ₹50L – ₹2Cr
                                     </label>
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="annual_spend" value="Above ₹2 crore" class="sr-only"> Above ₹2Cr
                                     </label>
-                                    <label class="col-span-2 sm:col-span-1 flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="col-span-2 sm:col-span-1 has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="annual_spend" value="Prefer not to disclose" class="sr-only"> Undisclosed
                                     </label>
                                 </div>
@@ -492,83 +555,62 @@ $isNoIndex = !empty($seo['noindex']);
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- Full Name -->
-                                <div class="relative">
+                                <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Full Name *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                                        <input type="text" name="full_name" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900" placeholder="Rajesh Kumar" required>
-                                    </div>
+                                    <input type="text" name="full_name" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none" placeholder="Rajesh Kumar" required>
                                 </div>
 
                                 <!-- Designation -->
-                                <div class="relative">
+                                <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Designation *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                        <input type="text" name="designation" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900" placeholder="GM Procurement" required>
-                                    </div>
+                                    <input type="text" name="designation" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none" placeholder="GM Procurement" required>
                                 </div>
 
                                 <!-- Function -->
-                                <div class="relative">
+                                <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Function *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                        <select name="function" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900 appearance-none" required>
-                                            <option value="">Select Function...</option>
-                                            <option value="Procurement">Procurement</option>
-                                            <option value="Vendor development">Vendor development</option>
-                                            <option value="Design">Design</option>
-                                            <option value="R&D">R&D</option>
-                                            <option value="Quality">Quality</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
+                                    <select name="function" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none appearance-none" required>
+                                        <option value="">Select Function...</option>
+                                        <option value="Procurement">Procurement</option>
+                                        <option value="Vendor development">Vendor development</option>
+                                        <option value="Design">Design</option>
+                                        <option value="R&D">R&D</option>
+                                        <option value="Quality">Quality</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
 
                                 <!-- Company -->
-                                <div class="relative">
+                                <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Company *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                        <input type="text" name="company" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900" placeholder="AutoComp Industries" required>
-                                    </div>
+                                    <input type="text" name="company" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none" placeholder="AutoComp Industries" required>
                                 </div>
 
                                 <!-- City -->
-                                <div class="relative">
+                                <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Plant Location (City) *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                        <input type="text" name="city" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900" placeholder="Pune" required>
-                                    </div>
+                                    <input type="text" name="city" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none" placeholder="Pune" required>
                                 </div>
 
                                 <!-- Work Email -->
-                                <div class="relative">
+                                <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Work Email *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                        <input type="email" name="work_email" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900" placeholder="r.kumar@autocomp.com" required>
-                                    </div>
+                                    <input type="email" name="work_email" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none" placeholder="r.kumar@autocomp.com" required>
                                 </div>
 
                                 <!-- Mobile Number -->
-                                <div class="md:col-span-2 relative">
+                                <div class="md:col-span-2">
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Mobile Number *</label>
-                                    <div class="relative">
-                                        <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                        <input type="tel" name="mobile_number" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 pl-11 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-                                    </div>
+                                    <input type="tel" name="mobile_number" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Step 1 Button -->
                         <div class="pt-6 flex justify-end">
-                            <button type="button" onclick="goToWizardStep(2)" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-3.5 rounded-xl shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 text-sm">
+                            <button type="button" onclick="goToWizardStep(2)" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-mosilGold/20 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 text-sm group">
                                 <span>Next: Technical & Spec Details</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </button>
                         </div>
 
@@ -591,59 +633,59 @@ $isNoIndex = !empty($seo['noindex']);
                                 <h3 class="text-slate-900 font-extrabold text-lg">Grease Cost & Technical Route</h3>
                             </div>
 
-                            <!-- Q4 -->
+                            <!-- Q4 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q4. Have you already identified a specific grease you want an alternate for?</label>
                                 <div class="grid grid-cols-2 gap-3 max-w-sm">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q4" value="Yes" class="sr-only"> Yes
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q4" value="No" class="sr-only"> No
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q5 -->
+                            <!-- Q5 Input -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-2">Q5. Which grease carries the largest annual budget allocation in your plant?</label>
-                                <input type="text" name="q5" placeholder="Application or component name (e.g. CV Joint grease, High Temp Bearing paste)" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900">
+                                <input type="text" name="q5" placeholder="Application or component name (e.g. CV Joint grease, High Temp Bearing paste)" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none">
                             </div>
 
-                            <!-- Q6 -->
+                            <!-- Q6 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q6. Would you like MOSIL to evaluate that grease for a CPC reduction project?</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q6" value="Yes" class="sr-only"> Yes
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q6" value="No" class="sr-only"> No
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q6" value="Later in the year" class="sr-only"> Later in the year
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q7 -->
+                            <!-- Q7 Textarea -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-2">Q7. Which component is the grease applied on, and at what stage of assembly?</label>
-                                <textarea name="q7" rows="2" placeholder="e.g. Applied on steering column gear assembly during sub-assembly stage" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900"></textarea>
+                                <textarea name="q7" rows="2" placeholder="e.g. Applied on steering column gear assembly during sub-assembly stage" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none"></textarea>
                             </div>
 
-                            <!-- Q8 & Q9 -->
+                            <!-- Q8 & Q9 Choice Pills -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-slate-900 font-semibold text-sm mb-2">Q8. Physio-chemical specs specified?</label>
                                     <div class="grid grid-cols-3 gap-2">
-                                        <label class="flex items-center justify-center p-2.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q8" value="Yes" class="sr-only"> Yes
                                         </label>
-                                        <label class="flex items-center justify-center p-2.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q8" value="No" class="sr-only"> No
                                         </label>
-                                        <label class="flex items-center justify-center p-2.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q8" value="Not sure" class="sr-only"> Not Sure
                                         </label>
                                     </div>
@@ -651,34 +693,34 @@ $isNoIndex = !empty($seo['noindex']);
                                 <div>
                                     <label class="block text-slate-900 font-semibold text-sm mb-2">Q9. Performance specs specified?</label>
                                     <div class="grid grid-cols-3 gap-2">
-                                        <label class="flex items-center justify-center p-2.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q9" value="Yes" class="sr-only"> Yes
                                         </label>
-                                        <label class="flex items-center justify-center p-2.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q9" value="No" class="sr-only"> No
                                         </label>
-                                        <label class="flex items-center justify-center p-2.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q9" value="Not sure" class="sr-only"> Not Sure
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Q10: Quantity Applied with Inline Unit Group -->
+                            <!-- Q10: Quantity Applied -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-2">Q10. Approximately how much grease is applied per component?</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
                                     <div class="sm:col-span-5">
-                                        <input type="text" name="q10_amount" placeholder="Amount (e.g. 2.5)" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900">
+                                        <input type="text" name="q10_amount" placeholder="Amount (e.g. 2.5)" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none">
                                     </div>
                                     <div class="sm:col-span-7 grid grid-cols-3 gap-2">
-                                        <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3.5 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q10_unit" value="grams" class="sr-only"> Grams
                                         </label>
-                                        <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3.5 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700">
                                             <input type="radio" name="q10_unit" value="millilitres" class="sr-only"> mL
                                         </label>
-                                        <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                        <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-3.5 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs text-slate-700 text-center">
                                             <input type="radio" name="q10_unit" value="Not measured" class="sr-only"> Not Measured
                                         </label>
                                     </div>
@@ -712,7 +754,7 @@ $isNoIndex = !empty($seo['noindex']);
                                     </label>
 
                                     <!-- Route 2: Third-party -->
-                                    <label class="flex items-start gap-3.5 p-4 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-2xl cursor-pointer transition-all has-[:checked]:border-mosilGold has-[:checked]:bg-mosilGold/15">
+                                    <label class="flex items-start gap-3.5 p-4 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200 hover:border-mosilGold/60 rounded-2xl cursor-pointer transition-all has-[:checked]:border-mosilGold has-[:checked]:bg-mosilGold/15">
                                         <div class="mt-0.5">
                                             <input type="radio" name="q11" value="Validation at a third-party laboratory" class="w-4 h-4 text-mosilGreen focus:ring-mosilGold border-slate-300">
                                         </div>
@@ -723,7 +765,7 @@ $isNoIndex = !empty($seo['noindex']);
                                     </label>
 
                                     <!-- Route 3: Both -->
-                                    <label class="flex items-start gap-3.5 p-4 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-2xl cursor-pointer transition-all has-[:checked]:border-mosilGold has-[:checked]:bg-mosilGold/15">
+                                    <label class="flex items-start gap-3.5 p-4 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200 hover:border-mosilGold/60 rounded-2xl cursor-pointer transition-all has-[:checked]:border-mosilGold has-[:checked]:bg-mosilGold/15">
                                         <div class="mt-0.5">
                                             <input type="radio" name="q11" value="Both" class="w-4 h-4 text-mosilGreen focus:ring-mosilGold border-slate-300">
                                         </div>
@@ -734,7 +776,7 @@ $isNoIndex = !empty($seo['noindex']);
                                     </label>
 
                                     <!-- Route 4: Decide Later -->
-                                    <label class="flex items-start gap-3.5 p-4 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-2xl cursor-pointer transition-all has-[:checked]:border-mosilGold has-[:checked]:bg-mosilGold/15">
+                                    <label class="flex items-start gap-3.5 p-4 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200 hover:border-mosilGold/60 rounded-2xl cursor-pointer transition-all has-[:checked]:border-mosilGold has-[:checked]:bg-mosilGold/15">
                                         <div class="mt-0.5">
                                             <input type="radio" name="q11" value="We will decide after seeing the proposal" class="w-4 h-4 text-mosilGreen focus:ring-mosilGold border-slate-300">
                                         </div>
@@ -754,9 +796,9 @@ $isNoIndex = !empty($seo['noindex']);
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                                 <span>Back</span>
                             </button>
-                            <button type="button" onclick="goToWizardStep(3)" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-3.5 rounded-xl shadow-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 text-sm">
+                            <button type="button" onclick="goToWizardStep(3)" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-mosilGold/20 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 text-sm group">
                                 <span>Next: Supply Chain & Future</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </button>
                         </div>
 
@@ -779,58 +821,58 @@ $isNoIndex = !empty($seo['noindex']);
                                 <h3 class="text-slate-900 font-extrabold text-lg">Inventory & Working Capital Route</h3>
                             </div>
 
-                            <!-- Q12 -->
+                            <!-- Q12 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q12. What is your current lead time from grease order to receipt?</label>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q12" value="Under 2 weeks" class="sr-only"> &lt; 2 Weeks
                                     </label>
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q12" value="2-4 weeks" class="sr-only"> 2–4 Weeks
                                     </label>
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q12" value="1-2 months" class="sr-only"> 1–2 Months
                                     </label>
-                                    <label class="flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q12" value="Over 2 months" class="sr-only"> &gt; 2 Months
                                     </label>
-                                    <label class="col-span-2 sm:col-span-1 flex items-center justify-center p-3 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="col-span-2 sm:col-span-1 has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q12" value="Varies widely" class="sr-only"> Varies Widely
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q13, Q14a, Q14b -->
+                            <!-- Q13, Q14a, Q14b Inputs -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Q13. Days of stock held?</label>
-                                    <input type="number" name="q13" placeholder="Days (e.g. 45)" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900">
+                                    <input type="number" name="q13" placeholder="Days (e.g. 45)" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none">
                                 </div>
                                 <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Q14a. Target lead time?</label>
-                                    <input type="text" name="q14a" placeholder="Target (e.g. 5 days)" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900">
+                                    <input type="text" name="q14a" placeholder="Target (e.g. 5 days)" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none">
                                 </div>
                                 <div>
                                     <label class="block font-semibold text-slate-800 text-xs mb-1">Q14b. Target stock days?</label>
-                                    <input type="text" name="q14b" placeholder="Target (e.g. 15 days)" class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900">
+                                    <input type="text" name="q14b" placeholder="Target (e.g. 15 days)" class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all w-full text-sm text-slate-900 outline-none">
                                 </div>
                             </div>
 
-                            <!-- Q15 -->
+                            <!-- Q15 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q15. Is any part of your grease requirement currently imported?</label>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q15" value="Yes, fully" class="sr-only"> Yes, Fully
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q15" value="Yes, partly" class="sr-only"> Yes, Partly
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q15" value="No" class="sr-only"> No
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q15" value="Not sure" class="sr-only"> Not Sure
                                     </label>
                                 </div>
@@ -849,51 +891,51 @@ $isNoIndex = !empty($seo['noindex']);
                                 <h3 class="text-slate-900 font-extrabold text-lg">Design & New Projects (Nurture Route)</h3>
                             </div>
 
-                            <!-- Q16 -->
+                            <!-- Q16 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q16. Are there new components in development where grease is not yet finalised?</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q16" value="Yes" class="sr-only"> Yes
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q16" value="No" class="sr-only"> No
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-sm text-slate-700">
                                         <input type="radio" name="q16" value="Cannot disclose" class="sr-only"> Cannot Disclose
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q17 -->
+                            <!-- Q17 Input -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-2">Q17. What are those components or programmes, broadly?</label>
-                                <input type="text" name="q17" placeholder="Component type and expected SOP timing..." class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900">
+                                <input type="text" name="q17" placeholder="Component type and expected SOP timing..." class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all w-full text-sm text-slate-900 outline-none">
                             </div>
 
-                            <!-- Q18 -->
+                            <!-- Q18 Choice Pills -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-3">Q18. At what stage would you want a grease supplier involved?</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q18" value="Concept and specification stage" class="sr-only"> Concept & Spec Stage
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q18" value="Prototype and validation" class="sr-only"> Prototype & Validation
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q18" value="Pre-production" class="sr-only"> Pre-production
                                     </label>
-                                    <label class="flex items-center justify-center p-3.5 bg-slate-50 hover:bg-mosilGold/10 border border-slate-200/80 hover:border-mosilGold/50 rounded-xl text-xs sm:text-sm font-medium text-slate-700 cursor-pointer transition-all has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold text-center">
+                                    <label class="has-[:checked]:bg-mosilGold/15 has-[:checked]:border-mosilGold has-[:checked]:text-slate-900 has-[:checked]:font-bold cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-mosilGold/60 transition-all flex items-center justify-center font-medium text-xs sm:text-sm text-slate-700 text-center">
                                         <input type="radio" name="q18" value="Only after OEM approval" class="sr-only"> Only After OEM Approval
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Q19 -->
+                            <!-- Q19 Textarea -->
                             <div>
                                 <label class="block text-slate-900 font-semibold text-base mb-2">Q19. Anything else we should know before we revert?</label>
-                                <textarea name="q19" rows="2" placeholder="Any specific constraints, test parameters, or notes..." class="w-full bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 text-sm focus:bg-white focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 transition-all outline-none text-slate-900"></textarea>
+                                <textarea name="q19" rows="2" placeholder="Any specific constraints, test parameters, or notes..." class="bg-slate-50 border border-slate-200 rounded-xl p-4 focus:bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all w-full text-sm text-slate-900 outline-none"></textarea>
                             </div>
                         </div>
 
@@ -905,7 +947,7 @@ $isNoIndex = !empty($seo['noindex']);
                             </button>
 
                             <!-- Submit Button CTA -->
-                            <button type="submit" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold text-base py-4 px-8 rounded-xl shadow-lg shadow-mosilGold/20 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2.5 w-full sm:w-auto">
+                            <button type="submit" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold text-base py-4 px-8 rounded-xl shadow-lg shadow-mosilGold/20 hover:shadow-[0_0_30px_rgba(244,195,0,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2.5 w-full sm:w-auto group">
                                 <svg class="w-5 h-5 text-mosilGreenDeep shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                                 <span>Submit Confidential Assessment</span>
                             </button>
@@ -976,10 +1018,10 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 5: THE QUADRA APPROACH®                   -->
+    <!-- SECTION 5: QUADRA APPROACH® — 4-Stage Timeline     -->
     <!-- ================================================== -->
     <?php if (!empty($approach['stages']) && count($approach['stages']) > 0): ?>
-    <section class="bg-white py-20 px-6 border-b border-slate-200/80">
+    <section id="approach" class="bg-white py-20 px-4 sm:px-6 border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="font-mono text-xs font-bold uppercase tracking-widest text-mosilGreen bg-mosilGreen/10 px-3.5 py-1 rounded-full border border-mosilGreen/20">OUR METHODOLOGY</span>
@@ -993,12 +1035,12 @@ $isNoIndex = !empty($seo['noindex']);
                 <?php endif; ?>
             </div>
 
-            <!-- Dynamic Stages Grid -->
+            <!-- 4 Numbered Stage Cards (01 to 04) with top gradient border highlights -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <?php foreach ($approach['stages'] as $stage): ?>
-                <div class="bg-white border border-slate-200/80 border-t-4 border-t-mosilGold p-6 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                <div class="bg-white border border-slate-200/80 border-t-4 border-t-mosilGold p-6 rounded-2xl shadow-sm hover:border-mosilGold/60 hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="font-mono text-xs font-bold text-mosilGreen mb-2 uppercase tracking-wider">
+                        <div class="font-mono text-xs font-bold text-mosilGreen mb-2 uppercase tracking-wider group-hover:text-mosilGold transition-colors">
                             Stage 0<?php echo htmlspecialchars($stage['number'] ?? 1); ?>
                         </div>
                         <h3 class="text-base font-bold text-slate-900 uppercase tracking-wide mb-3">
@@ -1016,7 +1058,7 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 6: PROOF & TRIBOINTEL™ LAB (MOSIL Green)   -->
+    <!-- SECTION 6: PROOF & TRIBOINTEL™ LAB — Dark Tech     -->
     <!-- ================================================== -->
     <?php if (!empty($proof['heading']) || !empty($proof['body_1'])): ?>
         <?php 
@@ -1024,8 +1066,11 @@ $isNoIndex = !empty($seo['noindex']);
             $proofImg = $proof['image'] ?? '';
             $proofAlt = $proof['image_alt'] ?? 'MOSIL TriboIntel Laboratory';
         ?>
-    <section class="bg-mosilGreenDeep py-20 px-6 border-b border-mosilGreen/40 text-white">
-        <div class="max-w-7xl mx-auto">
+    <section id="proof-lab" class="bg-mosilGreenDeep py-20 px-4 sm:px-6 border-b border-mosilGreen/40 text-white relative overflow-hidden">
+        
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-mosilGold/10 blur-[150px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
                 <!-- Left Column -->
@@ -1047,11 +1092,11 @@ $isNoIndex = !empty($seo['noindex']);
                         </p>
                     <?php endif; ?>
 
-                    <!-- Dynamic Trust Badges / Chips -->
+                    <!-- Dark Glassmorphism Trust Chips -->
                     <?php if (!empty($proof['badges']) && count($proof['badges']) > 0): ?>
-                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <div class="flex flex-wrap gap-2 font-mono text-xs">
                             <?php foreach ($proof['badges'] as $badgeText): ?>
-                                <span class="bg-mosilGreenDark text-mosilGold border border-mosilGreen/60 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                                <span class="bg-mosilGreenDark border border-mosilGreen/60 text-mosilGold rounded-full px-4 py-2 font-mono text-xs flex items-center gap-2 shadow-md">
                                     ✓ <?php echo htmlspecialchars($badgeText); ?>
                                 </span>
                             <?php endforeach; ?>
@@ -1085,10 +1130,10 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 7: POST-SUBMISSION PROCESS                 -->
+    <!-- SECTION 7 & 8: PROCESS & POST-SUBMIT BANNER       -->
     <!-- ================================================== -->
     <?php if (!empty($process['steps']) && count($process['steps']) > 0): ?>
-    <section class="bg-slate-50 py-16 px-6 border-b border-slate-200/80">
+    <section class="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <span class="font-mono text-xs font-bold uppercase tracking-widest text-mosilGreen block mb-2">TIMELINE & NEXT STEPS</span>
@@ -1100,7 +1145,7 @@ $isNoIndex = !empty($seo['noindex']);
             <div class="grid grid-cols-1 md:grid-cols-<?php echo min(count($process['steps']), 4); ?> gap-6">
                 <?php foreach ($process['steps'] as $idx => $step): ?>
                     <?php $stepText = is_array($step) ? ($step['description'] ?? '') : $step; ?>
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-mosilGold/60 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                         <div>
                             <div class="w-10 h-10 rounded-xl bg-mosilGreen/10 text-mosilGreen font-mono font-bold flex items-center justify-center mb-4 text-sm">
                                 0<?php echo $idx + 1; ?>
@@ -1117,7 +1162,7 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 9: FREQUENTLY ASKED QUESTIONS (Pro Open)   -->
+    <!-- SECTION 9: FREQUENTLY ASKED QUESTIONS (Accordion)  -->
     <!-- ================================================== -->
     <?php if (!empty($faq) && count($faq) > 0): ?>
     <section class="bg-white py-20 px-4 sm:px-6 border-b border-slate-200/80" id="faq-section">
@@ -1148,7 +1193,7 @@ $isNoIndex = !empty($seo['noindex']);
                 </div>
             </div>
             
-            <!-- Accordion Cards Stack (All Open by Default) -->
+            <!-- Accordion Cards Stack (Open by Default with Soft Amber Glow) -->
             <div class="space-y-4">
                 <?php foreach ($faq as $idx => $item): ?>
                     <?php 
@@ -1173,8 +1218,8 @@ $isNoIndex = !empty($seo['noindex']);
                                 </h3>
                             </div>
 
-                            <!-- Expand/Collapse Chevron Indicator (Open by Default) -->
-                            <div class="w-8 h-8 rounded-full bg-mosilGold text-mosilGreenDeep flex items-center justify-center transition-all duration-300 shrink-0 rotate-180 faq-chevron">
+                            <!-- Circular Rotating Chevron Indicator -->
+                            <div class="w-8 h-8 rounded-full bg-mosilGold text-mosilGreenDeep flex items-center justify-center transition-transform duration-300 shrink-0 rotate-180 faq-chevron">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                             </div>
 
@@ -1197,9 +1242,9 @@ $isNoIndex = !empty($seo['noindex']);
                     <div class="font-bold text-white text-base sm:text-lg">Have a specific technical or OEM compliance question not answered here?</div>
                     <p class="text-xs sm:text-sm text-slate-400">Our application engineering team reviews all diagnostic queries directly.</p>
                 </div>
-                <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-6 py-3.5 rounded-xl text-xs sm:text-sm shadow-md hover:-translate-y-0.5 transition-all shrink-0 inline-flex items-center gap-2">
+                <a href="#cpc-form" class="bg-mosilGold hover:bg-mosilGoldHover text-mosilGreenDeep font-bold px-6 py-3.5 rounded-xl text-xs sm:text-sm shadow-md hover:-translate-y-0.5 transition-all shrink-0 inline-flex items-center gap-2 group">
                     <span>Talk to an Application Engineer</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
             </div>
 
@@ -1244,23 +1289,29 @@ $isNoIndex = !empty($seo['noindex']);
     <?php endif; ?>
 
     <!-- ================================================== -->
-    <!-- SECTION 10: FOOTER & METADATA ZONE (MOSIL Green)  -->
+    <!-- SECTION 10: FOOTER & METADATA ZONE (Executive Dark)-->
     <!-- ================================================== -->
-    <footer class="bg-mosilGreenDeep text-slate-400 py-12 px-6 border-t border-mosilGreen/40 text-xs">
+    <footer class="bg-mosilGreenDeep text-slate-400 py-12 px-4 sm:px-6 border-t border-mosilGreen/40 text-xs">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="space-y-1 text-center md:text-left">
-                <div class="font-bold text-white text-base">MOSIL LUBRICANTS PVT. LTD.</div>
-                <div>Cost Per Component (CPC) Landing Page</div>
-                <div class="text-slate-500 text-[11px]">Specialized Landing Page • Not for general navigation</div>
+                <div class="font-bold text-white text-base flex items-center justify-center md:justify-start gap-2">
+                    <span class="w-5 h-5 rounded bg-mosilGold text-mosilGreenDeep font-extrabold text-xs inline-flex items-center justify-center">M</span>
+                    <span>MOSIL LUBRICANTS PVT. LTD.</span>
+                </div>
+                <div>Cost Per Component (CPC) Enterprise Masterwork</div>
+                <div class="text-slate-500 text-[11px]">Specialized Campaign Page • ISO 9001 & NABL ISO/IEC 17025 Certified</div>
             </div>
-            <div class="flex items-center gap-6 font-medium">
+            <div class="flex flex-wrap items-center justify-center gap-6 font-medium">
                 <a href="#hero" class="hover:text-mosilGold transition">Hero</a>
                 <a href="#cost-levers" class="hover:text-mosilGold transition">Value Levers</a>
+                <a href="#spec-trust" class="hover:text-mosilGold transition">OEM Specs</a>
                 <a href="#cpc-form" class="hover:text-mosilGold transition">CPC Check</a>
+                <a href="#proof-lab" class="hover:text-mosilGold transition">TriboIntel™ Lab</a>
+                <a href="#faq-section" class="hover:text-mosilGold transition">FAQ</a>
             </div>
             <div class="text-center md:text-right space-y-1">
                 <div class="font-bold text-slate-200">Indian Specialty Lubricant Manufacturer</div>
-                <div>ISO 9001 & NABL ISO/IEC 17025 Certified</div>
+                <div class="text-slate-400">Domestic R&D & NABL Tribology Laboratory</div>
             </div>
         </div>
     </footer>
