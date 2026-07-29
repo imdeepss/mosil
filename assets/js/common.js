@@ -78,8 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (openMobileSearchBtn) {
-    openMobileSearchBtn.addEventListener("click", () => {
-      toggleSearch(true);
+    openMobileSearchBtn.addEventListener("click", (e) => {
+      if (typeof openEvaModal === "function") {
+        openEvaModal();
+      } else {
+        toggleSearch(true);
+      }
     });
   }
 
