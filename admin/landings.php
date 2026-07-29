@@ -13,9 +13,12 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit;
 }
 
+$page_title = "Landing Pages";
+$active_menu = "landings";
+
 $landings_dir = '../data/landings/';
 $message = '';
-$error = '';
+$messageType = 'success';
 
 // Handle Delete Request
 if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['file'])) {
@@ -25,11 +28,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['file'
     if (file_exists($file_path)) {
         if (unlink($file_path)) {
             $message = "Landing page '{$file_to_delete}' deleted successfully.";
+            $messageType = "success";
         } else {
-            $error = "Failed to delete landing page file.";
+            $message = "Failed to delete landing page file.";
+            $messageType = "danger";
         }
     } else {
-        $error = "Landing page file not found.";
+        $message = "Landing page file not found.";
+        $messageType = "warning";
     }
 }
 
@@ -39,7 +45,7 @@ if (is_dir($landings_dir)) {
     $files = scandir($landings_dir);
     foreach ($files as $file) {
         if (pathinfo($file, PATHINFO_EXTENSION) === 'json') {
-            $json_content = file_get_contents($landings_dir . $file);
+            $json_content = @file_get_contents($landings_dir . $file);
             $data = json_decode($json_content, true);
             if ($data) {
                 $landings[] = [
@@ -54,98 +60,127 @@ if (is_dir($landings_dir)) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Landing Pages | MOSIL Admin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-100 font-sans text-slate-800">
+<?php include 'includes/header.php'; ?>
 
-    <div class="flex min-h-screen">
-        <!-- Sidebar -->
+<div class="container-fluid">
+    <div class="row">
         <?php include 'includes/sidebar.php'; ?>
 
-        <!-- Main Content -->
-        <div class="flex-1 p-8">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
             
-            <div class="flex justify-between items-center mb-8">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-bottom">
                 <div>
-                    <h1 class="text-3xl font-bold text-slate-900">Landing Pages</h1>
-                    <p class="text-slate-500 text-sm mt-1">Manage dynamic landing page copy, images, and diagnostic form templates.</p>
+                    <h1 class="h2 text-dark"><i class="fas fa-bullhorn text-primary me-2"></i>Landing Pages</h1>
+                    <p class="text-muted small mb-0">Manage dynamic landing page copy, images, and diagnostic templates.</p>
                 </div>
-                <a href="landing_form.php" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 py-2.5 rounded-lg shadow transition flex items-center gap-2 text-sm">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    <span>Create New Landing Page</span>
-                </a>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <a href="landing_form.php" class="btn btn-primary shadow-sm font-weight-bold">
+                        <i class="fas fa-plus me-1"></i> Create New Landing Page
+                    </a>
+                </div>
             </div>
 
-            <?php if ($message): ?>
-                <div class="bg-emerald-100 border border-emerald-300 text-emerald-800 px-4 py-3 rounded-lg mb-6 text-sm">
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-<?php echo htmlspecialchars($messageType); ?> alert-dismissible fade show" role="alert">
                     <?php echo htmlspecialchars($message); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
 
-            <?php if ($error): ?>
-                <div class="bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded-lg mb-6 text-sm">
-                    <?php echo htmlspecialchars($error); ?>
+            <!-- Landing Pages List Card -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0 font-weight-bold text-dark">
+                        <i class="fas fa-list me-2 text-primary"></i>All Landing Pages (<?php echo count($landings); ?>)
+                    </h5>
                 </div>
-            <?php endif; ?>
-
-            <!-- Landing Pages Table -->
-            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase text-xs">
-                        <tr>
-                            <th class="px-6 py-4">URL Slug</th>
-                            <th class="px-6 py-4">Landing Page Title</th>
-                            <th class="px-6 py-4">Indexing Status</th>
-                            <th class="px-6 py-4 text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-200">
-                        <?php if (count($landings) > 0): ?>
-                            <?php foreach ($landings as $landing): ?>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="px-6 py-4 font-mono text-amber-600 font-semibold">
-                                        /<?php echo htmlspecialchars($landing['slug']); ?>
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-slate-900">
-                                        <?php echo htmlspecialchars($landing['title']); ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php if ($landing['noindex']): ?>
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
-                                                Unlinked (noindex)
-                                            </span>
-                                        <?php else: ?>
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200">
-                                                Public (Indexed)
-                                            </span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td class="px-6 py-4 text-right space-x-3">
-                                        <a href="../<?php echo htmlspecialchars($landing['slug']); ?>" target="_blank" class="text-slate-500 hover:text-slate-900 font-medium">View Live ↗</a>
-                                        <a href="landing_form.php?file=<?php echo urlencode($landing['filename']); ?>" class="text-amber-600 hover:text-amber-700 font-semibold">Edit</a>
-                                        <a href="landings.php?action=delete&file=<?php echo urlencode($landing['filename']); ?>" onclick="return confirm('Are you sure you want to delete this landing page?');" class="text-red-500 hover:text-red-700 font-medium">Delete</a>
-                                    </td>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="landingsTable" class="table table-hover align-middle mb-0">
+                            <thead class="table-light text-uppercase small text-muted">
+                                <tr>
+                                    <th class="px-4 py-3">URL Slug</th>
+                                    <th class="px-4 py-3">Page Title / Headline</th>
+                                    <th class="px-4 py-3">Indexing Status</th>
+                                    <th class="px-4 py-3 text-end">Actions</th>
                                 </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="4" class="px-6 py-12 text-center text-slate-500">
-                                    No landing pages found. Click "Create New Landing Page" to create one.
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                <?php if (count($landings) > 0): ?>
+                                    <?php foreach ($landings as $landing): ?>
+                                        <tr>
+                                            <td class="px-4 py-3 font-monospace text-primary font-weight-bold">
+                                                /<?php echo htmlspecialchars($landing['slug']); ?>
+                                            </td>
+                                            <td class="px-4 py-3 text-dark font-weight-bold">
+                                                <?php echo htmlspecialchars($landing['title']); ?>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                <?php if ($landing['noindex']): ?>
+                                                    <span class="badge bg-warning text-dark px-2.5 py-1">
+                                                        <i class="fas fa-eye-slash me-1"></i> Unlinked (noindex)
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class="badge bg-success text-white px-2.5 py-1">
+                                                        <i class="fas fa-globe me-1"></i> Public (Indexed)
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="px-4 py-3 text-end">
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <a href="../<?php echo htmlspecialchars($landing['slug']); ?>" target="_blank" class="btn btn-outline-secondary" title="View Live Page">
+                                                        <i class="fas fa-external-link-alt me-1"></i> Live
+                                                    </a>
+                                                    <a href="landing_form.php?file=<?php echo urlencode($landing['filename']); ?>" class="btn btn-outline-primary" title="Edit Page">
+                                                        <i class="fas fa-edit me-1"></i> Edit
+                                                    </a>
+                                                    <button type="button" onclick="confirmDelete('<?php echo urlencode($landing['filename']); ?>', '<?php echo htmlspecialchars(addslashes($landing['slug'])); ?>')" class="btn btn-outline-danger" title="Delete Page">
+                                                        <i class="fas fa-trash-alt me-1"></i> Delete
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4" class="text-center py-5 text-muted">
+                                            <i class="fas fa-folder-open fa-3x mb-3 d-block text-secondary opacity-50"></i>
+                                            No landing pages found. Click <strong>"Create New Landing Page"</strong> above to create one.
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-        </div>
+        </main>
     </div>
+</div>
 
-</body>
-</html>
+<script>
+function confirmDelete(filename, slug) {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: 'Delete Landing Page?',
+            text: 'Are you sure you want to delete /' + slug + '? This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'landings.php?action=delete&file=' + filename;
+            }
+        });
+    } else {
+        if (confirm('Are you sure you want to delete /' + slug + '?')) {
+            window.location.href = 'landings.php?action=delete&file=' + filename;
+        }
+    }
+}
+</script>
+
+<?php include 'includes/footer.php'; ?>
