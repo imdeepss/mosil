@@ -78,11 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (openMobileSearchBtn) {
-    openMobileSearchBtn.addEventListener("click", () => {
+    openMobileSearchBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
       if (typeof openEvaModal === "function") {
         openEvaModal();
-      } else {
-        toggleSearch(true);
       }
     });
   }
@@ -110,13 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (openSidebarBtn) {
     openSidebarBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-
-      // IF Search is open, clicking this button should CLOSE search, NOT open sidebar
-      if (isSearchOpen) {
-        toggleSearch(false);
-        return;
-      }
-
       toggleSidebar(true);
     });
   }

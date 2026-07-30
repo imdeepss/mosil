@@ -220,11 +220,11 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                     </svg>
                 </div>
 
-                <!-- In-Header Mobile Search Bar -->
+                <!-- In-Header Mobile Search Bar (Hidden for now - using SARAH Modal) -->
+                <!--
                 <div id="mobileSearchBar"
                     class="absolute top-0 right-0 h-full z-40 bg-[#0e0e0e] flex items-center overflow-hidden transition-[width] duration-300 ease-in-out w-0 md:hidden">
                     <div class="flex items-center w-screen max-w-[100vw] text-white px-4">
-                        <!-- Search Icon (Slides with the bar) -->
                         <svg class="shrink-0 mr-3 search-icon-trigger cursor-pointer" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 32 32" fill="none">
                             <path
@@ -233,14 +233,13 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                         </svg>
                         <input type="text" placeholder="Search..."
                             class="search-input flex-grow bg-transparent text-white placeholder-neutral-400 outline-none text-lg h-full min-w-0">
-                        <!-- Search Results Dropdown (Mobile) -->
                         <div
                             class="search-results-container fixed top-[60px] left-0 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-[60] hidden max-h-[80vh] overflow-y-auto">
                         </div>
-                        <!-- Spacer for Hamburger/Close Button -->
                         <div class="w-12 shrink-0"></div>
                     </div>
                 </div>
+                -->
 
                 <!-- Hamburger / Close Wrapper -->
                 <div class="z-50">
