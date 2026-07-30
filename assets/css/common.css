@@ -506,7 +506,7 @@ form select:focus {
 .whatsapp-float {
     position: fixed;
     bottom: 1rem;
-    left: 1rem;
+    right: 1rem;
     background-color: #25D366;
     width: 55px;
     height: 55px;

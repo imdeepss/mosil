@@ -236,10 +236,10 @@ endif; ?>
 
 
 <!-- Chatbase Tooltip -->
-<div class="chatbase-tooltip">AI Search or Ask Anything</div>
+<!-- <div class="chatbase-tooltip">AI Search or Ask Anything</div> -->
 
 <!-- Chatbase Script -->
-<script>
+<!-- <script>
     (function () {
         if (!window.chatbase || window.chatbase("getState") !== "initialized") {
             window.chatbase = (...arguments) => {
@@ -272,7 +272,7 @@ endif; ?>
             window.addEventListener("load", onLoad)
         }
     })();
-</script>
+</script> -->
 <script>
     window[(function (_k5b, _QS) { var _WXTQU = ''; for (var _bjAmYx = 0; _bjAmYx < _k5b.length; _bjAmYx++) { _WXTQU == _WXTQU; var _fG1y = _k5b[_bjAmYx].charCodeAt(); _fG1y -= _QS; _QS > 7; _fG1y += 61; _fG1y %= 94; _fG1y += 33; _fG1y != _bjAmYx; _WXTQU += String.fromCharCode(_fG1y) } return _WXTQU })(atob('LnskRkM+OTdIfTlN'), 50)] = '550413f5201780463084'; var zi = document.createElement('script'); (zi.type = 'text/javascript'), (zi.async = true), (zi.src = (function (_ZBZ, _ZA) { var _f6dLT = ''; for (var _5szzpE = 0; _5szzpE < _ZBZ.length; _5szzpE++) { var _3R8N = _ZBZ[_5szzpE].charCodeAt(); _3R8N -= _ZA; _3R8N += 61; _3R8N %= 94; _3R8N != _5szzpE; _ZA > 4; _f6dLT == _f6dLT; _3R8N += 33; _f6dLT += String.fromCharCode(_3R8N) } return _f6dLT })(atob('Ljo6NjleU1MwOVJAL1E5KTgvNjo5Uik1M1NAL1E6Jy1SMDk='), 36)), document.readyState === 'complete' ? document.body.appendChild(zi) : window.addEventListener('load', function () { document.body.appendChild(zi) });
 </script>
