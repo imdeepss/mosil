@@ -1,4 +1,4 @@
-    <!-- SARA Modal HTML & CSS & JS -->
+    <!-- SARAH Modal HTML & CSS & JS -->
     <div id="evaModal"
         class="fixed inset-0 z-[100] hidden flex-col items-center pt-[8vh] pb-4 px-4 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-500">
         <div class="relative w-full max-w-4xl bg-white/95 backdrop-blur-3xl rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.8)] overflow-hidden flex flex-col transform scale-95 transition-all duration-500"
@@ -10,39 +10,12 @@
                 <div class="flex items-center gap-4">
                     <div
                         class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(244,195,0,0.25)] bg-gradient-to-tr from-primary to-primary-mid">
-                        <svg class="w-14 h-14 relative z-10 p-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                            <path d="M 8 52 C 8 46, 12 44, 18 44 L 18 64 L 8 64 Z" fill="#CBD5E1" />
-                            <path d="M 56 52 C 56 46, 52 44, 46 44 L 46 64 L 56 64 Z" fill="#CBD5E1" />
-                            <path d="M 12 56 C 12 46, 18 42, 32 42 C 46 42, 52 46, 52 56 L 52 64 L 12 64 Z"
-                                fill="#E2E8F0" />
-                            <rect x="24" y="38" width="16" height="12" fill="#94A3B8" />
-                            <path
-                                d="M 14 30 C 14 16, 18 12, 32 12 C 46 12, 50 16, 50 30 C 50 42, 46 46, 32 46 C 18 46, 14 42, 14 30 Z"
-                                fill="#F1F5F9" />
-                            <path
-                                d="M 14 30 C 14 42, 18 46, 32 46 C 46 46, 50 42, 50 30 L 50 34 C 50 46, 46 50, 32 50 C 18 50, 14 46, 14 34 Z"
-                                fill="#E2E8F0" />
-                            <path d="M 8 30 C 8 8, 20 4, 32 4 C 44 4, 56 8, 56 30" fill="none" stroke="#1E3A8A"
-                                stroke-width="5" stroke-linecap="round" />
-                            <rect x="24" y="1" width="16" height="6" rx="2" fill="#2563EB" />
-                            <rect x="4" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                            <rect x="52" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                            <rect x="6" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                            <rect x="50" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                            <path
-                                d="M 16 28 C 16 22, 18 21, 32 21 C 46 21, 48 22, 48 28 L 48 32 C 48 38, 46 39, 32 39 C 18 39, 16 38, 16 32 Z"
-                                fill="#172554" />
-                            <circle cx="25" cy="30" r="3" fill="#22D3EE" />
-                            <circle cx="39" cy="30" r="3" fill="#22D3EE" />
-                            <path d="M 54 36 L 54 48 C 54 52, 50 54, 46 54 L 40 54" fill="none" stroke="#94A3B8"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <rect x="34" y="51" width="8" height="6" rx="3" fill="#1E3A8A" />
-                        </svg>
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-10">
                     </div>
                     <div class="flex flex-col shrink-0">
                         <span
                             class="text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1.5 opacity-90">Ask</span>
-                        <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARA</span>
+                        <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARAH</span>
                     </div>
                 </div>
                 <!-- Close button inside header -->
@@ -130,42 +103,11 @@
                         <div class="flex justify-start chat-bubble-enter w-full">
                             <div
                                 class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                                <div
-                                    class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent">
-                                </div>
-                                <svg class="w-7 h-7 relative z-20 mt-1" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 64 64">
-                                    <path d="M 8 52 C 8 46, 12 44, 18 44 L 18 64 L 8 64 Z" fill="#CBD5E1" />
-                                    <path d="M 56 52 C 56 46, 52 44, 46 44 L 46 64 L 56 64 Z" fill="#CBD5E1" />
-                                    <path d="M 12 56 C 12 46, 18 42, 32 42 C 46 42, 52 46, 52 56 L 52 64 L 12 64 Z"
-                                        fill="#E2E8F0" />
-                                    <rect x="24" y="38" width="16" height="12" fill="#94A3B8" />
-                                    <path
-                                        d="M 14 30 C 14 16, 18 12, 32 12 C 46 12, 50 16, 50 30 C 50 42, 46 46, 32 46 C 18 46, 14 42, 14 30 Z"
-                                        fill="#F1F5F9" />
-                                    <path
-                                        d="M 14 30 C 14 42, 18 46, 32 46 C 46 46, 50 42, 50 30 L 50 34 C 50 46, 46 50, 32 50 C 18 50, 14 46, 14 34 Z"
-                                        fill="#E2E8F0" />
-                                    <path d="M 8 30 C 8 8, 20 4, 32 4 C 44 4, 56 8, 56 30" fill="none" stroke="#1E3A8A"
-                                        stroke-width="5" stroke-linecap="round" />
-                                    <rect x="24" y="1" width="16" height="6" rx="2" fill="#2563EB" />
-                                    <rect x="4" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                                    <rect x="52" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                                    <rect x="6" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                                    <rect x="50" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                                    <path
-                                        d="M 16 28 C 16 22, 18 21, 32 21 C 46 21, 48 22, 48 28 L 48 32 C 48 38, 46 39, 32 39 C 18 39, 16 38, 16 32 Z"
-                                        fill="#172554" />
-                                    <circle cx="25" cy="30" r="3" fill="#22D3EE" />
-                                    <circle cx="39" cy="30" r="3" fill="#22D3EE" />
-                                    <path d="M 54 36 L 54 48 C 54 52, 50 54, 46 54 L 40 54" fill="none" stroke="#94A3B8"
-                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                    <rect x="34" y="51" width="8" height="6" rx="3" fill="#1E3A8A" />
-                                </svg>
+                                <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                             </div>
                             <div
                                 class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
-                                Hello! I am SARA, your intelligent assistant. How can I help you discover the perfect
+                                Hello! I am SARAH, your intelligent assistant. How can I help you discover the perfect
                                 lubrication solution today?
                             </div>
                         </div>
@@ -315,26 +257,7 @@
                 chatBubbles.insertAdjacentHTML('beforeend', `
                 <div id="${loaderId}" class="flex justify-start chat-bubble-enter opacity-0 w-full">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                        <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
-                        <svg class="w-7 h-7 relative z-20 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                            <path d="M 8 52 C 8 46, 12 44, 18 44 L 18 64 L 8 64 Z" fill="#CBD5E1" />
-                            <path d="M 56 52 C 56 46, 52 44, 46 44 L 46 64 L 56 64 Z" fill="#CBD5E1" />
-                            <path d="M 12 56 C 12 46, 18 42, 32 42 C 46 42, 52 46, 52 56 L 52 64 L 12 64 Z" fill="#E2E8F0" />
-                            <rect x="24" y="38" width="16" height="12" fill="#94A3B8" />
-                            <path d="M 14 30 C 14 16, 18 12, 32 12 C 46 12, 50 16, 50 30 C 50 42, 46 46, 32 46 C 18 46, 14 42, 14 30 Z" fill="#F1F5F9" />
-                            <path d="M 14 30 C 14 42, 18 46, 32 46 C 46 46, 50 42, 50 30 L 50 34 C 50 46, 46 50, 32 50 C 18 50, 14 46, 14 34 Z" fill="#E2E8F0" />
-                            <path d="M 8 30 C 8 8, 20 4, 32 4 C 44 4, 56 8, 56 30" fill="none" stroke="#1E3A8A" stroke-width="5" stroke-linecap="round"/>
-                            <rect x="24" y="1" width="16" height="6" rx="2" fill="#2563EB" />
-                            <rect x="4" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                            <rect x="52" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                            <rect x="6" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                            <rect x="50" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                            <path d="M 16 28 C 16 22, 18 21, 32 21 C 46 21, 48 22, 48 28 L 48 32 C 48 38, 46 39, 32 39 C 18 39, 16 38, 16 32 Z" fill="#172554" />
-                            <circle cx="25" cy="30" r="3" fill="#22D3EE" />
-                            <circle cx="39" cy="30" r="3" fill="#22D3EE" />
-                            <path d="M 54 36 L 54 48 C 54 52, 50 54, 46 54 L 40 54" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <rect x="34" y="51" width="8" height="6" rx="3" fill="#1E3A8A" />
-                        </svg>
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                     </div>
                     <div class="bg-white/95 backdrop-blur-xl border border-slate-100 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[85%] flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite]"></div>
@@ -360,15 +283,15 @@
                 if (loaderEl) loaderEl.remove();
 
                 if (data.error) {
-                    appendSaraResponse("Oops, I encountered an error: " + data.error);
+                    appendSarahResponse("Oops, I encountered an error: " + data.error);
                 } else {
-                    appendSaraResponse(data.text);
+                    appendSarahResponse(data.text);
                     chatHistory.push({ role: 'assistant', content: data.text });
                 }
             } catch (e) {
                 const loaderEl = document.getElementById(loaderId);
                 if (loaderEl) loaderEl.remove();
-                appendSaraResponse("I am having trouble connecting to the server right now. Please check your network.");
+                appendSarahResponse("I am having trouble connecting to the server right now. Please check your network.");
             } finally {
                 isSending = false;
                 toggleSendButton();
@@ -376,7 +299,7 @@
             }
         }
 
-        function appendSaraResponse(text) {
+        function appendSarahResponse(text) {
             let formattedText = text
                 // Parse Markdown Links first
                 .replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '%%LINK_START%%$2%%LINK_MID%%$1%%LINK_END%%')
@@ -404,26 +327,7 @@
             chatBubbles.insertAdjacentHTML('beforeend', `
             <div class="flex justify-start chat-bubble-enter opacity-0 w-full">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
-                    <svg class="w-7 h-7 relative z-20 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                        <path d="M 8 52 C 8 46, 12 44, 18 44 L 18 64 L 8 64 Z" fill="#CBD5E1" />
-                        <path d="M 56 52 C 56 46, 52 44, 46 44 L 46 64 L 56 64 Z" fill="#CBD5E1" />
-                        <path d="M 12 56 C 12 46, 18 42, 32 42 C 46 42, 52 46, 52 56 L 52 64 L 12 64 Z" fill="#E2E8F0" />
-                        <rect x="24" y="38" width="16" height="12" fill="#94A3B8" />
-                        <path d="M 14 30 C 14 16, 18 12, 32 12 C 46 12, 50 16, 50 30 C 50 42, 46 46, 32 46 C 18 46, 14 42, 14 30 Z" fill="#F1F5F9" />
-                        <path d="M 14 30 C 14 42, 18 46, 32 46 C 46 46, 50 42, 50 30 L 50 34 C 50 46, 46 50, 32 50 C 18 50, 14 46, 14 34 Z" fill="#E2E8F0" />
-                        <path d="M 8 30 C 8 8, 20 4, 32 4 C 44 4, 56 8, 56 30" fill="none" stroke="#1E3A8A" stroke-width="5" stroke-linecap="round"/>
-                        <rect x="24" y="1" width="16" height="6" rx="2" fill="#2563EB" />
-                        <rect x="4" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                        <rect x="52" y="24" width="8" height="18" rx="4" fill="#1E3A8A" />
-                        <rect x="6" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                        <rect x="50" y="26" width="8" height="14" rx="2" fill="#2563EB" />
-                        <path d="M 16 28 C 16 22, 18 21, 32 21 C 46 21, 48 22, 48 28 L 48 32 C 48 38, 46 39, 32 39 C 18 39, 16 38, 16 32 Z" fill="#172554" />
-                        <circle cx="25" cy="30" r="3" fill="#22D3EE" />
-                        <circle cx="39" cy="30" r="3" fill="#22D3EE" />
-                        <path d="M 54 36 L 54 48 C 54 52, 50 54, 46 54 L 40 54" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                        <rect x="34" y="51" width="8" height="6" rx="3" fill="#1E3A8A" />
-                    </svg>
+                    <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                 </div>
                 <div class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
                     ${formattedText}

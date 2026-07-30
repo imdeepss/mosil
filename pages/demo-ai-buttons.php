@@ -58,15 +58,13 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                     <div class="flex items-center gap-3">
                         <div
                             class="w-[36px] h-[36px] rounded-full bg-primary-high flex items-center justify-center shrink-0 border border-primary-low overflow-hidden relative shadow-inner">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-primary to-primary-mid">
-                            </div>
-                            <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
-                                alt="Search" class="w-4 h-4 opacity-90 relative z-10 brightness-0">
+                            <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png"
+                                alt="Sarah AI" class="w-full h-full object-cover relative z-10">
                         </div>
                         <div class="flex flex-col">
                             <span
                                 class="text-[9px] font-bold text-main-green tracking-widest leading-none uppercase">Ask</span>
-                            <span class="text-[14px] font-black text-main-green leading-none mt-0.5">SARA</span>
+                            <span class="text-[14px] font-black text-main-green leading-none mt-0.5">SARAH</span>
                         </div>
                     </div>
                     <span class="ml-4 text-gray-400 font-light text-[13px] italic truncate">Search...</span>
@@ -103,7 +101,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                         <li class="flex items-center justify-between">
                             <div class="relative h-8 w-[280px]">
                                 <input type="text"
-                                    placeholder="To choose the right lubricant & multiply performance.? Ask Sara."
+                                    placeholder="To choose the right lubricant & multiply performance.? Ask Sarah."
                                     class="search-input h-full w-full rounded-full border border-white bg-white/35 px-5 pr-10 text-xs text-white placeholder-neutral-300 outline-none focus:ring-1 focus:ring-white/50 truncate">
                                 <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
                                     alt="Search"
@@ -202,7 +200,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
     <div class="text-center max-w-2xl px-4">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-800 tracking-tight">Search Integrated into Header
         </h1>
-        <p class="text-slate-500 text-lg mx-auto font-light mb-8">The premium "Ask SARA" AI trigger button has been
+        <p class="text-slate-500 text-lg mx-auto font-light mb-8">The premium "Ask SARAH" AI trigger button has been
             successfully migrated to the main navigation header above.</p>
         <button onclick="openEvaModal()"
             class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-main-green bg-primary hover:bg-primary-mid shadow-md transition-colors">
@@ -220,13 +218,13 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                 <div class="flex items-center gap-4">
                     <div
                         class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(244,195,0,0.25)] bg-gradient-to-tr from-primary to-primary-mid">
-                        <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/search.png"
-                            alt="Search" class="w-6 h-6 relative z-10 brightness-0">
+                        <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png"
+                            alt="Sarah AI" class="w-full h-full object-cover relative z-10">
                     </div>
                     <div class="flex flex-col shrink-0">
                         <span
                             class="text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1.5 opacity-90">Ask</span>
-                        <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARA</span>
+                        <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARAH</span>
                     </div>
                 </div>
                 <!-- Close button inside header -->
@@ -314,20 +312,11 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                         <div class="flex justify-start chat-bubble-enter w-full">
                             <div
                                 class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                                <div
-                                    class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent">
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="w-5 h-5 text-primary drop-shadow-[0_2px_4px_rgba(244,195,0,0.3)] relative z-20">
-                                    <path
-                                        d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
-                                    <path
-                                        d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
-                                </svg>
+                                <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                             </div>
                             <div
                                 class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
-                                Hello! I am SARA, your intelligent assistant. How can I help you discover the perfect
+                                Hello! I am SARAH, your intelligent assistant. How can I help you discover the perfect
                                 lubrication solution today?
                             </div>
                         </div>
@@ -578,11 +567,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                 chatBubbles.insertAdjacentHTML('beforeend', `
                 <div id="${loaderId}" class="flex justify-start chat-bubble-enter opacity-0 w-full">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                        <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-primary drop-shadow-[0_2px_4px_rgba(244,195,0,0.3)] relative z-20">
-                            <path d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
-                            <path d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
-                        </svg>
+                        <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                     </div>
                     <div class="bg-white/95 backdrop-blur-xl border border-slate-100 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[85%] flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite]"></div>
@@ -608,15 +593,15 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                 if (loaderEl) loaderEl.remove();
 
                 if (data.error) {
-                    appendSaraResponse("Oops, I encountered an error: " + data.error);
+                    appendSarahResponse("Oops, I encountered an error: " + data.error);
                 } else {
-                    appendSaraResponse(data.text);
+                    appendSarahResponse(data.text);
                     chatHistory.push({ role: 'assistant', content: data.text });
                 }
             } catch (e) {
                 const loaderEl = document.getElementById(loaderId);
                 if (loaderEl) loaderEl.remove();
-                appendSaraResponse("I am having trouble connecting to the server right now. Please check your network.");
+                appendSarahResponse("I am having trouble connecting to the server right now. Please check your network.");
             } finally {
                 isSending = false;
                 toggleSendButton();
@@ -624,7 +609,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             }
         }
 
-        function appendSaraResponse(text) {
+        function appendSarahResponse(text) {
             let formattedText = text
                 // Parse Markdown Links first
                 .replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '%%LINK_START%%$2%%LINK_MID%%$1%%LINK_END%%')
@@ -652,11 +637,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             chatBubbles.insertAdjacentHTML('beforeend', `
             <div class="flex justify-start chat-bubble-enter opacity-0 w-full">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/70 to-transparent"></div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-primary drop-shadow-[0_2px_4px_rgba(244,195,0,0.3)] relative z-20">
-                        <path d="M10.813 1.25a.75.75 0 011.374 0l1.71 4.562 4.562 1.71a.75.75 0 010 1.374l-4.562 1.71-1.71 4.562a.75.75 0 01-1.374 0l-1.71-4.562-4.562-1.71a.75.75 0 010-1.374l4.562-1.71 1.71-4.562z" />
-                        <path d="M20.25 15.5a.75.75 0 011.374 0l.57 1.521 1.521.57a.75.75 0 010 1.374l-1.521.57-.57 1.521a.75.75 0 01-1.374 0l-.57-1.521-1.521-.57a.75.75 0 010-1.374l1.521-.57.57-1.521z" />
-                    </svg>
+                    <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                 </div>
                 <div class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
                     ${formattedText}
