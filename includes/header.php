@@ -212,7 +212,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                 </div>
                 <!-- Mobile Search Trigger -->
                 <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300"
-                    id="openMobileSearch" aria-label="Open mobile search" role="button" tabindex="0">
+                    id="openMobileSearch" onclick="openEvaModal()" aria-label="Open mobile search" role="button" tabindex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                         <path
                             d="M28 28L20 20M22.6667 13.3333C22.6667 18.488 18.488 22.6667 13.3333 22.6667C8.17868 22.6667 4 18.488 4 13.3333C4 8.17868 8.17868 4 13.3333 4C18.488 4 22.6667 8.17868 22.6667 13.3333Z"
