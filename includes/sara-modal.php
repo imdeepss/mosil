@@ -1,5 +1,21 @@
 <!-- SARAH Modal HTML & CSS & JS -->
-<div id="evaModal"
+<style>
+    #evaModal,
+    #evaModal input,
+    #evaModal button,
+    #evaModal textarea,
+    #evaModal select {
+        font-family: 'Helvetica', Arial, sans-serif !important;
+    }
+
+    #evaModal code,
+    #evaModal pre,
+    #evaModal .font-mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    }
+</style>
+
+<div id="evaModal" style="font-family: 'Helvetica', Arial, sans-serif;"
     class="fixed inset-0 z-[100] hidden flex-col items-center pt-[8vh] pb-4 px-4 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-500">
     <div class="relative w-full max-w-4xl bg-white/95 backdrop-blur-3xl rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.8)] overflow-hidden flex flex-col transform scale-95 transition-all duration-500"
         id="evaModalContent">
@@ -122,7 +138,7 @@
             <input type="text" placeholder="What can I help you find today?"
                 class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl h-[56px] outline-none text-main-green text-[17px] font-light placeholder:text-gray-400 px-5 w-full tracking-wide focus:bg-white focus:border-primary/50 transition-colors shadow-inner"
                 autofocus id="evaSearchInput" oninput="toggleSendButton()"
-                onkeydown="if(event.key === 'Enter') triggerChatbase(this.value)">
+                onkeydown="if(event.key === 'Enter') { event.preventDefault(); triggerChatbase(this.value); }">
             <button id="evaSendBtn" disabled onclick="triggerChatbase(document.getElementById('evaSearchInput').value)"
                 class="w-[56px] h-[56px] flex items-center justify-center text-slate-400 bg-slate-50 border border-slate-200 hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-primary-mid hover:border-transparent hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] rounded-2xl transition-all duration-300 shrink-0 transform hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-slate-50 disabled:hover:text-slate-400 disabled:hover:border-slate-200 disabled:hover:shadow-none">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -240,11 +256,12 @@
         toggleSendButton();
 
         // Add User Bubble (Refined Matte Green)
+        const safeQuery = query.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
         setTimeout(() => {
             chatBubbles.insertAdjacentHTML('beforeend', `
                 <div class="flex justify-end chat-bubble-enter opacity-0 w-full">
                     <div class="bg-main-green text-white rounded-[28px] rounded-tr-[8px] px-7 py-4 max-w-[85%] sm:max-w-[75%] shadow-md border border-[#1A3B1B]">
-                        <p class="text-[16px] font-medium leading-[150%] tracking-[0.2px]">${query.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                        <p class="text-[16px] font-medium leading-[150%] tracking-[0.2px]">${safeQuery}</p>
                     </div>
                 </div>
             `);
@@ -316,7 +333,7 @@
             // Convert placeholders to styled HTML anchor tags
             .replace(/%%LINK_START%%(.*?)%%LINK_MID%%(.*?)%%LINK_END%%/g, '<a href="$1" target="_blank" class="inline-flex items-center gap-1.5 text-main-green font-bold hover:text-primary transition-colors underline underline-offset-4 decoration-primary/40 hover:decoration-primary break-all"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>$2</a>')
             // Standard markdown
-            .replace(/### (.*?)\n/g, '<h3 class="text-lg font-bold text-slate-800 mt-4 mb-2">$1</h3>')
+            .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-lg font-bold text-slate-800 mt-4 mb-2">$1</h3>')
             .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>')
             .replace(/\*(.*?)\*/g, '<em class="italic text-slate-800">$1</em>')
             .replace(/```([\s\S]*?)```/g, '<pre class="bg-slate-800 text-slate-100 p-3 rounded-lg my-3 overflow-x-auto text-sm font-mono leading-relaxed"><code>$1</code></pre>')
