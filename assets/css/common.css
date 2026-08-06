@@ -565,6 +565,20 @@ form select:focus {
     transition: transform 0.5s ease;
 }
 
+@media (max-width: 640px) {
+    .whatsapp-float {
+        width: 48px;
+        height: 48px;
+        bottom: 0.85rem;
+        right: 0.85rem;
+    }
+
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
 
 /* Chatbase Tooltip */
 .chatbase-tooltip {

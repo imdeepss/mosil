@@ -1,5 +1,9 @@
 <!-- SARAH Modal HTML & CSS & JS -->
 <style>
+    #evaModal {
+        z-index: 999999 !important;
+    }
+
     #evaModal,
     #evaModal input,
     #evaModal button,
@@ -16,30 +20,30 @@
 </style>
 
 <div id="evaModal" style="font-family: 'Helvetica', Arial, sans-serif;"
-    class="fixed inset-0 z-[100] hidden flex-col items-center pt-[8vh] pb-4 px-4 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-500">
-    <div class="relative w-full max-w-4xl bg-white/95 backdrop-blur-3xl rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.8)] overflow-hidden flex flex-col transform scale-95 transition-all duration-500"
+    class="fixed inset-0 z-[999999] hidden flex-col items-center pt-2 sm:pt-[6vh] pb-2 sm:pb-4 px-2 sm:px-4 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-500">
+    <div class="relative w-full max-w-4xl bg-white/95 backdrop-blur-3xl rounded-2xl sm:rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.25),0_0_0_1px_rgba(255,255,255,0.8)] overflow-hidden flex flex-col h-[calc(100dvh-16px)] sm:h-auto max-h-[95dvh] sm:max-h-[85vh] transform scale-95 transition-all duration-500"
         id="evaModalContent">
 
         <!-- Modal Header -->
         <div
-            class="bg-white/95 backdrop-blur-2xl p-6 flex items-center justify-between relative z-20 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-white/40">
-            <div class="flex items-center gap-4">
+            class="bg-white/95 backdrop-blur-2xl p-3.5 sm:p-6 flex items-center justify-between relative z-20 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-white/40">
+            <div class="flex items-center gap-3 sm:gap-4">
                 <div
-                    class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(244,195,0,0.25)] bg-gradient-to-tr from-primary to-primary-mid">
+                    class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(244,195,0,0.25)] bg-gradient-to-tr from-primary to-primary-mid">
                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI"
                         class="w-full h-full object-cover relative z-10">
                 </div>
                 <div class="flex flex-col shrink-0">
                     <span
-                        class="text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1.5 opacity-90">Ask</span>
-                    <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARAH</span>
+                        class="text-[10px] sm:text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1 sm:mb-1.5 opacity-90">Ask</span>
+                    <span class="text-[18px] sm:text-[22px] font-black text-main-green leading-none tracking-tight">SARAH</span>
                 </div>
             </div>
             <!-- Close button inside header -->
             <button onclick="closeEvaModal()"
-                class="w-11 h-11 bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center text-slate-400 hover:text-main-green hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-300 group">
+                class="w-9 h-9 sm:w-11 sm:h-11 bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center text-slate-400 hover:text-main-green hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-300 group">
                 <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" fill="none"
+                    class="h-4 w-4 sm:h-5 sm:w-5 group-hover:rotate-90 transition-transform duration-300" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -47,26 +51,26 @@
         </div>
 
         <!-- Body Area -->
-        <div class="flex-1 relative bg-slate-50/90 overflow-hidden min-h-[450px]">
+        <div class="flex-1 relative bg-slate-50/90 overflow-hidden min-h-[250px] sm:min-h-[420px]">
             <!-- Body / Trending Searches -->
-            <div id="trendingSearches" class="absolute inset-0 md:p-10 p-5 transition-all duration-500 overflow-y-auto">
+            <div id="trendingSearches" class="absolute inset-0 p-4 sm:p-8 md:p-10 transition-all duration-500 overflow-y-auto">
                 <div
                     class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-low/40 via-transparent to-transparent pointer-events-none">
                 </div>
 
-                <div class="flex items-center gap-3 mb-8 relative z-10">
-                    <div class="w-8 h-8 rounded-full bg-primary-high flex items-center justify-center shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary animate-pulse"
+                <div class="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-8 relative z-10">
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary-high flex items-center justify-center shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary animate-pulse"
                             viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"
                                 d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h3 class="text-main-green font-bold text-[17px] tracking-tight">Trending searches</h3>
+                    <h3 class="text-main-green font-bold text-[15px] sm:text-[17px] tracking-tight">Trending searches</h3>
                 </div>
 
-                <div class="flex flex-wrap gap-3 relative z-10 pb-4">
+                <div class="flex flex-wrap gap-2 sm:gap-3 relative z-10 pb-4">
                     <?php
                     $trending = [
                         "High Temperature Grease",
@@ -90,7 +94,7 @@
                     foreach ($trending as $tag):
                         ?>
                         <button onclick="triggerChatbase('<?= htmlspecialchars($tag, ENT_QUOTES) ?>')"
-                            class="px-5 py-2.5 bg-white border border-gray-100 rounded-2xl text-[13.5px] text-slate-600 font-medium hover:bg-main-green hover:text-primary hover:border-main-green shadow-sm hover:shadow-md transition-colors duration-300">
+                            class="px-3.5 py-2 sm:px-5 sm:py-2.5 bg-white border border-gray-100 rounded-xl sm:rounded-2xl text-[12.5px] sm:text-[13.5px] text-slate-600 font-medium hover:bg-main-green hover:text-primary hover:border-main-green shadow-sm hover:shadow-md transition-colors duration-300">
                             <?= $tag ?>
                         </button>
                     <?php endforeach; ?>
@@ -113,17 +117,17 @@
                     class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-main-green rounded-full mix-blend-multiply filter blur-[100px] opacity-[0.15] pointer-events-none">
                 </div>
 
-                <div class="flex-1 overflow-y-auto p-5 md:p-8 pb-12 flex flex-col scroll-smooth relative z-10 gap-6"
+                <div class="flex-1 overflow-y-auto p-3.5 sm:p-6 md:p-8 pb-8 sm:pb-12 flex flex-col scroll-smooth relative z-10 gap-3.5 sm:gap-6"
                     id="chatMessages">
                     <!-- Initial Welcome Message -->
                     <div class="flex justify-start chat-bubble-enter w-full">
                         <div
-                            class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                            class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-2 sm:mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
                             <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI"
                                 class="w-full h-full object-cover relative z-20">
                         </div>
                         <div
-                            class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
+                            class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[20px] sm:rounded-[28px] rounded-tl-[6px] px-4 py-3 sm:px-7 sm:py-5 max-w-[92%] sm:max-w-[88%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[14.5px] sm:text-[16px] leading-[155%] font-normal">
                             Hello! I am SARAH, your intelligent assistant. How can I help you discover the perfect
                             lubrication solution today?
                         </div>
@@ -134,15 +138,15 @@
 
         <!-- Modal Footer / Search Input -->
         <div
-            class="bg-white/95 backdrop-blur-2xl p-5 px-6 flex items-center gap-3 relative z-30 border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
+            class="bg-white/95 backdrop-blur-2xl p-3 px-3.5 sm:p-5 sm:px-6 flex items-center gap-2 sm:gap-3 relative z-30 border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
             <input type="text" placeholder="What can I help you find today?"
-                class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl h-[56px] outline-none text-main-green text-[17px] font-light placeholder:text-gray-400 px-5 w-full tracking-wide focus:bg-white focus:border-primary/50 transition-colors shadow-inner"
+                class="flex-1 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl h-[46px] sm:h-[56px] outline-none text-main-green text-[14.5px] sm:text-[17px] font-light placeholder:text-gray-400 placeholder:text-[13.5px] sm:placeholder:text-[17px] px-3.5 sm:px-5 w-full tracking-wide focus:bg-white focus:border-primary/50 transition-colors shadow-inner"
                 autofocus id="evaSearchInput" oninput="toggleSendButton()"
                 onkeydown="if(event.key === 'Enter') { event.preventDefault(); triggerChatbase(this.value); }">
             <button id="evaSendBtn" disabled onclick="triggerChatbase(document.getElementById('evaSearchInput').value)"
-                class="w-[56px] h-[56px] flex items-center justify-center text-slate-400 bg-slate-50 border border-slate-200 hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-primary-mid hover:border-transparent hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] rounded-2xl transition-all duration-300 shrink-0 transform hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-slate-50 disabled:hover:text-slate-400 disabled:hover:border-slate-200 disabled:hover:shadow-none">
+                class="w-[46px] h-[46px] sm:w-[56px] sm:h-[56px] flex items-center justify-center text-slate-400 bg-slate-50 border border-slate-200 hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-primary-mid hover:border-transparent hover:shadow-[0_8px_20px_rgba(244,195,0,0.3)] rounded-xl sm:rounded-2xl transition-all duration-300 shrink-0 transform hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-slate-50 disabled:hover:text-slate-400 disabled:hover:border-slate-200 disabled:hover:shadow-none">
                 <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 transform rotate-45 group-hover:rotate-0 transition-transform duration-300"
+                    class="h-5 w-5 sm:h-6 sm:w-6 transform rotate-45 group-hover:rotate-0 transition-transform duration-300"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -260,8 +264,8 @@
         setTimeout(() => {
             chatBubbles.insertAdjacentHTML('beforeend', `
                 <div class="flex justify-end chat-bubble-enter opacity-0 w-full">
-                    <div class="bg-main-green text-white rounded-[28px] rounded-tr-[8px] px-7 py-4 max-w-[85%] sm:max-w-[75%] shadow-md border border-[#1A3B1B]">
-                        <p class="text-[16px] font-medium leading-[150%] tracking-[0.2px]">${safeQuery}</p>
+                    <div class="bg-main-green text-white rounded-[20px] sm:rounded-[28px] rounded-tr-[6px] px-4 py-3 sm:px-7 sm:py-4 max-w-[88%] sm:max-w-[75%] shadow-md border border-[#1A3B1B]">
+                        <p class="text-[14.5px] sm:text-[16px] font-medium leading-[150%] tracking-[0.2px]">${safeQuery}</p>
                     </div>
                 </div>
             `);
@@ -273,10 +277,10 @@
         setTimeout(() => {
             chatBubbles.insertAdjacentHTML('beforeend', `
                 <div id="${loaderId}" class="flex justify-start chat-bubble-enter opacity-0 w-full">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-2 sm:mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
                         <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                     </div>
-                    <div class="bg-white/95 backdrop-blur-xl border border-slate-100 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[85%] flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+                    <div class="bg-white/95 backdrop-blur-xl border border-slate-100 rounded-[20px] sm:rounded-[28px] rounded-tl-[6px] px-5 py-3.5 sm:px-7 sm:py-5 max-w-[85%] flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite]"></div>
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite_0.15s]"></div>
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite_0.3s]"></div>
@@ -333,20 +337,20 @@
             // Convert placeholders to styled HTML anchor tags
             .replace(/%%LINK_START%%(.*?)%%LINK_MID%%(.*?)%%LINK_END%%/g, '<a href="$1" target="_blank" class="inline-flex items-center gap-1.5 text-main-green font-bold hover:text-primary transition-colors underline underline-offset-4 decoration-primary/40 hover:decoration-primary break-all"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>$2</a>')
             // Standard markdown
-            .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-lg font-bold text-slate-800 mt-4 mb-2">$1</h3>')
+            .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-base sm:text-lg font-bold text-slate-800 mt-3 sm:mt-4 mb-2">$1</h3>')
             .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>')
             .replace(/\*(.*?)\*/g, '<em class="italic text-slate-800">$1</em>')
-            .replace(/```([\s\S]*?)```/g, '<pre class="bg-slate-800 text-slate-100 p-3 rounded-lg my-3 overflow-x-auto text-sm font-mono leading-relaxed"><code>$1</code></pre>')
-            .replace(/`(.*?)`/g, '<code class="bg-slate-100/80 text-slate-800 px-1.5 py-0.5 rounded text-[13.5px] font-mono border border-slate-200/60">$1</code>')
+            .replace(/```([\s\S]*?)```/g, '<pre class="bg-slate-800 text-slate-100 p-2.5 sm:p-3 rounded-lg my-2.5 sm:my-3 overflow-x-auto text-xs sm:text-sm font-mono leading-relaxed"><code>$1</code></pre>')
+            .replace(/`(.*?)`/g, '<code class="bg-slate-100/80 text-slate-800 px-1.5 py-0.5 rounded text-[12px] sm:text-[13.5px] font-mono border border-slate-200/60">$1</code>')
             .replace(/\n/g, '<br>');
 
         const chatBubbles = document.getElementById('chatMessages');
         chatBubbles.insertAdjacentHTML('beforeend', `
             <div class="flex justify-start chat-bubble-enter opacity-0 w-full">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-2 sm:mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                 </div>
-                <div class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
+                <div class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[20px] sm:rounded-[28px] rounded-tl-[6px] px-4 py-3 sm:px-7 sm:py-5 max-w-[92%] sm:max-w-[88%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[14.5px] sm:text-[16px] leading-[155%] font-normal">
                     ${formattedText}
                 </div>
             </div>
