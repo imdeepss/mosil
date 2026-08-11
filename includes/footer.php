@@ -235,6 +235,23 @@ endif; ?>
 </a>
 
 
+
+<!-- SARAH AI Floating Button with "Ask SARAH" Text -->
+<button type="button" onclick="openEvaModal()" aria-label="Open SARAH AI Assistant" class="sarah-float-btn">
+    <div class="sarah-avatar">
+        <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover">
+    </div>
+    <div class="flex items-baseline gap-1.5 px-0.5">
+        <span class="text-[11px] font-bold text-main-green/80 uppercase tracking-widest leading-none">Ask</span>
+        <span class="text-[16px] font-black text-main-green leading-none tracking-tight">SARAH</span>
+    </div>
+    <div class="text-main-green pl-0.5 pr-1">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+    </div>
+</button>
+
 <!-- Chatbase Tooltip -->
 <!-- <div class="chatbase-tooltip">AI Search or Ask Anything</div> -->
 

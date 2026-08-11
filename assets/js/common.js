@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to toggle Search Mode
   function toggleSearch(open) {
     if (!mobileSearchBar || !openSidebarImg) return;
-    isSearchOpen = open;
+    isSearchOpen = !!open;
 
     if (open) {
       mobileSearchBar.classList.add("w-full");
@@ -67,7 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       mobileSearchBar.classList.remove("w-full");
       // Revert Hamburger Icon
-      openSidebarImg.src = menuIconSrc;
+      if (menuIconSrc) {
+        openSidebarImg.src = menuIconSrc;
+      } else {
+        openSidebarImg.src = openSidebarImg.src.replace("x.png", "menu.png");
+      }
 
       // Hide results container if open
       const results = mobileSearchBar.querySelector(
@@ -77,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  window.toggleSearch = toggleSearch;
+
   if (openMobileSearchBtn) {
     openMobileSearchBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (typeof openEvaModal === "function") {
-        openEvaModal();
-      }
+      toggleSearch(!isSearchOpen);
     });
   }
 
@@ -91,38 +95,56 @@ document.addEventListener("DOMContentLoaded", () => {
    * @param {boolean} show - Whether to show or hide the sidebar
    */
   function toggleSidebar(show) {
-    if (!sidebar || !sidebarOverlay) return;
+    const sidebarEl = sidebar || document.getElementById("sidebar");
+    const overlayEl = sidebarOverlay || document.getElementById("sidebarOverlay");
+    if (!sidebarEl || !overlayEl) return;
 
     if (show) {
-      sidebar.classList.remove("translate-x-full", "invisible");
-      sidebarOverlay.classList.remove("hidden");
-      setTimeout(() => sidebarOverlay.classList.add("opacity-50"), 10);
+      if (isSearchOpen) toggleSearch(false);
+      sidebarEl.classList.remove("translate-x-full", "invisible");
+      overlayEl.classList.remove("hidden");
+      setTimeout(() => overlayEl.classList.add("opacity-50"), 10);
       document.body.classList.add("overflow-hidden");
     } else {
-      sidebar.classList.add("translate-x-full", "invisible");
-      sidebarOverlay.classList.remove("opacity-50");
-      setTimeout(() => sidebarOverlay.classList.add("hidden"), 300);
+      sidebarEl.classList.add("translate-x-full", "invisible");
+      overlayEl.classList.remove("opacity-50");
+      setTimeout(() => overlayEl.classList.add("hidden"), 300);
       document.body.classList.remove("overflow-hidden");
     }
   }
 
+  window.toggleSidebar = toggleSidebar;
+
   if (openSidebarBtn) {
     openSidebarBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      toggleSidebar(true);
+      if (isSearchOpen) {
+        toggleSearch(false);
+      } else {
+        toggleSidebar(true);
+      }
     });
   }
 
   if (closeSidebarBtn) {
-    closeSidebarBtn.addEventListener("click", () => toggleSidebar(false));
+    closeSidebarBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleSidebar(false);
+    });
   }
 
   if (sidebarOverlay) {
-    sidebarOverlay.addEventListener("click", () => toggleSidebar(false));
+    sidebarOverlay.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleSidebar(false);
+    });
   }
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") toggleSidebar(false);
+    if (e.key === "Escape") {
+      toggleSidebar(false);
+      toggleSearch(false);
+    }
   });
 
   const hasSubmenu = document.querySelectorAll(".has-submenu");

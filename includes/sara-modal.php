@@ -165,7 +165,17 @@
 
 
 <script>
+    var sarahAutoTimer = null;
+
     function openEvaModal() {
+        if (sarahAutoTimer) {
+            clearTimeout(sarahAutoTimer);
+            sarahAutoTimer = null;
+        }
+        try {
+            sessionStorage.setItem('sarah_modal_handled', 'true');
+        } catch (e) {}
+
         const modal = document.getElementById('evaModal');
         const content = document.getElementById('evaModalContent');
         const input = document.getElementById('evaSearchInput');
@@ -185,6 +195,14 @@
     }
 
     function closeEvaModal() {
+        if (sarahAutoTimer) {
+            clearTimeout(sarahAutoTimer);
+            sarahAutoTimer = null;
+        }
+        try {
+            sessionStorage.setItem('sarah_modal_handled', 'true');
+        } catch (e) {}
+
         const modal = document.getElementById('evaModal');
         const content = document.getElementById('evaModalContent');
 
@@ -200,6 +218,31 @@
             modal.classList.add('hidden');
         }, 500);
     }
+
+    // Auto-open SARAH AI popup after 1 minute for new tab/session
+    document.addEventListener('DOMContentLoaded', function () {
+        try {
+            if (!sessionStorage.getItem('sarah_modal_handled')) {
+                var sessionStart = sessionStorage.getItem('sarah_session_start');
+                if (!sessionStart) {
+                    sessionStart = Date.now();
+                    sessionStorage.setItem('sarah_session_start', sessionStart);
+                }
+                var elapsed = Date.now() - parseInt(sessionStart, 10);
+                var remaining = 60000 - elapsed;
+
+                if (remaining <= 0) {
+                    openEvaModal();
+                } else {
+                    sarahAutoTimer = setTimeout(function () {
+                        if (!sessionStorage.getItem('sarah_modal_handled')) {
+                            openEvaModal();
+                        }
+                    }, remaining);
+                }
+            }
+        } catch (e) {}
+    });
 
     document.getElementById('evaModal').addEventListener('click', function (e) {
         if (e.target === this) closeEvaModal();
