@@ -174,7 +174,7 @@
         }
         try {
             sessionStorage.setItem('sarah_modal_handled', 'true');
-        } catch (e) {}
+        } catch (e) { }
 
         const modal = document.getElementById('evaModal');
         const content = document.getElementById('evaModalContent');
@@ -201,7 +201,7 @@
         }
         try {
             sessionStorage.setItem('sarah_modal_handled', 'true');
-        } catch (e) {}
+        } catch (e) { }
 
         const modal = document.getElementById('evaModal');
         const content = document.getElementById('evaModalContent');
@@ -224,12 +224,14 @@
         try {
             if (!sessionStorage.getItem('sarah_modal_handled')) {
                 var sessionStart = sessionStorage.getItem('sarah_session_start');
+
                 if (!sessionStart) {
                     sessionStart = Date.now();
                     sessionStorage.setItem('sarah_session_start', sessionStart);
                 }
+
                 var elapsed = Date.now() - parseInt(sessionStart, 10);
-                var remaining = 60000 - elapsed;
+                var remaining = 5000 - elapsed; // 5 seconds
 
                 if (remaining <= 0) {
                     openEvaModal();
@@ -241,7 +243,7 @@
                     }, remaining);
                 }
             }
-        } catch (e) {}
+        } catch (e) { }
     });
 
     document.getElementById('evaModal').addEventListener('click', function (e) {
