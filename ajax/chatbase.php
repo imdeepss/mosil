@@ -19,9 +19,21 @@ if (!isset($input['messages']) || empty($input['messages'])) {
 $CHATBASE_API_KEY = 'c45d168a-61bc-453a-a973-b35668e05b0f';
 $CHATBOT_ID = '6MqeSpCR1QiEXI65v5iEk';
 
+// Generate or retrieve persistent conversation ID for the user's session
+if (!empty($input['conversationId'])) {
+    $conversationId = trim($input['conversationId']);
+    $_SESSION['sarah_conversation_id'] = $conversationId;
+} elseif (!empty($_SESSION['sarah_conversation_id'])) {
+    $conversationId = $_SESSION['sarah_conversation_id'];
+} else {
+    $conversationId = 'web_' . date('YmdHis') . '_' . bin2hex(random_bytes(6));
+    $_SESSION['sarah_conversation_id'] = $conversationId;
+}
+
 $payload = [
     'messages' => $input['messages'],
     'chatbotId' => $CHATBOT_ID,
+    'conversationId' => $conversationId,
     'stream' => false,
     'temperature' => 0.2
 ];
@@ -110,7 +122,10 @@ if ($httpCode >= 200 && $httpCode < 300 && isset($data['text'])) {
         }
     }
 
-    echo json_encode(['text' => $data['text']]);
+    echo json_encode([
+        'text' => $data['text'],
+        'conversationId' => $conversationId
+    ]);
 } else {
     $errorMsg = $data['message'] ?? $data['error'] ?? ('Unknown Chatbase API error (HTTP ' . $httpCode . ')');
     echo json_encode(['error' => $errorMsg]);

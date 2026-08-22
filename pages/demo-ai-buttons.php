@@ -581,11 +581,21 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
 
             chatHistory.push({ role: 'user', content: query });
 
+            let currentConvId = null;
+            try {
+                currentConvId = sessionStorage.getItem('sarah_conversation_id');
+            } catch(e) {}
+
+            const requestPayload = { messages: chatHistory };
+            if (currentConvId) {
+                requestPayload.conversationId = currentConvId;
+            }
+
             try {
                 const response = await fetch(`<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/ajax/chatbase.php`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ messages: chatHistory })
+                    body: JSON.stringify(requestPayload)
                 });
 
                 const data = await response.json();
@@ -595,6 +605,11 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                 if (data.error) {
                     appendSarahResponse("Oops, I encountered an error: " + data.error);
                 } else {
+                    if (data.conversationId) {
+                        try {
+                            sessionStorage.setItem('sarah_conversation_id', data.conversationId);
+                        } catch(e) {}
+                    }
                     appendSarahResponse(data.text);
                     chatHistory.push({ role: 'assistant', content: data.text });
                 }
