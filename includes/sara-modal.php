@@ -1,4 +1,4 @@
-<!-- SARAH Modal HTML & CSS & JS -->
+<!-- Sarah Modal HTML & CSS & JS -->
 <style>
     #evaModal {
         z-index: 999999 !important;
@@ -42,7 +42,7 @@
                 <div class="flex flex-col shrink-0">
                     <span
                         class="text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1.5 opacity-90">Ask</span>
-                    <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARAH</span>
+                    <span class="text-[22px] font-black text-main-green leading-none tracking-tight">Sarah</span>
                 </div>
             </div>
             <!-- Close button inside header -->
@@ -134,7 +134,7 @@
                         </div>
                         <div
                             class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
-                            Hello! I am SARAH, your intelligent assistant. How can I help you discover the perfect
+                            Hello! I am Sarah, your intelligent assistant. How can I help you discover the perfect
                             lubrication solution today?
                         </div>
                     </div>
@@ -219,7 +219,7 @@
         }, 500);
     }
 
-    // Auto-open SARAH AI popup after 1 minute for new tab/session
+    // Auto-open Sarah AI popup after 1 minute for new tab/session
     document.addEventListener('DOMContentLoaded', function () {
         try {
             if (!sessionStorage.getItem('sarah_modal_handled')) {

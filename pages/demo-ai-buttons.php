@@ -64,7 +64,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                         <div class="flex flex-col">
                             <span
                                 class="text-[9px] font-bold text-main-green tracking-widest leading-none uppercase">Ask</span>
-                            <span class="text-[14px] font-black text-main-green leading-none mt-0.5">SARAH</span>
+                            <span class="text-[14px] font-black text-main-green leading-none mt-0.5">Sarah</span>
                         </div>
                     </div>
                     <span class="ml-4 text-gray-400 font-light text-[13px] italic truncate">Search...</span>
@@ -200,7 +200,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
     <div class="text-center max-w-2xl px-4">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-800 tracking-tight">Search Integrated into Header
         </h1>
-        <p class="text-slate-500 text-lg mx-auto font-light mb-8">The premium "Ask SARAH" AI trigger button has been
+        <p class="text-slate-500 text-lg mx-auto font-light mb-8">The premium "Ask Sarah" AI trigger button has been
             successfully migrated to the main navigation header above.</p>
         <button onclick="openEvaModal()"
             class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-main-green bg-primary hover:bg-primary-mid shadow-md transition-colors">
@@ -224,7 +224,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                     <div class="flex flex-col shrink-0">
                         <span
                             class="text-[11px] font-black text-primary tracking-[0.25em] leading-none uppercase mb-1.5 opacity-90">Ask</span>
-                        <span class="text-[22px] font-black text-main-green leading-none tracking-tight">SARAH</span>
+                        <span class="text-[22px] font-black text-main-green leading-none tracking-tight">Sarah</span>
                     </div>
                 </div>
                 <!-- Close button inside header -->
@@ -233,7 +233,8 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5 group-hover:rotate-90 transition-transform duration-300" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -241,8 +242,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             <!-- Body Area -->
             <div class="flex-1 relative bg-slate-50/90 overflow-hidden min-h-[450px]">
                 <!-- Body / Trending Searches -->
-                <div id="trendingSearches"
-                    class="absolute inset-0 p-10 transition-all duration-500 overflow-y-auto">
+                <div id="trendingSearches" class="absolute inset-0 p-10 transition-all duration-500 overflow-y-auto">
                     <div
                         class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-low/40 via-transparent to-transparent pointer-events-none">
                     </div>
@@ -312,11 +312,12 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                         <div class="flex justify-start chat-bubble-enter w-full">
                             <div
                                 class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                                <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
+                                <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/icons/png/Sarah-ai.png"
+                                    alt="Sarah AI" class="w-full h-full object-cover relative z-20">
                             </div>
                             <div
                                 class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
-                                Hello! I am SARAH, your intelligent assistant. How can I help you discover the perfect
+                                Hello! I am Sarah, your intelligent assistant. How can I help you discover the perfect
                                 lubrication solution today?
                             </div>
                         </div>
@@ -325,7 +326,8 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             </div>
 
             <!-- Modal Footer / Search Input -->
-            <div class="bg-white/95 backdrop-blur-2xl p-5 px-6 flex items-center gap-3 relative z-30 border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
+            <div
+                class="bg-white/95 backdrop-blur-2xl p-5 px-6 flex items-center gap-3 relative z-30 border-t border-gray-100 shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
                 <input type="text" placeholder="What can I help you find today?"
                     class="flex-1 bg-slate-50 border border-slate-200 rounded-2xl h-[56px] outline-none text-main-green text-[17px] font-light placeholder:text-gray-400 px-5 w-full tracking-wide focus:bg-white focus:border-primary/50 transition-colors shadow-inner"
                     autofocus id="evaSearchInput" oninput="toggleSendButton()"
@@ -584,7 +586,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
             let currentConvId = null;
             try {
                 currentConvId = sessionStorage.getItem('sarah_conversation_id');
-            } catch(e) {}
+            } catch (e) { }
 
             const requestPayload = { messages: chatHistory };
             if (currentConvId) {
@@ -608,7 +610,7 @@ $pageTitle = "Ultra-Premium AI Triggers - MOSIL";
                     if (data.conversationId) {
                         try {
                             sessionStorage.setItem('sarah_conversation_id', data.conversationId);
-                        } catch(e) {}
+                        } catch (e) { }
                     }
                     appendSarahResponse(data.text);
                     chatHistory.push({ role: 'assistant', content: data.text });
