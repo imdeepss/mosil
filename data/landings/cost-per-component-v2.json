@@ -7,11 +7,11 @@
         "noindex": true
     },
     "hero": {
-        "headline": "The grease you apply on the component is a line item in your cost per component. When did you last challenge it?",
-        "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component — without touching the specification approved by your OEM.",
-        "cta_text": "Start the CPC Check — 5 minutes",
-        "micro_line": "Answer a short set of questions. MOSIL application engineers will revert with a tailored potential view.",
-        "image": "assets/uploads/campaigns/cpc_690f38b29e01.jpg",
+        "headline": "The grease you apply on the component is a line item in your cost per component.\nWhen did you last challenge it?",
+        "sub_headline": "MOSIL works with component manufacturers to reduce the grease element of cost per component — without compromising performance approved by your OEM.",
+        "cta_text": "Schedule Discussion",
+        "micro_line": "Share your details so that Our Team can get back to you for discussion.",
+        "image": "assets/uploads/campaigns/cpc_6a68f90e1fb2c.png",
         "image_position": "right",
         "image_alt": "Automotive Component Grease Application"
     },
@@ -46,7 +46,7 @@
     },
     "form": {
         "heading": "The 5-minute Cost Per Component check",
-        "intro": "Answer what you can. Questions you cannot answer today are themselves useful information — leave them blank.",
+        "intro": "Share your details so that Our Team can get back to you for discussion",
         "confidentiality": "Information shared here is used only to prepare your CPC assessment. It is not shared outside MOSIL and is never used in public references without written permission."
     },
     "approach": {

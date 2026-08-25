@@ -5,18 +5,33 @@
         "description": "Evaluate and reduce assembly grease cost per component with MOSIL Lubricants' OEM specification matching and NABL-accredited TriboIntel laboratory testing.",
         "noindex": true
     },
+    "banner": {
+        "headline": "The grease you apply on the component is a line item in your cost per component. When did you last challenge it?",
+        "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component \u2014 without touching the specification approved by your OEM.",
+        "cta_text": "Submit",
+        "image": "assets\/uploads\/landings\/banner_6a8b2ed690f06.png",
+        "image_position": "background",
+        "image_alt": "Automotive Component Grease Application"
+    },
+    "form": {
+        "heading": "The 5-minute Cost Per Component check",
+        "sub_heading": "Answer what you can. Questions you cannot answer today are themselves useful information \u2014 leave them blank.",
+        "email_to": "",
+        "success_message": "Thank you! We will get back to you shortly.",
+        "intro": "Answer what you can. Questions you cannot answer today are themselves useful information \u2014 leave them blank.",
+        "confidentiality": "Information shared here is used only to prepare your CPC assessment. It is not shared outside MOSIL and is never used in public references without written permission."
+    },
     "hero": {
         "headline": "The grease you apply on the component is a line item in your cost per component. When did you last challenge it?",
         "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component \u2014 without touching the specification approved by your OEM.",
-        "cta_text": "Start the CPC Check \u2014 5 minutes",
-        "micro_line": "Answer a short set of questions. MOSIL application engineers will revert with a tailored potential view.",
-        "image": "assets/uploads/campaigns/cpc_690f38b29e01.jpg",
-        "image_position": "right",
+        "cta_text": "Submit",
+        "image": "assets\/uploads\/landings\/banner_6a8b2ed690f06.png",
+        "image_position": "background",
         "image_alt": "Automotive Component Grease Application"
     },
     "levers": {
         "intro_1": "Where the Grease Cost Actually Sits",
-        "formula": "Grease cost per component = (grams applied \u00d7 price per kg) / 1000",
+        "formula": "Grease cost per component = (grams applied \u00d7 price per kg) \/ 1000",
         "intro_2": "Which means there are only three places the money can be found \u2014 and only one of them is a price negotiation.",
         "items": [
             {
@@ -43,11 +58,6 @@
         "image_position": "right",
         "image_alt": ""
     },
-    "form": {
-        "heading": "The 5-minute Cost Per Component check",
-        "intro": "Answer what you can. Questions you cannot answer today are themselves useful information \u2014 leave them blank.",
-        "confidentiality": "Information shared here is used only to prepare your CPC assessment. It is not shared outside MOSIL and is never used in public references without written permission."
-    },
     "approach": {
         "intro": "Your diagnostic answers map directly onto how we run every enquiry.",
         "stages": [
@@ -59,7 +69,7 @@
             {
                 "number": 2,
                 "title": "Problem Diagnosis",
-                "description": "Evaluating the gap between your current grease cost/lead time and what a domestic formulation built to your OEM spec can achieve."
+                "description": "Evaluating the gap between your current grease cost\/lead time and what a domestic formulation built to your OEM spec can achieve."
             },
             {
                 "number": 3,
