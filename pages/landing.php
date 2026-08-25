@@ -240,9 +240,11 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                             <div class="pt-4 max-w-2xl">
                                 <div
                                     class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-2 shadow-md hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-                                    <img src="<?php echo SITE_URL . '/' . htmlspecialchars($banner_image); ?>"
-                                        alt="<?php echo htmlspecialchars($banner_image_alt); ?>"
-                                        class="w-full h-auto rounded-xl object-cover">
+                                    <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden">
+                                        <img src="<?php echo SITE_URL . '/' . htmlspecialchars($banner_image); ?>"
+                                            alt="<?php echo htmlspecialchars($banner_image_alt); ?>"
+                                            class="absolute inset-0 w-full h-full object-cover">
+                                    </div>
                                 </div>
                             </div>
                         <?php endif; ?>
