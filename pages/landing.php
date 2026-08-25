@@ -404,11 +404,11 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                     <!-- Submit Button (Full Width yellow gradient) -->
                                     <div class="pt-3">
                                         <button type="submit" id="landingFormSubmitBtn"
-                                            class="w-full bg-gradient-to-r from-mosilGold to-[#E0B200] text-mosilGreen font-black py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all duration-300 shadow-md shadow-mosilGold/10 hover:shadow-[0_12px_30px_rgba(244,195,0,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] flex items-center justify-center gap-2.5 group cursor-pointer border border-mosilGold/25">
+                                            class="w-full bg-mosilGreen hover:bg-mosilGreenDark text-white font-bold py-4 px-6 rounded-full text-sm uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] flex items-center justify-center gap-2.5 group cursor-pointer border-0">
                                             <span id="btnText"><?php echo htmlspecialchars($cta_text); ?></span>
 
                                             <!-- Spinner SVG (Hidden initially) -->
-                                            <svg id="btnSpinner" class="hidden animate-spin h-4 w-4 text-mosilGreen"
+                                            <svg id="btnSpinner" class="hidden animate-spin h-4 w-4 text-white"
                                                 fill="none" viewBox="0 0 24 24">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                                     stroke-width="4"></circle>
