@@ -16,6 +16,7 @@ $name = htmlspecialchars(trim($_POST['name'] ?? ''));
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
 $contact = htmlspecialchars(trim($_POST['contact'] ?? ''));
 $companyName = htmlspecialchars(trim($_POST['company_name'] ?? ''));
+$componentManufactured = htmlspecialchars(trim($_POST['component_manufactured'] ?? ''));
 $message = htmlspecialchars(trim($_POST['message'] ?? ''));
 $pincode = htmlspecialchars(trim($_POST['pincode'] ?? ''));
 
@@ -23,10 +24,13 @@ $landingSlug = htmlspecialchars(trim($_POST['landing_slug'] ?? ''));
 $landingTitle = htmlspecialchars(trim($_POST['landing_title'] ?? 'Generic Landing Page'));
 $customEmailTo = htmlspecialchars(trim($_POST['email_to'] ?? ''));
 
-if (empty($name) || !$email || empty($contact) || empty($companyName) || empty($message)) {
-    echo json_encode(['success' => false, 'message' => 'Please provide all required fields: Name, Email, Contact Number, Company, and Message.']);
+if (empty($name) || !$email || empty($contact) || empty($companyName) || empty($componentManufactured) || empty($message)) {
+    echo json_encode(['success' => false, 'message' => 'Please provide all required fields: Name, Email, Contact Number, Company, Component Manufactured, and Message.']);
     exit;
 }
+
+// Prepend Component Manufactured details to the database message field
+$fullMessage = "Component Manufactured: " . $componentManufactured . "\n\n" . $message;
 
 // 2. Prepare Data for Database
 $subject = "Landing Page Inquiry: " . $landingTitle . " (/" . $landingSlug . ")";
@@ -35,7 +39,7 @@ $status = 'New';
 // 3. Database Execution
 $sql = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-$params = [$name, $email, $contact, $companyName, $subject, $pincode, $message, $status];
+$params = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status];
 
 if (db_execute($sql, $params)) {
 
@@ -50,7 +54,7 @@ if (db_execute($sql, $params)) {
         'Company' => $companyName,
         'Email' => $email,
         'Phone' => $contact,
-        'Description' => "Subject: " . $subject . "\nMessage: " . $message,
+        'Description' => "Subject: " . $subject . "\nMessage: " . $fullMessage,
         'LeadSource' => 'Landing Page Enquiry',
         'PostalCode' => $pincode
     ]);
@@ -100,6 +104,10 @@ if (db_execute($sql, $params)) {
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($companyName) . "</td>
             </tr>
             <tr style='background-color: #f9f9f9;'>
+                <td style='border: 1px solid #eeeeee; font-weight: bold;'>Component Manufactured</td>
+                <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($componentManufactured) . "</td>
+            </tr>
+            <tr>
                 <td style='border: 1px solid #eeeeee; font-weight: bold;'>Landing Page</td>
                 <td style='border: 1px solid #eeeeee;'>" . htmlspecialchars($landingTitle) . " (/" . htmlspecialchars($landingSlug) . ")</td>
             </tr>
