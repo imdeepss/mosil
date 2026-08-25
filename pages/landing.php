@@ -26,7 +26,7 @@ $banner_image = !empty($banner['image']) ? $banner['image'] : 'assets/uploads/ca
 $banner_image_alt = $banner['image_alt'] ?? 'Automotive Component Grease Application';
 $banner_image_pos = $banner['image_position'] ?? 'right';
 
-$form_heading = 'Share your details so that Our Team can get back to you for discussion';
+$form_heading = 'Share your details so that our team can get back to you for discussion';
 $form_intro = '';
 $form_email_to = $form_data['email_to'] ?? '';
 $form_success_msg = $form_data['success_message'] ?? 'Thank you! Your inquiry has been received. We will contact you shortly.';
