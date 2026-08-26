@@ -1,8 +1,7 @@
 <?php
 /**
  * Master Landing Page - Premium 2-Column Split Layout
- * Left: Eyebrow, Headline (with break), Subhead (wording fix), 3 CPC Checkmarks, Campaign Image
- * Right: Dark-themed Form Card with Side-by-Side Email/Phone Inputs
+ * Theme: Brand Primary Green Leading Style
  */
 
 if (!isset($landingData) || empty($landingData)) {
@@ -10,7 +9,7 @@ if (!isset($landingData) || empty($landingData)) {
     return;
 }
 
-// Extract variables with legacy fallbacks
+// Extract variables with fallbacks
 $id = $landingData['id'] ?? 'campaign';
 $seo = $landingData['seo'] ?? [];
 
@@ -24,7 +23,6 @@ $sub_headline = $banner['sub_headline'] ?? "MOSIL works with component manufactu
 $cta_text = 'Schedule CPC check';
 $banner_image = !empty($banner['image']) ? $banner['image'] : 'assets/uploads/campaigns/cpc_6a68f90e1fb2c.png';
 $banner_image_alt = $banner['image_alt'] ?? 'Automotive Component Grease Application';
-$banner_image_pos = $banner['image_position'] ?? 'right';
 
 $form_heading = 'Share your details so that our team can get back to you for discussion';
 $form_intro = '';
@@ -32,216 +30,157 @@ $form_email_to = $form_data['email_to'] ?? '';
 $form_success_msg = $form_data['success_message'] ?? 'Thank you! Your inquiry has been received. We will contact you shortly.';
 
 $isNoIndex = !empty($seo['noindex']);
-
-// Set headers for index.php to read
-$pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campaign | " . SITE_NAME);
-$metaDescription = !empty($seo['description']) ? $seo['description'] : substr(strip_tags($sub_headline), 0, 160);
+$pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campaign | " . (defined('SITE_NAME') ? SITE_NAME : 'MOSIL'));
 ?>
 
 <?php if ($isNoIndex): ?>
     <meta name="robots" content="noindex, nofollow">
 <?php endif; ?>
 
-<!-- Inject Tailwind CSS for arbitrary style rendering -->
+<!-- Tailwind CDN with unified Brand Palette -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
     tailwind.config = {
         theme: {
             extend: {
                 colors: {
-                    mosilGreen: '#1A3B1B',
-                    mosilGreenDark: '#0D2010',
-                    mosilGreenDeep: '#07140A',
-                    mosilGold: '#F4C300',
-                    mosilGoldHover: '#E0B200',
-                    mosilGoldLight: '#FEF9E6',
+                    mosilGreen: {
+                        50: 'oklch(98.2% 0.018 155.826)',
+                        100: 'oklch(96.2% 0.044 156.743)',
+                        600: 'oklch(62.7% 0.194 149.214)',
+                        700: 'oklch(52.7% 0.154 150.069)',
+                        DEFAULT: '#143317',      /* Primary Main Green */
+                        dark: '#0D2010',         /* Deeper Green Hover */
+                        deep: '#07140A'          /* Ultra Dark Green for Text */
+                    },
+                    mosilGold: {
+                        50: '#FEF9E6',
+                        100: '#FDF0B8',
+                        400: 'oklch(85.2% 0.199 91.936)',
+                        DEFAULT: '#E5AC00',
+                        hover: '#C99600'
+                    }
                 }
             }
         }
     }
 </script>
 
-<style>
-    /* Hide only specific floating chat/search widgets, NOT the header or footer */
-    .whatsapp-widget,
-    #sarah-widget-container,
-    .whatsapp-btn,
-    #openMobileSearch,
-    [class*="whatsapp"],
-    [id*="whatsapp"],
-    [class*="sarah"],
-    [id*="sarah"] {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-
-    main#main-content {
-        margin-top: 0 !important;
-        padding-top: 60px !important;
-        /* Offset for main website fixed header */
-        background-color: #ffffff !important;
-        /* White page background */
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    /* Premium text gradient with solid fallback for light backgrounds */
-    .gradient-text {
-        background: linear-gradient(135deg, #1A3B1B 60%, #3a753e 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: #1A3B1B;
-    }
-
-    /* Force global site header to be solid, dark-colored, and fully visible on the landing page */
-    body>header {
-        background-color: #07140A !important;
-        display: block !important;
-        visibility: visible !important;
-        height: 60px !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    }
-
-    /* Force global footer to be solid and fully visible */
-    body>footer {
-        background-color: #07140A !important;
-        display: block !important;
-        visibility: visible !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-        color: #cbd5e1 !important;
-        padding-top: 4rem !important;
-        padding-bottom: 3rem !important;
-    }
-
-    body>footer a {
-        color: #ffffff !important;
-    }
-
-    body>footer a:hover {
-        color: #F4C300 !important;
-    }
-</style>
-
 <div
-    class="text-slate-900 min-h-[calc(100vh-60px)] flex flex-col justify-between selection:bg-mosilGold selection:text-slate-900">
+    class="text-mosilGreen-deep min-h-[calc(100vh-60px)] flex flex-col justify-between selection:bg-mosilGreen selection:text-white font-sans antialiased">
 
     <main class="flex-grow">
-        <!-- ================================================== -->
-        <!-- 2-COLUMN SPLIT LANDING CONTAINER -->
-        <!-- ================================================== -->
-        <section class="relative py-12 md:py-20 px-6 overflow-hidden">
-            <!-- Decorative Ambient Glows -->
+        <section
+            class="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-mosilGreen-50/40 via-white to-slate-50/50">
+            <!-- Decorative Green Glows -->
             <div
-                class="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-mosilGold/10 rounded-full blur-[150px] pointer-events-none">
+                class="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-mosilGreen/10 rounded-full blur-[140px] pointer-events-none">
             </div>
             <div
-                class="absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-mosilGreen/10 rounded-full blur-[130px] pointer-events-none">
+                class="absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-mosilGold/10 rounded-full blur-[130px] pointer-events-none">
             </div>
             <div
-                class="absolute inset-0 bg-[radial-gradient(#1A3B1B_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-5 pointer-events-none">
+                class="absolute inset-0 bg-[radial-gradient(#143317_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none">
             </div>
 
-            <div class="container relative z-10">
+            <div class="max-w-7xl mx-auto relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
                     <!-- ================================================== -->
-                    <!-- LEFT COLUMN: CAMPAIGN INFO, BULLETS, IMAGE -->
+                    <!-- LEFT COLUMN: MAIN GREEN TYPOGRAPHY & HIGHLIGHTS    -->
                     <!-- ================================================== -->
                     <div class="lg:col-span-7 space-y-8">
 
-                        <!-- Eyebrow Badge -->
+                        <!-- Eyebrow Badge (Main Green Theme) -->
                         <div
-                            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200/60 text-[11px] font-black text-mosilGreen uppercase tracking-widest">
+                            class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-mosilGreen text-white text-[11px] font-bold uppercase tracking-widest shadow-sm">
                             <span class="relative flex h-2 w-2">
                                 <span
-                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mosilGreen opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-2 w-2 bg-mosilGreen"></span>
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mosilGold opacity-90"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-mosilGold"></span>
                             </span>
                             <span>Spec-Matching Specialty Lubrication</span>
                         </div>
 
-                        <!-- Main Headline (Allows break sequence via nl2br) -->
+                        <!-- Main Headline in Primary Green -->
                         <h1
-                            class="text-3xl sm:text-4xl lg:text-[46px] font-black leading-[1.2] tracking-tight gradient-text text-left max-w-2xl">
+                            class="text-3xl sm:text-4xl lg:text-[44px] font-black leading-[1.18] tracking-tight text-mosilGreen text-left max-w-2xl">
                             <?php echo nl2br(htmlspecialchars($headline)); ?>
                         </h1>
 
-                        <!-- Subheadline (Wording Refined: removing "automotive" & focusing on compromise) -->
+                        <!-- Subheadline -->
                         <?php if (!empty($sub_headline)): ?>
-                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light text-left max-w-2xl">
+                            <p class="text-slate-700 text-base sm:text-lg leading-relaxed font-normal text-left max-w-2xl">
                                 <?php echo htmlspecialchars($sub_headline); ?>
                             </p>
                         <?php endif; ?>
 
-                        <!-- Bullet points with custom SVGs -->
-                        <div class="space-y-4 max-w-2xl pt-2">
+                        <!-- Feature Checklist with Primary Green Focus -->
+                        <div class="space-y-3.5 max-w-2xl pt-2">
                             <!-- Bullet 1 -->
                             <div
-                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:bg-slate-50/50 hover:shadow-md hover:border-slate-300">
+                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
                                 <div
-                                    class="w-9 h-9 rounded-xl bg-mosilGold/15 text-mosilGreen flex items-center justify-center shrink-0 border border-mosilGold/20 shadow-inner">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="w-10 h-10 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
+                                    <svg class="w-5 h-5 text-mosilGold" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-extrabold text-mosilGreen">Specification-Matching
-                                        Formulations
+                                    <h4 class="text-sm font-bold text-mosilGreen">Specification-Matching Formulations
                                     </h4>
-                                    <p class="text-slate-500 text-xs font-light mt-1">Products are formulated to match
-                                        or exceed physical & performance OEM test requirements.</p>
+                                    <p class="text-slate-600 text-xs font-normal mt-0.5 leading-relaxed">Formulated to
+                                        match or exceed physical & performance OEM test requirements.</p>
                                 </div>
                             </div>
 
-                            <!-- Bullet 2 (Renamed to Documented Performance Validation) -->
+                            <!-- Bullet 2 -->
                             <div
-                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:bg-slate-50/50 hover:shadow-md hover:border-slate-300">
+                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
                                 <div
-                                    class="w-9 h-9 rounded-xl bg-mosilGold/15 text-mosilGreen flex items-center justify-center shrink-0 border border-mosilGold/20 shadow-inner">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="w-10 h-10 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
+                                    <svg class="w-5 h-5 text-mosilGold" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                         </path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-extrabold text-mosilGreen">TriboIntel™ Documented</h4>
-                                    <p class="text-slate-500 text-xs font-light mt-1">Validated within our
-                                        state-of-the-art, NABL-accredited tribology performance testing center.</p>
+                                    <h4 class="text-sm font-bold text-mosilGreen">TriboIntel™ Documented Validation</h4>
+                                    <p class="text-slate-600 text-xs font-normal mt-0.5 leading-relaxed">Validated
+                                        within our state-of-the-art, NABL-accredited tribology testing center.</p>
                                 </div>
                             </div>
 
                             <!-- Bullet 3 -->
                             <div
-                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:bg-slate-50/50 hover:shadow-md hover:border-slate-300">
+                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
                                 <div
-                                    class="w-9 h-9 rounded-xl bg-mosilGold/15 text-mosilGreen flex items-center justify-center shrink-0 border border-mosilGold/20 shadow-inner">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="w-10 h-10 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
+                                    <svg class="w-5 h-5 text-mosilGold" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-extrabold text-mosilGreen">Zero Import & Logistics Delays
-                                    </h4>
-                                    <p class="text-slate-500 text-xs font-light mt-1">Eliminating long lead times,
-                                        customs regulations, and high overseas freight margins.</p>
+                                    <h4 class="text-sm font-bold text-mosilGreen">Zero Import & Logistics Delays</h4>
+                                    <p class="text-slate-600 text-xs font-normal mt-0.5 leading-relaxed">Eliminates long
+                                        lead times, customs bottlenecks, and steep overseas freight margins.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Campaign image rendering (with correct path & border styling) -->
+                        <!-- Campaign Image Container -->
                         <?php if (!empty($banner_image)): ?>
                             <div class="pt-4 max-w-2xl">
                                 <div
-                                    class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-2 shadow-md hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-                                    <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden">
-                                        <img src="<?php echo SITE_URL . '/' . htmlspecialchars($banner_image); ?>"
+                                    class="border border-slate-200 rounded-2xl overflow-hidden bg-white p-2 shadow-md hover:border-mosilGreen/30 hover:shadow-lg transition-all duration-300">
+                                    <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden bg-slate-100">
+                                        <img src="<?php echo (defined('SITE_URL') ? SITE_URL : '') . '/' . htmlspecialchars($banner_image); ?>"
                                             alt="<?php echo htmlspecialchars($banner_image_alt); ?>"
                                             class="absolute inset-0 w-full h-full object-cover">
                                     </div>
@@ -252,32 +191,34 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                     </div>
 
                     <!-- ================================================== -->
-                    <!-- RIGHT COLUMN: THE DARK FORM CARD -->
+                    <!-- RIGHT COLUMN: FORM CARD (MAIN GREEN ACCENTS)       -->
                     <!-- ================================================== -->
                     <div class="lg:col-span-5">
                         <div
-                            class="bg-white border border-slate-200/80 rounded-[32px] p-8 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.05)] relative overflow-hidden">
-                            <!-- Soft corner ambient glow -->
+                            class="bg-white border-2 border-mosilGreen/15 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-mosilGreen/10 relative overflow-hidden">
+                            <!-- Background Subtle Green Glow -->
                             <div
-                                class="absolute -top-12 -right-12 w-28 h-28 bg-mosilGreen/5 rounded-full blur-2xl pointer-events-none">
+                                class="absolute -top-12 -right-12 w-36 h-36 bg-mosilGreen-50 rounded-full blur-2xl pointer-events-none">
                             </div>
 
-                            <!-- Form content wrapper -->
+                            <!-- Form View -->
                             <div id="landingFormContent" class="space-y-6 relative z-10">
                                 <div class="space-y-2">
                                     <h3 class="text-xl sm:text-2xl font-black text-mosilGreen tracking-tight">
                                         <?php echo htmlspecialchars($form_heading); ?>
                                     </h3>
-                                    <p
-                                        class="text-slate-500 text-xs leading-relaxed font-light border-l-2 border-mosilGold pl-2.5">
-                                        <?php echo htmlspecialchars($form_intro); ?>
-                                    </p>
+                                    <?php if (!empty($form_intro)): ?>
+                                        <p
+                                            class="text-slate-600 text-xs leading-relaxed border-l-2 border-mosilGreen pl-2.5">
+                                            <?php echo htmlspecialchars($form_intro); ?>
+                                        </p>
+                                    <?php endif; ?>
                                 </div>
 
-                                <!-- Validation alert banner -->
+                                <!-- Error Alert Banner -->
                                 <div id="formErrorBanner"
-                                    class="hidden p-3 rounded-xl bg-red-50 border border-red-200/30 text-red-800 text-xs flex items-center gap-2.5">
-                                    <svg class="w-4 h-4 shrink-0 text-red-400" fill="none" stroke="currentColor"
+                                    class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2.5">
+                                    <svg class="w-4 h-4 shrink-0 text-red-500" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
@@ -297,11 +238,11 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                     <!-- Full Name -->
                                     <div class="space-y-1">
                                         <label
-                                            class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Full
-                                            Name <span class="text-mosilGold">*</span></label>
+                                            class="block text-[11px] font-bold text-mosilGreen uppercase tracking-wider">Full
+                                            Name <span class="text-mosilGold font-bold">*</span></label>
                                         <div class="relative">
                                             <span
-                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-mosilGreen/60">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -311,62 +252,63 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                                 </svg>
                                             </span>
                                             <input type="text" name="name" required placeholder="Enter full name"
-                                                class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 focus:bg-white transition-all duration-300">
+                                                class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/15 focus:bg-white transition-all">
                                         </div>
                                     </div>
 
+                                    <!-- Email & Contact Grid -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                        <!-- Email -->
+                                        <div class="space-y-1">
+                                            <label
+                                                class="block text-[11px] font-bold text-mosilGreen uppercase tracking-wider">Business
+                                                Email <span class="text-mosilGold font-bold">*</span></label>
+                                            <div class="relative">
+                                                <span
+                                                    class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-mosilGreen/60">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                                <input type="email" name="email" required placeholder="name@company.com"
+                                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-3 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/15 focus:bg-white transition-all">
+                                            </div>
+                                        </div>
 
-                                    <!-- Email -->
-                                    <div class="space-y-1">
-                                        <label
-                                            class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Business
-                                            Email <span class="text-mosilGold">*</span></label>
-                                        <div class="relative">
-                                            <span
-                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                            <input type="email" name="email" required placeholder="name@company.com"
-                                                class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 focus:bg-white transition-all duration-300">
+                                        <!-- Contact -->
+                                        <div class="space-y-1">
+                                            <label
+                                                class="block text-[11px] font-bold text-mosilGreen uppercase tracking-wider">Contact
+                                                Number <span class="text-mosilGold font-bold">*</span></label>
+                                            <div class="relative">
+                                                <span
+                                                    class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-mosilGreen/60">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                                <input type="tel" name="contact" required placeholder="10-digit mobile"
+                                                    class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-3 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/15 focus:bg-white transition-all">
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <!-- Contact -->
-                                    <div class="space-y-1">
-                                        <label
-                                            class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Contact
-                                            Number <span class="text-mosilGold">*</span></label>
-                                        <div class="relative">
-                                            <span
-                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                            <input type="tel" name="contact" required placeholder="10-digit mobile"
-                                                class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 focus:bg-white transition-all duration-300">
-                                        </div>
-                                    </div>
-
 
                                     <!-- Company Name -->
                                     <div class="space-y-1">
                                         <label
-                                            class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Company
-                                            Name <span class="text-mosilGold">*</span></label>
+                                            class="block text-[11px] font-bold text-mosilGreen uppercase tracking-wider">Company
+                                            Name <span class="text-mosilGold font-bold">*</span></label>
                                         <div class="relative">
                                             <span
-                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-mosilGreen/60">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -375,35 +317,43 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                                     </path>
                                                 </svg>
                                             </span>
-                                            <input type="text" name="company_name" required placeholder="Company name"
-                                                class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 focus:bg-white transition-all duration-300">
+                                            <input type="text" name="company_name" required
+                                                placeholder="Your company name"
+                                                class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/15 focus:bg-white transition-all">
                                         </div>
                                     </div>
 
                                     <!-- Component Manufactured -->
                                     <div class="space-y-1">
                                         <label
-                                            class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Component Manufactured <span class="text-mosilGold">*</span></label>
+                                            class="block text-[11px] font-bold text-mosilGreen uppercase tracking-wider">Component
+                                            Manufactured <span class="text-mosilGold font-bold">*</span></label>
                                         <div class="relative">
                                             <span
-                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-mosilGreen/60">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                                    </path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                                 </svg>
                                             </span>
-                                            <input type="text" name="component_manufactured" required placeholder="e.g., Bearings, Valves, Gears"
-                                                class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 focus:bg-white transition-all duration-300">
+                                            <input type="text" name="component_manufactured" required
+                                                placeholder="e.g., Bearings, Valves, Actuators"
+                                                class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/15 focus:bg-white transition-all">
                                         </div>
                                     </div>
 
                                     <!-- Requirement / Message -->
                                     <div class="space-y-1">
                                         <label
-                                            class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest">Requirement
-                                            / Message <span class="text-mosilGold">*</span></label>
+                                            class="block text-[11px] font-bold text-mosilGreen uppercase tracking-wider">Requirement
+                                            / Message <span class="text-mosilGold font-bold">*</span></label>
                                         <div class="relative">
-                                            <span class="absolute top-3.5 left-0 pl-3.5 text-slate-500">
+                                            <span class="absolute top-3.5 left-0 pl-3.5 text-mosilGreen/60">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -413,18 +363,18 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                                 </svg>
                                             </span>
                                             <textarea name="message" rows="3" required
-                                                placeholder="Describe your technical requirements..."
-                                                class="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/10 focus:bg-white transition-all duration-300"></textarea>
+                                                placeholder="Describe current lubricant spec or operating challenge..."
+                                                class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-mosilGreen focus:ring-4 focus:ring-mosilGreen/15 focus:bg-white transition-all"></textarea>
                                         </div>
                                     </div>
 
-                                    <!-- Submit Button (Full Width yellow gradient) -->
-                                    <div class="pt-3">
+                                    <!-- Submit Button in Solid Primary Green -->
+                                    <div class="pt-2">
                                         <button type="submit" id="landingFormSubmitBtn"
-                                            class="w-full bg-mosilGreen hover:bg-mosilGreenDark text-white font-bold py-4 px-6 rounded-full text-sm uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] flex items-center justify-center gap-2.5 group cursor-pointer border-0">
+                                            class="w-full bg-mosilGreen hover:bg-mosilGreen-dark active:bg-mosilGreen-deep text-white font-extrabold py-4 px-6 rounded-xl text-sm uppercase tracking-wider transition-all duration-200 shadow-lg shadow-mosilGreen/25 hover:shadow-xl hover:shadow-mosilGreen/30 flex items-center justify-center gap-2.5 group cursor-pointer border-0">
                                             <span id="btnText"><?php echo htmlspecialchars($cta_text); ?></span>
 
-                                            <!-- Spinner SVG (Hidden initially) -->
+                                            <!-- Spinner SVG -->
                                             <svg id="btnSpinner" class="hidden animate-spin h-4 w-4 text-white"
                                                 fill="none" viewBox="0 0 24 24">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -434,9 +384,9 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                                 </path>
                                             </svg>
 
-                                            <!-- Right arrow (Hidden during load) -->
+                                            <!-- Right Arrow -->
                                             <svg id="btnArrow"
-                                                class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"
+                                                class="w-4 h-4 text-mosilGold transition-transform group-hover:translate-x-1"
                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                     d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -446,29 +396,29 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                                 </form>
                             </div>
 
-                            <!-- Success transition container -->
+                            <!-- Success State View -->
                             <div id="landingFormSuccess"
-                                class="hidden text-center py-12 px-4 space-y-6 opacity-0 transition-opacity duration-500">
+                                class="hidden text-center py-10 px-4 space-y-6 opacity-0 transition-opacity duration-300">
                                 <div
-                                    class="relative inline-flex w-20 h-20 items-center justify-center rounded-full bg-emerald-50 border-2 border-emerald-500/35 text-emerald-600 mx-auto shadow-[0_0_35px_rgba(16,185,129,0.05)] animate-bounce">
-                                    <span
-                                        class="absolute inset-0 rounded-full border border-emerald-500/20 animate-ping"></span>
-                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="relative inline-flex w-16 h-16 items-center justify-center rounded-full bg-mosilGreen text-white mx-auto shadow-md">
+                                    <svg class="w-8 h-8 text-mosilGold" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
-                                <div class="space-y-3">
-                                    <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Thank You!</h3>
+                                <div class="space-y-2">
+                                    <h3 class="text-2xl font-black text-mosilGreen tracking-tight">Request Received</h3>
                                     <p id="successMessageText"
-                                        class="text-slate-600 text-sm leading-relaxed max-w-sm mx-auto font-light">
+                                        class="text-slate-600 text-sm leading-relaxed max-w-sm mx-auto font-normal">
                                         <?php echo htmlspecialchars($form_success_msg); ?>
                                     </p>
                                 </div>
-                                <div class="pt-4">
+                                <div class="pt-2">
                                     <button type="button" onclick="resetLandingForm()"
-                                        class="text-xs text-[#1A3B1B] hover:text-emerald-700 hover:underline transition-all uppercase tracking-wider font-bold">Submit
-                                        Another Request</button>
+                                        class="text-xs text-mosilGreen hover:text-mosilGreen-dark underline uppercase tracking-wider font-bold">
+                                        Submit Another Request
+                                    </button>
                                 </div>
                             </div>
 
@@ -482,7 +432,7 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
 
 </div>
 
-<!-- AJAX Submission Script -->
+<!-- Client-side Validation and AJAX Handler -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("landingContactForm");
@@ -498,7 +448,6 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
             const errorBanner = document.getElementById("formErrorBanner");
             const errorMessage = document.getElementById("formErrorMessage");
 
-            // Basic front-end validation
             errorBanner.classList.add("hidden");
             const name = form.querySelector('[name="name"]').value.trim();
             const email = form.querySelector('[name="email"]').value.trim();
@@ -523,35 +472,31 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
                 return;
             }
 
-            // Show loading state
+            // Loading state
             btn.disabled = true;
             btnText.textContent = "Sending...";
             btnSpinner.classList.remove("hidden");
             btnArrow.classList.add("hidden");
 
-            // Prepare post payload
             const formData = new FormData(form);
+            const submitUrl = "<?php echo (defined('SITE_URL') ? SITE_URL : '') . '/ajax/submit-landing.php'; ?>";
 
-            fetch("<?php echo SITE_URL; ?>/ajax/submit-landing.php", {
+            fetch(submitUrl, {
                 method: "POST",
                 body: formData
             })
-                .then(response => response.json())
+                .then(res => res.json())
                 .then(data => {
                     if (data.success) {
-                        // Smooth transition to success card
                         const contentDiv = document.getElementById("landingFormContent");
                         const successDiv = document.getElementById("landingFormSuccess");
 
-                        contentDiv.style.opacity = "0";
+                        contentDiv.classList.add("hidden");
+                        successDiv.classList.remove("hidden");
                         setTimeout(() => {
-                            contentDiv.classList.add("hidden");
-                            successDiv.classList.remove("hidden");
-                            setTimeout(() => {
-                                successDiv.style.opacity = "1";
-                                successDiv.classList.remove("opacity-0");
-                            }, 50);
-                        }, 300);
+                            successDiv.classList.remove("opacity-0");
+                            successDiv.classList.add("opacity-100");
+                        }, 50);
 
                         form.reset();
                     } else {
@@ -587,16 +532,13 @@ $metaDescription = !empty($seo['description']) ? $seo['description'] : substr(st
         const btnSpinner = document.getElementById("btnSpinner");
         const btnArrow = document.getElementById("btnArrow");
 
-        successDiv.style.opacity = "0";
+        successDiv.classList.add("opacity-0");
+        successDiv.classList.remove("opacity-100");
         setTimeout(() => {
             successDiv.classList.add("hidden");
             contentDiv.classList.remove("hidden");
-            setTimeout(() => {
-                contentDiv.style.opacity = "1";
-            }, 50);
-        }, 300);
+        }, 200);
 
-        // Reset button states
         btn.disabled = false;
         btnText.textContent = "<?php echo htmlspecialchars($cta_text); ?>";
         btnSpinner.classList.add("hidden");
