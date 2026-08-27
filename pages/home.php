@@ -245,7 +245,7 @@ $blogs = getHomeFeaturedBlogs();
 
                         <div class="relative overflow-hidden w-full h-full">
                             <h6
-                                class="relative z-10 px-6 py-4 font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px]">
+                                class="relative z-10 px-6 py-4 font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px] capitalize">
                                 <?php echo $product['mcat_name']; ?>
                             </h6>
                         </div>
@@ -639,16 +639,16 @@ $lubricationItems = [
                     'Tata Steel.webp',
                 ];
 
-                foreach ($brands as $brand) { 
+                foreach ($brands as $brand) {
                     $webpName = str_replace(['.png', '.jpg', '.jpeg'], '.webp', $brand);
                     $brandDir = __DIR__ . '/../assets/images/brand/';
                     $webpPath = $brandDir . $webpName;
-                    
+
                     if (!file_exists($webpPath)) {
                         $pngPath = $brandDir . str_replace('.webp', '.png', $webpName);
                         $jpgPath = $brandDir . str_replace('.webp', '.jpg', $webpName);
                         $jpegPath = $brandDir . str_replace('.webp', '.jpeg', $webpName);
-                        
+
                         if (file_exists($pngPath)) {
                             $image = @imagecreatefrompng($pngPath);
                             if ($image !== false) {
@@ -672,12 +672,11 @@ $lubricationItems = [
                             }
                         }
                     }
-                ?>
+                    ?>
                     <div class="swiper-slide !w-auto">
                         <div
                             class="w-[112px] h-[56px] md:w-[264.33px] md:h-[107.86px] aspect-[264.33/107.86] flex-shrink-0 bg-white p-2 flex items-center justify-center overflow-hidden">
-                            <img decoding="async"
-                                src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo $webpName; ?>"
+                            <img decoding="async" src="<?php echo SITE_URL; ?>/assets/images/brand/<?php echo $webpName; ?>"
                                 alt="Brand Logo" class="max-h-full max-w-full object-contain" loading="lazy">
                         </div>
                     </div>
