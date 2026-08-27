@@ -38,7 +38,7 @@
                     Find
                     us on</h2>
                 <ul class="text-[#FFFFFF] font-base font-normal text-[14px] leading-[150%] tracking-[0.015em]">
-                    <li><a href="https://www.linkedin.com/company/mosil-lubricants/"
+                    <li><a href="https://www.linkedin.com/company/mosil-lubricants-private-limited/"
                             aria-label="Visit our LinkedIn page"
                             class="hover:text-primary transition-colors">LinkedIn</a></li>
                     <li><a href="https://twitter.com/mosil_lubricants" aria-label="Visit our Twitter page"
