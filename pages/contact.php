@@ -4,7 +4,7 @@ $pageTitle = 'Contact Us - Get in Touch with Our Experts | MOSIL';
 $metaDescription = 'Contact MOSIL for inquiries, support, or consultations regarding our custom lubrication solutions. Our experts are ready to assist you.';
 ?>
 <h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Contact Us'; ?></h1>
-<section class="h-[80px] sticky top-0 z-10 bg-white"></section>
+<section class="h-[100px] sticky top-0 z-10 bg-white"></section>
 
 <section class="container">
     <nav

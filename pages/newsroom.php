@@ -1011,7 +1011,7 @@ $faqs = [
         const hero = document.getElementById('newsroom-hero');
         const placeholder = document.getElementById('sticky-nav-placeholder');
         const mainHeader = document.querySelector('header');
-        const headerHeight = mainHeader ? mainHeader.offsetHeight : 80; // Your fixed header height
+        const headerHeight = mainHeader ? mainHeader.offsetHeight : 100; // Your fixed header height
 
         if (nav && hero && placeholder && mainHeader) {
             // Set placeholder height to match nav height
@@ -1042,7 +1042,7 @@ $faqs = [
                 if (window.scrollY >= stickNavThreshold) {
                     if (!nav.classList.contains('fixed')) {
                         nav.classList.add('fixed', 'top-0', 'left-0', 'right-0', 'z-50');
-                        nav.classList.remove('z-40', 'top-[80px]');
+                        nav.classList.remove('z-40', 'top-[100px]');
                         placeholder.classList.remove('hidden');
                     }
                 } else {

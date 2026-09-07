@@ -184,7 +184,7 @@ function parseTableString($str)
     <?php return; endif; ?>
 
 
-<section class="h-[80px] sticky top-0 z-10 bg-white"></section>
+<section class="h-[100px] sticky top-0 z-10 bg-white"></section>
 
 <div class="flex flex-col gap-6 mb-6">
     <!-- Breadcrumbs & Product Main Info -->

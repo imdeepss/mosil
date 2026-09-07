@@ -9,7 +9,7 @@ $currentPage = $initialData['currentPage'];
 ?>
 
 <h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Case Studies'; ?></h1>
-<section class="h-[80px] sticky top-0 z-10 bg-white"></section>
+<section class="h-[100px] sticky top-0 z-10 bg-white"></section>
 
 <section class="container">
 

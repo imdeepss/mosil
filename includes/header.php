@@ -170,7 +170,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 
 <body>
 
-    <header class="fixed top-0 z-50 h-[80px] w-full left-0 right-0">
+    <header class="fixed top-0 z-50 h-[100px] w-full left-0 right-0">
         <div class="absolute inset-0 w-full h-full bg-[#0e0e0e]/40 backdrop-blur-[18px] -z-10"></div>
         <div class="container flex h-full items-center justify-between">
             <div class="shrink-0">
@@ -216,7 +216,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                         <input type="text" placeholder="Search..."
                             class="search-input flex-grow bg-transparent text-white placeholder-neutral-400 outline-none text-lg h-full min-w-0">
                         <div
-                            class="search-results-container fixed top-[80px] left-0 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-[60] hidden max-h-[80vh] overflow-y-auto">
+                            class="search-results-container fixed top-[100px] left-0 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-[60] hidden max-h-[80vh] overflow-y-auto">
                         </div>
                         <div class="w-12 shrink-0"></div>
                     </div>
