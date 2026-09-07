@@ -13,7 +13,7 @@ $industries = getCategoryByParent("2"); // Fetch industries for the dropdown
 ?>
 
 <h1 class="sr-only"><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Events'; ?></h1>
-<section class="h-[60px] sticky top-0 z-10 bg-white"></section>
+<section class="h-[80px] sticky top-0 z-10 bg-white"></section>
 <div>
 
     <section class="container">

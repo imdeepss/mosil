@@ -30,7 +30,7 @@ if ($isEvent) {
 $pageTitle = htmlspecialchars($event['title']);
 ?>
 
-<section class="h-[60px] sticky top-0 z-10 bg-white"></section>
+<section class="h-[80px] sticky top-0 z-10 bg-white"></section>
 
 <section class="w-full bg-white">
     <div class="container relative py-6">

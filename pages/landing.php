@@ -67,7 +67,7 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
 </script>
 
 <div
-    class="text-mosilGreen-deep min-h-[calc(100vh-60px)] flex flex-col justify-between selection:bg-mosilGreen selection:text-white font-sans antialiased">
+    class="text-mosilGreen-deep min-h-[calc(100vh-80px)] flex flex-col justify-between selection:bg-mosilGreen selection:text-white font-sans antialiased">
 
     <main class="flex-grow">
         <section

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@source "../../pages";
+@source "../../includes";
+@source "../../index.php";
+
 @theme {
   --color-y50: #FEF9E6;
   --color-y75: #FAE696;
@@ -38,7 +42,7 @@
   --color-bg-body-high: #fafafa;
   --color-bg-body-mid: #f5f5f5;
   --color-bg-body-low: #DEDEDE;
-  --spacing-header-height: 60px;
+  --spacing-header-height: 80px;
 }
 
 @keyframes fadeInUp {
