@@ -69,50 +69,50 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     <!-- Structured Data -->
     <?php if (isset($page) && $page === 'home'): ?>
         <script type="application/ld+json">
-                                                                                                    {
-                                                                                                      "@context": "https://schema.org",
-                                                                                                      "@type": "Organization",
-                                                                                                      "name": "MOSIL Lubricants Pvt. Ltd.",
-                                                                                                      "url": "https://mosil.com",
-                                                                                                      "logo": "https://mosil.com/logo.png",
-                                                                                                      "description": "MOSIL Lubricants is a specialty industrial lubricant manufacturer providing greases, oils, coatings, and defence lubrication solutions.",
-                                                                                                      "email": "enquiry@mosil.com",
-                                                                                                      "telephone": "+91-9619234158",
-                                                                                                      "foundingDate": "1971"
-                                                                                                    }
-                                                                                                    </script>
+                                                                                                        {
+                                                                                                          "@context": "https://schema.org",
+                                                                                                          "@type": "Organization",
+                                                                                                          "name": "MOSIL Lubricants Pvt. Ltd.",
+                                                                                                          "url": "https://mosil.com",
+                                                                                                          "logo": "https://mosil.com/logo.png",
+                                                                                                          "description": "MOSIL Lubricants is a specialty industrial lubricant manufacturer providing greases, oils, coatings, and defence lubrication solutions.",
+                                                                                                          "email": "enquiry@mosil.com",
+                                                                                                          "telephone": "+91-9619234158",
+                                                                                                          "foundingDate": "1971"
+                                                                                                        }
+                                                                                                        </script>
         <script type="application/ld+json">
-                                                                                                    {
-                                                                                                      "@context": "https://schema.org",
-                                                                                                      "@type": "WebSite",
-                                                                                                      "name": "MOSIL Lubricants",
-                                                                                                      "url": "https://mosil.com",
-                                                                                                      "potentialAction": {
-                                                                                                        "@type": "SearchAction",
-                                                                                                        "target": "https://mosil.com/product-finder?search={search_term_string}",
-                                                                                                        "query-input": "required name=search_term_string"
-                                                                                                      }
-                                                                                                    }
-                                                                                                    </script>
+                                                                                                        {
+                                                                                                          "@context": "https://schema.org",
+                                                                                                          "@type": "WebSite",
+                                                                                                          "name": "MOSIL Lubricants",
+                                                                                                          "url": "https://mosil.com",
+                                                                                                          "potentialAction": {
+                                                                                                            "@type": "SearchAction",
+                                                                                                            "target": "https://mosil.com/product-finder?search={search_term_string}",
+                                                                                                            "query-input": "required name=search_term_string"
+                                                                                                          }
+                                                                                                        }
+                                                                                                        </script>
         <script type="application/ld+json">
-                                                                                                    {
-                                                                                                      "@context": "https://schema.org",
-                                                                                                      "@type": "LocalBusiness",
-                                                                                                      "name": "MOSIL Lubricants Pvt. Ltd.",
-                                                                                                      "image": "https://mosil.com/logo.png",
-                                                                                                      "telephone": "+91-9619234158",
-                                                                                                      "email": "enquiry@mosil.com",
-                                                                                                      "address": {
-                                                                                                        "@type": "PostalAddress",
-                                                                                                        "streetAddress": "Plot no. A-791/3, MIDC, Kopar-Khairane",
-                                                                                                        "addressLocality": "Navi Mumbai",
-                                                                                                        "addressRegion": "Maharashtra",
-                                                                                                        "postalCode": "400710",
-                                                                                                        "addressCountry": "IN"
-                                                                                                      },
-                                                                                                      "url": "https://mosil.com"
-                                                                                                    }
-                                                                                                    </script>
+                                                                                                        {
+                                                                                                          "@context": "https://schema.org",
+                                                                                                          "@type": "LocalBusiness",
+                                                                                                          "name": "MOSIL Lubricants Pvt. Ltd.",
+                                                                                                          "image": "https://mosil.com/logo.png",
+                                                                                                          "telephone": "+91-9619234158",
+                                                                                                          "email": "enquiry@mosil.com",
+                                                                                                          "address": {
+                                                                                                            "@type": "PostalAddress",
+                                                                                                            "streetAddress": "Plot no. A-791/3, MIDC, Kopar-Khairane",
+                                                                                                            "addressLocality": "Navi Mumbai",
+                                                                                                            "addressRegion": "Maharashtra",
+                                                                                                            "postalCode": "400710",
+                                                                                                            "addressCountry": "IN"
+                                                                                                          },
+                                                                                                          "url": "https://mosil.com"
+                                                                                                        }
+                                                                                                        </script>
     <?php endif; ?>
 
     <!-- Favicon -->
@@ -183,7 +183,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
             <nav class="flex items-center md:gap-8 gap-4">
 
                 <!-- Header Search (Desktop) -->
-                <div class="relative hidden h-10 w-70 md:block">
+                <div class="relative hidden h-[40px] w-[300px] md:block">
                     <input type="text" name="search" placeholder="Search"
                         class="search-input h-full w-full rounded-full outline outline-1 outline-offset-[-0.50px] outline-white bg-zinc-400/30 pl-5 pr-10 text-sm text-white placeholder-white" />
                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/search.png" alt="Search"
