@@ -37,6 +37,9 @@ $allowed_pages = [
     'test',
     'disclaimer',
     'demo-ai-buttons',
+    'lead-enquiry',
+    'lead-form',
+    'quick-enquiry',
     'landing'
 ];
 
@@ -47,6 +50,11 @@ $isLanding = file_exists($landingDataFile);
 if (!in_array($page, $allowed_pages) && !$isLanding) {
     http_response_code(404);
     $page = '404'; // Default to show 404
+}
+
+// Aliases for Lead Enquiry
+if ($page === 'lead-form' || $page === 'quick-enquiry') {
+    $page = 'lead-enquiry';
 }
 
 // Prepare content file path
