@@ -174,9 +174,9 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
         <div class="absolute inset-0 w-full h-full bg-[#0e0e0e]/40 backdrop-blur-[18px] -z-10"></div>
         <div class="container flex h-full items-center justify-between">
             <div class="shrink-0">
-                <a href="<?php echo SITE_URL; ?>">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil.webp" alt="MOSIL" width="95" height="44"
-                        class="block">
+                <a href="<?php echo SITE_URL; ?>" class="block">
+                    <img src="<?php echo SITE_URL; ?>/assets/images/logos/mosil.webp" alt="MOSIL" width="130" height="60"
+                        class="block h-[50px] md:h-[60px] w-auto">
                 </a>
             </div>
 

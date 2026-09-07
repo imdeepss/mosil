@@ -243,11 +243,11 @@ endif; ?>
             class="w-full h-full object-cover">
     </div>
     <div class="flex items-baseline gap-1.5 px-0.5">
-        <span class="text-[11px] font-bold text-main-green/80 uppercase tracking-widest leading-none">Ask</span>
-        <span class="text-[16px] font-black text-main-green leading-none tracking-tight">Sarah</span>
+        <span class="text-[12px] md:text-[13px] font-black text-[#F4C300] uppercase tracking-widest leading-none">Ask</span>
+        <span class="text-[18px] md:text-[20px] font-black text-[#F4C300] leading-none tracking-tight">Sarah</span>
     </div>
-    <div class="text-main-green pl-0.5 pr-1">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="text-[#F4C300] pl-0.5 pr-0.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
         </svg>
     </div>

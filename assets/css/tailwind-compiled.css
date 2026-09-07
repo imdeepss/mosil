@@ -903,6 +903,9 @@
   .h-\[48px\] {
     height: 48px;
   }
+  .h-\[50px\] {
+    height: 50px;
+  }
   .h-\[56px\] {
     height: 56px;
   }
@@ -2556,8 +2559,8 @@
   .pr-0 {
     padding-right: 0px;
   }
-  .pr-1 {
-    padding-right: var(--spacing);
+  .pr-0\.5 {
+    padding-right: calc(var(--spacing) * 0.5);
   }
   .pr-2 {
     padding-right: calc(var(--spacing) * 2);
@@ -3060,12 +3063,6 @@
   }
   .text-main-green {
     color: var(--color-main-green);
-  }
-  .text-main-green\/80 {
-    color: color-mix(in srgb, #1A3B1B 80%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-main-green) 80%, transparent);
-    }
   }
   .text-neutral {
     color: var(--color-neutral);
@@ -4298,6 +4295,9 @@
     .md\:h-10 {
       height: calc(var(--spacing) * 10);
     }
+    .md\:h-\[60px\] {
+      height: 60px;
+    }
     .md\:h-\[107\.86px\] {
       height: 107.86px;
     }
@@ -4892,6 +4892,9 @@
     }
     .md\:text-\[12px\] {
       font-size: 12px;
+    }
+    .md\:text-\[13px\] {
+      font-size: 13px;
     }
     .md\:text-\[14px\] {
       font-size: 14px;
