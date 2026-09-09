@@ -100,7 +100,7 @@
                     foreach ($trending as $tag):
                         ?>
                         <button onclick="triggerChatbase('<?= htmlspecialchars($tag, ENT_QUOTES) ?>')"
-                            class="px-5 py-2.5 bg-white border border-gray-100 rounded-2xl text-[13.5px] text-slate-600 font-medium hover:bg-main-green hover:text-primary hover:border-main-green shadow-sm hover:shadow-md transition-colors duration-300">
+                            class="px-5 py-2.5 bg-white border border-gray-100 rounded-2xl text-base text-slate-600 font-semibold hover:bg-main-green hover:text-primary hover:border-main-green shadow-sm hover:shadow-md transition-colors duration-300">
                             <?= $tag ?>
                         </button>
                     <?php endforeach; ?>

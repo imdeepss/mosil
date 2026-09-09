@@ -245,7 +245,7 @@ $blogs = getHomeFeaturedBlogs();
 
                         <div class="relative overflow-hidden w-full h-full">
                             <h6
-                                class="relative z-10 px-6 py-4 font-light text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px] capitalize">
+                                class="relative z-10 px-6 py-4 font-bold text-lg md:text-[20px] leading-[150%] tracking-[0.01em] group-hover:text-primary [.active_&]:text-primary transition-colors duration-500 max-w-[250px] capitalize">
                                 <?php echo $product['mcat_name']; ?>
                             </h6>
                         </div>
