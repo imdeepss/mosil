@@ -44,6 +44,8 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
         theme: {
             extend: {
                 colors: {
+                    primary: 'var(--color-primary, #F4C300)',
+                    'main-green': 'var(--color-main-green, #1A3B1B)',
                     mosilGreen: {
                         50: 'oklch(98.2% 0.018 155.826)',
                         100: 'oklch(96.2% 0.044 156.743)',
@@ -71,7 +73,7 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
 
     <main class="flex-grow">
         <section
-            class="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-mosilGreen-50/40 via-white to-slate-50/50">
+            class="relative py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-mosilGreen-50/40 via-white to-slate-50/50">
             <!-- Decorative Green Glows -->
             <div
                 class="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-mosilGreen/10 rounded-full blur-[140px] pointer-events-none">
@@ -104,8 +106,23 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
 
                         <!-- Main Headline in Primary Green -->
                         <h1
-                            class="text-3xl sm:text-4xl lg:text-[44px] font-black leading-[1.18] tracking-tight text-mosilGreen text-left max-w-2xl">
-                            <?php echo nl2br(htmlspecialchars($headline)); ?>
+                            class="text-3xl sm:text-4xl lg:text-[44px] font-black leading-[1.2] tracking-tight text-mosilGreen text-left max-w-2xl">
+                            <?php
+                            $headlineText = $headline;
+                            if (stripos($headlineText, 'When did you last challenge it?') !== false) {
+                                $parts = preg_split('/(When did you last challenge it\??)/i', $headlineText, 2, PREG_SPLIT_DELIM_CAPTURE);
+                                $mainText = trim($parts[0] ?? '');
+                                $subText = trim(($parts[1] ?? '') . ($parts[2] ?? ''));
+                                if (!empty($mainText) && !empty($subText)) {
+                                    echo '<span class="block mb-2 sm:mb-4">' . nl2br(htmlspecialchars($mainText)) . '</span>';
+                                    echo '<span class="block text-mosilGreen">' . htmlspecialchars($subText) . '</span>';
+                                } else {
+                                    echo nl2br(htmlspecialchars($headlineText));
+                                }
+                            } else {
+                                echo nl2br(htmlspecialchars($headlineText));
+                            }
+                            ?>
                         </h1>
 
                         <!-- Subheadline -->
@@ -116,32 +133,34 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
                         <?php endif; ?>
 
                         <!-- Feature Checklist with Primary Green Focus -->
-                        <div class="space-y-3.5 max-w-2xl pt-2">
+                        <div class="space-y-4 max-w-2xl pt-2">
                             <!-- Bullet 1 -->
                             <div
-                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
+                                class="flex items-start gap-4 sm:gap-4.5 p-4.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
                                 <div
-                                    class="w-10 h-10 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
-                                    <svg class="w-5 h-5 text-mosilGold" fill="none" stroke="currentColor"
+                                    class="w-12 h-12 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
+                                    <svg class="w-6 h-6 text-mosilGold" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-mosilGreen">Specification-Matching Formulations
+                                    <h4 class="text-base sm:text-lg font-bold text-mosilGreen leading-snug">
+                                        Specification-Matching Formulations
                                     </h4>
-                                    <p class="text-slate-600 text-xs font-normal mt-0.5 leading-relaxed">Formulated to
+                                    <p class="text-slate-600 text-sm sm:text-[15px] font-normal mt-1 leading-relaxed">
+                                        Formulated to
                                         match or exceed physical & performance OEM test requirements.</p>
                                 </div>
                             </div>
 
                             <!-- Bullet 2 -->
                             <div
-                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
+                                class="flex items-start gap-4 sm:gap-4.5 p-4.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
                                 <div
-                                    class="w-10 h-10 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
-                                    <svg class="w-5 h-5 text-mosilGold" fill="none" stroke="currentColor"
+                                    class="w-12 h-12 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
+                                    <svg class="w-6 h-6 text-mosilGold" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
@@ -149,26 +168,30 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-mosilGreen">TriboIntel™ Documented Validation</h4>
-                                    <p class="text-slate-600 text-xs font-normal mt-0.5 leading-relaxed">Validated
+                                    <h4 class="text-base sm:text-lg font-bold text-mosilGreen leading-snug">TriboIntel™
+                                        Documented Validation</h4>
+                                    <p class="text-slate-600 text-sm sm:text-[15px] font-normal mt-1 leading-relaxed">
+                                        Validated
                                         within our state-of-the-art, NABL-accredited tribology testing center.</p>
                                 </div>
                             </div>
 
                             <!-- Bullet 3 -->
                             <div
-                                class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
+                                class="flex items-start gap-4 sm:gap-4.5 p-4.5 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm transition-all hover:border-mosilGreen/40 hover:shadow-md">
                                 <div
-                                    class="w-10 h-10 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
-                                    <svg class="w-5 h-5 text-mosilGold" fill="none" stroke="currentColor"
+                                    class="w-12 h-12 rounded-xl bg-mosilGreen text-white flex items-center justify-center shrink-0 shadow-sm">
+                                    <svg class="w-6 h-6 text-mosilGold" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-mosilGreen">Zero Import & Logistics Delays</h4>
-                                    <p class="text-slate-600 text-xs font-normal mt-0.5 leading-relaxed">Eliminates long
+                                    <h4 class="text-base sm:text-lg font-bold text-mosilGreen leading-snug">Zero Import
+                                        & Logistics Delays</h4>
+                                    <p class="text-slate-600 text-sm sm:text-[15px] font-normal mt-1 leading-relaxed">
+                                        Eliminates long
                                         lead times, customs bottlenecks, and steep overseas freight margins.</p>
                                 </div>
                             </div>
@@ -368,15 +391,16 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
                                         </div>
                                     </div>
 
-                                    <!-- Submit Button in Solid Primary Green -->
+                                    <!-- Submit Button with --color-primary Background & --color-main-green Text -->
                                     <div class="pt-2">
                                         <button type="submit" id="landingFormSubmitBtn"
-                                            class="w-full bg-mosilGreen hover:bg-mosilGreen-dark active:bg-mosilGreen-deep text-white font-extrabold py-4 px-6 rounded-xl text-sm uppercase tracking-wider transition-all duration-200 shadow-lg shadow-mosilGreen/25 hover:shadow-xl hover:shadow-mosilGreen/30 flex items-center justify-center gap-2.5 group cursor-pointer border-0">
+                                            class="w-full bg-[var(--color-primary,#F4C300)] hover:brightness-95 active:brightness-90 text-[var(--color-main-green,#1A3B1B)] font-extrabold py-4 px-6 rounded-xl text-sm uppercase tracking-wider transition-all duration-200 shadow-lg shadow-[var(--color-primary,#F4C300)]/30 hover:shadow-xl hover:shadow-[var(--color-primary,#F4C300)]/40 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5 group cursor-pointer border-0">
                                             <span id="btnText"><?php echo htmlspecialchars($cta_text); ?></span>
 
                                             <!-- Spinner SVG -->
-                                            <svg id="btnSpinner" class="hidden animate-spin h-4 w-4 text-white"
-                                                fill="none" viewBox="0 0 24 24">
+                                            <svg id="btnSpinner"
+                                                class="hidden animate-spin h-4 w-4 text-[var(--color-main-green,#1A3B1B)]" fill="none"
+                                                viewBox="0 0 24 24">
                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                                     stroke-width="4"></circle>
                                                 <path class="opacity-75" fill="currentColor"
@@ -386,7 +410,7 @@ $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campai
 
                                             <!-- Right Arrow -->
                                             <svg id="btnArrow"
-                                                class="w-4 h-4 text-mosilGold transition-transform group-hover:translate-x-1"
+                                                class="w-4 h-4 text-[var(--color-main-green,#1A3B1B)] transition-transform group-hover:translate-x-1"
                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                     d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

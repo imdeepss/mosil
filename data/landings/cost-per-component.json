@@ -6,23 +6,23 @@
         "noindex": true
     },
     "banner": {
-        "headline": "The grease you apply on the component is a line item in your cost per component. When did you last challenge it?",
-        "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component \u2014 without touching the specification approved by your OEM.",
-        "cta_text": "Submit",
+        "headline": "The grease you apply on the component is a line item in your cost per component.\nWhen did you last challenge it?",
+        "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component — without touching the specification approved by your OEM.",
+        "cta_text": "Schedule CPC check",
         "image": "assets\/uploads\/landings\/banner_6a8b2ed690f06.png",
         "image_position": "background",
         "image_alt": "Automotive Component Grease Application"
     },
     "form": {
         "heading": "The 5-minute Cost Per Component check",
-        "sub_heading": "Answer what you can. Questions you cannot answer today are themselves useful information \u2014 leave them blank.",
+        "sub_heading": "Answer what you can. Questions you cannot answer today are themselves useful information — leave them blank.",
         "email_to": "",
         "success_message": "Thank you! We will get back to you shortly.",
-        "intro": "Answer what you can. Questions you cannot answer today are themselves useful information \u2014 leave them blank.",
+        "intro": "Answer what you can. Questions you cannot answer today are themselves useful information — leave them blank.",
         "confidentiality": "Information shared here is used only to prepare your CPC assessment. It is not shared outside MOSIL and is never used in public references without written permission."
     },
     "hero": {
-        "headline": "The grease you apply on the component is a line item in your cost per component. When did you last challenge it?",
+        "headline": "The grease you apply on the component is a line item in your cost per component.\nWhen did you last challenge it?",
         "sub_headline": "MOSIL works with automotive component manufacturers to reduce the grease element of cost per component \u2014 without touching the specification approved by your OEM.",
         "cta_text": "Submit",
         "image": "assets\/uploads\/landings\/banner_6a8b2ed690f06.png",
