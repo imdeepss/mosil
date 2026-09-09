@@ -22,3 +22,8 @@ Thumbs.db
 
 # Landing Page JSON Files (Ignore new/test JSONs, but KEEP master seed landing page tracked)
 /data/landings/*
+
+# Logs
+*.log
+/data/logs/
+/data/logs/*
