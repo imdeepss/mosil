@@ -20,11 +20,12 @@ Thumbs.db
 /assets/uploads/
 /assets/uploads/*
 
-# Landing Page JSON Files (Ignore new/test JSONs, but KEEP master seed landing page tracked)
+# Data folder (Ignore all data, landings, and logs)
+data/
+/data/
 /data/*
-/data/landings/*
+/data/**
 
 # Logs
 *.log
-/data/logs/
-/data/logs/*
+
