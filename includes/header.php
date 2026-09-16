@@ -144,6 +144,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
     }
     ?>
     <?php
+    $currentPage = isset($page) ? $page : 'home';
     $sidebarNav = [
         ['label' => 'Home', 'url' => '/'],
         ['label' => 'Product Finder', 'url' => '/product-finder'],
@@ -171,7 +172,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 <body>
 
     <header class="fixed top-0 z-50 h-[100px] w-full left-0 right-0">
-        <div class="absolute inset-0 w-full h-full bg-[#0e0e0e]/40 backdrop-blur-[18px] -z-10"></div>
+        <div class="header-backdrop absolute inset-0 w-full h-full bg-[#0e0e0e]/40 backdrop-blur-[18px] -z-10"></div>
         <div class="container flex h-full items-center justify-between">
             <div class="shrink-0">
                 <a href="<?php echo SITE_URL; ?>" class="block">
@@ -180,9 +181,52 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                 </a>
             </div>
 
-            <nav class="flex items-center md:gap-8 gap-4">
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden lg:flex items-center gap-1 xl:gap-2 h-full">
+                <?php foreach ($sidebarNav as $navItem): ?>
+                    <?php if (isset($navItem['submenu'])): 
+                        $isSubActive = in_array($currentPage, ['newsroom', 'blog', 'blog-detail', 'case-studies', 'case-study-detail', 'events', 'event-detail', 'glossary', 'faqs']);
+                    ?>
+                        <div class="desktop-nav-item <?php echo $isSubActive ? 'is-active' : ''; ?>">
+                            <a href="<?php echo SITE_URL . $navItem['url']; ?>" class="desktop-nav-link" aria-haspopup="true">
+                                <span><?php echo $navItem['label']; ?></span>
+                                <svg class="w-3.5 h-3.5 transition-transform duration-300 opacity-65 group-hover:opacity-100 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
 
-                <!-- Header Search (Desktop) -->
+                            <!-- Polished Submenu Dropdown -->
+                            <div class="desktop-dropdown-menu left-1/2 -translate-x-1/2 w-[220px] pt-3">
+                                <div class="nav-dropdown-card p-2 space-y-0.5 text-white">
+                                    <?php foreach ($navItem['submenu'] as $sub): ?>
+                                        <a href="<?php echo SITE_URL . $sub['url']; ?>" class="dropdown-item-link group">
+                                            <span class="text-[14px] font-medium text-white/90 group-hover:text-primary transition-colors py-1 px-1.5">
+                                                <?php echo $sub['label']; ?>
+                                            </span>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else: 
+                        $itemSlug = trim($navItem['url'], '/');
+                        $isActive = ($currentPage === 'home' && empty($itemSlug)) || ($currentPage === $itemSlug);
+                        if ($navItem['url'] === '/careers' && ($currentPage === 'careers' || $currentPage === 'career')) {
+                            $isActive = true;
+                        }
+                    ?>
+                        <div class="desktop-nav-item <?php echo $isActive ? 'is-active' : ''; ?>">
+                            <a href="<?php echo SITE_URL . $navItem['url']; ?>" class="desktop-nav-link">
+                                <?php echo $navItem['label']; ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </nav>
+
+            <div class="flex items-center md:gap-8 gap-4">
+
+                <!-- Header Search (Desktop) - Exactly as original -->
                 <div class="relative hidden h-[40px] w-[300px] md:block">
                     <input type="text" name="search" placeholder="Search"
                         class="search-input h-full w-full rounded-full outline outline-1 outline-offset-[-0.50px] outline-white bg-zinc-400/30 pl-5 pr-10 text-sm text-white placeholder-white" />
@@ -193,7 +237,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                         class="search-results-container absolute top-full left-0 mt-5 w-full flex flex-col items-start gap-4 border border-[#F5F5F5] bg-white p-4 shadow-[0_4px_17.9px_5px_rgba(0,0,0,0.15)] text-[#3B3B3B] font-['Helvetica'] text-base font-normal leading-[150%] tracking-[0.24px] z-50 rounded hidden">
                     </div>
                 </div>
-                <!-- Mobile Search Trigger -->
+                <!-- Mobile Search Trigger - Exactly as original -->
                 <div class="relative md:hidden h-8 w-8 block cursor-pointer transition-opacity duration-300"
                     id="openMobileSearch" aria-label="Open mobile search" role="button" tabindex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -203,7 +247,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                     </svg>
                 </div>
 
-                <!-- In-Header Mobile Search Bar -->
+                <!-- In-Header Mobile Search Bar - Exactly as original -->
                 <div id="mobileSearchBar"
                     class="absolute top-0 right-0 h-full z-40 bg-[#0e0e0e] flex items-center overflow-hidden transition-[width] duration-300 ease-in-out w-0 md:hidden">
                     <div class="flex items-center w-screen max-w-[100vw] text-white px-4">
@@ -222,8 +266,8 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                     </div>
                 </div>
 
-                <!-- Hamburger / Close Wrapper -->
-                <div class="z-50">
+                <!-- Hamburger / Close Wrapper (Mobile/Tablet only: lg:hidden) -->
+                <div class="z-50 lg:hidden">
                     <div id="sidebarOverlay"
                         class="fixed inset-0 hidden bg-black/50 opacity-0 transition-opacity duration-300 h-screen w-screen">
                     </div>
@@ -310,9 +354,10 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
                             class="w-8 h-8 object-contain">
                     </button>
                 </div>
-            </nav>
+            </div>
         </div>
     </header>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

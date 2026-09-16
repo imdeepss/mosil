@@ -722,3 +722,153 @@ form select:focus {
         transform: translateY(-8px);
     }
 }
+
+/* ==========================================================================
+   Modern Desktop Navigation & Premium Header Styles
+   ========================================================================== */
+
+/* Main Header Scrolled State */
+header {
+    transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease;
+}
+
+header.is-scrolled {
+    height: 76px !important;
+}
+
+header.is-scrolled .header-backdrop {
+    background-color: rgba(9, 13, 9, 0.94) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Desktop Nav Items */
+.desktop-nav-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+}
+
+.desktop-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 9999px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+@media (min-width: 1280px) {
+    .desktop-nav-link {
+        font-size: 15px;
+        padding: 8px 16px;
+    }
+}
+
+.desktop-nav-link:hover,
+.desktop-nav-item:hover .desktop-nav-link,
+.desktop-nav-item:focus-within .desktop-nav-link {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.desktop-nav-item.is-active .desktop-nav-link {
+    color: #F4C300;
+    background-color: rgba(244, 195, 0, 0.08);
+}
+
+/* Animated Golden Glow Underline */
+.desktop-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #F4C300, #FFE169);
+    border-radius: 9999px;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(244, 195, 0, 0.7);
+    opacity: 0;
+}
+
+.desktop-nav-item:hover .desktop-nav-link::after,
+.desktop-nav-item:focus-within .desktop-nav-link::after,
+.desktop-nav-item.is-active .desktop-nav-link::after {
+    width: 50%;
+    opacity: 1;
+}
+
+/* Dropdown Menu Entrance Physics */
+.desktop-dropdown-menu {
+    position: absolute;
+    top: calc(100% - 10px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px) scale(0.985);
+    transform-origin: top center;
+    transition: opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.26s;
+    pointer-events: none;
+    z-index: 70;
+}
+
+/* Invisible hover bridge to prevent premature closing when moving mouse */
+.desktop-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background: transparent;
+}
+
+.desktop-nav-item:hover .desktop-dropdown-menu,
+.desktop-nav-item:focus-within .desktop-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Glass Card Dropdown Panel */
+.nav-dropdown-card {
+    background: rgba(14, 19, 15, 0.96);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+}
+
+/* Dropdown Item Micro-interactions */
+.dropdown-item-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-item-link:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    transform: translateX(4px);
+}
+
+.dropdown-item-link:hover .item-title {
+    color: #F4C300;
+}
+

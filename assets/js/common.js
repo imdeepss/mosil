@@ -147,6 +147,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Desktop Header Dynamic Scroll State
+  const mainHeader = document.querySelector("header");
+  if (mainHeader) {
+    const updateHeaderScroll = () => {
+      if (window.scrollY > 20) {
+        mainHeader.classList.add("is-scrolled");
+      } else {
+        mainHeader.classList.remove("is-scrolled");
+      }
+    };
+    window.addEventListener("scroll", updateHeaderScroll, { passive: true });
+    updateHeaderScroll();
+  }
+
+  // Desktop Dropdown Navigation Keyboard Accessibility
+  const desktopNavItems = document.querySelectorAll(".desktop-nav-item");
+  desktopNavItems.forEach((item) => {
+    const link = item.querySelector(".desktop-nav-link");
+    const dropdown = item.querySelector(".desktop-dropdown-menu");
+    if (!dropdown || !link) return;
+
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        link.focus();
+        link.blur();
+      }
+    });
+  });
+
+
   const hasSubmenu = document.querySelectorAll(".has-submenu");
 
   hasSubmenu.forEach((item) => {
