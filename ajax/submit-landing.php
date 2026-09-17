@@ -64,15 +64,9 @@ if (db_execute($sql, $params)) {
     $userBody = "
         <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 600px; line-height: 1.6;'>
             <p>Dear " . htmlspecialchars($name) . ",</p>
-            <p>Thank you for reaching out to us via our landing page: <strong>" . htmlspecialchars($landingTitle) . "</strong>.</p>
-            <p>We have received your request and our technical team will review your requirements and get back to you shortly.</p>
-            <hr style='border: 0; border-top: 1px solid #eee; margin: 20px 0;'>
-            <p style='font-size: 12px; color: #777;'>
-                Best Regards,<br><br>
-                <strong>MOSIL Lubricants Private Limited</strong><br>
-                Mumbai, India<br>
-                <a href='mailto:enquiry@mosil.com' style='color: #1A3B1B;'>enquiry@mosil.com</a>
-            </p>
+            <p>Thank you for reaching out to us to optimise your cost per component.</p>
+            <p>We are reviewing your component details and our team member will get back to you shortly to take this forward.</p>
+            <p>Best regards,<br>Mosil Pvt. Ltd.</p>
         </div>
     ";
 

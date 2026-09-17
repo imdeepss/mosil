@@ -24,10 +24,11 @@ $cta_text = 'Schedule CPC check';
 $banner_image = !empty($banner['image']) ? $banner['image'] : 'assets/uploads/campaigns/cpc_6a68f90e1fb2c.png';
 $banner_image_alt = $banner['image_alt'] ?? 'Automotive Component Grease Application';
 
-$form_heading = 'Share your details so that our team can get back to you for discussion';
-$form_intro = '';
+$form_data = $landingData['form'] ?? [];
+$form_heading = !empty($form_data['heading']) ? $form_data['heading'] : 'Share your details so that our team can get back to you for discussion';
+$form_intro = $form_data['intro'] ?? '';
 $form_email_to = $form_data['email_to'] ?? '';
-$form_success_msg = $form_data['success_message'] ?? 'Thank you! Your inquiry has been received. We will contact you shortly.';
+$form_success_msg = $form_data['success_message'] ?? 'Thank you for reaching out to us to optimise your cost per component. We are reviewing your component details and our team member will get back to you shortly to take this forward.';
 
 $isNoIndex = !empty($seo['noindex']);
 $pageTitle = !empty($seo['title']) ? $seo['title'] : ("Cost Per Component Campaign | " . (defined('SITE_NAME') ? SITE_NAME : 'MOSIL'));

@@ -239,11 +239,12 @@ endif; ?>
 <!-- Sarah AI Floating Button with "Ask Sarah" Text -->
 <button type="button" onclick="openEvaModal()" aria-label="Open Sarah AI Assistant" class="sarah-float-btn">
     <div class="sarah-avatar">
-        <img src="<?php echo SITE_URL; ?>/assets/icons/png/Sarah-ai-v3.png" alt="Sarah AI"
+        <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI"
             class="w-full h-full object-cover">
     </div>
     <div class="flex items-baseline gap-1.5 px-0.5">
-        <span class="text-[12px] md:text-[13px] font-black text-[#F4C300] uppercase tracking-widest leading-none">Ask</span>
+        <span
+            class="text-[12px] md:text-[13px] font-black text-[#F4C300] uppercase tracking-widest leading-none">Ask</span>
         <span class="text-[18px] md:text-[20px] font-black text-[#F4C300] leading-none tracking-tight">Sarah</span>
     </div>
     <div class="text-[#F4C300] pl-0.5 pr-0.5">
