@@ -9,7 +9,7 @@ $blogs = getHomeFeaturedBlogs();
 ?>
 <!-- Hero Section -->
 <h1 class="sr-only">Custom & Specialty Lubricants Manufacturer | MOSIL Lubricants</h1>
-<section class="relative h-[720px] w-full overflow-hidden">
+<section class="relative h-screen w-full overflow-hidden">
     <video autoplay muted loop playsinline class="block h-full w-full object-cover object-center md:block hidden"
         poster="<?php echo SITE_URL; ?>/assets/images/banners/home-banner-poster.webp" fetchpriority="high">
         <source src="<?php echo SITE_URL; ?>/assets/images/banners/home-banner.mp4" type="video/mp4"
