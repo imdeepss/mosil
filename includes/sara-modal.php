@@ -35,9 +35,10 @@
             class="bg-white/95 backdrop-blur-2xl p-6 flex items-center justify-between relative z-20 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-white/40">
             <div class="flex items-center gap-4">
                 <div
-                    class="w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(244,195,0,0.25)] bg-gradient-to-tr from-primary to-primary-mid">
+                    class="w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden shadow-[0_8px_20px_rgba(26,59,27,0.18)] border-2 border-main-green bg-[#F7F7F7]"
+                    style="border-color: var(--color-main-green, #1A3B1B);">
                     <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI"
-                        class="w-full h-full object-cover relative z-10">
+                        class="w-full h-full aspect-square object-cover object-center relative z-10">
                 </div>
                 <div class="flex flex-col shrink-0">
                     <span
@@ -128,9 +129,10 @@
                     <!-- Initial Welcome Message -->
                     <div class="flex justify-start chat-bubble-enter w-full">
                         <div
-                            class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
+                            class="w-10 h-10 rounded-full bg-[#F7F7F7] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(26,59,27,0.15)] border-2 border-main-green relative overflow-hidden group"
+                            style="border-color: var(--color-main-green, #1A3B1B);">
                             <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI"
-                                class="w-full h-full object-cover relative z-20">
+                                class="w-full h-full aspect-square object-cover object-center relative z-20">
                         </div>
                         <div
                             class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
@@ -328,8 +330,8 @@
         setTimeout(() => {
             chatBubbles.insertAdjacentHTML('beforeend', `
                 <div id="${loaderId}" class="flex justify-start chat-bubble-enter opacity-0 w-full">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                        <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
+                    <div class="w-10 h-10 rounded-full bg-[#F7F7F7] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(26,59,27,0.15)] border-2 border-main-green relative overflow-hidden group" style="border-color: var(--color-main-green, #1A3B1B);">
+                        <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI" class="w-full h-full aspect-square object-cover object-center relative z-20">
                     </div>
                     <div class="bg-white/95 backdrop-blur-xl border border-slate-100 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[85%] flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
                         <div class="w-2.5 h-2.5 rounded-full bg-primary animate-[dotBounce_1s_infinite]"></div>
@@ -413,8 +415,8 @@
         const chatBubbles = document.getElementById('chatMessages');
         chatBubbles.insertAdjacentHTML('beforeend', `
             <div class="flex justify-start chat-bubble-enter opacity-0 w-full">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFFCF2] to-[#FFF6D6] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(250,204,21,0.15)] border border-white relative overflow-hidden group">
-                    <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI" class="w-full h-full object-cover relative z-20">
+                <div class="w-10 h-10 rounded-full bg-[#F7F7F7] flex items-center justify-center shrink-0 mr-3 mt-1 shadow-[0_4px_12px_rgba(26,59,27,0.15)] border-2 border-main-green relative overflow-hidden group" style="border-color: var(--color-main-green, #1A3B1B);">
+                    <img src="<?php echo SITE_URL; ?>/assets/icons/png/sarah111.jpeg" alt="Sarah AI" class="w-full h-full aspect-square object-cover object-center relative z-20">
                 </div>
                 <div class="bg-white/95 backdrop-blur-xl border border-slate-100 text-slate-700 rounded-[28px] rounded-tl-[8px] px-7 py-5 max-w-[90%] shadow-[0_12px_40px_rgba(0,0,0,0.06)] text-[16px] leading-[160%] font-normal">
                     ${formattedText}
