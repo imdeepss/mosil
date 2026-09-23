@@ -586,8 +586,8 @@ form select:focus {
     }
 
     .sarah-avatar {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
     }
 }
 
@@ -623,8 +623,8 @@ form select:focus {
 }
 
 .sarah-avatar {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 9999px;
     background: #F7F7F7;
     display: flex;
@@ -766,9 +766,9 @@ header.is-scrolled .header-backdrop {
     position: relative;
     display: inline-flex;
     align-items: center;
-    padding: 8px 14px;
+    padding: 8px 10px;
     border-radius: 9999px;
-    font-size: 14.5px;
+    font-size: 18px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.88);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -777,7 +777,13 @@ header.is-scrolled .header-backdrop {
 
 @media (min-width: 1280px) {
     .desktop-nav-link {
-        font-size: 15px;
+        font-size: 18px;
+        padding: 8px 14px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .desktop-nav-link {
         padding: 8px 16px;
     }
 }
