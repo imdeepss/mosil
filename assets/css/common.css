@@ -881,10 +881,9 @@ header.is-scrolled .header-backdrop {
 
 .dropdown-item-link:hover {
     background-color: rgba(255, 255, 255, 0.06);
-    transform: translateX(4px);
 }
 
 .dropdown-item-link:hover .item-title {
     color: #F4C300;
 }
-
+
