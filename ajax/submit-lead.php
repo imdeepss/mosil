@@ -52,9 +52,9 @@ if (empty($name) || empty($companyName) || !$email || empty($contact) || empty($
 
 // 3. Prepare full message with metadata for database storage
 $fullMessage = "Logged By: " . $submittedBy . " (" . $submitterRole . ")\n"
-             . (!empty($designation) ? "Designation: " . $designation . "\n" : "")
-             . "Source: " . $source . "\n\n"
-             . "Requirement Details:\n" . $message;
+    . (!empty($designation) ? "Designation: " . $designation . "\n" : "")
+    . "Source: " . $source . "\n\n"
+    . "Requirement Details:\n" . $message;
 $status = 'Active';
 
 // 4. Save to Database
@@ -72,10 +72,10 @@ if ($dbSaved) {
 
     // Format Salesforce Description
     $sfDescription = "Logged By: " . $submittedBy . " (" . $submitterRole . ")\n"
-                   . "Lead Source: " . $source . "\n"
-                   . "Designation: " . $designation . "\n"
-                   . "Subject: " . $subject . "\n\n"
-                   . "Requirement / Notes:\n" . $message;
+        . "Lead Source: " . $source . "\n"
+        . "Designation: " . $designation . "\n"
+        . "Subject: " . $subject . "\n\n"
+        . "Requirement / Notes:\n" . $message;
 
     // 6. Send Lead to Salesforce
     $sfPayload = [
@@ -90,7 +90,7 @@ if ($dbSaved) {
         'LeadSource' => $source,
         'PostalCode' => $pincode,
         'Description' => $sfDescription,
-        'Status' => 'New'
+        'Status' => 'Unqualified'
     ];
 
     $sfResult = sendToSalesforce($sfPayload);
