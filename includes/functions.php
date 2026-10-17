@@ -896,6 +896,16 @@ function sendToSalesforce($data)
                 "Country" => $data['Country'] ?? ''
             ];
 
+            if (!empty($data['Region__c'])) {
+                $leadData['Region__c'] = $data['Region__c'];
+            }
+            if (!empty($data['Cluster__c'])) {
+                $leadData['Cluster__c'] = $data['Cluster__c'];
+            }
+            if (!empty($data['Business_Partner_Name__c'])) {
+                $leadData['Business_Partner_Name__c'] = $data['Business_Partner_Name__c'];
+            }
+
             // 2. Create Lead
             $ch2 = curl_init();
             curl_setopt($ch2, CURLOPT_URL, $sf_lead_url);

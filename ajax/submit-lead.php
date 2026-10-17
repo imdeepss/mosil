@@ -36,6 +36,9 @@ $companyName = htmlspecialchars(trim($_POST['company_name'] ?? ''));
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
 $contact = htmlspecialchars(trim($_POST['contact'] ?? ''));
 $pincode = htmlspecialchars(trim($_POST['pincode'] ?? ''));
+$region = htmlspecialchars(trim($_POST['region'] ?? ''));
+$cluster = htmlspecialchars(trim($_POST['cluster'] ?? ''));
+$businessPartner = htmlspecialchars(trim($_POST['business_partner_name'] ?? ''));
 $source = htmlspecialchars(trim($_POST['source'] ?? 'DM - Website Enquiry'));
 $subject = htmlspecialchars(trim($_POST['subject'] ?? 'Product / Technical Lead Enquiry'));
 $message = htmlspecialchars(trim($_POST['message'] ?? ''));
@@ -53,16 +56,25 @@ if (empty($name) || empty($companyName) || !$email || empty($contact) || empty($
 // 3. Prepare full message with metadata for database storage
 $fullMessage = "Logged By: " . $submittedBy . " (" . $submitterRole . ")\n"
     . (!empty($designation) ? "Designation: " . $designation . "\n" : "")
+    . (!empty($region) ? "Region: " . $region . "\n" : "")
+    . (!empty($cluster) ? "Cluster: " . $cluster . "\n" : "")
+    . (!empty($businessPartner) ? "Business Partner: " . $businessPartner . "\n" : "")
     . "Source: " . $source . "\n\n"
     . "Requirement Details:\n" . $message;
 $status = 'Active';
 
-// 4. Save to Database
-$sql = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-$params = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status];
+// 4. Save to Database (supports both schemas: with or without custom columns)
+$sqlWithColumns = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status, region, cluster, business_partner_name) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$paramsWithColumns = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status, $region, $cluster, $businessPartner];
+$dbSaved = db_execute($sqlWithColumns, $paramsWithColumns);
 
-$dbSaved = db_execute($sql, $params);
+if (!$dbSaved) {
+    $sql = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $params = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status];
+    $dbSaved = db_execute($sql, $params);
+}
 
 if ($dbSaved) {
     // 5. Split Name into First & Last Name for Salesforce
@@ -73,7 +85,10 @@ if ($dbSaved) {
     // Format Salesforce Description
     $sfDescription = "Logged By: " . $submittedBy . " (" . $submitterRole . ")\n"
         . "Lead Source: " . $source . "\n"
-        . "Designation: " . $designation . "\n"
+        . (!empty($designation) ? "Designation: " . $designation . "\n" : "")
+        . (!empty($region) ? "Region: " . $region . "\n" : "")
+        . (!empty($cluster) ? "Cluster: " . $cluster . "\n" : "")
+        . (!empty($businessPartner) ? "Business Partner: " . $businessPartner . "\n" : "")
         . "Subject: " . $subject . "\n\n"
         . "Requirement / Notes:\n" . $message;
 
@@ -89,6 +104,9 @@ if ($dbSaved) {
         'MobilePhone' => $contact,
         'LeadSource' => $source,
         'PostalCode' => $pincode,
+        'Region__c' => $region,
+        'Cluster__c' => $cluster,
+        'Business_Partner_Name__c' => $businessPartner,
         'Description' => $sfDescription,
         'Status' => 'Unqualified'
     ];
@@ -111,6 +129,9 @@ if ($dbSaved) {
         'email' => $email,
         'phone' => $contact,
         'pincode' => $pincode,
+        'region' => $region,
+        'cluster' => $cluster,
+        'business_partner' => $businessPartner,
         'source' => $source,
         'subject' => $subject,
         'salesforce_status' => $sfResult['status'] ?? 'unknown',
@@ -132,6 +153,9 @@ if ($dbSaved) {
                 <div style='background: #f9f9f9; padding: 15px; border-left: 4px solid #1A3B1B; border-radius: 4px; margin: 15px 0;'>
                     <p style='margin: 0 0 5px;'><strong>Designation:</strong> " . htmlspecialchars($designation) . "</p>
                     <p style='margin: 0 0 5px;'><strong>Company:</strong> " . htmlspecialchars($companyName) . "</p>
+                    " . (!empty($region) ? "<p style='margin: 0 0 5px;'><strong>Region:</strong> " . htmlspecialchars($region) . "</p>" : "") . "
+                    " . (!empty($cluster) ? "<p style='margin: 0 0 5px;'><strong>Cluster:</strong> " . htmlspecialchars($cluster) . "</p>" : "") . "
+                    " . (!empty($businessPartner) ? "<p style='margin: 0 0 5px;'><strong>Business Partner:</strong> " . htmlspecialchars($businessPartner) . "</p>" : "") . "
                     <p style='margin: 0;'><strong>Requirement:</strong> " . nl2br(htmlspecialchars($message)) . "</p>
                 </div>
                 <p>Our dedicated technical and application team will review your requirements and get in touch with you shortly.</p>
@@ -195,22 +219,39 @@ if ($dbSaved) {
                     <td style='border: 1px solid #e0e0e0;'>" . htmlspecialchars($pincode) . "</td>
                 </tr>
                 <tr style='background-color: #f5f5f5;'>
+                    <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Region</td>
+                    <td style='border: 1px solid #e0e0e0; font-weight: 600; color: #1A3B1B;'>" . (!empty($region) ? htmlspecialchars($region) : '-') . "</td>
+                </tr>
+                <tr>
+                    <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Cluster</td>
+                    <td style='border: 1px solid #e0e0e0; font-weight: 600; color: #1A3B1B;'>" . (!empty($cluster) ? htmlspecialchars($cluster) : '-') . "</td>
+                </tr>
+                <tr style='background-color: #f5f5f5;'>
+                    <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Business Partner Name</td>
+                    <td style='border: 1px solid #e0e0e0; font-weight: 600;'>" . (!empty($businessPartner) ? htmlspecialchars($businessPartner) : '-') . "</td>
+                </tr>
+                <tr>
                     <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Subject</td>
                     <td style='border: 1px solid #e0e0e0;'>" . htmlspecialchars($subject) . "</td>
                 </tr>
-                <tr>
+                <tr style='background-color: #f5f5f5;'>
                     <td style='border: 1px solid #e0e0e0; font-weight: bold; vertical-align: top;'>Message / Notes</td>
                     <td style='border: 1px solid #e0e0e0;'>" . nl2br(htmlspecialchars($message)) . "</td>
                 </tr>
                 <tr style='background-color: #f9f9f9;'>
                     <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Salesforce Sync Status</td>
-                    <td style='border: 1px solid #e0e0e0; color: " . ($sfResult['status'] === 'success' ? '#1A3B1B' : '#c0392b') . ";'>" . htmlspecialchars($sfResult['status']) . " (" . htmlspecialchars($sfResult['message']) . ")</td>
+                    <td style='border: 1px solid #e0e0e0; color: " . (($sfResult['status'] ?? '') === 'success' ? '#1A3B1B' : '#c0392b') . ";'>" . htmlspecialchars($sfResult['status'] ?? 'N/A') . " (" . htmlspecialchars($sfResult['message'] ?? 'N/A') . ")</td>
                 </tr>
             </table>
             <p style='font-size: 11px; color: #999; margin-top: 15px;'>Submitted on: " . date('Y-m-d H:i:s') . " from IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . "</p>
         </div>
     ";
-    sendMail(ADMIN_EMAIL, 'MOSIL Sales Team', $adminEmailSubject, $adminEmailBody);
+
+    // 10. Dispatch Notifications: to enquiry@mosil.com and ADMIN_EMAIL
+    sendMail('enquiry@mosil.com', 'MOSIL Enquiry Desk', $adminEmailSubject, $adminEmailBody);
+    if (defined('ADMIN_EMAIL') && ADMIN_EMAIL !== 'enquiry@mosil.com') {
+        sendMail(ADMIN_EMAIL, 'MOSIL Sales Team', $adminEmailSubject, $adminEmailBody);
+    }
 
     echo json_encode([
         'success' => true,
