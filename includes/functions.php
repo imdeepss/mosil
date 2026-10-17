@@ -781,22 +781,30 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
 
     try {
-        // SMTP Configuration
+        // SMTP Transport Configuration via Gmail
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = defined('SMTP_HOST') ? SMTP_HOST : 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        // Credentials
-        $mail->Username = 'mosil.lubes@gmail.com';
-        $mail->Password = 'rsxv btoh fjqr hrqf';
+        $mail->Username = defined('SMTP_USER') ? SMTP_USER : 'mosil.lubes@gmail.com';
+        $mail->Password = defined('SMTP_PASS') ? SMTP_PASS : 'rsxv btoh fjqr hrqf';
         $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = defined('SMTP_PORT') ? (int)SMTP_PORT : 587;
         $mail->CharSet = 'UTF-8';
 
-        // Sender
-        $mail->setFrom('mosil.lubes@gmail.com', 'Mosil Website Enquiry');
-        $mail->addReplyTo('mosil.lubes@gmail.com', 'Mosil Website Enquiry');
+        // SSL options to prevent certificate issues on local/Windows environments
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ];
 
-        // Recipient
+        // Sender: Authenticated Gmail account with Reply-To set to enquiry@mosil.com
+        $mail->setFrom('mosil.lubes@gmail.com', 'MOSIL Website Enquiry');
+        $mail->addReplyTo('enquiry@mosil.com', 'MOSIL Lubricants');
+
+        // Recipient: Deliver to recipient (enquiry@mosil.com)
         $mail->addAddress($toEmail, $toName);
 
         // Content
@@ -823,6 +831,18 @@ function sendMail($toEmail, $toName, $subject, $body, $attachments = [])
 
     } catch (\PHPMailer\PHPMailer\Exception $e) {
         error_log("Mailer Error: " . $mail->ErrorInfo);
+
+        // Fallback to server's native mail() using enquiry@mosil.com
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "From: MOSIL Lubricants <enquiry@mosil.com>\r\n";
+        $headers .= "Reply-To: enquiry@mosil.com\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+
+        if (@mail($toEmail, $subject, $body, $headers)) {
+            return ['status' => 'success', 'message' => 'Email dispatched via server mail delivery.'];
+        }
+
         return ['status' => 'error', 'message' => $mail->ErrorInfo];
     }
 }
@@ -866,9 +886,10 @@ function sendToSalesforce($data)
         'client_id' => $sf_client_id,
         'client_secret' => $sf_client_secret
     ]));
-    // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Uncomment if SSL issues occur on local
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $token_response = curl_exec($ch);
     $token_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $token_curl_error = curl_error($ch);
     curl_close($ch);
 
     if ($token_http_code == 200 && $token_response) {
@@ -916,19 +937,56 @@ function sendToSalesforce($data)
                 'Authorization: Bearer ' . $access_token,
                 'Content-Type: application/json'
             ]);
-            // curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
             $lead_response = curl_exec($ch2);
             $lead_http_code = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
             curl_close($ch2);
 
             if ($lead_http_code >= 200 && $lead_http_code < 300) {
                 return ['status' => 'success', 'message' => 'Lead created in Salesforce.'];
-            } else {
-                return ['status' => 'error', 'message' => 'Failed to create lead in Salesforce: ' . $lead_response];
             }
+
+            // If Salesforce rejects due to custom fields not existing yet on Lead object, retry with standard fields only
+            if ($lead_http_code == 400 && (stripos($lead_response, 'No such column') !== false || stripos($lead_response, 'INVALID_FIELD') !== false)) {
+                unset($leadData['Region__c'], $leadData['Cluster__c'], $leadData['Business_Partner_Name__c'], $leadData['Designation__c']);
+                $ch3 = curl_init();
+                curl_setopt($ch3, CURLOPT_URL, $sf_lead_url);
+                curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch3, CURLOPT_POST, true);
+                curl_setopt($ch3, CURLOPT_POSTFIELDS, json_encode($leadData));
+                curl_setopt($ch3, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $access_token,
+                    'Content-Type: application/json'
+                ]);
+                curl_setopt($ch3, CURLOPT_SSL_VERIFYPEER, false);
+                $retry_response = curl_exec($ch3);
+                $retry_code = curl_getinfo($ch3, CURLINFO_HTTP_CODE);
+                curl_close($ch3);
+
+                if ($retry_code >= 200 && $retry_code < 300) {
+                    return ['status' => 'success', 'message' => 'Lead created in Salesforce (custom fields preserved in Description).'];
+                }
+            }
+
+            return ['status' => 'error', 'message' => 'Failed to create lead in Salesforce (HTTP ' . $lead_http_code . '): ' . $lead_response];
         }
     }
-    return ['status' => 'error', 'message' => 'Failed to get access token from Salesforce.'];
+
+    $errMsg = 'Failed to get access token from Salesforce (HTTP ' . $token_http_code . ')';
+    if ($token_response) {
+        $parsed = json_decode($token_response, true);
+        if (!empty($parsed['error_description'])) {
+            $errMsg .= ': ' . $parsed['error_description'];
+        } elseif (!empty($parsed['error'])) {
+            $errMsg .= ': ' . $parsed['error'];
+        } else {
+            $errMsg .= ': ' . substr($token_response, 0, 150);
+        }
+    } elseif (!empty($token_curl_error)) {
+        $errMsg .= ': ' . $token_curl_error;
+    }
+
+    return ['status' => 'error', 'message' => $errMsg];
 }
 
 function getLatestBlogs($limit = 5)

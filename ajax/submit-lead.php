@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: application/json');
 
-require_once '../includes/config.php';
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -113,34 +113,7 @@ if ($dbSaved) {
 
     $sfResult = sendToSalesforce($sfPayload);
 
-    // 7. Audit Logging for Tracking
-    $logDir = __DIR__ . '/../data/logs';
-    if (!is_dir($logDir)) {
-        @mkdir($logDir, 0755, true);
-    }
-    $logFile = $logDir . '/salesforce_leads.log';
-    $logData = [
-        'timestamp' => date('Y-m-d H:i:s'),
-        'submitted_by' => $submittedBy,
-        'submitter_role' => $submitterRole,
-        'lead_name' => $name,
-        'lead_designation' => $designation,
-        'company' => $companyName,
-        'email' => $email,
-        'phone' => $contact,
-        'pincode' => $pincode,
-        'region' => $region,
-        'cluster' => $cluster,
-        'business_partner' => $businessPartner,
-        'source' => $source,
-        'subject' => $subject,
-        'salesforce_status' => $sfResult['status'] ?? 'unknown',
-        'salesforce_message' => $sfResult['message'] ?? 'N/A',
-        'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
-    ];
-    @file_put_contents($logFile, json_encode($logData) . PHP_EOL, FILE_APPEND);
-
-    // 8. User Confirmation Email
+    // 7. User Confirmation Email
     $userEmailSubject = "Thank you for connecting with MOSIL Lubricants";
     $userEmailBody = "
         <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 600px; line-height: 1.6; border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden;'>
@@ -170,7 +143,7 @@ if ($dbSaved) {
     ";
     sendMail($email, $name, $userEmailSubject, $userEmailBody);
 
-    // 9. Admin / Salesforce Notification Email
+    // 8. Admin / Salesforce Notification Email
     $adminEmailSubject = "[Salesforce Lead - " . $source . "] " . $name . " (" . $companyName . ") - Logged by " . $submittedBy;
     $adminEmailBody = "
         <div style='font-family: Helvetica, Arial, sans-serif; color: #333; max-width: 650px; line-height: 1.5;'>
@@ -247,11 +220,37 @@ if ($dbSaved) {
         </div>
     ";
 
-    // 10. Dispatch Notifications: to enquiry@mosil.com and ADMIN_EMAIL
-    sendMail('enquiry@mosil.com', 'MOSIL Enquiry Desk', $adminEmailSubject, $adminEmailBody);
-    if (defined('ADMIN_EMAIL') && ADMIN_EMAIL !== 'enquiry@mosil.com') {
-        sendMail(ADMIN_EMAIL, 'MOSIL Sales Team', $adminEmailSubject, $adminEmailBody);
+    // Dispatch Notification: exclusively to enquiry@mosil.com
+    $adminMailResult = sendMail('enquiry@mosil.com', 'MOSIL Enquiry Desk', $adminEmailSubject, $adminEmailBody);
+
+    // 9. Audit Logging for Tracking (includes both Salesforce and Email delivery statuses)
+    $logDir = __DIR__ . '/../data/logs';
+    if (!is_dir($logDir)) {
+        @mkdir($logDir, 0755, true);
     }
+    $logFile = $logDir . '/salesforce_leads.log';
+    $logData = [
+        'timestamp' => date('Y-m-d H:i:s'),
+        'submitted_by' => $submittedBy,
+        'submitter_role' => $submitterRole,
+        'lead_name' => $name,
+        'lead_designation' => $designation,
+        'company' => $companyName,
+        'email' => $email,
+        'phone' => $contact,
+        'pincode' => $pincode,
+        'region' => $region,
+        'cluster' => $cluster,
+        'business_partner' => $businessPartner,
+        'source' => $source,
+        'subject' => $subject,
+        'salesforce_status' => $sfResult['status'] ?? 'unknown',
+        'salesforce_message' => $sfResult['message'] ?? 'N/A',
+        'email_status' => $adminMailResult['status'] ?? 'unknown',
+        'email_message' => $adminMailResult['message'] ?? 'N/A',
+        'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
+    ];
+    @file_put_contents($logFile, json_encode($logData) . PHP_EOL, FILE_APPEND);
 
     echo json_encode([
         'success' => true,
