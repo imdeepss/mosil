@@ -42,6 +42,9 @@ if ($result && $result->num_rows > 0) {
                                 <th>Email</th>
                                 <th>Contact</th>
                                 <th>Company</th>
+                                <th>Region</th>
+                                <th>Cluster</th>
+                                <th>Business Partner</th>
                                 <th>Subject</th>
                                 <th>Pincode</th>
                                 <th>Message</th>
@@ -56,6 +59,9 @@ if ($result && $result->num_rows > 0) {
                                     <td><?= htmlspecialchars($enquiry['email']) ?></td>
                                     <td><?= htmlspecialchars($enquiry['contact']) ?></td>
                                     <td><?= htmlspecialchars($enquiry['company_name']) ?></td>
+                                    <td><?= htmlspecialchars($enquiry['region'] ?? '-') ?></td>
+                                    <td><?= htmlspecialchars($enquiry['cluster'] ?? '-') ?></td>
+                                    <td><?= htmlspecialchars($enquiry['business_partner_name'] ?? '-') ?></td>
                                     <td><?= htmlspecialchars($enquiry['subject']) ?></td>
                                     <td><?= htmlspecialchars($enquiry['pincode']) ?></td>
                                     <td><?= nl2br(htmlspecialchars($enquiry['message'])) ?></td>
