@@ -63,11 +63,18 @@ $fullMessage = "Logged By: " . $submittedBy . " (" . $submitterRole . ")\n"
     . "Requirement Details:\n" . $message;
 $status = 'Active';
 
-// 4. Save to Database (supports both schemas: with or without custom columns)
-$sqlWithColumns = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status, region, cluster, business_partner_name) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-$paramsWithColumns = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status, $region, $cluster, $businessPartner];
-$dbSaved = db_execute($sqlWithColumns, $paramsWithColumns);
+// 4. Save to Database (supports multiple schemas: with designation, with custom columns, or standard)
+$sqlWithAllColumns = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status, region, cluster, business_partner_name, designation) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$paramsWithAllColumns = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status, $region, $cluster, $businessPartner, $designation];
+$dbSaved = db_execute($sqlWithAllColumns, $paramsWithAllColumns);
+
+if (!$dbSaved) {
+    $sqlWithColumns = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status, region, cluster, business_partner_name) 
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $paramsWithColumns = [$name, $email, $contact, $companyName, $subject, $pincode, $fullMessage, $status, $region, $cluster, $businessPartner];
+    $dbSaved = db_execute($sqlWithColumns, $paramsWithColumns);
+}
 
 if (!$dbSaved) {
     $sql = "INSERT INTO contact_enquiry (name, email, contact, company_name, subject, pincode, message, status) 
@@ -97,7 +104,7 @@ if ($dbSaved) {
         'FirstName' => $firstName,
         'LastName' => $lastName,
         'Title' => $designation,
-        'Designation__c' => $designation,
+        'Designation' => $designation,
         'Company' => $companyName,
         'Email' => $email,
         'Phone' => $contact,
@@ -106,6 +113,8 @@ if ($dbSaved) {
         'PostalCode' => $pincode,
         'Region__c' => $region,
         'Cluster__c' => $cluster,
+        'Business_Partner__c' => $businessPartner,
+        'BP__c' => $businessPartner,
         'Business_Partner_Name__c' => $businessPartner,
         'Description' => $sfDescription,
         'Status' => 'Unqualified'
@@ -124,7 +133,6 @@ if ($dbSaved) {
                 <p>Dear <strong>" . htmlspecialchars($name) . "</strong>,</p>
                 <p>Thank you for reaching out to us. We have successfully received your enquiry regarding <strong>" . htmlspecialchars($subject) . "</strong>.</p>
                 <div style='background: #f9f9f9; padding: 15px; border-left: 4px solid #1A3B1B; border-radius: 4px; margin: 15px 0;'>
-                    <p style='margin: 0 0 5px;'><strong>Designation:</strong> " . htmlspecialchars($designation) . "</p>
                     <p style='margin: 0 0 5px;'><strong>Company:</strong> " . htmlspecialchars($companyName) . "</p>
                     " . (!empty($region) ? "<p style='margin: 0 0 5px;'><strong>Region:</strong> " . htmlspecialchars($region) . "</p>" : "") . "
                     " . (!empty($cluster) ? "<p style='margin: 0 0 5px;'><strong>Cluster:</strong> " . htmlspecialchars($cluster) . "</p>" : "") . "
@@ -170,10 +178,6 @@ if ($dbSaved) {
                 <tr style='background-color: #f5f5f5;'>
                     <td width='30%' style='border: 1px solid #e0e0e0; font-weight: bold;'>Lead / Customer Name</td>
                     <td style='border: 1px solid #e0e0e0;'>" . htmlspecialchars($name) . "</td>
-                </tr>
-                <tr>
-                    <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Designation / Title</td>
-                    <td style='border: 1px solid #e0e0e0;'>" . htmlspecialchars($designation) . "</td>
                 </tr>
                 <tr style='background-color: #f5f5f5;'>
                     <td style='border: 1px solid #e0e0e0; font-weight: bold;'>Company Name</td>

@@ -901,15 +901,14 @@ function sendToSalesforce($data)
                 "FirstName" => isset($data['FirstName']) && $data['FirstName'] !== '' ? $data['FirstName'] : '',
                 "LastName" => isset($data['LastName']) && $data['LastName'] !== '' ? $data['LastName'] : 'Unknown',
                 "Company" => !empty($data['Company']) ? $data['Company'] : 'Not Provided',
-                "Title" => $data['Title'] ?? '',
-                "Designation__c" => $data['Designation__c'] ?? '',
+                "Title" => !empty($data['Title']) ? $data['Title'] : (!empty($data['Designation']) ? $data['Designation'] : ''),
                 "Email" => $data['Email'] ?? '',
                 "Phone" => $data['Phone'] ?? '',
                 "MobilePhone" => $data['MobilePhone'] ?? $data['Phone'] ?? '',
                 "Website" => $data['Website'] ?? '',
                 "Description" => $data['Description'] ?? '',
                 "LeadSource" => $data['LeadSource'] ?? 'Website Enquiry',
-                "Status" => $data['Status'] ?? 'New',
+                "Status" => $data['Status'] ?? 'Unqualified',
                 "Street" => $data['Street'] ?? '',
                 "City" => $data['City'] ?? '',
                 "State" => $data['State'] ?? '',
@@ -917,55 +916,115 @@ function sendToSalesforce($data)
                 "Country" => $data['Country'] ?? ''
             ];
 
+            // 1. Region
             if (!empty($data['Region__c'])) {
                 $leadData['Region__c'] = $data['Region__c'];
+            } elseif (!empty($data['Region'])) {
+                $leadData['Region__c'] = $data['Region'];
             }
+
+            // 2. Cluster
             if (!empty($data['Cluster__c'])) {
                 $leadData['Cluster__c'] = $data['Cluster__c'];
-            }
-            if (!empty($data['Business_Partner_Name__c'])) {
-                $leadData['Business_Partner_Name__c'] = $data['Business_Partner_Name__c'];
-            }
-
-            // 2. Create Lead
-            $ch2 = curl_init();
-            curl_setopt($ch2, CURLOPT_URL, $sf_lead_url);
-            curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch2, CURLOPT_POST, true);
-            curl_setopt($ch2, CURLOPT_POSTFIELDS, json_encode($leadData));
-            curl_setopt($ch2, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $access_token,
-                'Content-Type: application/json'
-            ]);
-            curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
-            $lead_response = curl_exec($ch2);
-            $lead_http_code = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
-            curl_close($ch2);
-
-            if ($lead_http_code >= 200 && $lead_http_code < 300) {
-                return ['status' => 'success', 'message' => 'Lead created in Salesforce.'];
+            } elseif (!empty($data['Cluster'])) {
+                $leadData['Cluster__c'] = $data['Cluster'];
             }
 
-            // If Salesforce rejects due to custom fields not existing yet on Lead object, retry with standard fields only
-            if ($lead_http_code == 400 && (stripos($lead_response, 'No such column') !== false || stripos($lead_response, 'INVALID_FIELD') !== false)) {
-                unset($leadData['Region__c'], $leadData['Cluster__c'], $leadData['Business_Partner_Name__c'], $leadData['Designation__c']);
-                $ch3 = curl_init();
-                curl_setopt($ch3, CURLOPT_URL, $sf_lead_url);
-                curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch3, CURLOPT_POST, true);
-                curl_setopt($ch3, CURLOPT_POSTFIELDS, json_encode($leadData));
-                curl_setopt($ch3, CURLOPT_HTTPHEADER, [
+            // 3. Business Partner (try Business_Partner__c first, with alternate fallbacks)
+            $bpValue = $data['Business_Partner__c'] ?? $data['BP__c'] ?? $data['Business_Partner_Name__c'] ?? $data['Business_Partner'] ?? '';
+            $bpVariants = ['Business_Partner__c', 'BP__c', 'Business_Partner_Name__c'];
+            $bpVariantIdx = 0;
+            if (!empty($bpValue)) {
+                $leadData['Business_Partner__c'] = $bpValue;
+            }
+
+            // 2. Create Lead with Granular Retry
+            $maxAttempts = 4;
+            for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+                $ch2 = curl_init();
+                curl_setopt($ch2, CURLOPT_URL, $sf_lead_url);
+                curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch2, CURLOPT_POST, true);
+                curl_setopt($ch2, CURLOPT_POSTFIELDS, json_encode($leadData));
+                curl_setopt($ch2, CURLOPT_HTTPHEADER, [
                     'Authorization: Bearer ' . $access_token,
                     'Content-Type: application/json'
                 ]);
-                curl_setopt($ch3, CURLOPT_SSL_VERIFYPEER, false);
-                $retry_response = curl_exec($ch3);
-                $retry_code = curl_getinfo($ch3, CURLINFO_HTTP_CODE);
-                curl_close($ch3);
+                curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+                $lead_response = curl_exec($ch2);
+                $lead_http_code = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
+                curl_close($ch2);
 
-                if ($retry_code >= 200 && $retry_code < 300) {
-                    return ['status' => 'success', 'message' => 'Lead created in Salesforce (custom fields preserved in Description).'];
+                if ($lead_http_code >= 200 && $lead_http_code < 300) {
+                    return [
+                        'status' => 'success',
+                        'message' => 'Lead created in Salesforce' . ($attempt > 1 ? ' (custom field mappings auto-aligned).' : '.')
+                    ];
                 }
+
+                // If HTTP 400, analyze specific error fields
+                if ($lead_http_code == 400 && $lead_response) {
+                    $errors = json_decode($lead_response, true);
+                    $rejectedFields = [];
+
+                    if (is_array($errors)) {
+                        foreach ($errors as $err) {
+                            if (!empty($err['fields']) && is_array($err['fields'])) {
+                                foreach ($err['fields'] as $f) {
+                                    $rejectedFields[] = $f;
+                                }
+                            }
+                            if (!empty($err['message'])) {
+                                if (preg_match("/No such column '([^']+)'/i", $err['message'], $m)) {
+                                    $rejectedFields[] = $m[1];
+                                }
+                            }
+                        }
+                    }
+                    $rejectedFields = array_unique($rejectedFields);
+
+                    // Check if current BP field variant was rejected as unknown column
+                    $currBp = $bpVariants[$bpVariantIdx] ?? '';
+                    $bpRejected = ($currBp !== '' && (in_array($currBp, $rejectedFields) || stripos($lead_response, $currBp) !== false));
+
+                    if ($bpRejected && !empty($bpValue)) {
+                        unset($leadData[$currBp]);
+                        $bpVariantIdx++;
+                        if (isset($bpVariants[$bpVariantIdx])) {
+                            $leadData[$bpVariants[$bpVariantIdx]] = $bpValue;
+                            continue;
+                        }
+                    }
+
+                    // Remove only specifically rejected fields (e.g. non-existent custom column or restricted picklist)
+                    $modified = false;
+                    foreach ($rejectedFields as $rf) {
+                        if (isset($leadData[$rf])) {
+                            unset($leadData[$rf]);
+                            $modified = true;
+                        }
+                    }
+
+                    if ($modified) {
+                        continue;
+                    }
+
+                    // Ultimate fallback if individual fields could not be isolated: remove all custom fields to guarantee record creation
+                    $customKeys = ['Region__c', 'Cluster__c', 'Business_Partner__c', 'BP__c', 'Business_Partner_Name__c', 'Designation__c'];
+                    $anyCustomLeft = false;
+                    foreach ($customKeys as $ck) {
+                        if (isset($leadData[$ck])) {
+                            unset($leadData[$ck]);
+                            $anyCustomLeft = true;
+                        }
+                    }
+                    if ($anyCustomLeft) {
+                        continue;
+                    }
+                }
+
+                // Cannot retry further
+                break;
             }
 
             return ['status' => 'error', 'message' => 'Failed to create lead in Salesforce (HTTP ' . $lead_http_code . '): ' . $lead_response];
