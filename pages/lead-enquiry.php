@@ -237,38 +237,11 @@ $sourcesList = [
                             </div>
 
                             <!-- Product Subject -->
-                            <div>
+                            <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-[#404040] uppercase tracking-wider mb-1.5">
                                     Product / Requirement Subject
                                 </label>
                                 <input type="text" name="subject" id="lead_subject" placeholder="e.g. High Temperature Bearing Grease"
-                                    class="w-full px-4 py-2.5 rounded-lg border border-[#D1D5DB] bg-[#FAFAFA] focus:bg-white text-[#1F2937] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A3B1B]/20 focus:border-[#1A3B1B] transition-all text-sm font-medium">
-                            </div>
-
-                            <!-- Region -->
-                            <div>
-                                <label class="block text-xs font-bold text-[#404040] uppercase tracking-wider mb-1.5">
-                                    Region
-                                </label>
-                                <input type="text" name="region" id="lead_region" placeholder="e.g. West / North / South / East"
-                                    class="w-full px-4 py-2.5 rounded-lg border border-[#D1D5DB] bg-[#FAFAFA] focus:bg-white text-[#1F2937] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A3B1B]/20 focus:border-[#1A3B1B] transition-all text-sm font-medium">
-                            </div>
-
-                            <!-- Cluster -->
-                            <div>
-                                <label class="block text-xs font-bold text-[#404040] uppercase tracking-wider mb-1.5">
-                                    Cluster
-                                </label>
-                                <input type="text" name="cluster" id="lead_cluster" placeholder="e.g. Pune Cluster / Gujarat Cluster"
-                                    class="w-full px-4 py-2.5 rounded-lg border border-[#D1D5DB] bg-[#FAFAFA] focus:bg-white text-[#1F2937] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A3B1B]/20 focus:border-[#1A3B1B] transition-all text-sm font-medium">
-                            </div>
-
-                            <!-- Business Partner Name -->
-                            <div class="md:col-span-2">
-                                <label class="block text-xs font-bold text-[#404040] uppercase tracking-wider mb-1.5">
-                                    Business Partner Name
-                                </label>
-                                <input type="text" name="business_partner_name" id="lead_business_partner" placeholder="e.g. Channel Partner / Authorized Distributor Name"
                                     class="w-full px-4 py-2.5 rounded-lg border border-[#D1D5DB] bg-[#FAFAFA] focus:bg-white text-[#1F2937] placeholder:text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1A3B1B]/20 focus:border-[#1A3B1B] transition-all text-sm font-medium">
                             </div>
 
@@ -323,14 +296,6 @@ $sourcesList = [
                     <div class="flex justify-between border-b border-gray-200 pb-1.5">
                         <span class="text-gray-500">Company:</span>
                         <span id="resCompany" class="font-semibold">--</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-200 pb-1.5">
-                        <span class="text-gray-500">Region / Cluster:</span>
-                        <span id="resRegionCluster" class="font-semibold text-[#1A3B1B]">--</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-200 pb-1.5">
-                        <span class="text-gray-500">Business Partner:</span>
-                        <span id="resPartner" class="font-semibold">--</span>
                     </div>
                     <div class="flex justify-between border-b border-gray-200 pb-1.5">
                         <span class="text-gray-500">Lead Source:</span>
@@ -530,11 +495,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Populate Success Summary
                 document.getElementById('resLeadName').innerText = document.getElementById('lead_name').value;
                 document.getElementById('resCompany').innerText = document.getElementById('lead_company').value;
-                var regVal = (document.getElementById('lead_region').value || '').trim();
-                var clusVal = (document.getElementById('lead_cluster').value || '').trim();
-                var bpVal = (document.getElementById('lead_business_partner').value || '').trim();
-                document.getElementById('resRegionCluster').innerText = (regVal || '-') + (clusVal ? ' / ' + clusVal : '');
-                document.getElementById('resPartner').innerText = bpVal || '-';
                 document.getElementById('resSource').innerText = sourceInput.value;
                 document.getElementById('resLoggedBy').innerText = document.getElementById('submitted_by').value + ' (' + document.getElementById('submitter_role').value + ')';
 
